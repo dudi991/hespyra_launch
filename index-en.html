@@ -575,7 +575,9 @@
     <!-- Hero-Glas: RENDER, PLATZHALTER. Wird durch das echte Glasfoto ersetzt.
          Bis dahin keine Bildunterschrift: Ein Render hat keinen Ort und keine Uhrzeit. data-zeit="19:50" am Hero ist
          ohne Foto-Beleg — okay für den Testbau, nicht für den Launch. Mit dem Foto kommen seine Uhrzeit in data-ort/data-zeit
-         und die sichtbare Bildunterschrift (.cap) zurück. Vergleich v0.51 (Glas vor „Vanille.“) erst mit dem Foto. -->
+         und die sichtbare Bildunterschrift (.cap) zurück. Vergleich v0.51 (Glas vor „Vanille.“) erst mit dem Foto.
+         filter:brightness(1.01) gleicht nur den Render aus (Hintergrund 254 statt 255). Beim echten Foto wird die DATEI
+         korrigiert (Hintergrund auf reines Weiß), nicht das CSS — die filter-Regel fällt dann weg. -->
     <div class="photo"><img src="uploads/hero-glas.webp" width="1122" height="1402" alt="An empty glass on a white background" decoding="async" fetchpriority="high"></div>
     <div class="text">
       <div class="g12">

@@ -316,19 +316,18 @@
   .ortszeit-eintrag .cap br{display:none}   /* Rubrik-Markup trennt mit <br>; der Satz ist ohnehin ein Block */
   .journal-wrap .ortszeit-eintrag .cap .s{color:#c3cbd9}
   @media(max-width:767px){.welt .cap .t + span,.ritual-kachel .cap .t + span,.ortszeit-eintrag .cap .s{font-size:clamp(19px,5vw,22px)}}
-  /* T8: Statements auf Bildschirmmaß — Wahrheit und Schlusssatz. Section min-height 70svh (≤767px 50svh), Text vertikal
+  /* T8/T9: Statements auf Bildschirmmaß — nur Wahrheit und Abendwelt-Schluss (section.schluss, nicht die Journal-Schlusszeile). Section min-height 70svh (≤767px 50svh), Text vertikal
      zentriert, Hauptachse links. Kein Außenabstand: Der Leerraum entsteht in der Section (oben = unten, mindestens --raum-eng).
-     Wahrheit: Hairline oben ist die des Hero, unten die eigene (Kante wie .col); danach .ritual mit Standard-Abstand. */
-  .wahrheit,.schluss{margin-top:0;min-height:70svh;display:flex;flex-direction:column;justify-content:center;position:relative;
+     Wahrheit: Hairline oben ist die des Hero, unten keine (T9); danach .ritual mit Standard-Abstand. */
+  .wahrheit,section.schluss{margin-top:0;min-height:70svh;display:flex;flex-direction:column;justify-content:center;position:relative;
     padding-block:var(--raum-eng)}   /* Mindestluft, falls der Text höher als 70svh wird (Schlusssatz: 7 Zeilen bei 14ch); zentriert bleibt er */
-  .wahrheit h2,.schluss .meinung{margin:0;font-weight:500;font-size:clamp(44px,6.4vw,84px);line-height:1.02;letter-spacing:-.035em;
+  .wahrheit h2,section.schluss .meinung{margin:0;font-weight:500;font-size:clamp(48px,7.2vw,104px);line-height:1;letter-spacing:-.04em;
     color:var(--ink);hyphens:manual;text-wrap:pretty}
   .wahrheit h2{max-width:none}          /* bricht nur am <br> nach dem Punkt, solange die Zeile passt */
-  .schluss .meinung{max-width:14ch}
-  .wahrheit::after{content:"";position:absolute;left:var(--gap);right:var(--gap);bottom:0;height:1px;background:var(--hair)}
+  section.schluss .meinung{max-width:none}   /* T9: feste Umbrüche per <br> */
   @media(max-width:767px){
-    .wahrheit,.schluss{min-height:50svh}
-    .wahrheit h2,.schluss .meinung{font-size:clamp(36px,9.5vw,48px)}
+    .wahrheit,section.schluss{min-height:50svh}
+    .wahrheit h2,section.schluss .meinung{font-size:clamp(36px,9.5vw,48px)}
   }
   /* Nebenachse Spalte 7: die eine rechte Kante der Seite */
 
@@ -721,7 +720,7 @@
 <!-- 3b SCHLUSSSATZ: eigene Section auf Bildschirmmaß (T8), Satz aus der Abendwelt hierher verschoben -->
 <section class="schluss col">
   <!-- D9: Paul -->
-  <p class="meinung">We have no opinion on which one is right.<br>On the moment before, we do.</p>
+  <p class="meinung">We have no opinion<br>on which one is right.<br>On the moment before,<br>we do.</p>
 </section>
 
 <!-- 4 GESCHMACK -->

@@ -506,6 +506,16 @@
     background:transparent;transition:background .3s var(--ease)}
   .kicker a:hover::after{background:#93a0ba}
   .journal .big > a{display:block}
+
+  /* ---------- T1 ---------- */
+  /* T1.1: Lead und Resolver auf schmalen Breiten als Paar. Desktop (nebeneinander, Baseline) unberührt. */
+  @media(max-width:767px){.hero .resolver{margin-top:12px}}
+  /* T1.2: Reicht auf 390 der Platz für Ort · Zeit nicht, wandert „Bestellen" ins Menü (steht dort in #mainnav).
+     „EN ≡" bleibt. Die Ortszeit hat Vorrang. Die Klasse setzt das Script. */
+  .bar.ohne-bestellen .menu > a:first-child,.bar.ohne-bestellen .menu > a:first-child + .dot{display:none}
+  /* T1.4: Abendwelt — der erste Meinungssatz steht als Lead unter der h2, im Stil von .hero .lead. */
+  .welt .welt-lead{max-width:none;margin:30px 0 0;font-weight:400;color:var(--ink);
+    font-size:clamp(21px,2.1vw,28px);line-height:1.35;letter-spacing:-.015em;hyphens:manual;text-wrap:pretty}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <script type="application/ld+json">
@@ -541,7 +551,7 @@
   <nav>
     <div class="nav-l">
       <a class="mark" href="#" aria-label="HESPYRA"><svg class="wm" role="img" aria-label="HESPYRA" style="width:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5900 716"><title>HESPYRA</title><path fill="currentColor" d="M602 708L502 708L502 396L100 396L100 708L0 708L0 8L100 8L100 309L502 309L502 8L602 8L602 708ZM1500 708L992 708L992 8L1486 8L1486 95L1092 95L1092 310L1443 310L1443 395L1092 395L1092 621L1500 621L1500 708ZM2046 716Q1966 716 1893 691.5Q1820 667 1778 628L1815 550Q1854 585 1916.5 608Q1979 631 2046 631Q2136 631 2177.5 600Q2219 569 2219 523Q2219 487 2196 465Q2173 443 2135 429.5Q2097 416 2052 406Q2007 396 1961.5 383Q1916 370 1878.5 348.5Q1841 327 1818 291.5Q1795 256 1795 200Q1795 146 1823.5 100.5Q1852 55 1911.5 27.5Q1971 0 2063 0Q2125 0 2184.5 16Q2244 32 2288 62L2255 142Q2210 113 2159.5 99Q2109 85 2063 85Q1974 85 1933.5 117.5Q1893 150 1893 196Q1893 233 1916 255Q1939 277 1977 290Q2015 303 2060 313.5Q2105 324 2150.5 337Q2196 350 2233.5 371Q2271 392 2294 427Q2317 462 2317 517Q2317 570 2288 615.5Q2259 661 2198.5 688.5Q2138 716 2046 716ZM2743 708L2643 708L2643 8L2916 8Q3052 8 3130 73Q3208 138 3208 252Q3208 366 3130 431Q3052 496 2916 496L2743 496L2743 708ZM2743 95L2743 409L2913 409Q3009 409 3058.5 368Q3108 327 3108 252Q3108 177 3058.5 136Q3009 95 2913 95L2743 95ZM3480 8L3584.4 8L3742 276.3L3778 276.3L3935.6 8L4040 8L3805 408L3805 708L3715 708L3715 408ZM4465 708L4365 708L4365 8L4638 8Q4774 8 4852 73Q4930 138 4930 252Q4930 334 4890 390.5Q4850 447 4776 473L4942 708L4833 708L4682 493Q4661 495 4638 495L4465 495L4465 708ZM4465 95L4465 410L4635 410Q4731 410 4780.5 368.5Q4830 327 4830 252Q4830 177 4780.5 136Q4731 95 4635 95L4465 95ZM5269 708L5166 708L5483 8L5582 8L5900 708L5795 708L5718 533L5346 533L5269 708ZM5532 110L5381 453L5683 453L5532 110Z"></path></svg></a>
-      <a class="ortszeit" href="#journal"><span id="tb-ort">Forchheim</span> <span class="dot">·</span> <span id="tb-zeit">18:46</span><span class="satz"> – <span id="tb-satz">Niemand mehr auf der Straße.</span></span></a>
+      <a class="ortszeit" href="#journal"><span id="tb-ort">Forchheim</span> <span class="dot">·</span> <span id="tb-zeit">19:50</span><span class="satz" style="display:none"> – <span id="tb-satz"></span></span></a>
     </div>
     <ul id="mainnav">
       <li><a href="#" aria-disabled="true">Produkt</a></li>
@@ -556,7 +566,7 @@
 </div>
 
 <!-- 1 HERO -->
-<section class="hero">
+<section class="hero" data-ort="Forchheim" data-zeit="19:50">
   <div class="full">
     <!-- Hero-Motiv: freigestelltes Glas auf Weiß, ohne Bildunterschrift (kein Ort). Ohne .cap bleibt die Ortszeit
          oben beim Laden auf dem Wert aus dem HTML und wechselt beim Scrollen unter den Hero. -->
@@ -595,13 +605,14 @@
 <section class="welt col">
   <!-- rechtlich prüfen vor Livegang. Rückfall: Der Tag ist zu Ende. Im Kopf noch nicht. -->
   <h2>Der Tag ist vorbei. Er weiß es nur noch nicht.</h2>
+  <p class="welt-lead">Es gibt ziemlich viele Arten, einen guten Abend zu verbringen.</p>
   <div class="grid g12">
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:65% 45%"><img src="uploads/freizeitpark.webp" alt="Geiselwind am Abend, beleuchtetes Karussell, Wimpelketten über dem Platz" decoding="async"></div></div><p class="cap"><span class="t">Geiselwind <span class="dot">·</span> 17:39</span><span>Karussell, kurz vor Schluss.</span></p></figure>
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:45% 55%"><img src="uploads/fussball_mit_freunden.webp" alt="Nürnberg, volle Kurve im Stadion, Fahnen und Rauch über dem Rasen" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Nürnberg <span class="dot">·</span> 19:48</span><span>Alle stehen, niemand sitzt.</span></p></figure>
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 55%"><img src="uploads/griechenland.webp" alt="Kos, Beachvolleyballfeld am Meer, Palmen, letzte Helligkeit über dem Wasser" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Kos <span class="dot">·</span> 18:19</span><span>Der Platz ist leer, die Sonne fast weg.</span></p></figure>
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 40%"><img src="uploads/mit_familie.webp" alt="Heroldsbach, Parkplatz bei tiefer Sonne, jemand schiebt einen Kinderwagen" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Heroldsbach <span class="dot">·</span> 18:01</span><span>Zurück zum Auto, die Sonne noch da.</span></p></figure>
   </div>
-  <p class="meinung">Es gibt ziemlich viele Arten, einen guten Abend zu verbringen. Wir haben keine Meinung dazu, welche die richtige ist.</p>
+  <p class="meinung">Wir haben keine Meinung dazu, welche die richtige ist.</p>
 </section>
 
 <!-- 4 GESCHMACK -->
@@ -818,28 +829,35 @@
   // in der ORTSZEIT-Rubrik und hier. momente = die vier Kacheln der ORTSZEIT-Rubrik im Journal.
   (function(){
     var momente=[['Geiselwind','17:39','Karussell, kurz vor Schluss.'],['Nürnberg','19:48','Alle stehen, niemand sitzt.'],['Kos','18:19','Der Platz ist leer, die Sonne fast weg.'],['Heroldsbach','18:01','Zurück zum Auto, die Sonne noch da.']];
-    var wrap=document.querySelector('.ortszeit'),hero=document.querySelector('.hero'),c=document.querySelector('.hero .cap .t');
+    var wrap=document.querySelector('.ortszeit'),hero=document.querySelector('.hero');
     var o=document.getElementById('tb-ort'),z=document.getElementById('tb-zeit'),s=document.getElementById('tb-satz');
     if(!wrap||!hero||!o||!z||!s)return;
     function mal(m){o.textContent=m[0];z.textContent=m[1];s.textContent=m[2];wrap.querySelector('.satz').style.display=m[2]?'':'none';}
-    if(c&&!c.querySelector('.ph')){var p=c.textContent.split('·'),hs=document.querySelector('.hero .cap .t + span');mal([(p[0]||'').trim(),(p[1]||'').trim(),hs?hs.textContent.trim():'']);}
+    // T1.3: Beim Laden steht der Hero-Moment (data-ort/data-zeit am Hero, ohne Satz).
+    if(hero.dataset.ort&&hero.dataset.zeit)mal([hero.dataset.ort,hero.dataset.zeit,'']);
     var rest=momente.filter(function(m){return m[1]!==z.textContent}),neu=rest[Math.floor(Math.random()*rest.length)],ein=false;
-    new IntersectionObserver(function(e){if(ein||e[0].isIntersecting)return;ein=true;wrap.classList.add('aus');
-      setTimeout(function(){mal(neu);wrap.classList.remove('aus')},300);},{threshold:0}).observe(hero);
+    // Einziger Auslöser: scrollY über der Hero-Unterkante. Kein Observer, kein load. Genau ein Wechsel.
+    function pruefe(){if(ein||window.scrollY<=hero.offsetTop+hero.offsetHeight)return;ein=true;removeEventListener('scroll',pruefe);
+      wrap.classList.add('aus');setTimeout(function(){mal(neu);wrap.classList.remove('aus')},300);}
+    addEventListener('scroll',pruefe,{passive:true});
   })();
 
   // H1 (v0.43) Kopfzeile auf 390: Ort · Zeit vollständig oder gar nicht. Nie gekürzt.
   (function(){
     var oz=document.querySelector('.bar .ortszeit'),nv=document.querySelector('.bar nav');
     if(!oz||!nv)return;
-    var rechts=nv.lastElementChild;
+    var rechts=nv.lastElementChild,bar=document.getElementById('bar');
+    function passt(){return oz.scrollWidth<=rechts.getBoundingClientRect().left-oz.getBoundingClientRect().left-12}
     function fit(){
-      oz.style.display='';
+      oz.style.display='';bar.classList.remove('ohne-bestellen');
       if(window.innerWidth>600)return;
-      var platz=rechts.getBoundingClientRect().left-oz.getBoundingClientRect().left-12;
-      if(oz.scrollWidth>platz)oz.style.display='none';
+      if(passt())return;
+      bar.classList.add('ohne-bestellen');   // T1.2: Ortszeit vor Bestellen-Link
+      if(!passt())oz.style.display='none';
     }
     fit();addEventListener('resize',fit);
+    // Erst nach dem Laden von IBM Plex Mono stimmt die Breite; vorher misst fit() die breitere Ersatzschrift.
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
     new MutationObserver(fit).observe(oz,{childList:true,subtree:true,characterData:true});
   })();
 

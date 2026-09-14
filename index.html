@@ -42,7 +42,6 @@
     --dark:#141F33;           /* Das eine dunkle Feld der Seite: Journal und Schlusszeile.
                                  Kein Produkt- oder Verpackungsfarbton. Genau einmal pro Seite. */
     --ink-soft:#5c5c55;
-    --flaeche:#f1f1ee;        /* Papier, 4 % dunkler, neutral. Genau einmal auf der Seite. */
     --hair:#dedcd4;           /* Linien: weich, nicht schwarz */
     --photo:#e8e6e0;
     --gap:24px; --col:1280px; --narrow:640px;
@@ -336,10 +335,10 @@
   .ritual .lead{margin-top:18px}
   .ritual .cap .t{color:var(--ink)}
   /* T8: Zubereitung = gespiegelte Vanille-Section (.geschmack ist die Vorlage). Zwei Kacheln über die volle Viewportbreite,
-     Feld links mit --flaeche, gleiche Höhe; Innenabstände gespiegelt: die breite Seite zeigt zur Bildnaht,
+     Feld links auf Papier (T10: transparent), gleiche Höhe; Innenabstände gespiegelt: die breite Seite zeigt zur Bildnaht,
      Textkante damit auf Spalte 5 (Vanille: Spalte 8). */
   .ritual .kacheln{display:grid;grid-template-columns:1fr 1fr;height:min(80vh,760px);min-height:520px}
-  .ritual .text{background:var(--flaeche);display:flex;flex-direction:column;justify-content:center;
+  .ritual .text{background:transparent;display:flex;flex-direction:column;justify-content:center;
     --spalte:calc((min(100vw,var(--col)) - 13 * var(--gap)) / 12);
     padding:clamp(32px,5vw,64px) calc(var(--gap)/2 + var(--spalte) + var(--gap)) clamp(32px,5vw,64px) clamp(32px,5vw,64px)}
   .ritual .text .label{margin:0 0 26px}
@@ -359,7 +358,7 @@
   .geschmack .kacheln{display:grid;grid-template-columns:1fr 1fr;
     height:min(80vh,760px);min-height:520px}
   .geschmack .photo{height:100%;border-radius:0}
-  .geschmack .text{background:var(--flaeche);border-radius:0;
+  .geschmack .text{background:transparent;border-radius:0;
     display:flex;flex-direction:column;justify-content:center;
     /* Eine Breite für alle drei Absätze: 34 Zeichen der t1-Größe. 0.6em ist die Zeichenbreite
        der IBM Plex Sans, gemessen — so rechnet die h2 nicht mit ihrer eigenen ch-Basis. */

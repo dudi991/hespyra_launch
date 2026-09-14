@@ -250,9 +250,9 @@
   /* Hero auf Papier: kein Scrim, dunkle Schrift. Das Foto-Feld ist leer (Papierton), das Glas steht seit T8 im Textblock. */
   .hero .photo{position:relative;background:var(--paper)}
   /* T8: Hero-Glas (Platzhalter-Render 1122×1402; Glas im Bild x 250–871, y 312–1124 → Unterkante bei 80,2 % der Bildhöhe).
-     Das <img> steht im Textblock als 0 px hoher Anker direkt unter der h1 (.glas). Die Glas-Unterkante liegt 1,5 Zeilenhöhen
-     über der h1-Unterkante: Sie überdeckt die Zeile mit „Vanille." (immer die vorletzte, vor dem <br>) um eine halbe Zeile.
-     Darunter: letzte h1-Zeile, Lead und Resolver frei. Glasmitte bei 72 % der Viewportbreite. multiply: Text bleibt lesbar.
+     Das <img> steht im Textblock als 0 px hoher Anker direkt unter der h1 (.glas). Lage seit T8.1: gespiegelt, rechte Glaskante
+     am Punkt hinter „Vanille.", Unterkante auf 35 % der Versalhöhe von Zeile 1. multiply am Anker: Text bleibt lesbar.
+     FOTO-BRIEF für das echte Glasfoto: Fenster links, Schatten rechts (Licht von links) — dann entfällt scaleX(-1).
      Größe wie bisher: Bildhöhe 57 % der Hero-Höhe (Glas ≈ 33 %). */
   .hero{--hero-h:max(640px,100svh - var(--bar-h) - 1px)}
   @media(max-width:600px){.hero{--hero-h:88svh}}
@@ -261,11 +261,18 @@
     font-size:clamp(44px,7vw,100px);line-height:.94}                   /* = h1, damit em in h1-Zeilen rechnet */
   @media(max-width:600px){.hero .glas{font-size:clamp(44px,12vw,50px)}}
   .hero .glas img{position:absolute;display:block;width:auto;height:calc(.57 * var(--hero-h));
-    left:calc(72vw - (100vw - min(100vw, var(--col))) / 2 - var(--gap));transform:translateX(-50%);
-    bottom:calc(1.5 * .94em - .198 * .57 * var(--hero-h));
+    /* T8.1: gespiegelt — Schatten fällt nach rechts. Rechte Glaskante (gespiegelt bei 77,7 % der Bildbreite) schließt mit dem
+       Punkt hinter „vanilla.“ ab: Punkt-Ende = h1-Anfang + 10.327 em (Plex Sans 500, −.04em, gemessen). Bildbreite = .8003 × Höhe. */
+    transform:scaleX(-1);
+    left:calc(10.327 * 1em - .7772 * .8003 * .57 * var(--hero-h));
+    /* T8.1: Glas-Unterkante auf 35 % der Versalhöhe von Zeile 1, von der Versallinie gemessen (knapp unter der x-Höhe):
+       Zeile-1-Oberkante + .14em (Versallinie) + .35 × .70em = + .385em. Anker = h1-Unterkante, h1 hier 2 Zeilen. */
+    bottom:calc(2 * .94em - .385em - .198 * .57 * var(--hero-h));
     /* Render-Hintergrund ist 254, nicht 255: ohne Anhebung steht die Bildfläche eine Stufe dunkler als --paper (sichtbarer Rahmen). */
     filter:brightness(1.01);
     -webkit-mask-image:linear-gradient(to right,transparent,#000 20%);mask-image:linear-gradient(to right,transparent,#000 20%)}
+  /* ≤600px: h1 dreizeilig, „vanilla.“ steht in Zeile 2 (Punkt-Ende = h1-Anfang + 4.921 em bei −.03em). */
+  @media(max-width:600px){.hero .glas img{left:calc(4.921 * 1em - .7772 * .8003 * .57 * var(--hero-h));bottom:calc(3 * .94em - .385em - .198 * .57 * var(--hero-h))}}
   /* Vergleich ohne Überlappung (Klasse hero--frei am <section>): Glas-Unterkante 24 px über der h1-Oberkante.
      Nur im Desktop-Raster (≥860px), dort sitzt der Anker in der h1-Zeile oben. */
   @media(min-width:860px){

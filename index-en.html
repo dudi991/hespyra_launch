@@ -201,7 +201,7 @@
   .reveal{transition:opacity .6s var(--ease),transform .6s var(--ease)}
   html.js-reveal .reveal:not(.in){opacity:0;transform:translateY(14px)}
   @media(prefers-reduced-motion:reduce){
-    .ritual-buehne video{display:none}
+    .ritual-kachel video{display:none}
     .reveal,html.js-reveal .reveal:not(.in){opacity:1;transform:none;transition:none}
     .photo img{transition:none;opacity:1}
     html{scroll-behavior:auto}
@@ -277,38 +277,50 @@
 
   /* ---------- 2 WELT: ein Streifen aus vier Quadraten ---------- */
   .welt h2{max-width:none}
-  .welt .grid{display:grid;gap:30px var(--gap);margin-top:clamp(32px,4vw,48px)}
+  .welt .grid{display:grid;gap:var(--gap);margin-top:clamp(32px,4vw,48px)}   /* T7.5: Kachelabstand --gap in beide Richtungen */
   @media(max-width:859px){.welt .grid{grid-template-columns:1fr}}
   @media(min-width:860px){
-    .welt .grid{align-items:start;row-gap:clamp(40px,4.5vw,60px)}
+    .welt .grid{align-items:start}
     .welt .grid > :nth-child(1){grid-column:1/7}
     .welt .grid > :nth-child(2){grid-column:7/13}
     .welt .grid > :nth-child(3){grid-column:1/7}
     .welt .grid > :nth-child(4){grid-column:7/13}
   }
-  .welt .photo{aspect-ratio:3/2}
+  .welt .photo{aspect-ratio:4/3}   /* T7.5 */
   /* Der Meinungssatz ist der typografische Moment der Sektion, aber keine Headline: <p>, keine h2-Semantik.
      Abstand oben = Rasterreihe-zu-Bildunterschrift (12px) plus --raum-eng. */
   .welt .meinung{margin:calc(12px + var(--raum-eng)) 0 0;max-width:24ch;
     font-weight:500;font-size:clamp(30px,4.2vw,52px);line-height:1.06;letter-spacing:-.03em;
     color:var(--ink);hyphens:manual;text-wrap:pretty}
   @media(max-width:767px){.welt .meinung{font-size:clamp(34px,9vw,40px);line-height:1.12;letter-spacing:-.03em}}
-  .welt .cap{font-size:13px}
-  /* T5: Wahrheit — eigene Section, Satz im Stil von .welt .meinung (h2-Größe, 500, 24ch), Hauptachse.
-     Kein eigener Abstand: section-Standard (--raum-mit) oben, .ritual (--raum-mit) danach. Nichts addiert. */
-  .wahrheit h2{margin:0;max-width:24ch;font-weight:500;font-size:clamp(30px,4.2vw,52px);line-height:1.06;letter-spacing:-.03em;
+  /* T7.5: Bildunterschrift im Kachelformat — Abendwelt 2×2, Zubereitung-Slot, ORTSZEIT-Reihe (Journal) und Rubrik ORTSZEIT.
+     Zeile 1 Mono „Ort · Zeit" 13px; Zeile 2 Satz Plex 500. Bild → Ort · Zeit 12px (margin), Ort · Zeit → Satz 6px.
+     Farbe: ink auf Papier; auf der Navy-Fläche des Journals bleibt der Satz hell (#c3cbd9), ink wäre dort nicht lesbar. */
+  .welt .cap,.ritual-kachel .cap,.ortszeit-eintrag .cap{font-size:13px;line-height:1.4;margin:12px 0 0}
+  .welt .cap .t + span,.ritual-kachel .cap .t + span,.ortszeit-eintrag .cap .s{display:block;margin-top:6px;
+    font-family:"IBM Plex Sans",sans-serif;font-weight:500;font-size:clamp(19px,1.8vw,24px);line-height:1.25;color:var(--ink)}
+  .ortszeit-eintrag .cap br{display:none}   /* Rubrik-Markup trennt mit <br>; der Satz ist ohnehin ein Block */
+  .journal-wrap .ortszeit-eintrag .cap .s{color:#c3cbd9}
+  @media(max-width:767px){.welt .cap .t + span,.ritual-kachel .cap .t + span,.ortszeit-eintrag .cap .s{font-size:clamp(19px,5vw,22px)}}
+  /* T5/T6: Wahrheit — eigene Section, Hauptachse, zweizeilig. Oben section-Standard (--raum-mit). */
+  .wahrheit h2{margin:0;max-width:30ch;font-weight:500;font-size:clamp(40px,5.6vw,72px);line-height:1.04;letter-spacing:-.035em;
     color:var(--ink);hyphens:manual;text-wrap:pretty}
-  @media(max-width:767px){.wahrheit h2{font-size:clamp(34px,9vw,40px);line-height:1.12;letter-spacing:-.03em}}
+  @media(max-width:767px){.wahrheit h2{font-size:clamp(34px,9vw,44px)}}
+  /* T6.3: Hairline unter der Wahrheit wie unter dem Hero (Kante wie .col). Hairline → Text = Text → Hairline = --raum-mit;
+     danach .ritual mit Standard-Section-Abstand. */
+  .wahrheit::after{content:"";display:block;height:1px;background:var(--hair);margin-top:var(--raum-mit)}
   /* Nebenachse Spalte 7: die eine rechte Kante der Seite */
 
   /* ---------- 3 ZUBEREITUNG: Headline, dann das Bewegtbild über die volle Breite ---------- */
   .ritual h2{max-width:17ch}
   .ritual .lead{margin-top:18px}
   .ritual .cap .t{color:var(--ink)}
-  .ritual-buehne{margin:clamp(48px,6vw,80px) 0 0}
-  .ritual-buehne .photo{aspect-ratio:2/1}
-  .ritual-buehne .cap{max-width:var(--col);margin:12px auto 0;padding:0 var(--gap)}
-  @media(max-width:600px){.ritual-buehne .photo{aspect-ratio:4/5}}
+  /* T7.4: Zubereitung als Kachel. Desktop: Text Spalten 1–5, Kachel 7–12, Text vertikal mittig zur Kachel
+     (gespiegelt zur Vanille-Section, deren Text ebenfalls mittig steht). ≤859px: Text oben, Kachel volle Spaltenbreite 4:5. */
+  @media(min-width:860px){.ritual .reihe{align-items:center}}
+  .ritual-kachel{margin:clamp(48px,6vw,80px) 0 0}
+  @media(min-width:860px){.ritual-kachel{margin-top:0}}
+  .ritual-kachel .photo{aspect-ratio:4/5}
 
   /* ---------- 4 GESCHMACK: zwei Kacheln über die volle Viewportbreite ---------- */
   .geschmack{margin-top:var(--raum-mit)}
@@ -632,22 +644,28 @@
 <!-- 1b WAHRHEIT: eigene Section, Satz aus der Abendwelt hierher verschoben (T5) -->
 <section class="wahrheit col">
   <!-- rechtlich prüfen vor Livegang. Rückfall: The day is done. Not in your head yet. -->
-  <h2>The day is over. It just doesn’t know it yet.</h2>
+  <h2>The day is over.<br>It just doesn’t know it yet.</h2>
 </section>
 
 <!-- 2 ZUBEREITUNG -->
 <section class="ritual" id="zubereitung">
-  <div class="col">
-    <p class="label">Preparation</p>
-    <h2>One spoon is enough.</h2>
-    <p class="lead">Mixed with water, HESPYRA is ready in a minute. Warm or cold. With oat milk it gets a little creamier.</p>
+  <!-- T7: zweispaltig, gespiegelt zur Vanille-Section — Text links (Spalten 1–5), Kachel rechts (Spalten 7–12), Bild 4:5. -->
+  <div class="col g12 reihe">
+    <div class="text c1-5">
+      <p class="label">Preparation</p>
+      <h2>One spoon is enough.</h2>
+      <p class="lead">Mixed with water, HESPYRA is ready in a minute. Warm or cold. With oat milk it gets a little creamier.</p>
+    </div>
+    <!-- Bis das Video da ist: gleiches Markup, img statt video. Vorgabe: ein Take, feste Kamera, kein Schnitt,
+         6–10 s, loopfähig (Anfangs- und Endframe nahezu identisch), H.264, max 3 MB, Poster = erster Frame. Nie Ton, keine Controls. -->
+    <figure class="ritual-kachel c7-12 reveal">
+      <div class="framed"><div class="photo" style="--focus:50% 55%"><img src="uploads/zubereitung.webp" alt="One spoon. Water. Stir." decoding="async" loading="lazy"></div></div>
+      <!-- Bildunterschrift-Slot im Kachelformat (T7.5), vorerst leer: Das Bild ist ein Render und hat keine Uhrzeit.
+           Mit dem Foto einsetzen und Werte eintragen:
+      <p class="cap" data-ort="" data-zeit=""><span class="t">Ort <span class="dot">·</span> Zeit</span><span>Satz</span></p>
+      -->
+    </figure>
   </div>
-  <!-- Bis das Video da ist: gleiches Markup, img statt video. Vorgabe: ein Take, feste Kamera, kein Schnitt,
-       6–10 s, loopfähig (Anfangs- und Endframe nahezu identisch), H.264, max 3 MB, Poster = erster Frame. Nie Ton, keine Controls. -->
-  <figure class="ritual-buehne full reveal">
-    <div class="photo" style="--focus:50% 55%"><img src="uploads/zubereitung.webp" alt="One spoon. Water. Stir." decoding="async" loading="lazy"></div>
-    <p class="cap"><span class="t"><span class="ph">[place]</span> <span class="dot">·</span> <span class="ph">[time]</span></span></p>
-  </figure>
 </section>
 
 <!-- 3 WELT: Es gibt ziemlich viele Arten, einen guten Abend zu verbringen. -->
@@ -859,7 +877,7 @@
   // Bewegtbild: bei prefers-reduced-motion nur das Poster
   (function(){
     if(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    document.querySelectorAll('.ritual-buehne video').forEach(function(v){v.removeAttribute('autoplay');v.pause();});
+    document.querySelectorAll('.ritual-kachel video').forEach(function(v){v.removeAttribute('autoplay');v.pause();});
   })();
 
   // Bilder einblenden

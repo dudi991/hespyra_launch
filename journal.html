@@ -529,8 +529,15 @@
     .ortszeit-raster > :nth-child(even){grid-column:7/13}
   }
   .ortszeit-raster .photo{aspect-ratio:3/2}
-  .ortszeit-eintrag .cap{font-size:13px;margin-top:12px}
-  .ortszeit-eintrag .cap .s{display:block;color:#c3cbd9;margin-top:3px}
+  /* T7.5: Bildunterschrift im Kachelformat — Abendwelt 2×2, Zubereitung-Slot, ORTSZEIT-Reihe (Journal) und Rubrik ORTSZEIT.
+     Zeile 1 Mono „Ort · Zeit" 13px; Zeile 2 Satz Plex 500. Bild → Ort · Zeit 12px (margin), Ort · Zeit → Satz 6px.
+     Farbe: ink auf Papier; auf der Navy-Fläche des Journals bleibt der Satz hell (#c3cbd9), ink wäre dort nicht lesbar. */
+  .welt .cap,.ritual-kachel .cap,.ortszeit-eintrag .cap{font-size:13px;line-height:1.4;margin:12px 0 0}
+  .welt .cap .t + span,.ritual-kachel .cap .t + span,.ortszeit-eintrag .cap .s{display:block;margin-top:6px;
+    font-family:"IBM Plex Sans",sans-serif;font-weight:500;font-size:clamp(19px,1.8vw,24px);line-height:1.25;color:var(--ink)}
+  .ortszeit-eintrag .cap br{display:none}   /* Rubrik-Markup trennt mit <br>; der Satz ist ohnehin ein Block */
+  .journal-wrap .ortszeit-eintrag .cap .s{color:#c3cbd9}
+  @media(max-width:767px){.welt .cap .t + span,.ritual-kachel .cap .t + span,.ortszeit-eintrag .cap .s{font-size:clamp(19px,5vw,22px)}}
   /* Bis die echten Artikel stehen, zählt kein Klick. */
   .beitraege a[aria-disabled="true"]{pointer-events:none}
   /* A3 (v0.46): Rubrik-Kicker sind Links. Hover wie .journal .link, Unterstrich erst beim Hover.

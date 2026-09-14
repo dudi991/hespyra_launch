@@ -247,21 +247,34 @@
   /* T2: 1 px für die Hairline unter dem Hero abziehen — Hero samt Hairline endet an der Viewport-Unterkante. */
   .hero .photo{aspect-ratio:auto;height:calc(100svh - var(--bar-h) - 1px);min-height:640px}
   .hero .photo img{object-position:var(--focus-x) var(--focus-y)}
-  /* Hero-Glas auf Weiß: kein Scrim, dunkle Schrift. multiply lässt das Weiß des Bildes im Papierton aufgehen,
-     damit keine hellere Bildkante gegen --paper steht. */
+  /* Hero auf Papier: kein Scrim, dunkle Schrift. Das Foto-Feld ist leer (Papierton), das Glas steht seit T8 im Textblock. */
   .hero .photo{position:relative;background:var(--paper)}
-  /* Platzhalter-Render (1122×1402, Glas mittig, 58 % der Bildhöhe, Oberkante bei 22 %). Das Bild füllt den Hero nicht,
-     es steht als Objekt in der freien Fläche über der h1: Höhe 57 % des Hero → Glas ≈ 33 % des Hero, Oberkante ≈ 12 %.
-     Lage wie im Testbau: Glasmitte 61 % der Breite, mobil 50 %. Keine Überlappung mit h1/Lead/Resolver.
-     Der weiche Schatten läuft unten links bis an den Bildrand — die Maske blendet ihn dort aus, sonst entsteht eine Kante. */
-  .hero .photo img{mix-blend-mode:multiply;inset:auto;top:0;left:61%;width:auto;height:57%;
-    object-fit:contain;transform:translateX(-50%);
+  /* T8: Hero-Glas (Platzhalter-Render 1122×1402; Glas im Bild x 250–871, y 312–1124 → Unterkante bei 80,2 % der Bildhöhe).
+     Das <img> steht im Textblock als 0 px hoher Anker direkt unter der h1 (.glas). Die Glas-Unterkante liegt 1,5 Zeilenhöhen
+     über der h1-Unterkante: Sie überdeckt die Zeile mit „Vanille." (immer die vorletzte, vor dem <br>) um eine halbe Zeile.
+     Darunter: letzte h1-Zeile, Lead und Resolver frei. Glasmitte bei 72 % der Viewportbreite. multiply: Text bleibt lesbar.
+     Größe wie bisher: Bildhöhe 57 % der Hero-Höhe (Glas ≈ 33 %). */
+  .hero{--hero-h:max(640px,100svh - var(--bar-h) - 1px)}
+  @media(max-width:600px){.hero{--hero-h:88svh}}
+  .hero .full{overflow:hidden}
+  .hero .glas{position:relative;height:0;grid-column:1/-1;align-self:start;pointer-events:none;mix-blend-mode:multiply;
+    font-size:clamp(44px,7vw,100px);line-height:.94}                   /* = h1, damit em in h1-Zeilen rechnet */
+  @media(max-width:600px){.hero .glas{font-size:clamp(44px,12vw,50px)}}
+  .hero .glas img{position:absolute;display:block;width:auto;height:calc(.57 * var(--hero-h));
+    left:calc(72vw - (100vw - min(100vw, var(--col))) / 2 - var(--gap));transform:translateX(-50%);
+    bottom:calc(1.5 * .94em - .198 * .57 * var(--hero-h));
     /* Render-Hintergrund ist 254, nicht 255: ohne Anhebung steht die Bildfläche eine Stufe dunkler als --paper (sichtbarer Rahmen). */
     filter:brightness(1.01);
     -webkit-mask-image:linear-gradient(to right,transparent,#000 20%);mask-image:linear-gradient(to right,transparent,#000 20%)}
-  @media(max-width:767px){.hero .photo img{left:50%}}
+  /* Vergleich ohne Überlappung (Klasse hero--frei am <section>): Glas-Unterkante 24 px über der h1-Oberkante.
+     Nur im Desktop-Raster (≥860px), dort sitzt der Anker in der h1-Zeile oben. */
+  @media(min-width:860px){
+    .hero--frei .glas{grid-row:1}
+    .hero--frei .glas img{bottom:calc(24px - .198 * .57 * var(--hero-h))}
+  }
   @media(max-width:767px){.hero{--focus-y:70%}}
-  .hero .text{position:absolute;left:0;right:0;bottom:0;z-index:4;
+  /* T8: kein z-index — sonst isoliert der Textblock seine Ebene und das Glas multipliziert nur mit Transparenz (weißes Rechteck). */
+  .hero .text{position:absolute;left:0;right:0;bottom:0;
     max-width:var(--col);margin:0 auto;padding:0 var(--gap) clamp(48px,6vw,80px)}
   .hero .text .g12{align-items:baseline}
   /* Kein Overlay. Der text-shadow liegt nur an, wenn .hero--shadow am Container steht. Für die Abnahme ist er ab. */
@@ -287,12 +300,6 @@
     .welt .grid > :nth-child(4){grid-column:7/13}
   }
   .welt .photo{aspect-ratio:4/3}   /* T7.5 */
-  /* Der Meinungssatz ist der typografische Moment der Sektion, aber keine Headline: <p>, keine h2-Semantik.
-     Abstand oben = Rasterreihe-zu-Bildunterschrift (12px) plus --raum-eng. */
-  .welt .meinung{margin:calc(12px + var(--raum-eng)) 0 0;max-width:24ch;
-    font-weight:500;font-size:clamp(30px,4.2vw,52px);line-height:1.06;letter-spacing:-.03em;
-    color:var(--ink);hyphens:manual;text-wrap:pretty}
-  @media(max-width:767px){.welt .meinung{font-size:clamp(34px,9vw,40px);line-height:1.12;letter-spacing:-.03em}}
   /* T7.5: Bildunterschrift im Kachelformat — Abendwelt 2×2, Zubereitung-Slot, ORTSZEIT-Reihe (Journal) und Rubrik ORTSZEIT.
      Zeile 1 Mono „Ort · Zeit" 13px; Zeile 2 Satz Plex 500. Bild → Ort · Zeit 12px (margin), Ort · Zeit → Satz 6px.
      Farbe: ink auf Papier; auf der Navy-Fläche des Journals bleibt der Satz hell (#c3cbd9), ink wäre dort nicht lesbar. */
@@ -302,25 +309,44 @@
   .ortszeit-eintrag .cap br{display:none}   /* Rubrik-Markup trennt mit <br>; der Satz ist ohnehin ein Block */
   .journal-wrap .ortszeit-eintrag .cap .s{color:#c3cbd9}
   @media(max-width:767px){.welt .cap .t + span,.ritual-kachel .cap .t + span,.ortszeit-eintrag .cap .s{font-size:clamp(19px,5vw,22px)}}
-  /* T5/T6: Wahrheit — eigene Section, Hauptachse, zweizeilig. Oben section-Standard (--raum-mit). */
-  .wahrheit h2{margin:0;max-width:30ch;font-weight:500;font-size:clamp(40px,5.6vw,72px);line-height:1.04;letter-spacing:-.035em;
+  /* T8: Statements auf Bildschirmmaß — Wahrheit und Schlusssatz. Section min-height 70svh (≤767px 50svh), Text vertikal
+     zentriert, Hauptachse links. Kein Außenabstand: Der Leerraum entsteht in der Section (oben = unten, mindestens --raum-eng).
+     Wahrheit: Hairline oben ist die des Hero, unten die eigene (Kante wie .col); danach .ritual mit Standard-Abstand. */
+  .wahrheit,.schluss{margin-top:0;min-height:70svh;display:flex;flex-direction:column;justify-content:center;position:relative;
+    padding-block:var(--raum-eng)}   /* Mindestluft, falls der Text höher als 70svh wird (Schlusssatz: 7 Zeilen bei 14ch); zentriert bleibt er */
+  .wahrheit h2,.schluss .meinung{margin:0;font-weight:500;font-size:clamp(44px,6.4vw,84px);line-height:1.02;letter-spacing:-.035em;
     color:var(--ink);hyphens:manual;text-wrap:pretty}
-  @media(max-width:767px){.wahrheit h2{font-size:clamp(34px,9vw,44px)}}
-  /* T6.3: Hairline unter der Wahrheit wie unter dem Hero (Kante wie .col). Hairline → Text = Text → Hairline = --raum-mit;
-     danach .ritual mit Standard-Section-Abstand. */
-  .wahrheit::after{content:"";display:block;height:1px;background:var(--hair);margin-top:var(--raum-mit)}
+  .wahrheit h2{max-width:none}          /* bricht nur am <br> nach dem Punkt, solange die Zeile passt */
+  .schluss .meinung{max-width:14ch}
+  .wahrheit::after{content:"";position:absolute;left:var(--gap);right:var(--gap);bottom:0;height:1px;background:var(--hair)}
+  @media(max-width:767px){
+    .wahrheit,.schluss{min-height:50svh}
+    .wahrheit h2,.schluss .meinung{font-size:clamp(36px,9.5vw,48px)}
+  }
   /* Nebenachse Spalte 7: die eine rechte Kante der Seite */
 
   /* ---------- 3 ZUBEREITUNG: Headline, dann das Bewegtbild über die volle Breite ---------- */
   .ritual h2{max-width:17ch}
   .ritual .lead{margin-top:18px}
   .ritual .cap .t{color:var(--ink)}
-  /* T7.4: Zubereitung als Kachel. Desktop: Text Spalten 1–5, Kachel 7–12, Text vertikal mittig zur Kachel
-     (gespiegelt zur Vanille-Section, deren Text ebenfalls mittig steht). ≤859px: Text oben, Kachel volle Spaltenbreite 4:5. */
-  @media(min-width:860px){.ritual .reihe{align-items:center}}
-  .ritual-kachel{margin:clamp(48px,6vw,80px) 0 0}
-  @media(min-width:860px){.ritual-kachel{margin-top:0}}
-  .ritual-kachel .photo{aspect-ratio:4/5}
+  /* T8: Zubereitung = gespiegelte Vanille-Section (.geschmack ist die Vorlage). Zwei Kacheln über die volle Viewportbreite,
+     Feld links mit --flaeche, gleiche Höhe; Innenabstände gespiegelt: die breite Seite zeigt zur Bildnaht,
+     Textkante damit auf Spalte 5 (Vanille: Spalte 8). */
+  .ritual .kacheln{display:grid;grid-template-columns:1fr 1fr;height:min(80vh,760px);min-height:520px}
+  .ritual .text{background:var(--flaeche);display:flex;flex-direction:column;justify-content:center;
+    --spalte:calc((min(100vw,var(--col)) - 13 * var(--gap)) / 12);
+    padding:clamp(32px,5vw,64px) calc(var(--gap)/2 + var(--spalte) + var(--gap)) clamp(32px,5vw,64px) clamp(32px,5vw,64px)}
+  .ritual .text .label{margin:0 0 26px}
+  .ritual .text h2{margin:0}
+  .ritual .text .lead{font-size:clamp(18px,1.5vw,22px);max-width:30ch}
+  .ritual-kachel{margin:0;height:100%}
+  .ritual-kachel .photo{height:100%}
+  @media(max-width:767px){
+    .ritual .kacheln{grid-template-columns:1fr;height:auto;min-height:0}
+    .ritual-kachel{order:-1;height:auto}
+    .ritual-kachel .photo{aspect-ratio:4/5;height:auto}
+    .ritual .text{padding:clamp(28px,7vw,40px) var(--gap)}
+  }
 
   /* ---------- 4 GESCHMACK: zwei Kacheln über die volle Viewportbreite ---------- */
   .geschmack{margin-top:var(--raum-mit)}
@@ -618,16 +644,18 @@
 <!-- 1 HERO -->
 <section class="hero" data-ort="Forchheim" data-zeit="19:50">
   <div class="full">
-    <!-- Hero-Glas: RENDER, PLATZHALTER. Wird durch das echte Glasfoto ersetzt.
-         Bis dahin keine Bildunterschrift: Ein Render hat keinen Ort und keine Uhrzeit. data-zeit="19:50" am Hero ist
-         ohne Foto-Beleg — okay für den Testbau, nicht für den Launch. Mit dem Foto kommen seine Uhrzeit in data-ort/data-zeit
-         und die sichtbare Bildunterschrift (.cap) zurück. Vergleich v0.51 (Glas vor „Vanille.“) erst mit dem Foto.
-         filter:brightness(1.01) gleicht nur den Render aus (Hintergrund 254 statt 255). Beim echten Foto wird die DATEI
-         korrigiert (Hintergrund auf reines Weiß), nicht das CSS — die filter-Regel fällt dann weg. -->
-    <div class="photo"><img src="uploads/hero-glas.webp" width="1122" height="1402" alt="An empty glass on a white background" decoding="async" fetchpriority="high"></div>
+    <div class="photo"></div>
     <div class="text">
       <div class="g12">
         <h1 class="c1-12">A cocoa with real vanilla.<br><span class="nw">Just add water.</span></h1>
+        <!-- Hero-Glas: RENDER, PLATZHALTER. Wird durch das echte Glasfoto ersetzt.
+             Bis dahin keine Bildunterschrift: Ein Render hat keinen Ort und keine Uhrzeit. data-zeit="19:50" am Hero ist
+             ohne Foto-Beleg — okay für den Testbau, nicht für den Launch. Mit dem Foto kommen seine Uhrzeit in data-ort/data-zeit
+             und die sichtbare Bildunterschrift (.cap) zurück. Vergleich v0.51 (Glas vor „Vanille.“) erst mit dem Foto.
+             filter:brightness(1.01) gleicht nur den Render aus (Hintergrund 254 statt 255). Beim echten Foto wird die DATEI
+             korrigiert (Hintergrund auf reines Weiß), nicht das CSS — die filter-Regel fällt dann weg.
+           T8: Das Glas steht im Textblock direkt hinter der h1 und ist an deren Zeilen ausgerichtet (siehe CSS .hero .glas). -->
+        <div class="glas"><img src="uploads/hero-glas.webp" width="1122" height="1402" alt="An empty glass on a white background" decoding="async" fetchpriority="high"></div>
         <p class="lead c1-6">For the moment before.</p>
         <div class="resolver c7-12" id="hero-sub">
           <p class="hero-what">Magnesium, L-theanine and saffron.</p>
@@ -649,17 +677,18 @@
 
 <!-- 2 ZUBEREITUNG -->
 <section class="ritual" id="zubereitung">
-  <!-- T7: zweispaltig, gespiegelt zur Vanille-Section — Text links (Spalten 1–5), Kachel rechts (Spalten 7–12), Bild 4:5. -->
-  <div class="col g12 reihe">
-    <div class="text c1-5">
+  <!-- T8: gespiegelte Vanille-Section — Textfeld links (Feldton, Höhe und Innenabstände wie das Vanille-Feld, gespiegelt),
+       Bild rechts bis zum Viewportrand. 390: Bild oben volle Breite 4:5, Feld darunter. -->
+  <div class="kacheln">
+    <div class="text">
       <p class="label">Preparation</p>
       <h2>One spoon is enough.</h2>
       <p class="lead">Mixed with water, HESPYRA is ready in a minute. Warm or cold. With oat milk it gets a little creamier.</p>
     </div>
     <!-- Bis das Video da ist: gleiches Markup, img statt video. Vorgabe: ein Take, feste Kamera, kein Schnitt,
          6–10 s, loopfähig (Anfangs- und Endframe nahezu identisch), H.264, max 3 MB, Poster = erster Frame. Nie Ton, keine Controls. -->
-    <figure class="ritual-kachel c7-12 reveal">
-      <div class="framed"><div class="photo" style="--focus:50% 55%"><img src="uploads/zubereitung.webp" alt="One spoon. Water. Stir." decoding="async" loading="lazy"></div></div>
+    <figure class="ritual-kachel reveal">
+      <div class="photo" style="--focus:50% 55%"><img src="uploads/zubereitung.webp" alt="One spoon. Water. Stir." decoding="async" loading="lazy"></div>
       <!-- Bildunterschrift-Slot im Kachelformat (T7.5), vorerst leer: Das Bild ist ein Render und hat keine Uhrzeit.
            Mit dem Foto einsetzen und Werte eintragen:
       <p class="cap" data-ort="" data-zeit=""><span class="t">Ort <span class="dot">·</span> Zeit</span><span>Satz</span></p>
@@ -680,6 +709,10 @@
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 55%"><img src="uploads/griechenland.webp" alt="Kos, beach volleyball court by the sea, palm trees, the last of the light on the water" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Kos <span class="dot">·</span> 18:19</span><span>The court is empty, the sun almost gone.</span></p></figure>
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 40%"><img src="uploads/mit_familie.webp" alt="Heroldsbach, car park in low sun, someone pushing a pram" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Heroldsbach <span class="dot">·</span> 18:01</span><span>Back to the car, sun still up.</span></p></figure>
   </div>
+</section>
+
+<!-- 3b SCHLUSSSATZ: eigene Section auf Bildschirmmaß (T8), Satz aus der Abendwelt hierher verschoben -->
+<section class="schluss col">
   <!-- D9: Paul -->
   <p class="meinung">We have no opinion on which one is right.<br>On the moment before, we do.</p>
 </section>

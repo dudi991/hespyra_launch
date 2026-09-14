@@ -39,6 +39,7 @@
     --hair:#dedcd4;           /* Linien: weich, nicht schwarz */
     --photo:#e8e6e0;
     --gap:24px; --col:1280px; --narrow:640px;
+    --bar-h:56px;            /* Kopfzeile inkl. 1 px Hairline: 18+18 Padding + 19 px Zeile + 1 = 56 px; auf ≤600 px 55 px (T4) */
     --raum-eng:clamp(64px,7vw,96px);
     --raum-mit:clamp(96px,11vw,150px);
     --raum-weit:clamp(150px,17vw,240px);
@@ -87,11 +88,15 @@
 
   /* ---------- Navigation: eine Zeile, auf Papier ---------- */
   /* T2: Hairline unter der Kopfzeile, volle Breite, immer — bei Scroll 0 und über Inhalten. */
-  .bar{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--hair);transition:box-shadow .4s var(--ease)}
+  .bar{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--hair);transition:box-shadow .4s var(--ease);
+    /* T4: feste Höhe, Inhalt vertikal mittig — wandert „Bestellen" ins Menü, bleibt die Kopfzeile gleich hoch. */
+    height:var(--bar-h);display:flex;align-items:center}
   /* Der frühere Scroll-Schatten (0 1px 0 --hair) entfällt: zusammen mit der Hairline ergäbe er 2 px. */
   .bar.scrolled{box-shadow:none}
+  /* T4: auf ≤600 px gemessene Höhe mit „Bestellen" in der Kopfzeile: 55 px (ohne wären es 52 px). */
+  @media(max-width:600px){:root{--bar-h:55px}}
   nav{display:flex;align-items:center;justify-content:space-between;gap:24px;
-    max-width:var(--col);margin:0 auto;padding:18px var(--gap)}
+    width:100%;max-width:var(--col);margin:0 auto;padding:18px var(--gap)}
   .nav-l{display:flex;align-items:center;gap:20px;min-width:0}
   @media(min-width:860px){.nav-l{gap:40px}}
   .mark{display:flex;align-items:center;color:inherit;flex:none}
@@ -127,7 +132,11 @@
   nav .shop::after{transform:scaleX(1)}
   .lang{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--ink-soft)}
   nav li .lang{margin-left:6px}
-  .menu{font-size:15px;display:flex;align-items:baseline;gap:8px;flex:none}
+  .menu{font-size:15px;display:flex;align-items:baseline;gap:8px;flex:none;
+    /* T4: rechts verankert (Startpunkt der Box ist ihre rechte Kante). Wandert „Bestellen" ins Menü, bleiben „EN ≡"
+       stehen und die Gruppe gilt nicht als verschoben. row-reverse hält die Reihenfolge links → rechts wie im Markup. */
+    direction:rtl;flex-direction:row-reverse}
+  .menu > *{direction:ltr}
   .menu .dot{color:var(--ink-soft)}
   .menu button{border:0;background:none;padding:0;font:inherit;color:inherit;cursor:pointer}
   .menu button[aria-expanded="true"]{color:var(--ink-soft)}
@@ -748,7 +757,10 @@
     var wrap=document.querySelector('.bar .ortszeit'),bild=document.querySelector('[data-ort][data-zeit]'),m=window.hespyraMoment;
     var o=document.getElementById('tb-ort'),z=document.getElementById('tb-zeit'),s=document.getElementById('tb-satz');
     if(!wrap||!bild||!m||!o||!z||!s)return;
-    function mal(x){o.textContent=x[0];z.textContent=x[1];s.textContent=x[2];wrap.querySelector('.satz').style.display=x[2]?'':'none';}
+    // T4: Beim Wechsel die Knoten der Ortszeit neu erzeugen statt nur Text zu tauschen. Sonst wertet Chrome das
+    // Leerzeichen hinter „·" als verschoben (andere Ortsnamen-Länge) — Layout-Shift, obwohl die Zeile ausgeblendet war.
+    function mal(x){var n=wrap.cloneNode(true);n.querySelector('#tb-ort').textContent=x[0];n.querySelector('#tb-zeit').textContent=x[1];n.querySelector('#tb-satz').textContent=x[2];n.querySelector('.satz').style.display=x[2]?'':'none';
+      while(wrap.firstChild)wrap.removeChild(wrap.firstChild);while(n.firstChild)wrap.appendChild(n.firstChild);o=document.getElementById('tb-ort');z=document.getElementById('tb-zeit');s=document.getElementById('tb-satz');}
     mal([bild.getAttribute('data-ort'),bild.getAttribute('data-zeit'),bild.getAttribute('data-satz')||'']);
     var ein=false;
     function pruefe(){if(ein||window.scrollY<=bild.getBoundingClientRect().bottom+window.scrollY)return;ein=true;removeEventListener('scroll',pruefe);

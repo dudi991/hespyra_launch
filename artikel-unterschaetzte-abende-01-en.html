@@ -517,6 +517,9 @@
   .naechste .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
     text-transform:uppercase;color:var(--ink-soft);margin:16px 0 8px}
   .naechste .ttl{font-family:"Newsreader",serif;font-weight:500;font-size:24px;line-height:1.15;margin:0}
+  /* T1.2: Reicht auf 390 der Platz für Ort · Zeit nicht, wandert „Bestellen" ins Menü (steht dort in #mainnav).
+     „EN ≡" bleibt. Die Ortszeit hat Vorrang. Die Klasse setzt das Script. */
+  .bar.ohne-bestellen .menu > a:first-child,.bar.ohne-bestellen .menu > a:first-child + .dot{display:none}
 </style>
 </head>
 <body>
@@ -525,7 +528,7 @@
   <nav>
     <div class="nav-l">
       <a class="mark" href="index-en.html" aria-label="HESPYRA"><svg class="wm" role="img" aria-label="HESPYRA" style="width:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5900 716"><title>HESPYRA</title><path fill="currentColor" d="M602 708L502 708L502 396L100 396L100 708L0 708L0 8L100 8L100 309L502 309L502 8L602 8L602 708ZM1500 708L992 708L992 8L1486 8L1486 95L1092 95L1092 310L1443 310L1443 395L1092 395L1092 621L1500 621L1500 708ZM2046 716Q1966 716 1893 691.5Q1820 667 1778 628L1815 550Q1854 585 1916.5 608Q1979 631 2046 631Q2136 631 2177.5 600Q2219 569 2219 523Q2219 487 2196 465Q2173 443 2135 429.5Q2097 416 2052 406Q2007 396 1961.5 383Q1916 370 1878.5 348.5Q1841 327 1818 291.5Q1795 256 1795 200Q1795 146 1823.5 100.5Q1852 55 1911.5 27.5Q1971 0 2063 0Q2125 0 2184.5 16Q2244 32 2288 62L2255 142Q2210 113 2159.5 99Q2109 85 2063 85Q1974 85 1933.5 117.5Q1893 150 1893 196Q1893 233 1916 255Q1939 277 1977 290Q2015 303 2060 313.5Q2105 324 2150.5 337Q2196 350 2233.5 371Q2271 392 2294 427Q2317 462 2317 517Q2317 570 2288 615.5Q2259 661 2198.5 688.5Q2138 716 2046 716ZM2743 708L2643 708L2643 8L2916 8Q3052 8 3130 73Q3208 138 3208 252Q3208 366 3130 431Q3052 496 2916 496L2743 496L2743 708ZM2743 95L2743 409L2913 409Q3009 409 3058.5 368Q3108 327 3108 252Q3108 177 3058.5 136Q3009 95 2913 95L2743 95ZM3480 8L3584.4 8L3742 276.3L3778 276.3L3935.6 8L4040 8L3805 408L3805 708L3715 708L3715 408ZM4465 708L4365 708L4365 8L4638 8Q4774 8 4852 73Q4930 138 4930 252Q4930 334 4890 390.5Q4850 447 4776 473L4942 708L4833 708L4682 493Q4661 495 4638 495L4465 495L4465 708ZM4465 95L4465 410L4635 410Q4731 410 4780.5 368.5Q4830 327 4830 252Q4830 177 4780.5 136Q4731 95 4635 95L4465 95ZM5269 708L5166 708L5483 8L5582 8L5900 708L5795 708L5718 533L5346 533L5269 708ZM5532 110L5381 453L5683 453L5532 110Z"></path></svg></a>
-      <a class="ortszeit" href="journal-en.html"><span id="tb-ort">Forchheim</span> <span class="dot">·</span> <span id="tb-zeit">18:46</span><span class="satz"> – <span id="tb-satz">Nobody left on the street.</span></span></a>
+      <a class="ortszeit" href="journal-en.html" data-start="bild"><span id="tb-ort">Munich</span> <span class="dot">·</span> <span id="tb-zeit">20:11</span><span class="satz"> – <span id="tb-satz">Everyone out, nobody in a hurry.</span></span></a>
     </div>
     <ul id="mainnav">
       <li><a href="#" aria-disabled="true">Product</a></li>
@@ -538,6 +541,24 @@
     <div class="menu"><a href="index-en.html#produkt">Order</a> <span class="dot">·</span> <a class="lang" href="artikel-unterschaetzte-abende-01.html" hreflang="de" lang="de" data-lang="de" title="Deutsch">DE</a> <span class="dot dot-menu">·</span> <button type="button" id="menubtn" aria-expanded="false" aria-controls="mainnav">Menu</button></div>
   </nav>
 </div>
+<script>
+  // Sitzungsmoment: ein Moment pro Sitzung, keine Rotation. Einmal gewählt und in sessionStorage („hespyra-moment")
+  // gemerkt — gespeichert wird nur die Position in momente; DE und EN haben dieselbe Reihenfolge, der Moment bleibt beim
+  // Sprachwechsel derselbe. momente = die vier Kacheln der ORTSZEIT-Rubrik, jede Zeile existiert dort eins zu eins.
+  // Steht direkt unter der Kopfzeile, damit Seiten ohne Foto den Sitzungsmoment zeigen, bevor der Rest geladen ist.
+  // Seiten mit Foto (data-start="bild") laden mit dessen Bildunterschrift; den einen Wechsel macht F5 am Seitenende.
+  (function(){
+    var momente=[['Geiselwind','17:39','Carousel, just before closing.'],['Nuremberg','19:48','Everyone standing, nobody sitting.'],['Kos','18:19','The court is empty, the sun almost gone.'],['Heroldsbach','18:01','Back to the car, sun still up.']];
+    var i=-1;try{i=parseInt(sessionStorage.getItem('hespyra-moment'),10)}catch(e){}
+    if(!(i>=0&&i<momente.length)){i=Math.floor(Math.random()*momente.length);try{sessionStorage.setItem('hespyra-moment',String(i))}catch(e){}}
+    window.hespyraMoment=momente[i];
+    var a=document.querySelector('.bar .ortszeit');
+    if(!a||a.getAttribute('data-start')==='bild')return;
+    document.getElementById('tb-ort').textContent=momente[i][0];
+    document.getElementById('tb-zeit').textContent=momente[i][1];
+    document.getElementById('tb-satz').textContent=momente[i][2];
+  })();
+</script>
 
 <!-- Bildregel (beide Journal-Seiten): Menschen erlaubt, niemand schaut in die Kamera, nichts gestellt.
      Kein Bild ohne echten Ort in der Bildunterschrift. Die Dedon-Testbilder gehen nicht live.
@@ -550,7 +571,7 @@
   </div>
 </div>
 
-<figure class="aufmacher full">
+<figure class="aufmacher full" data-ort="Munich" data-zeit="20:11" data-satz="Everyone out, nobody in a hurry.">
   <div class="photo" style="--focus:60% 50%"><img src="uploads/muenchen.webp" alt="Munich, 20:11. Everyone out, nobody in a hurry." decoding="async" fetchpriority="high"></div>
   <p class="cap"><span class="t">Munich <span class="dot">·</span> 20:11</span><span>Everyone out, nobody in a hurry.</span></p>
 </figure>
@@ -680,28 +701,38 @@
 
 
 
-  // F5 Kopfzeile: ein zufälliger dokumentierter Moment beim Laden, danach keine Änderung. Kein Timer, keine Rotation.
-  // momente = die vier Kacheln der ORTSZEIT-Rubrik im Journal. Ein Foto, eine Bildunterschrift.
+  // F5 Kopfzeile: ein Moment pro Sitzung (window.hespyraMoment, gewählt im Script unter der Kopfzeile). Keine Rotation.
+  // Seiten mit Foto — Startseite (Hero), Artikel (Aufmacher) — laden mit der Bildunterschrift dieses Fotos
+  // (data-ort/data-zeit/data-satz am Foto) und wechseln genau einmal auf den Sitzungsmoment, sobald scrollY die
+  // Unterkante des Fotos überschreitet. Kein Observer, kein load. Seiten ohne Foto: kein Wechsel.
   (function(){
-    var momente=[['Geiselwind','17:39','Carousel, just before closing.'],['Nuremberg','19:48','Everyone standing, nobody sitting.'],['Kos','18:19','The court is empty, the sun almost gone.'],['Heroldsbach','18:01','Back to the car, sun still up.']];
+    var wrap=document.querySelector('.bar .ortszeit'),bild=document.querySelector('[data-ort][data-zeit]'),m=window.hespyraMoment;
     var o=document.getElementById('tb-ort'),z=document.getElementById('tb-zeit'),s=document.getElementById('tb-satz');
-    if(!o||!z||!s)return;
-    var m=momente[Math.floor(Math.random()*momente.length)];
-    o.textContent=m[0];z.textContent=m[1];s.textContent=m[2];
+    if(!wrap||!bild||!m||!o||!z||!s)return;
+    function mal(x){o.textContent=x[0];z.textContent=x[1];s.textContent=x[2];wrap.querySelector('.satz').style.display=x[2]?'':'none';}
+    mal([bild.getAttribute('data-ort'),bild.getAttribute('data-zeit'),bild.getAttribute('data-satz')||'']);
+    var ein=false;
+    function pruefe(){if(ein||window.scrollY<=bild.getBoundingClientRect().bottom+window.scrollY)return;ein=true;removeEventListener('scroll',pruefe);
+      wrap.classList.add('aus');setTimeout(function(){mal(m);wrap.classList.remove('aus')},300);}
+    addEventListener('scroll',pruefe,{passive:true});
   })();
 
   // H1 (v0.43) Kopfzeile auf 390: Ort · Zeit vollständig oder gar nicht. Nie gekürzt.
   (function(){
     var oz=document.querySelector('.bar .ortszeit'),nv=document.querySelector('.bar nav');
     if(!oz||!nv)return;
-    var rechts=nv.lastElementChild;
+    var rechts=nv.lastElementChild,bar=document.getElementById('bar');
+    function passt(){return oz.scrollWidth<=rechts.getBoundingClientRect().left-oz.getBoundingClientRect().left-12}
     function fit(){
-      oz.style.display='';
+      oz.style.display='';bar.classList.remove('ohne-bestellen');
       if(window.innerWidth>600)return;
-      var platz=rechts.getBoundingClientRect().left-oz.getBoundingClientRect().left-12;
-      if(oz.scrollWidth>platz)oz.style.display='none';
+      if(passt())return;
+      bar.classList.add('ohne-bestellen');   // T1.2: Ortszeit vor Bestellen-Link
+      if(!passt())oz.style.display='none';
     }
     fit();addEventListener('resize',fit);
+    // Erst nach dem Laden von IBM Plex Mono stimmt die Breite; vorher misst fit() die breitere Ersatzschrift.
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
     new MutationObserver(fit).observe(oz,{childList:true,subtree:true,characterData:true});
   })();
 

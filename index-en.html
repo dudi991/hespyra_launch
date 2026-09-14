@@ -229,7 +229,7 @@
 
   /* ---------- Vertikaler Rhythmus: drei Werte, bewusst vergeben ---------- */
   section{margin-top:var(--raum-mit)}
-  .welt{margin-top:var(--raum-weit)}
+  .welt{margin-top:var(--raum-mit)}   /* T5: Standard-Section-Abstand (vorher --raum-weit), Reihenfolge Hero–Wahrheit–Zubereitung–Abendwelt */
   .ritual{margin-top:var(--raum-mit)}
   .geschmack{margin-top:var(--raum-eng)}
   .formel{margin-top:var(--raum-weit)}
@@ -294,6 +294,11 @@
     color:var(--ink);hyphens:manual;text-wrap:pretty}
   @media(max-width:767px){.welt .meinung{font-size:clamp(34px,9vw,40px);line-height:1.12;letter-spacing:-.03em}}
   .welt .cap{font-size:13px}
+  /* T5: Wahrheit — eigene Section, Satz im Stil von .welt .meinung (h2-Größe, 500, 24ch), Hauptachse.
+     Kein eigener Abstand: section-Standard (--raum-mit) oben, .ritual (--raum-mit) danach. Nichts addiert. */
+  .wahrheit h2{margin:0;max-width:24ch;font-weight:500;font-size:clamp(30px,4.2vw,52px);line-height:1.06;letter-spacing:-.03em;
+    color:var(--ink);hyphens:manual;text-wrap:pretty}
+  @media(max-width:767px){.wahrheit h2{font-size:clamp(34px,9vw,40px);line-height:1.12;letter-spacing:-.03em}}
   /* Nebenachse Spalte 7: die eine rechte Kante der Seite */
 
   /* ---------- 3 ZUBEREITUNG: Headline, dann das Bewegtbild über die volle Breite ---------- */
@@ -531,9 +536,6 @@
   /* T1.2: Reicht auf 390 der Platz für Ort · Zeit nicht, wandert „Bestellen" ins Menü (steht dort in #mainnav).
      „EN ≡" bleibt. Die Ortszeit hat Vorrang. Die Klasse setzt das Script. */
   .bar.ohne-bestellen .menu > a:first-child,.bar.ohne-bestellen .menu > a:first-child + .dot{display:none}
-  /* T1.4: Abendwelt — der erste Meinungssatz steht als Lead unter der h2, im Stil von .hero .lead. */
-  .welt .welt-lead{max-width:none;margin:30px 0 0;font-weight:400;color:var(--ink);
-    font-size:clamp(21px,2.1vw,28px);line-height:1.35;letter-spacing:-.015em;hyphens:manual;text-wrap:pretty}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <script type="application/ld+json">
@@ -627,6 +629,12 @@
   -->
 </section>
 
+<!-- 1b WAHRHEIT: eigene Section, Satz aus der Abendwelt hierher verschoben (T5) -->
+<section class="wahrheit col">
+  <!-- rechtlich prüfen vor Livegang. Rückfall: The day is done. Not in your head yet. -->
+  <h2>The day is over. It just doesn’t know it yet.</h2>
+</section>
+
 <!-- 2 ZUBEREITUNG -->
 <section class="ritual" id="zubereitung">
   <div class="col">
@@ -642,21 +650,20 @@
   </figure>
 </section>
 
-<!-- 3 WELT: Der Tag ist vorbei. Er weiß es nur noch nicht. -->
+<!-- 3 WELT: Es gibt ziemlich viele Arten, einen guten Abend zu verbringen. -->
 <!-- Bildregel dieser Sektion: Menschen sind erlaubt, aber niemand schaut in die Kamera, niemand posiert,
      keine Gruppe lacht für das Bild. Dokumentiert, nicht gestellt. Kein Bild ohne echten Ort in der Bildunterschrift.
      Die vier Motive hier sind Testmaterial und gehen nicht live. -->
 <section class="welt col">
-  <!-- rechtlich prüfen vor Livegang. Rückfall: The day is done. Not in your head yet. -->
-  <h2>The day is over. It just doesn’t know it yet.</h2>
-  <p class="welt-lead">There are quite a few ways to spend a good evening.</p>
+  <h2>There are quite a few ways to spend a good evening.</h2>
   <div class="grid g12">
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:65% 45%"><img src="uploads/freizeitpark.webp" alt="Geiselwind in the evening, lit carousel, bunting above the square" decoding="async"></div></div><p class="cap"><span class="t">Geiselwind <span class="dot">·</span> 17:39</span><span>Carousel, just before closing.</span></p></figure>
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:45% 55%"><img src="uploads/fussball_mit_freunden.webp" alt="Nuremberg, packed stand in the stadium, flags and smoke above the pitch" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Nuremberg <span class="dot">·</span> 19:48</span><span>Everyone standing, nobody sitting.</span></p></figure>
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 55%"><img src="uploads/griechenland.webp" alt="Kos, beach volleyball court by the sea, palm trees, the last of the light on the water" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Kos <span class="dot">·</span> 18:19</span><span>The court is empty, the sun almost gone.</span></p></figure>
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 40%"><img src="uploads/mit_familie.webp" alt="Heroldsbach, car park in low sun, someone pushing a pram" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Heroldsbach <span class="dot">·</span> 18:01</span><span>Back to the car, sun still up.</span></p></figure>
   </div>
-  <p class="meinung">We have no opinion on which one is right.</p>
+  <!-- D9: Paul -->
+  <p class="meinung">We have no opinion on which one is right.<br>On the moment before, we do.</p>
 </section>
 
 <!-- 4 GESCHMACK -->

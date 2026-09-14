@@ -236,12 +236,16 @@
   /* Hero-Glas auf Weiß: kein Scrim, dunkle Schrift. multiply lässt das Weiß des Bildes im Papierton aufgehen,
      damit keine hellere Bildkante gegen --paper steht. */
   .hero .photo{position:relative;background:var(--paper)}
-  .hero .photo img{mix-blend-mode:multiply;transform:translateY(-30%)}
-  /* Glas sitzt im Motiv auf Höhe der h1: nach oben in die freie Fläche geschoben (relativ zur Hero-Höhe),
-     mobil horizontal auf das Glas zentriert. */
-  @media(max-width:767px){.hero{--focus-x:66%}}
-  /* Breite, flache Fenster (z. B. 1366×640): Bild wird über die Breite skaliert, das Glas wird größer — etwas weiter hoch. */
-  @media(min-aspect-ratio:2/1){.hero .photo img{transform:translateY(-32%)}}
+  /* Platzhalter-Render (1122×1402, Glas mittig, 58 % der Bildhöhe, Oberkante bei 22 %). Das Bild füllt den Hero nicht,
+     es steht als Objekt in der freien Fläche über der h1: Höhe 57 % des Hero → Glas ≈ 33 % des Hero, Oberkante ≈ 12 %.
+     Lage wie im Testbau: Glasmitte 61 % der Breite, mobil 50 %. Keine Überlappung mit h1/Lead/Resolver.
+     Der weiche Schatten läuft unten links bis an den Bildrand — die Maske blendet ihn dort aus, sonst entsteht eine Kante. */
+  .hero .photo img{mix-blend-mode:multiply;inset:auto;top:0;left:61%;width:auto;height:57%;
+    object-fit:contain;transform:translateX(-50%);
+    /* Render-Hintergrund ist 254, nicht 255: ohne Anhebung steht die Bildfläche eine Stufe dunkler als --paper (sichtbarer Rahmen). */
+    filter:brightness(1.01);
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 20%);mask-image:linear-gradient(to right,transparent,#000 20%)}
+  @media(max-width:767px){.hero .photo img{left:50%}}
   @media(max-width:767px){.hero{--focus-y:70%}}
   .hero .text{position:absolute;left:0;right:0;bottom:0;z-index:4;
     max-width:var(--col);margin:0 auto;padding:0 var(--gap) clamp(48px,6vw,80px)}
@@ -568,9 +572,11 @@
 <!-- 1 HERO -->
 <section class="hero" data-ort="Forchheim" data-zeit="19:50">
   <div class="full">
-    <!-- Hero-Motiv: freigestelltes Glas auf Weiß, ohne Bildunterschrift (kein Ort). Ohne .cap bleibt die Ortszeit
-         oben beim Laden auf dem Wert aus dem HTML und wechselt beim Scrollen unter den Hero. -->
-    <div class="photo"><img src="uploads/hero-glas.webp" width="1672" height="941" alt="An empty glass on a white background" decoding="async" fetchpriority="high"></div>
+    <!-- Hero-Glas: RENDER, PLATZHALTER. Wird durch das echte Glasfoto ersetzt.
+         Bis dahin keine Bildunterschrift: Ein Render hat keinen Ort und keine Uhrzeit. data-zeit="19:50" am Hero ist
+         ohne Foto-Beleg — okay für den Testbau, nicht für den Launch. Mit dem Foto kommen seine Uhrzeit in data-ort/data-zeit
+         und die sichtbare Bildunterschrift (.cap) zurück. Vergleich v0.51 (Glas vor „Vanille.“) erst mit dem Foto. -->
+    <div class="photo"><img src="uploads/hero-glas.webp" width="1122" height="1402" alt="An empty glass on a white background" decoding="async" fetchpriority="high"></div>
     <div class="text">
       <div class="g12">
         <h1 class="c1-12">A cocoa with real vanilla.<br><span class="nw">Just add water.</span></h1>

@@ -6,3 +6,6 @@ desktop.ini
 # Editor
 .vscode/
 .idea/
+
+# Abnahme-Ausgaben von tools/abnahme.js (Screenshots, Berichte)
+_abnahme/

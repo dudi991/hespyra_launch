@@ -323,11 +323,15 @@
   .wahrheit h2,section.schluss .meinung{margin:0;font-weight:500;font-size:clamp(48px,7.2vw,104px);line-height:1;letter-spacing:-.04em;
     color:var(--ink);hyphens:manual;text-wrap:pretty}
   .wahrheit h2{max-width:none}          /* bricht nur am <br> nach dem Punkt, solange die Zeile passt */
-  section.schluss .meinung{max-width:none}   /* T9: feste Umbrüche per <br> */
+  section.schluss .meinung{max-width:none}   /* T9/T11.2: feste Zeilen */
   @media(max-width:767px){
     .wahrheit,section.schluss{min-height:50svh}
     .wahrheit h2,section.schluss .meinung{font-size:clamp(36px,9.5vw,48px)}
   }
+  /* T11.2: Abendwelt-Schlusssatz — vier gesetzte Zeilen, jede ein Block ohne Umbruch; Absatz zwischen Zeile 2 und 3. */
+  section.schluss .meinung{font-size:clamp(38px,5.2vw,76px);line-height:1.04}
+  section.schluss .meinung span{display:block;white-space:nowrap}
+  section.schluss .meinung span:nth-child(3){margin-top:.5em}
   /* Nebenachse Spalte 7: die eine rechte Kante der Seite */
 
   /* ---------- 3 ZUBEREITUNG: Headline, dann das Bewegtbild über die volle Breite ---------- */
@@ -734,7 +738,7 @@
 
 <!-- 3b SCHLUSSSATZ: eigene Section auf Bildschirmmaß (T8), Satz aus der Abendwelt hierher verschoben -->
 <section class="schluss col">
-  <p class="meinung">Wir haben keine Meinung dazu,<br>welche die richtige ist.<br>Für den Moment davor<br>haben wir eine.</p>
+  <p class="meinung"><span>Wir haben keine Meinung dazu,</span><span>welche die richtige ist.</span><span>Für den Moment davor</span><span>haben wir eine.</span></p>
 </section>
 
 <!-- 4 GESCHMACK -->

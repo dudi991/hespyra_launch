@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><!-- Vorschau: vor dem Launch entfernen -->
+<meta name="theme-color" content="#fbfbf9">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Elf Zutaten, sechs Gramm pro Portion, alle Mengen offen. Bei jeder steht, warum wir sie in dieser Form gewählt haben.">
+<meta property="og:title" content="Was drin ist. – HESPYRA">
+<meta property="og:description" content="Elf Zutaten, sechs Gramm pro Portion, alle Mengen offen.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:image" content="https://hespyra.com/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<title>Was drin ist. – HESPYRA</title>
+<link rel="alternate" hreflang="de" href="was-drin-ist.html">
+<link rel="alternate" hreflang="en" href="was-drin-ist-en.html">
+<link rel="alternate" hreflang="x-default" href="was-drin-ist.html">
+<script>
+  document.documentElement.className+=' js';
+  (function(){
+    document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem('hespyra-lang',a.getAttribute('data-lang'))}catch(err){}}});
+  })();
+</script>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root{
+    --paper:#fbfbf9;          /* getöntes Weiß, nicht #fff */
+    --ink:#14140f;            /* fast-schwarz, nicht #000 */
+    --akzent:#C24F16;         /* Safran. Nur Ortszeit-Trenner: Nav und Bildunterschriften. Sonst nichts. */
+    --dark:#141F33;           /* Das eine dunkle Feld der Seite: Journal und Schlusszeile.
+                                 Kein Produkt- oder Verpackungsfarbton. Genau einmal pro Seite. */
+    --ink-soft:#5c5c55;
+    --flaeche:#f1f1ee;        /* Papier, 4 % dunkler, neutral. Genau einmal auf der Seite. */
+    --hair:#dedcd4;           /* Linien: weich, nicht schwarz */
+    --photo:#e8e6e0;
+    --gap:24px; --col:1280px; --narrow:640px;
+    --raum-eng:clamp(64px,7vw,96px);
+    --raum-mit:clamp(96px,11vw,150px);
+    --raum-weit:clamp(150px,17vw,240px);
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:60px}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"IBM Plex Sans",sans-serif;font-weight:400;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    font-feature-settings:"kern" 1,"liga" 1}
+  a{color:inherit;text-decoration:none}
+  a[aria-disabled="true"]{pointer-events:none}
+  ::selection{background:var(--ink);color:var(--paper)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+  .col{max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 var(--gap)}
+  .narrow{max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 var(--gap)}
+  .narrow > *{max-width:var(--narrow)}
+  .full{width:100%}
+
+  /* ---------- 12-Spalten-Raster: jede Kante ist Viewport, Container oder Rasterlinie ---------- */
+  @media(min-width:860px){
+    .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
+    .c1-4{grid-column:1/5}.c5-8{grid-column:5/9}.c9-12{grid-column:9/13}
+    .c1-3{grid-column:1/4}.c4-6{grid-column:4/7}.c7-9{grid-column:7/10}.c10-12{grid-column:10/13}
+    .c1-5{grid-column:1/6}.c6-8{grid-column:6/9}.c6-12{grid-column:6/13}.c1-6{grid-column:1/7}.c7-12{grid-column:7/13}.c1-12{grid-column:1/-1}
+  }
+
+  /* ---------- Typo-Skala: h1 100 / Kauf 64 / Leitzeilen 52 / Service 34 ---------- */
+  .label{font-size:11.5px;font-weight:500;letter-spacing:.10em;
+    text-transform:uppercase;color:var(--ink-soft);margin:0 0 20px}
+  .ritual .label{margin-bottom:26px}
+  h1{font-size:clamp(44px,7vw,100px);line-height:.94;letter-spacing:-.04em;font-weight:500;margin:0}
+  h2{font-size:clamp(30px,4.2vw,52px);line-height:1.06;letter-spacing:-.03em;font-weight:500;margin:0}
+  .faq h2,.nl h2{font-size:clamp(26px,2.6vw,34px);line-height:1.15;letter-spacing:-.02em}
+  h3{font-size:clamp(22px,3vw,30px);line-height:1.1;letter-spacing:-.02em;font-weight:500;margin:0}
+  .lead{font-size:clamp(17px,1.5vw,20px);line-height:1.5;letter-spacing:-.005em;margin:0}
+  h1,h2,h3{text-wrap:balance;hyphens:manual}
+  .lead,.small,.answer,.excerpt,.cap{text-wrap:pretty;hyphens:auto}
+  .small{font-size:14.5px;line-height:1.55;letter-spacing:0}
+  .soft{color:var(--ink-soft)}
+  .ort{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+  .ph{color:#a8a69d}
+  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* ---------- Navigation: eine Zeile, auf Papier ---------- */
+  .bar{position:sticky;top:0;z-index:50;background:var(--paper);transition:box-shadow .4s var(--ease)}
+  .bar.scrolled{box-shadow:0 1px 0 var(--hair)}
+  nav{display:flex;align-items:center;justify-content:space-between;gap:24px;
+    max-width:var(--col);margin:0 auto;padding:18px var(--gap)}
+  .nav-l{display:flex;align-items:center;gap:20px;min-width:0}
+  @media(min-width:860px){.nav-l{gap:40px}}
+  .mark{display:flex;align-items:center;color:inherit;flex:none}
+  .mark .wm{height:18px}
+  @media(max-width:859px){.mark .wm{height:15px}}
+  footer .mark{margin-bottom:8px}
+  footer .mark .wm{height:14px}
+  .ortszeit{display:block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;
+    font-variant-numeric:tabular-nums;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ortszeit:hover{color:var(--ink)}
+  .ortszeit .dot{color:var(--akzent)}
+  .ortszeit .satz{display:none}
+  @media(min-width:860px){.ortszeit .satz{display:inline}}
+  /* H1 (v0.43): auf 390 nur Ort · Zeit, vollständig. Kein Kürzen, kein "F…".
+     Passt es bei langen Ortsnamen nicht in die Zeile, blendet das Script die Ortszeit ganz aus. */
+  @media(max-width:600px){
+    .ortszeit .satz,.ortszeit .dash{display:none}
+    .ortszeit{white-space:nowrap;overflow:visible;text-overflow:clip;max-width:none;
+      font-size:11px;letter-spacing:.02em}
+  }
+  /* H4 (v0.43): Punkt und Zeit bleiben zusammen; bricht es, bricht es vor dem Punkt. */
+  .zeit-teil{white-space:nowrap}
+  /* Ein Platz in der Kopfzeile: die Ortszeit. Wechsel nur über Opacity, ohne Layoutsprung. */
+  .ortszeit{transition:color .3s var(--ease),opacity .3s ease-out}
+  .ortszeit.aus{opacity:0;visibility:hidden}
+  nav ul{list-style:none;margin:0;padding:0;display:none;gap:28px;font-size:15px;flex:none}
+  nav li a{position:relative;padding-bottom:2px}
+  nav li a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:var(--ink);transform:scaleX(0);transform-origin:left;
+    transition:transform .35s var(--ease),opacity .35s var(--ease)}
+  nav li a:hover::after{transform:scaleX(1)}
+  nav .shop{font-weight:500}
+  nav .shop::after{transform:scaleX(1)}
+  .lang{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--ink-soft)}
+  nav li .lang{margin-left:6px}
+  .menu{font-size:15px;display:flex;align-items:baseline;gap:8px;flex:none}
+  .menu .dot{color:var(--ink-soft)}
+  .menu button{border:0;background:none;padding:0;font:inherit;color:inherit;cursor:pointer}
+  .menu button[aria-expanded="true"]{color:var(--ink-soft)}
+  @media(max-width:859px){
+    .bar.open nav ul{display:flex;flex-direction:column;gap:0;position:absolute;left:0;right:0;top:100%;
+      background:var(--paper);box-shadow:0 1px 0 var(--hair);padding:8px var(--gap) 20px;font-size:20px;letter-spacing:-.01em}
+    .bar.open nav li a{display:block;padding:14px 0;border-top:1px solid var(--hair)}
+    .bar.open nav li a::after{display:none}
+    .bar.open nav li:first-child a{border-top:0}
+    .bar.open nav li .lang{margin-left:0;font-size:14px}
+  }
+  @media(min-width:860px){nav ul{display:flex}.menu{display:none}}
+  /* H1 (v0.43, 2. Runde): Auf 390 ist die Zeile zu eng für Wortmarke + Ortszeit + "Menü · Bestellen · EN".
+     Darum wird aus dem Wort "Menü" ein Burger-Zeichen, die Gruppe heißt nur noch "≡ Bestellen · EN",
+     und die Abstände werden knapper. Damit steht "Ort · Zeit" wieder vollständig in der Kopfzeile. */
+  @media(max-width:600px){
+    nav{gap:8px;padding-left:16px;padding-right:16px}
+    .nav-l{gap:8px}
+    .mark .wm{height:13px}
+    .menu{gap:5px;font-size:13.5px}
+    .menu #menubtn{font-size:0;width:17px;height:11px;position:relative;flex:none;align-self:center}
+    .menu #menubtn::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+      background:currentColor;box-shadow:0 5px 0 currentColor,0 10px 0 currentColor}
+    /* Der Burger steht am Zeilenende (im Markup, nicht per order): "Bestellen · EN ≡". Nur dort ist rechts von ihm
+       freier Raum (die 16 px Seitenrand), in den die Trefferfläche wachsen darf, ohne dem
+       Bestellen-Link Taps zu stehlen. Overlay statt Box — die 17 px Breite und damit der Platz
+       für die Ortszeit bleiben unverändert. Ergibt ~37×45 px. */
+    .menu #menubtn::after{content:"";position:absolute;left:-4px;right:-16px;top:-17px;bottom:-17px}
+    .menu .dot-menu{display:none}
+  }
+
+  /* ---------- Fotos: Zustände, Einblenden ---------- */
+  .photo{background:var(--photo);position:relative;overflow:hidden}
+  .framed{position:relative;display:block;line-height:0}
+  .framed .photo{width:100%;display:block}
+  .framed::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+    box-shadow:inset 0 0 0 1px var(--hair);transition:box-shadow .35s var(--ease)}
+  a:hover .framed::after{box-shadow:inset 0 0 0 1px var(--ink)}
+  .photo img,.photo video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--focus,50% 50%);display:block;
+    transition:transform 1.1s var(--ease),opacity .6s var(--ease)}
+  .photo img{opacity:0}.photo img.ld{opacity:1}
+  a:hover .photo img{transform:scale(1.02)}
+  figure{margin:0}
+  .cap{font-size:13px;line-height:1.4;margin:12px 0 0}
+  .cap .t{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+  .cap .t .dot{color:var(--akzent)}
+  .cap .t + span{display:block;color:var(--ink-soft);margin-top:3px}
+  /* Platzhalter-Bildunterschriften stehen im Quelltext, aber nicht im Bild. Ausnahme: das offene Löffel-Finish. */
+  .cap:has(.ph){visibility:hidden}
+  .loeffel .cap{visibility:visible}
+
+  /* Bewegung nur für Bilder. Text steht.
+     Additiv: Grundzustand ist sichtbar. Verborgen wird nur, wenn der Observer wirklich läuft
+     (html.js-reveal wird erst im Script gesetzt). Ohne JS, im Print und bei reduzierter Bewegung
+     bleibt alles da. */
+  .reveal{transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  html.js-reveal .reveal:not(.in){opacity:0;transform:translateY(14px)}
+  @media(prefers-reduced-motion:reduce){
+    .ritual-buehne video{display:none}
+    .reveal,html.js-reveal .reveal:not(.in){opacity:1;transform:none;transition:none}
+    .photo img{transition:none;opacity:1}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---------- Buttons, Links ---------- */
+  .btn{display:inline-flex;align-items:baseline;gap:12px;position:relative;
+    background:transparent;color:var(--ink);border:0;
+    padding:0 0 8px;font:inherit;font-size:clamp(17px,1.4vw,19px);font-weight:500;letter-spacing:-.01em;
+    cursor:pointer}
+  .btn::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);
+    transform-origin:left;transition:transform .4s var(--ease)}
+  .btn:hover::after{transform:scaleX(0);transform-origin:right}
+  .btn .arw{color:currentColor;transition:transform .35s var(--ease)}
+  .btn:hover .arw{transform:translateX(4px)}
+  .btn.solid{background:var(--ink);color:var(--paper);padding:17px 26px;font-size:16px;letter-spacing:-.005em;
+    transition:background .3s var(--ease)}
+  .btn.solid::after{display:none}
+  .btn.solid:hover{background:#2a2a24}
+  .link{display:inline-block;position:relative;font-size:15px;padding-bottom:2px}
+  .link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);
+    transition:background .3s var(--ease)}
+  .link:hover::after{background:var(--ink-soft)}
+  .links{display:flex;gap:26px;flex-wrap:wrap;margin-top:30px;margin-bottom:6px}
+
+  /* ---------- Vertikaler Rhythmus: drei Werte, bewusst vergeben ---------- */
+  section{margin-top:var(--raum-mit)}
+  .welt{margin-top:var(--raum-weit)}
+  .ritual{margin-top:var(--raum-mit)}
+  .geschmack{margin-top:var(--raum-eng)}
+  .formel{margin-top:var(--raum-weit)}
+  .produkt{margin-top:var(--raum-eng)}
+  .faq{margin-top:var(--raum-mit)}
+  .journal-wrap{margin-top:var(--raum-weit)}
+  .journal-wrap + .nl{margin-top:var(--raum-mit)}
+
+  /* ---------- 1 HERO: ein Feld. Foto füllt den Viewport, Schrift liegt darin ---------- */
+  .hero{margin-top:0;--focus-x:50%;--focus-y:65%}
+  .hero .full{position:relative}
+  .hero .photo{aspect-ratio:auto;height:100svh;min-height:640px}
+  .hero .photo img{object-position:var(--focus-x) var(--focus-y)}
+  @media(max-width:767px){.hero{--focus-y:70%}}
+  .hero .text{position:absolute;left:0;right:0;bottom:0;z-index:4;
+    max-width:var(--col);margin:0 auto;padding:0 var(--gap) clamp(48px,6vw,80px)}
+  .hero .text .g12{align-items:baseline}
+  /* Kein Overlay. Der text-shadow liegt nur an, wenn .hero--shadow am Container steht. Für die Abnahme ist er ab. */
+  .hero h1,.hero .lead,.hero .hero-what,.hero .hero-what-sub{color:var(--paper)}
+  .hero--shadow h1,.hero--shadow .lead,.hero--shadow .hero-what,.hero--shadow .hero-what-sub{text-shadow:0 1px 24px rgba(20,20,15,.35)}
+  .hero h1{max-width:none}
+  .hero .lead{max-width:34ch;hyphens:manual;font-size:clamp(21px,2.1vw,28px);line-height:1.35;letter-spacing:-.015em;margin-top:30px}
+  .hero .resolver{margin-top:30px}
+  .hero .hero-what{max-width:34ch;margin:0;font-weight:500;font-size:clamp(20px,1.9vw,24px);line-height:1.3;letter-spacing:-.01em;hyphens:manual}
+  .hero .hero-what-sub{max-width:34ch;margin:.4em 0 0;font-weight:400;font-size:18px;line-height:1.45;hyphens:manual}
+  .hero .cap{max-width:var(--col);margin:12px auto 0;padding:0 var(--gap)}
+
+  /* ---------- 2 WELT: ein Streifen aus vier Quadraten ---------- */
+  .welt h2{max-width:none}
+  .welt .grid{display:grid;gap:30px var(--gap);margin-top:clamp(32px,4vw,48px)}
+  @media(max-width:859px){.welt .grid{grid-template-columns:1fr}}
+  @media(min-width:860px){
+    .welt .grid{align-items:start;row-gap:clamp(40px,4.5vw,60px)}
+    .welt .grid > :nth-child(1){grid-column:1/7}
+    .welt .grid > :nth-child(2){grid-column:7/13}
+    .welt .grid > :nth-child(3){grid-column:1/7}
+    .welt .grid > :nth-child(4){grid-column:7/13}
+  }
+  .welt .photo{aspect-ratio:3/2}
+  /* Der Meinungssatz ist der typografische Moment der Sektion, aber keine Headline: <p>, keine h2-Semantik.
+     Abstand oben = Rasterreihe-zu-Bildunterschrift (12px) plus --raum-eng. */
+  .welt .meinung{margin:calc(12px + var(--raum-eng)) 0 0;max-width:24ch;
+    font-weight:500;font-size:clamp(34px,5.6vw,72px);line-height:1.08;letter-spacing:-.04em;
+    color:var(--ink);hyphens:manual;text-wrap:pretty}
+  @media(max-width:767px){.welt .meinung{font-size:clamp(34px,9vw,40px);line-height:1.12;letter-spacing:-.03em}}
+  .welt .cap{font-size:13px}
+  /* Nebenachse Spalte 7: die eine rechte Kante der Seite */
+
+  /* ---------- 3 ZUBEREITUNG: Headline, dann das Bewegtbild über die volle Breite ---------- */
+  .ritual h2{max-width:17ch}
+  .ritual .lead{margin-top:18px}
+  .ritual .cap .t{color:var(--ink)}
+  .ritual-buehne{margin:clamp(48px,6vw,80px) 0 0}
+  .ritual-buehne .photo{aspect-ratio:2/1}
+  .ritual-buehne .cap{max-width:var(--col);margin:12px auto 0;padding:0 var(--gap)}
+  @media(max-width:600px){.ritual-buehne .photo{aspect-ratio:4/5}}
+
+  /* ---------- 4 GESCHMACK: zwei Kacheln über die volle Viewportbreite ---------- */
+  .geschmack{margin-top:var(--raum-mit)}
+  .geschmack .kacheln{display:grid;grid-template-columns:1fr 1fr;
+    height:min(80vh,760px);min-height:520px}
+  .geschmack .photo{height:100%;border-radius:0}
+  .geschmack .text{background:var(--flaeche);border-radius:0;
+    display:flex;flex-direction:column;justify-content:center;
+    /* Eine Breite für alle drei Absätze: 34 Zeichen der t1-Größe. 0.6em ist die Zeichenbreite
+       der IBM Plex Sans, gemessen — so rechnet die h2 nicht mit ihrer eigenen ch-Basis. */
+    --t1:clamp(21px,2.1vw,28px);
+    --zeile:calc(34 * 0.6 * var(--t1));
+    /* Variante A: eine volle Rasterspalte plus halbe Rinne rechts der Bildnaht — Textkante auf Spalte 8. */
+    --spalte:calc((min(100vw,var(--col)) - 13 * var(--gap)) / 12);
+    padding:clamp(32px,5vw,64px) clamp(32px,5vw,64px) clamp(32px,5vw,64px)
+            calc(var(--gap)/2 + var(--spalte) + var(--gap))}
+  .geschmack .text h2,.geschmack .text .t1,.geschmack .text .t3{max-width:var(--zeile);hyphens:manual}
+  .geschmack .text h2{margin:0}
+  .geschmack .cap{max-width:var(--col);margin:12px auto 0;padding:0 var(--gap)}
+  @media(max-width:767px){
+    .geschmack .kacheln{grid-template-columns:1fr;height:auto;min-height:0}
+    .geschmack .text{order:-1;padding:clamp(28px,7vw,40px) var(--gap)}
+    .geschmack .photo{aspect-ratio:3/2;height:auto}
+  }
+  .geschmack .t1{font-size:var(--t1);line-height:1.35;letter-spacing:-.015em;margin-top:30px}
+  .geschmack .t2{font-size:21px;line-height:1.4;letter-spacing:-.01em;max-width:40ch;margin-top:18px}
+  .geschmack .t3{font-size:21px;line-height:1.4;letter-spacing:-.01em;color:var(--ink-soft);margin-top:14px}
+
+  /* ---------- 5 FORMEL ---------- */
+  .formel h2{max-width:16ch}
+  .formel .credit{font-size:13px;line-height:1.5;color:var(--ink-soft);margin:14px 0 0}
+  .formel .credit .link{font-size:13px}
+  .formel .daten .small{margin:32px 0 -26px}
+  .formel table{border-collapse:collapse;width:100%;margin-top:40px;font-size:15px}
+  .formel td{padding:15px 0;border-bottom:1px solid var(--hair);vertical-align:baseline}
+  .formel tr:first-child td{border-top:1px solid var(--hair)}
+  .formel td:last-child{text-align:right;white-space:nowrap;
+    font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:13.5px;color:var(--ink-soft)}
+  .formel td[colspan]{text-align:left;font-family:inherit;font-size:15px;white-space:normal}
+  .formel td[colspan] a{color:var(--ink-soft)}
+  .formel td a{color:inherit;transition:color .35s var(--ease)}
+  .formel td a:hover{color:var(--ink-soft)}
+  .formel .charge{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.01em;font-variant-numeric:tabular-nums;
+    color:var(--ink-soft);margin:16px 0 0;display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}
+  .formel .charge .dot{color:var(--ink-soft)}
+  .formel .more{margin-top:22px}
+
+  /* ---------- Breite Bühne: ab 1100px Kopf links (klebend), Inhalt rechts ---------- */
+  @media(min-width:1100px){
+    .formel,.faq,.nl{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:start}
+    .formel > *,.faq > *,.nl > *{max-width:none}
+    .formel .kopf,.faq .kopf,.nl .kopf{grid-column:1/6}
+    .faq .list,.nl .daten{grid-column:7/13}
+    .formel .daten{grid-column:7/13}
+    .faq .kopf{position:sticky;top:80px}
+    .formel .kopf h2,.faq .kopf h2,.nl .kopf h2{max-width:none}
+    .faq .kopf + .list{margin-top:0}
+    .nl .daten .lead{margin:0;padding-top:.3em}
+    .nl form{max-width:none;margin-top:44px}
+    .formel table{margin-top:0}
+    .formel .daten .small{margin:0 0 16px}
+  }
+
+  /* ---------- 8 JOURNAL: das eine dunkle Feld, mit Schlusszeile ---------- */
+  .journal-wrap{background:var(--dark);color:#eef1f6;padding:clamp(70px,9vw,120px) 0 clamp(76px,10vw,130px)}
+  .journal{margin-top:0}
+  .journal .kicker{color:#93a0ba}
+  .journal .excerpt{color:#c3cbd9}
+  .journal .photo{background:#1d2a42}
+  .journal .framed::after{box-shadow:inset 0 0 0 1px #3d4a63}
+  .journal a:hover .framed::after{box-shadow:inset 0 0 0 1px #eef1f6}
+  .journal .link::after{background:#eef1f6}
+  .journal .link:hover::after{background:#93a0ba}
+  .journal-wrap :focus-visible{outline-color:#eef1f6}
+  .journal-wrap ::selection{background:#eef1f6;color:var(--dark)}
+  .journal .top a .ttl{text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:1px;
+    text-underline-offset:.14em;transition:text-decoration-color .3s var(--ease)}
+  .journal .top a:hover .ttl{text-decoration-color:#eef1f6}
+  .journal .stamp{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.02em;
+    font-variant-numeric:tabular-nums;color:#93a0ba;margin:18px 0 0}
+  .journal .head{display:grid;row-gap:12px;align-items:baseline;padding-bottom:20px;border-bottom:1px solid #33405c}
+  .journal .top{display:grid;row-gap:34px;margin-top:clamp(30px,3.5vw,44px)}
+  @media(min-width:860px){.journal .top{row-gap:0}}
+  /* Ein Kachelformat auf allen Seiten. */
+  .journal .big .photo{aspect-ratio:3/2}
+  .journal .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
+    text-transform:uppercase;margin:16px 0 8px}
+  .journal .ttl{font-family:"Newsreader",serif;font-weight:500;line-height:1.1;letter-spacing:-.01em}
+  .journal .big .ttl{font-size:clamp(26px,3.4vw,38px)}
+  .journal .excerpt{font-family:"Newsreader",serif;font-size:17px;line-height:1.55;
+    margin:12px 0 0;max-width:48ch}
+  /* K3 (v0.47): Rubrikseiten enden wie die Journal-Übersicht — Schlusszeile,
+     Newsletter, Footer. Die Vorgabe aus v0.46 (kein Newsletter, keine Schlusszeile)
+     ist aufgehoben. */
+  .journal .links{margin-top:clamp(40px,5vw,60px)}
+  .schluss{margin-top:clamp(90px,10vw,150px)}
+  .schluss-zeit{font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-.03em;font-weight:500;
+    max-width:34ch;margin:0;text-wrap:balance}
+  .schluss-zeit #sc-zeit{font-family:"IBM Plex Mono",monospace;font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:-.01em;color:#93a0ba}
+  .schluss-zeit .dp{font-family:"IBM Plex Sans",sans-serif;font-weight:500;color:inherit}
+
+  /* ---------- 9 PRODUKT: ein Commerce-Moment ---------- */
+  .produkt h2{font-size:clamp(34px,5.6vw,64px);letter-spacing:-.035em}
+  .produkt h2 + .lead{margin-top:18px}
+  .produkt .row{display:grid;row-gap:32px}
+  @media(min-width:860px){.produkt .row{row-gap:0;align-items:start}}
+  .produkt .objekte{display:grid;row-gap:var(--raum-eng)}
+  /* Der Löffel sitzt unter dem Textblock, im selben Abstand wie der Beutel zu seiner Bildunterschrift. */
+
+  /* Freisteller mit Alphakanal, aus den Weißgrund-Packshots gezogen (Zwischenstand bis zum echten Export).
+     Kein mix-blend-mode, kein Kasten: Das Bild ist auf die Objektkante beschnitten, der Seitenverhältnis-Wert
+     ist das Verhältnis des Objekts selbst. Deshalb steht --cap-ein auf 0 — die Bildunterschrift beginnt
+     unter der linken Objektkante, nicht unter einem Fotokasten. */
+  .produkt figure .photo{background:transparent}
+  .produkt figure .photo img{object-fit:contain}
+  .produkt .beutel .photo{aspect-ratio:792/1059}
+  .produkt .loeffel .photo{aspect-ratio:1196/516}
+  .produkt .loeffel{width:60%;padding-top:48px}
+  @media(min-width:860px){
+    /* Beide Unterkanten auf einer Linie: beide Spalten füllen die Reihenhöhe, Beutel und Löffel sitzen
+       jeweils unten, die Bildunterschriften liegen damit auf einer Grundlinie. */
+    .produkt .row{align-items:stretch}
+    .produkt .beutel{display:grid;grid-template-rows:1fr auto;height:100%}
+    .produkt .beutel .photo{align-self:end;width:100%}
+    .produkt .text{display:flex;flex-direction:column}
+    .produkt .loeffel{margin-top:auto}
+  }
+  /* Beide Bildunterschriften stehen auf einer Grundlinie, auch wenn eine davon zweizeilig umbricht. */
+  .produkt figure .cap{padding-left:var(--cap-ein,0);min-height:2.8em}
+  .produkt .loeffel .cap{padding-left:0}
+  .produkt .beutel{--cap-ein:0}
+  .produkt .loeffel{--cap-ein:0}
+  .produkt .text{max-width:var(--narrow)}
+  @media(min-width:1100px){.produkt .text{position:sticky;top:80px}}
+  .produkt .nb{margin:28px 0 0}
+  .produkt .nb + .nb{margin-top:8px}
+  .produkt .preis{font-family:"IBM Plex Mono",monospace;font-size:clamp(28px,3vw,40px);line-height:1;
+    font-variant-numeric:tabular-nums;letter-spacing:-.01em;color:var(--ink);margin:clamp(28px,3vw,36px) 0 0}
+  .produkt .preis + .btn{margin-top:24px}
+
+  /* ---------- FAQ ---------- */
+  .faq h2{max-width:20ch}
+  .faq .list{margin-top:clamp(32px,4vw,48px)}
+  .faq details{border-top:1px solid var(--hair)}
+  .faq details:last-of-type{border-bottom:1px solid var(--hair)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;
+    align-items:baseline;gap:20px;padding:26px 0;font-size:clamp(18px,2.1vw,23px);
+    letter-spacing:-.015em;transition:color .3s var(--ease)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary:hover{color:var(--ink-soft)}
+  .faq summary .plus{font-family:"IBM Plex Mono",monospace;font-size:20px;color:var(--ink-soft);
+    flex:none;transition:transform .35s var(--ease)}
+  .faq details[open] summary .plus{transform:rotate(45deg)}
+  .faq details{interpolate-size:allow-keywords}
+  .faq details::details-content{height:0;overflow:clip;transition:height .35s var(--ease),content-visibility .35s allow-discrete}
+  .faq details[open]::details-content{height:auto}
+  .faq .answer{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:56ch;
+    margin:0;padding:0 0 28px}
+
+  /* ---------- 10 NEWSLETTER ---------- */
+  .nl{padding-top:0}
+  .nl h2{max-width:24ch}
+  .nl .lead{margin-top:18px}
+  .nl form{display:flex;gap:0;margin-top:28px;border-bottom:1px solid var(--hair);max-width:460px;transition:border-color .3s var(--ease)}
+  .nl form:focus-within{border-color:var(--ink)}
+  .nl input{flex:1;border:0;background:transparent;padding:12px 0;font:inherit;font-size:16px;letter-spacing:-.005em}
+  .nl input:focus{outline:0}
+  .nl input::placeholder{color:#a8a69d}
+  .nl button{border:0;background:transparent;font:inherit;font-size:16px;font-weight:500;letter-spacing:-.005em;
+    cursor:pointer;padding:12px 0 12px 18px;display:inline-flex;align-items:baseline;gap:10px;color:var(--ink)}
+  .nl button .arw{transition:transform .35s var(--ease)}
+  .nl button:hover .arw{transform:translateX(4px)}
+  .nl .fine{font-size:13px;color:var(--ink-soft);margin-top:14px}
+
+  /* ---------- Sprechstunde ---------- */
+  footer{margin-top:var(--raum-eng);padding:0 0 70px;font-size:14.5px;line-height:1.65}
+  footer .col{position:relative;padding:clamp(40px,5vw,64px) var(--gap) 0;display:grid;gap:30px var(--gap)}
+  footer .col::before{content:"";position:absolute;left:var(--gap);right:var(--gap);top:0;height:1px;background:var(--hair)}
+  @media(min-width:860px){
+    footer .col{grid-template-columns:repeat(12,minmax(0,1fr))}
+    footer .col > :nth-child(1){grid-column:1/4;grid-row:1}
+    footer .col > :nth-child(2){grid-column:4/7;grid-row:1}
+    footer .col > :nth-child(3){grid-column:7/13;grid-row:1}
+  }
+  footer a{display:inline-block;transition:opacity .3s var(--ease)}
+  footer a:hover{opacity:.55}
+  footer .disc{color:var(--ink-soft);margin-top:14px;font-size:13px;line-height:1.55}
+
+  @media print{
+    .bar{display:none}
+    .journal-wrap{background:none;color:var(--ink)}
+    .journal .kicker,.journal .excerpt,.journal .stamp,.schluss-zeit #sc-zeit{color:var(--ink-soft)}
+    .journal .photo{background:var(--photo)}
+    .reveal,html.js-reveal .reveal:not(.in){opacity:1;transform:none}
+    .photo img{opacity:1}
+    section,.journal-wrap{break-inside:avoid}
+  }
+  /* Mobil */
+  @media(max-width:600px){
+    h1{letter-spacing:-.03em;font-size:clamp(44px,12vw,50px)}
+    h2{letter-spacing:-.025em}
+    :root{--raum-eng:clamp(56px,14vw,72px);--raum-mit:clamp(84px,20vw,104px);--raum-weit:clamp(110px,26vw,140px)}
+    .hero .photo{height:88svh;min-height:0}
+    .hero .resolver{margin-top:22px}
+    .hero .hero-what{font-size:20px}
+    .hero .hero-what-sub{font-size:16px}
+    .welt .grid{margin-top:40px}
+    .schluss-zeit{letter-spacing:-.02em}
+    .btn.solid{width:100%;justify-content:space-between}
+    .formel td:last-child{white-space:normal}
+  }
+
+  /* ---------- Was drin ist: Text und Tabellen. Kein Navy, keine neuen Farben. ---------- */
+  .fs-head .label{margin-bottom:20px}
+  .fs-head + .zutat{margin-top:var(--raum-weit)}
+  .zutat,.fs{margin-top:var(--raum-mit)}
+  .zutat,.fs{scroll-margin-top:80px}
+  .rueck{margin-top:var(--raum-eng)}
+
+  /* ---------- C5 Sprungliste: reine Anker, Plex Sans, kein Mono ---------- */
+  .zutaten-index{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:24px 0 0}
+  .zutaten-index a{padding-bottom:1px;border-bottom:1px solid transparent}
+  .zutaten-index a:hover{border-color:var(--ink);color:var(--ink)}
+  /* H2 (v0.43): auf 390 bricht die Inline-Liste wie ein Absatz um. Kein flex, kein nowrap, kein overflow. */
+  @media(max-width:600px){
+    .zutaten-index:not(.seite){display:block;white-space:normal;line-height:1.8}
+  }
+  /* Der Inhalt läuft in Spalte 1–8, die Liste steht ab 860 px als Seitenleiste in 10–12. */
+  .inhalt .narrow{max-width:none;padding:0}
+  .inhalt .narrow > *{max-width:min(var(--narrow),100%)}
+  @media(min-width:860px){.c1-8{grid-column:1/9}}
+  .zutaten-index.seite{display:none}
+  @media(min-width:860px){
+    /* Ab 860 px übernimmt die Seitenleiste, die Inline-Liste tritt ab — eine Liste je Breite. */
+    .zutaten-index:not(.seite){display:none}
+    /* align-self:start — sonst streckt das Grid die Leiste auf die Zeilenhöhe und sticky hat keinen Weg. */
+    .zutaten-index.seite{display:block;align-self:start;position:sticky;top:84px;margin-top:clamp(56px,7vw,110px)}
+    .zutaten-index.seite a{display:block;padding:3px 0}
+    .zutaten-index.seite .dot{display:none}
+  }
+  /* C6: Zielseite der Rezepturprotokolle kommt später. */
+  .fs .row[aria-disabled="true"]{pointer-events:none}
+
+
+  /* Formelseite */
+  .fs-head{padding-top:clamp(56px,7vw,110px);margin-top:0}
+  /* h1 auf der Typo-Skala der Startseite. */
+  .fs-head h1{max-width:16ch}
+  .fs-head .lead{margin-top:26px}
+  .fs-head table{border-collapse:collapse;width:100%;margin-top:40px;font-size:15px}
+  .fs-head td{padding:15px 0;border-bottom:1px solid var(--hair);vertical-align:baseline}
+  .fs-head tr:first-child td{border-top:1px solid var(--hair)}
+  .fs-head td:nth-child(2){color:var(--ink-soft);padding-left:24px}
+  .fs-head td:last-child{text-align:right;white-space:nowrap;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:13.5px;color:var(--ink-soft)}
+  .fs-head td a{color:inherit;text-decoration:none;transition:color .35s var(--ease)}
+  .fs-head td a:hover{color:var(--ink-soft)}
+  /* H3 (v0.43): auf 390 zwei Spalten. Die Form steht unter dem Namen, nicht in eigener Spalte. */
+  .fs-head td .form{display:none}
+  @media(max-width:600px){
+    .fs-head td:nth-child(2){display:none}
+    .fs-head td .form{display:block;font-size:12px;line-height:1.4;color:var(--ink-soft);margin-top:4px}
+  }
+  .zutat{margin-top:clamp(72px,9vw,120px)}
+  .zutat,.fs{scroll-margin-top:110px}
+  .fs-head + .zutat{margin-top:clamp(110px,15vw,230px)}
+  .zutat h2,.fs h2{font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-.03em}
+  .spec{margin:18px 0 0;font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.5;letter-spacing:.01em;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+  .spec div{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:0 16px;padding:7px 0;border-top:1px solid var(--hair)}
+  .spec div:last-child{border-bottom:1px solid var(--hair)}
+  .spec dt{color:var(--ink)}
+  .spec dd{margin:0;text-wrap:pretty}
+  @media(max-width:480px){.spec div{grid-template-columns:1fr;gap:2px}}
+  .meta{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.01em;font-variant-numeric:tabular-nums;color:var(--ink-soft);margin:14px 0 0;display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}
+  .meta .dot{color:var(--ink-soft)}
+  .meta a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .3s var(--ease)}
+  .meta a:hover{border-color:var(--ink-soft)}
+  .zutat .lead,.fs .lead{margin-top:26px;font-size:clamp(16.5px,1.3vw,18.5px);line-height:1.6}
+  .zutat .lead + .lead,.fs .lead + .lead{margin-top:18px}
+  .fs ul{list-style:none;padding:0;margin:clamp(30px,4vw,48px) 0 0}
+  .fs li{padding:22px 0;border-top:1px solid var(--hair);font-size:clamp(16.5px,1.3vw,18.5px);line-height:1.55;text-wrap:pretty}
+  .fs li:last-child{border-bottom:1px solid var(--hair)}
+  .fs li b{font-weight:500;display:block;margin-bottom:4px}
+  .fs li span{color:var(--ink-soft)}
+  .fs .bild{margin:clamp(36px,4vw,56px) 0 0}
+  .fs .bild .photo{aspect-ratio:3/2}
+  .fs .rows{margin-top:clamp(30px,4vw,44px)}
+  .fs .row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:20px 0;border-top:1px solid var(--hair);text-decoration:none;color:inherit;font-size:16px;line-height:1.4}
+  .fs .row:last-child{border-bottom:1px solid var(--hair)}
+  .fs .row .arrow{font-family:"IBM Plex Mono",monospace;color:var(--ink-soft);flex:none;transition:transform .35s var(--ease)}
+  .fs .row:hover .arrow{transform:translateX(4px)}
+  .fs .row .m{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink-soft);letter-spacing:.01em}
+  .fs .row .m .dot{color:var(--ink-soft)}
+  .fs-tab table{border-collapse:collapse;width:100%;margin-top:clamp(40px,5vw,64px);font-size:15px}
+  .fs-tab th{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:400;text-align:left;padding:0 0 14px}
+  .fs-tab td{padding:15px 0;border-top:1px solid var(--hair);vertical-align:baseline}
+  .fs-tab tr:last-child td{border-bottom:1px solid var(--hair)}
+  .fs-tab td,.fs-tab th{padding-right:24px}
+  .fs-tab td:last-child,.fs-tab th:last-child{padding-right:0;text-align:right}
+  .fs-tab .mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:13.5px}
+  .proto{margin-top:clamp(72px,9vw,120px)}
+  .fs-head + .proto{margin-top:clamp(60px,8vw,110px)}
+  .proto .m{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.01em;font-variant-numeric:tabular-nums;color:var(--ink-soft);margin:0 0 12px;display:flex;gap:10px;align-items:baseline}
+  .proto .m .dot{color:var(--ink-soft)}
+  .proto h2{font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-.025em}
+  .proto .lead{margin-top:16px;font-size:clamp(16.5px,1.3vw,18.5px);line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="bar" id="bar">
+  <nav>
+    <div class="nav-l">
+      <a class="mark" href="index.html" aria-label="HESPYRA"><svg class="wm" role="img" aria-label="HESPYRA" style="width:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5900 716"><title>HESPYRA</title><path fill="currentColor" d="M602 708L502 708L502 396L100 396L100 708L0 708L0 8L100 8L100 309L502 309L502 8L602 8L602 708ZM1500 708L992 708L992 8L1486 8L1486 95L1092 95L1092 310L1443 310L1443 395L1092 395L1092 621L1500 621L1500 708ZM2046 716Q1966 716 1893 691.5Q1820 667 1778 628L1815 550Q1854 585 1916.5 608Q1979 631 2046 631Q2136 631 2177.5 600Q2219 569 2219 523Q2219 487 2196 465Q2173 443 2135 429.5Q2097 416 2052 406Q2007 396 1961.5 383Q1916 370 1878.5 348.5Q1841 327 1818 291.5Q1795 256 1795 200Q1795 146 1823.5 100.5Q1852 55 1911.5 27.5Q1971 0 2063 0Q2125 0 2184.5 16Q2244 32 2288 62L2255 142Q2210 113 2159.5 99Q2109 85 2063 85Q1974 85 1933.5 117.5Q1893 150 1893 196Q1893 233 1916 255Q1939 277 1977 290Q2015 303 2060 313.5Q2105 324 2150.5 337Q2196 350 2233.5 371Q2271 392 2294 427Q2317 462 2317 517Q2317 570 2288 615.5Q2259 661 2198.5 688.5Q2138 716 2046 716ZM2743 708L2643 708L2643 8L2916 8Q3052 8 3130 73Q3208 138 3208 252Q3208 366 3130 431Q3052 496 2916 496L2743 496L2743 708ZM2743 95L2743 409L2913 409Q3009 409 3058.5 368Q3108 327 3108 252Q3108 177 3058.5 136Q3009 95 2913 95L2743 95ZM3480 8L3584.4 8L3742 276.3L3778 276.3L3935.6 8L4040 8L3805 408L3805 708L3715 708L3715 408ZM4465 708L4365 708L4365 8L4638 8Q4774 8 4852 73Q4930 138 4930 252Q4930 334 4890 390.5Q4850 447 4776 473L4942 708L4833 708L4682 493Q4661 495 4638 495L4465 495L4465 708ZM4465 95L4465 410L4635 410Q4731 410 4780.5 368.5Q4830 327 4830 252Q4830 177 4780.5 136Q4731 95 4635 95L4465 95ZM5269 708L5166 708L5483 8L5582 8L5900 708L5795 708L5718 533L5346 533L5269 708ZM5532 110L5381 453L5683 453L5532 110Z"></path></svg></a>
+      <a class="ortszeit" href="#top"><span id="tb-ort">Geiselwind</span> <span class="dot">·</span> <span id="tb-zeit">17:39</span><span class="satz"> – <span id="tb-satz">Karussell, kurz vor Schluss.</span></span></a>
+    </div>
+    <ul id="mainnav">
+      <li><a href="#" aria-disabled="true">Produkt</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="#top">Was drin ist</a></li>
+      <li><a href="index.html#faq">Fragen</a></li>
+      <li><a class="shop" href="index.html#produkt">Bestellen</a></li>
+      <li><a class="lang" href="was-drin-ist-en.html" hreflang="en" lang="en" data-lang="en" title="English">EN</a></li>
+    </ul>
+    <div class="menu"><a href="index.html#produkt">Bestellen</a> <span class="dot">·</span> <a class="lang" href="was-drin-ist-en.html" hreflang="en" lang="en" data-lang="en" title="English">EN</a> <span class="dot dot-menu">·</span> <button type="button" id="menubtn" aria-expanded="false" aria-controls="mainnav">Menü</button></div>
+  </nav>
+</div>
+
+<main id="top">
+<div class="col g12">
+<div class="inhalt c1-8">
+<section class="fs-head narrow">
+  <p class="label">Formel</p>
+  <h1 class="reveal">Was drin ist.</h1>
+  <p class="lead reveal">Elf Zutaten, sechs Gramm pro Portion. Bei jeder steht, was sie ist, in welcher Form sie eingesetzt wird und – wo es relevant ist – woher sie kommt.</p>
+  <nav class="zutaten-index" aria-label="Zutaten">
+    <a href="#magnesium">Magnesium</a> <span class="dot">·</span>
+    <a href="#l-theanin">L-Theanin</a> <span class="dot">·</span>
+    <a href="#phosphatidylserin">Phosphatidylserin</a> <span class="dot">·</span>
+    <a href="#ashwagandha">Ashwagandha</a> <span class="dot">·</span>
+    <a href="#safran">Safran</a> <span class="dot">·</span>
+    <a href="#reishi">Reishi</a> <span class="dot">·</span>
+    <a href="#kakao">Kakao</a> <span class="dot">·</span>
+    <a href="#glycin">Glycin</a> <span class="dot">·</span>
+    <a href="#kokosmilchpulver">Kokosmilchpulver</a> <span class="dot">·</span>
+    <a href="#bourbon-vanille">Bourbon-Vanille</a> <span class="dot">·</span>
+    <a href="#salz">Salz</a> <span class="dot">·</span>
+    <a href="#nicht-drin">Was nicht drin ist</a> <span class="dot">·</span>
+    <a href="#formuliert">Formuliert mit</a> <span class="dot">·</span>
+    <a href="#herstellung">Herstellung</a>
+  </nav>
+  <!-- Arbeitsstand 06.09.2026 auf Basis der NovaLabs-Rezeptur 25188-2 (ETD 6 g). Nichts getestet, alles kann sich ändern. -->
+  <!-- .vorlaunch: fliegt, sobald die Mengen nach dem NovaLabs-Angebot final gesetzt sind. Dann
+     Gesamttabelle und alle elf Datenblätter einmal gegen die finale Rezeptur prüfen. -->
+  <p class="small soft vorlaunch reveal" style="margin-top:40px;margin-bottom:-26px">Mengen pro Portion (6&nbsp;g). Arbeitsstand, vor der Entwicklung.</p>
+  <table class="reveal">
+    <thead class="vh"><tr><th scope="col">Zutat</th><th scope="col">Form</th><th scope="col">Menge</th></tr></thead>
+    <tr><td><a href="#magnesium">Magnesium</a><span class="form">Bisglycinat</span></td><td>Bisglycinat</td><td>78&nbsp;mg elementar</td></tr>
+    <tr><td><a href="#magnesium">Magnesium</a><span class="form">Taurat</span></td><td>Taurat</td><td>72&nbsp;mg elementar</td></tr>
+    <tr><td><a href="#l-theanin">L-Theanin</a><span class="form">aus Grüntee-Extrakt</span></td><td>aus Grüntee-Extrakt</td><td>100&nbsp;mg</td></tr>
+    <tr><td><a href="#phosphatidylserin">Phosphatidyl&shy;serin</a><span class="form">SunPS®, aus Sonnenblume</span></td><td>SunPS®, aus Sonnenblume</td><td>70&nbsp;mg</td></tr>
+    <tr><td><a href="#ashwagandha">Ashwagandha</a><span class="form">KSM-66®, Bio, Wurzelextrakt</span></td><td>KSM-66®, Bio, Wurzelextrakt</td><td>300&nbsp;mg</td></tr>
+    <tr><td><a href="#safran">Safran</a><span class="form">Affron®, Extrakt</span></td><td>Affron®, Extrakt</td><td>28&nbsp;mg</td></tr>
+    <tr><td><a href="#reishi">Reishi</a><span class="form">Fruchtkörperextrakt</span></td><td>Fruchtkörperextrakt</td><td>1.000&nbsp;mg</td></tr>
+    <tr><td><a href="#kakao">Kakao</a><span class="form">alkalisiert</span></td><td>alkalisiert</td><td>1.000&nbsp;mg</td></tr>
+    <tr><td><a href="#glycin">Glycin</a><span class="form">Aminosäure</span></td><td>Aminosäure</td><td>1.400&nbsp;mg</td></tr>
+    <tr><td><a href="#kokosmilchpulver">Kokosmilchpulver</a></td><td></td><td>200&nbsp;mg</td></tr>
+    <tr><td><a href="#bourbon-vanille">Bourbon-Vanille</a><span class="form">Bio, gemahlen</span></td><td>Bio, gemahlen</td><td>300&nbsp;mg</td></tr>
+    <tr><td><a href="#salz">Salz</a></td><td></td><td>50&nbsp;mg</td></tr>
+  </table>
+</section>
+
+<section class="zutat narrow" id="magnesium">
+  <h2 class="reveal">Magnesium</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Magnesium, zwei organische Verbindungen</dd></div>
+    <div><dt>Form</dt><dd>Bisglycinat 553&nbsp;mg (14,1&nbsp;% Mg) + Taurat 900&nbsp;mg (8&nbsp;% Mg)</dd></div>
+    <div><dt>Davon Magnesium</dt><dd>150&nbsp;mg elementar (40&nbsp;% NRV)</dd></div>
+    <div><dt>Löslichkeit</dt><dd>vollständig in Wasser</dd></div>
+    <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
+    <div><dt>Geprüft auf</dt><dd><span class="ph">[Schwermetalle, Mikrobiologie — Analyse]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Zwei organische Verbindungen — Magnesium an die Aminosäure Glycin gebunden und an Taurin. Beide lösen sich in Wasser und schmecken neutral. Die Wahl der Formen ist Christians; zusammen ergeben sie 40 Prozent des Tagesreferenzwerts.</p>
+  <p class="lead reveal">Magnesium trägt zu einer normalen Funktion des Nervensystems und zur normalen psychischen Funktion bei.</p>
+</section>
+
+<section class="zutat narrow" id="l-theanin">
+  <h2 class="reveal">L-Theanin</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>L-Theanin, Aminosäure aus grünem Tee</dd></div>
+    <div><dt>Form</dt><dd>Grüntee-Extrakt, 167&nbsp;mg</dd></div>
+    <div><dt>Standardisiert</dt><dd>60&nbsp;% L-Theanin</dd></div>
+    <div><dt>Davon L-Theanin</dt><dd>100&nbsp;mg</dd></div>
+    <div><dt>Pflanzenteil</dt><dd>Blatt (Camellia sinensis)</dd></div>
+    <div><dt>Herkunft</dt><dd><span class="ph">[Region — Spezifikation]</span></dd></div>
+    <div><dt>Geprüft auf</dt><dd><span class="ph">[Koffeinrestgehalt, Schwermetalle, Pestizide — Analyse]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Aus der Pflanze, in der es ohnehin vorkommt. Der Extrakt ist auf 60 Prozent standardisiert, also enthält jede Charge gleich viel Theanin.</p>
+</section>
+
+<section class="zutat narrow" id="phosphatidylserin">
+  <h2 class="reveal">Phosphatidyl&shy;serin</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Phosphatidylserin, Phospholipid</dd></div>
+    <div><dt>Form</dt><dd>Extrakt aus Sonnenblumen-Lecithin, 100&nbsp;mg</dd></div>
+    <div><dt>Standardisiert</dt><dd>70&nbsp;% Phosphatidylserin</dd></div>
+    <div><dt>Davon PS</dt><dd>70&nbsp;mg Phosphatidylserin</dd></div>
+    <div><dt>Quelle</dt><dd>Sonnenblumen-Lecithin, ohne Soja</dd></div>
+    <div><dt>Herkunft</dt><dd>China</dd></div>
+    <div><dt>Geprüft auf</dt><dd><span class="ph">[Allergene, Schwermetalle — Analyse]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Die gängige Alternative basiert auf Soja. Wir haben Sonnenblume gewählt, ohne Maltodextrin-Träger. Wir haben den Markenrohstoff daneben gelegt: Der Unterschied in der Spezifikation war klein, der im Preis nicht. Der Rohstoff enthält 70 Prozent Phosphatidylserin — deshalb nennen wir 70&nbsp;mg und nicht die 100&nbsp;mg Pulver, die dafür eingesetzt werden.</p>
+  <!-- Intern: SunPS® oder markenfreier Rohstoff gleicher Spezifikation — offen. Bei SunPS „Form: SunPS®" ergänzen. -->
+</section>
+
+<section class="zutat narrow" id="ashwagandha">
+  <h2 class="reveal">Ashwagandha</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Withania somnifera, Wurzel</dd></div>
+    <div><dt>Form</dt><dd>KSM-66®, Extrakt, 300&nbsp;mg</dd></div>
+    <div><dt>Standardisiert</dt><dd>5&nbsp;% Withanolide (15&nbsp;mg)</dd></div>
+    <div><dt>Pflanzenteil</dt><dd>ausschließlich Wurzel</dd></div>
+    <div><dt>Anbau</dt><dd>Bio, Indien</dd></div>
+    <div><dt>Extraktion</dt><dd><span class="ph">[Verfahren — Spezifikation]</span></dd></div>
+    <div><dt>Geprüft auf</dt><dd><span class="ph">[Schwermetalle, Pestizide, Mikrobiologie — Analyse]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Ausschließlich die Wurzel. In Bio-Qualität.</p>
+</section>
+
+<section class="zutat narrow" id="safran">
+  <h2 class="reveal">Safran</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Crocus sativus, Blütennarben</dd></div>
+    <div><dt>Form</dt><dd>Affron®, Extrakt, 28&nbsp;mg</dd></div>
+    <div><dt>Standardisiert</dt><dd>&gt;&nbsp;3,5&nbsp;% Lepticrosalide®</dd></div>
+    <div><dt>Herkunft</dt><dd>Spanien</dd></div>
+    <div><dt>Extraktion</dt><dd><span class="ph">[Verfahren — Spezifikation]</span></dd></div>
+    <div><dt>Geprüft auf</dt><dd><span class="ph">[Identität, Schwermetalle — Analyse]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Der teuerste Posten der Formel, mit Abstand. Wir haben es beim Einkauf gemerkt. Er ist trotzdem drin.</p>
+  <p class="lead reveal">Affron ist standardisiert. Damit bedeuten 28&nbsp;mg Extrakt nicht bei jeder Charge etwas anderes.</p>
+</section>
+
+<section class="zutat narrow" id="reishi">
+  <h2 class="reveal">Reishi</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Ganoderma lucidum, Fruchtkörper</dd></div>
+    <div><dt>Form</dt><dd>Extrakt, 1.000&nbsp;mg</dd></div>
+    <div><dt>Standardisiert</dt><dd>30&nbsp;% Polysaccharide (300&nbsp;mg)</dd></div>
+    <div><dt>Pflanzenteil</dt><dd>Fruchtkörper, kein Myzel</dd></div>
+    <div><dt>Extraktion</dt><dd><span class="ph">[Wasser / Wasser-Ethanol — Spezifikation]</span></dd></div>
+    <div><dt>Anbau</dt><dd><span class="ph">[Region, Bio — Spezifikation]</span></dd></div>
+    <div><dt>Geprüft auf</dt><dd><span class="ph">[Schwermetalle, Pestizide, Mikrobiologie — Analyse]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Ein Gramm Fruchtkörperextrakt. Geschmacklich spürbar — erdig, leicht bitter — und es passt zum Kakao.</p>
+</section>
+
+<section class="zutat narrow" id="kakao">
+  <h2 class="reveal">Kakao</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Theobroma cacao, Kakaopulver</dd></div>
+    <div><dt>Form</dt><dd>alkalisiert, 10–12&nbsp;% Fett, 1.000&nbsp;mg</dd></div>
+    <div><dt>Herkunft</dt><dd><span class="ph">[Land — Spezifikation]</span></dd></div>
+    <div><dt>Geprüft auf</dt><dd><span class="ph">[Cadmium, Mikrobiologie — Analyse]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Alkalisierter Kakao, weil er sich in Wasser löst und sich nicht absetzt. Ein Gramm pro Portion ist der Ausgangspunkt.</p>
+</section>
+
+<section class="zutat narrow" id="glycin">
+  <h2 class="reveal">Glycin</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Glycin, Aminosäure</dd></div>
+    <div><dt>Form</dt><dd>Glycin 98,5&nbsp;%, 1.401&nbsp;mg</dd></div>
+    <div><dt>Davon Glycin</dt><dd>1.380&nbsp;mg</dd></div>
+    <div><dt>Funktion</dt><dd>Süße</dd></div>
+    <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Wir wollten keinen Zucker und keine Süßstoffe, und trotzdem etwas, das man gern trinkt. Glycin schmeckt von Natur aus leicht süß.</p>
+</section>
+
+<section class="zutat narrow" id="kokosmilchpulver">
+  <h2 class="reveal">Kokosmilchpulver</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Cocos nucifera, Milchpulver</dd></div>
+    <div><dt>Form</dt><dd>200&nbsp;mg</dd></div>
+    <div><dt>Funktion</dt><dd>Textur</dd></div>
+    <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Ein Getränk aus Pulver und Wasser wird schnell dünn; ein wenig Kokosmilchpulver soll es cremig machen, ohne dass man Kokos schmeckt. Ob 200&nbsp;mg dafür reichen, zeigt die Entwicklung. <span class="ph">[Spezifikation prüfen: Trägerstoffe, weitere Bestandteile.]</span></p>
+</section>
+
+<section class="zutat narrow" id="bourbon-vanille">
+  <h2 class="reveal">Bourbon-Vanille</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Vanilla planifolia, Schote</dd></div>
+    <div><dt>Form</dt><dd>gemahlen, 300&nbsp;mg</dd></div>
+    <div><dt>Anbau</dt><dd>Bio</dd></div>
+    <div><dt>Herkunft</dt><dd>Madagaskar <span class="ph">[bestätigen]</span></dd></div>
+    <div><dt>Geprüft auf</dt><dd><span class="ph">[Vanillingehalt natürlich, Mikrobiologie — Analyse]</span></dd></div>
+  </dl>
+  <p class="lead reveal">Echte Vanille, gemahlen, in Bio-Qualität. Kein zugesetztes Vanillin, kein Aroma — die Schote selbst. Neben dem Safran der zweitteuerste Posten pro Gramm, und der Grund, warum es nach etwas schmeckt und nicht nach Kakao mit Zutaten.</p>
+</section>
+
+<section class="zutat narrow" id="salz">
+  <h2 class="reveal">Salz</h2>
+  <dl class="spec reveal">
+    <div><dt>Was</dt><dd>Natriumchlorid</dd></div>
+    <div><dt>Form</dt><dd>51&nbsp;mg (20&nbsp;mg Natrium)</dd></div>
+    <div><dt>Funktion</dt><dd>Geschmack</dd></div>
+  </dl>
+  <p class="lead reveal">Eine Prise. Kakao ohne Salz schmeckt flach — das weiß jede Schokoladenmanufaktur. 20 Milligramm Natrium sind weniger als in einer Scheibe Brot.</p>
+</section>
+
+<section class="fs narrow" id="nicht-drin">
+  <h2 class="reveal">Was nicht drin ist</h2>
+  <ul>
+    <li class="reveal"><b>Melatonin.</b><span>HESPYRA ist kein Schlafprodukt.</span></li>
+    <li class="reveal"><b>Zucker, Süßstoffe.</b><span>Die Süße kommt von Glycin, einer Aminosäure. Ob das reicht, entscheidet die Entwicklung — nicht ein Süßungsmittel.</span></li>
+    <li class="reveal"><b>Aromen.</b><span>Kakao und Vanille sind echt. Sonst nichts.</span></li>
+    <li class="reveal"><b>Ein „Blend".</b><span>Jede Menge steht einzeln. Sonst wäre „6&nbsp;g Formel“ eine erstaunlich ungenaue Information.</span></li>
+  </ul>
+</section>
+
+<section class="fs narrow" id="formuliert">
+  <h2 class="reveal">Formuliert mit Christian Baker</h2>
+  <p class="meta reveal"><a href="https://profoundformulas.com" rel="noopener">Profound Formulas</a> <span class="dot">·</span> unabhängig <span class="dot">·</span> Barcelona</p>
+  <p class="lead reveal">Wir hätten diese Formel nicht selbst zusammenstellen können. Wir haben es kurz versucht. Danach haben wir jemanden gefragt, der das seit sechzehn Jahren macht.</p>
+  <p class="lead reveal">Christian Baker entwickelt mit Profound Formulas Rezepturen für Nahrungsergänzung — unabhängig, ohne eigene Produkte, ohne Rohstoffe, die er verkaufen müsste. Er hat entschieden, welche Form von Magnesium, welcher Safranextrakt, welcher Pilzanteil. Wir haben entschieden, wie es schmecken soll. An den Stellen, wo beides nicht zusammenging, hat meistens er gewonnen.</p>
+  <figure class="bild reveal"><div class="framed"><div class="photo"><img src="img/christian.jpg" alt="Christian Baker, Profound Formulas, Barcelona." decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Barcelona <span class="dot">·</span> <span class="ph">[Uhrzeit]</span></span></p></figure>
+</section>
+
+<section class="fs narrow" id="herstellung">
+  <h2 class="reveal">Herstellung</h2>
+  <p class="lead reveal">Hergestellt in <span class="ph">[Ort]</span>, Österreich, bei <span class="ph">[NovaLabs — Nennung klären]</span>. Zertifiziert nach <span class="ph">[Standard]</span>. Jede Charge wird vom Hersteller geprüft und freigegeben. Die erste Charge zusätzlich von einem unabhängigen Labor. Beides steht hier.</p>
+  <div class="rows reveal">
+    <a class="row" href="#" aria-disabled="true"><span class="m"><span class="ph">Charge [Nr.]</span> <span class="dot">·</span> <span class="ph">Freigabe vom [Datum]</span> <span class="dot">·</span> <span class="ph">[Labor, falls extern]</span> <span class="dot">·</span> PDF</span><span class="arrow">→</span></a>
+  </div>
+</section>
+
+<section class="rueck narrow">
+  <p><a class="link" href="index.html#proof">← Zur Startseite</a></p>
+</section>
+</div>
+<nav class="zutaten-index seite c10-12" aria-label="Zutaten">
+    <a href="#magnesium">Magnesium</a> <span class="dot">·</span>
+    <a href="#l-theanin">L-Theanin</a> <span class="dot">·</span>
+    <a href="#phosphatidylserin">Phosphatidylserin</a> <span class="dot">·</span>
+    <a href="#ashwagandha">Ashwagandha</a> <span class="dot">·</span>
+    <a href="#safran">Safran</a> <span class="dot">·</span>
+    <a href="#reishi">Reishi</a> <span class="dot">·</span>
+    <a href="#kakao">Kakao</a> <span class="dot">·</span>
+    <a href="#glycin">Glycin</a> <span class="dot">·</span>
+    <a href="#kokosmilchpulver">Kokosmilchpulver</a> <span class="dot">·</span>
+    <a href="#bourbon-vanille">Bourbon-Vanille</a> <span class="dot">·</span>
+    <a href="#salz">Salz</a> <span class="dot">·</span>
+    <a href="#nicht-drin">Was nicht drin ist</a> <span class="dot">·</span>
+    <a href="#formuliert">Formuliert mit</a> <span class="dot">·</span>
+    <a href="#herstellung">Herstellung</a>
+  </nav>
+</div>
+</main>
+
+<!-- 9 NEWSLETTER -->
+<section class="nl narrow">
+  <div class="kopf">
+  <h2>Aus Forchheim. Ungefähr einmal im Monat. Seltener, wenn nichts passiert ist.</h2>
+  </div>
+  <div class="daten">
+  <p class="lead">Der Betreff ist eine Uhrzeit.</p>
+  <form id="nlform" novalidate>
+    <input type="email" name="email" autocomplete="email" placeholder="E-Mail" aria-label="E-Mail">
+    <button type="submit">Eintragen <span class="arw">→</span></button>
+  </form>
+  <p class="lead" id="nl-done" style="margin-top:28px" hidden>Danke. Der erste kommt, wenn etwas passiert ist.</p>
+  <p class="fine">Kein Rabatt fürs Anmelden. Abmelden jederzeit.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="col">
+    <div><span class="mark"><svg class="wm" role="img" aria-label="HESPYRA" style="height:14px;width:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5900 716"><title>HESPYRA</title><path fill="currentColor" d="M602 708L502 708L502 396L100 396L100 708L0 708L0 8L100 8L100 309L502 309L502 8L602 8L602 708ZM1500 708L992 708L992 8L1486 8L1486 95L1092 95L1092 310L1443 310L1443 395L1092 395L1092 621L1500 621L1500 708ZM2046 716Q1966 716 1893 691.5Q1820 667 1778 628L1815 550Q1854 585 1916.5 608Q1979 631 2046 631Q2136 631 2177.5 600Q2219 569 2219 523Q2219 487 2196 465Q2173 443 2135 429.5Q2097 416 2052 406Q2007 396 1961.5 383Q1916 370 1878.5 348.5Q1841 327 1818 291.5Q1795 256 1795 200Q1795 146 1823.5 100.5Q1852 55 1911.5 27.5Q1971 0 2063 0Q2125 0 2184.5 16Q2244 32 2288 62L2255 142Q2210 113 2159.5 99Q2109 85 2063 85Q1974 85 1933.5 117.5Q1893 150 1893 196Q1893 233 1916 255Q1939 277 1977 290Q2015 303 2060 313.5Q2105 324 2150.5 337Q2196 350 2233.5 371Q2271 392 2294 427Q2317 462 2317 517Q2317 570 2288 615.5Q2259 661 2198.5 688.5Q2138 716 2046 716ZM2743 708L2643 708L2643 8L2916 8Q3052 8 3130 73Q3208 138 3208 252Q3208 366 3130 431Q3052 496 2916 496L2743 496L2743 708ZM2743 95L2743 409L2913 409Q3009 409 3058.5 368Q3108 327 3108 252Q3108 177 3058.5 136Q3009 95 2913 95L2743 95ZM3480 8L3584.4 8L3742 276.3L3778 276.3L3935.6 8L4040 8L3805 408L3805 708L3715 708L3715 408ZM4465 708L4365 708L4365 8L4638 8Q4774 8 4852 73Q4930 138 4930 252Q4930 334 4890 390.5Q4850 447 4776 473L4942 708L4833 708L4682 493Q4661 495 4638 495L4465 495L4465 708ZM4465 95L4465 410L4635 410Q4731 410 4780.5 368.5Q4830 327 4830 252Q4830 177 4780.5 136Q4731 95 4635 95L4465 95ZM5269 708L5166 708L5483 8L5582 8L5900 708L5795 708L5718 533L5346 533L5269 708ZM5532 110L5381 453L5683 453L5532 110Z"></path></svg></span><span class="soft">Für den Moment davor.</span></div>
+    <div>
+      <a href="#" aria-disabled="true">Produkt</a><br><a href="journal.html">Journal</a><br>
+      <a href="#top">Was drin ist</a><br><a href="index.html#faq">Fragen</a><br>
+<a href="index.html#produkt">Bestellen</a>
+    </div>
+    <div>
+      <span class="soft">Abendsprechstunde 18–21 Uhr. Wer abhebt, arbeitet hier.</span><br>
+      <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a> · <a href="tel:+491727599218">0172 7599218</a><br>
+      <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#" aria-disabled="true">AGB</a> · <a href="#" aria-disabled="true">Widerruf</a>
+      <p class="disc">Nahrungs&shy;ergänzungs&shy;mittel sind kein Ersatz für eine ausgewogene, abwechslungsreiche Ernährung und eine gesunde Lebensweise.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal beim Scrollen (nur Bilder)
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window))return;
+    if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    document.documentElement.classList.add('js-reveal');
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    els.forEach(function(e){io.observe(e)});
+  })();
+
+  // Mobiles Menü
+  (function(){
+    var bar=document.getElementById('bar'), btn=document.getElementById('menubtn');
+    if(!btn)return;
+    btn.addEventListener('click',function(){
+      var open=bar.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+    function close(){bar.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+    bar.querySelectorAll('ul a').forEach(function(a){a.addEventListener('click',close)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&bar.classList.contains('open')){close();btn.focus();}});
+  })();
+
+  // Sticky-Bar Schatten
+  (function(){
+    var bar=document.getElementById('bar');
+    var on=false;
+    window.addEventListener('scroll',function(){
+      var s=window.scrollY>10;
+      if(s!==on){on=s;bar.classList.toggle('scrolled',s)}
+    },{passive:true});
+  })();
+
+  // Bewegtbild: bei prefers-reduced-motion nur das Poster
+  (function(){
+    if(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    document.querySelectorAll('.ritual-buehne video').forEach(function(v){v.removeAttribute('autoplay');v.pause();});
+  })();
+
+  // Bilder einblenden
+  (function(){document.querySelectorAll('.photo img').forEach(function(i){function on(){i.classList.add('ld')} if(i.complete&&i.naturalWidth)on();else{i.addEventListener('load',on);i.addEventListener('error',on);}})})();
+
+  // Newsletter: nach Absenden eine Zeile
+  (function(){var f=document.getElementById('nlform');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var i=f.querySelector('input');if(!i.value||!i.checkValidity()){i.focus();return;}f.hidden=true;var fine=document.getElementById('nl-done').nextElementSibling;if(fine)fine.hidden=true;document.getElementById('nl-done').hidden=false;});})();
+
+  // Warenkorb bis Shop-Start
+  (function(){var b=document.getElementById('cartbtn');if(!b)return;b.addEventListener('click',function(){b.textContent=b.getAttribute('data-soon');b.setAttribute('aria-disabled','true');});})();
+
+
+
+
+
+  // F5 Kopfzeile: ein zufälliger dokumentierter Moment beim Laden, danach keine Änderung. Kein Timer, keine Rotation.
+  // momente = die vier Kacheln der ORTSZEIT-Rubrik im Journal. Ein Foto, eine Bildunterschrift.
+  (function(){
+    var momente=[['Geiselwind','17:39','Karussell, kurz vor Schluss.'],['Nürnberg','19:48','Alle stehen, niemand sitzt.'],['Kos','18:19','Der Platz ist leer, die Sonne fast weg.'],['Heroldsbach','18:01','Zurück zum Auto, die Sonne noch da.']];
+    var o=document.getElementById('tb-ort'),z=document.getElementById('tb-zeit'),s=document.getElementById('tb-satz');
+    if(!o||!z||!s)return;
+    var m=momente[Math.floor(Math.random()*momente.length)];
+    o.textContent=m[0];z.textContent=m[1];s.textContent=m[2];
+  })();
+
+  // H1 (v0.43) Kopfzeile auf 390: Ort · Zeit vollständig oder gar nicht. Nie gekürzt.
+  (function(){
+    var oz=document.querySelector('.bar .ortszeit'),nv=document.querySelector('.bar nav');
+    if(!oz||!nv)return;
+    var rechts=nv.lastElementChild;
+    function fit(){
+      oz.style.display='';
+      if(window.innerWidth>600)return;
+      var platz=rechts.getBoundingClientRect().left-oz.getBoundingClientRect().left-12;
+      if(oz.scrollWidth>platz)oz.style.display='none';
+    }
+    fit();addEventListener('resize',fit);
+    new MutationObserver(fit).observe(oz,{childList:true,subtree:true,characterData:true});
+  })();
+
+  // Ortszeit in der Navigation: kuratiert und statisch. Schlusszeile: lokale Gerätezeit des Besuchers.
+  (function(){
+    function pad(n){return String(n).padStart(2,'0')}
+    function tick(){
+      var now=new Date();
+      var sc=document.getElementById('sc-zeit'); if(sc) sc.innerHTML=pad(now.getHours())+'<span class="dp">:</span>'+pad(now.getMinutes());
+      // Zwei Zeitfenster: 05–16:59 und 17–04:59.
+      var st=document.getElementById('sc-satz'), h=now.getHours();
+      if(st){ st.textContent = (h>=5 && h<17) ? 'Der Abend kommt noch.' : 'Der Abend ist noch offen.'; }
+    }
+    // Journal-Stempel aus den Artikeldaten
+    (function(){var s=document.querySelector('.journal .stamp');if(!s)return;var ds=Array.prototype.map.call(document.querySelectorAll('.journal [data-published]'),function(a){return a.getAttribute('data-published')}).sort().pop();if(!ds)return;var d=new Date(ds),M=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];s.textContent='Zuletzt · '+d.getDate()+'. '+M[d.getMonth()]+', '+pad(d.getHours())+':'+pad(d.getMinutes());})();
+    window.hespyraTick=tick;
+    tick();
+    setTimeout(function(){tick();setInterval(tick,60000)}, 1000*(61-new Date().getSeconds()));
+  })();
+</script>
+
+</body>
+</html>

@@ -84,8 +84,10 @@
   .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
   /* ---------- Navigation: eine Zeile, auf Papier ---------- */
-  .bar{position:sticky;top:0;z-index:50;background:var(--paper);transition:box-shadow .4s var(--ease)}
-  .bar.scrolled{box-shadow:0 1px 0 var(--hair)}
+  /* T2: Hairline unter der Kopfzeile, volle Breite, immer — bei Scroll 0 und über Inhalten. */
+  .bar{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--hair);transition:box-shadow .4s var(--ease)}
+  /* Der frühere Scroll-Schatten (0 1px 0 --hair) entfällt: zusammen mit der Hairline ergäbe er 2 px. */
+  .bar.scrolled{box-shadow:none}
   nav{display:flex;align-items:center;justify-content:space-between;gap:24px;
     max-width:var(--col);margin:0 auto;padding:18px var(--gap)}
   .nav-l{display:flex;align-items:center;gap:20px;min-width:0}

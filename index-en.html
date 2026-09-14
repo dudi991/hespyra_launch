@@ -35,7 +35,7 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
-    --bar-h:55px;            /* gemessen: nav padding 18+18 + Navigationsliste 19px = 55px */
+    --bar-h:56px;            /* gemessen: nav padding 18+18 + Navigationsliste 19px = 55px, + 1 px Hairline (T2) = 56px */
     --paper:#fbfbf9;          /* getöntes Weiß, nicht #fff */
     --ink:#14140f;            /* fast-schwarz, nicht #000 */
     --akzent:#C24F16;         /* Safran. Nur Ortszeit-Trenner: Nav und Bildunterschriften. Sonst nichts. */
@@ -93,8 +93,10 @@
   .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
   /* ---------- Navigation: eine Zeile, auf Papier ---------- */
-  .bar{position:sticky;top:0;z-index:50;background:var(--paper);transition:box-shadow .4s var(--ease)}
-  .bar.scrolled{box-shadow:0 1px 0 var(--hair)}
+  /* T2: Hairline unter der Kopfzeile, volle Breite, immer — bei Scroll 0 und über Inhalten. */
+  .bar{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--hair);transition:box-shadow .4s var(--ease)}
+  /* Der frühere Scroll-Schatten (0 1px 0 --hair) entfällt: zusammen mit der Hairline ergäbe er 2 px. */
+  .bar.scrolled{box-shadow:none}
   nav{display:flex;align-items:center;justify-content:space-between;gap:24px;
     max-width:var(--col);margin:0 auto;padding:18px var(--gap)}
   .nav-l{display:flex;align-items:center;gap:20px;min-width:0}
@@ -231,7 +233,11 @@
   /* ---------- 1 HERO: ein Feld. Foto füllt den Viewport, Schrift liegt darin ---------- */
   .hero{margin-top:0;--focus-x:50%;--focus-y:65%}
   .hero .full{position:relative}
-  .hero .photo{aspect-ratio:auto;height:calc(100svh - var(--bar-h));min-height:640px}
+  /* T2: Hairline unter dem Hero über die zwölf Spalten (Kante wie .col, Muster wie footer .col::before).
+     Ohne eigenen Abstand: Textblock → Hairline = Hero-Padding unten, Hairline → Kicker = .ritual margin-top. Nicht addiert. */
+  .hero::after{content:"";display:block;height:1px;background:var(--hair);width:calc(100% - 2*var(--gap));max-width:calc(var(--col) - 2*var(--gap));margin:0 auto}
+  /* T2: 1 px für die Hairline unter dem Hero abziehen — Hero samt Hairline endet an der Viewport-Unterkante. */
+  .hero .photo{aspect-ratio:auto;height:calc(100svh - var(--bar-h) - 1px);min-height:640px}
   .hero .photo img{object-position:var(--focus-x) var(--focus-y)}
   /* Hero-Glas auf Weiß: kein Scrim, dunkle Schrift. multiply lässt das Weiß des Bildes im Papierton aufgehen,
      damit keine hellere Bildkante gegen --paper steht. */
@@ -607,6 +613,10 @@
       </div>
     </div>
   </div>
+  <!-- Bildunterschrift bis zum echten Foto auskommentiert (ein Render hat keinen Ort und keine Uhrzeit).
+       Werte wie data-ort/data-zeit am Hero. Mit dem Foto: Kommentar auflösen, Uhrzeit des Fotos in beide eintragen.
+  <p class="cap" data-ort="Forchheim" data-zeit="19:50"><span class="t">Forchheim <span class="dot">·</span> 19:50</span></p>
+  -->
 </section>
 
 <!-- 2 ZUBEREITUNG -->

@@ -233,18 +233,21 @@
   .hero .full{position:relative}
   .hero .photo{aspect-ratio:auto;height:calc(100svh - var(--bar-h));min-height:640px}
   .hero .photo img{object-position:var(--focus-x) var(--focus-y)}
-  /* Scrim (v0.51): hero4 ist unten am hellsten — ohne Abdunklung fällt die h1 unter 4,5:1.
-     Reversibel: Regel löschen, dann ist der Hero wieder ohne Overlay. */
-  .hero .photo{position:relative}
-  .hero .photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:66%;
-    background:linear-gradient(to top,rgba(14,16,20,.88),rgba(14,16,20,.60) 45%,rgba(14,16,20,0));
-    pointer-events:none;z-index:2}
+  /* Hero-Glas auf Weiß: kein Scrim, dunkle Schrift. multiply lässt das Weiß des Bildes im Papierton aufgehen,
+     damit keine hellere Bildkante gegen --paper steht. */
+  .hero .photo{position:relative;background:var(--paper)}
+  .hero .photo img{mix-blend-mode:multiply;transform:translateY(-30%)}
+  /* Glas sitzt im Motiv auf Höhe der h1: nach oben in die freie Fläche geschoben (relativ zur Hero-Höhe),
+     mobil horizontal auf das Glas zentriert. */
+  @media(max-width:767px){.hero{--focus-x:66%}}
+  /* Breite, flache Fenster (z. B. 1366×640): Bild wird über die Breite skaliert, das Glas wird größer — etwas weiter hoch. */
+  @media(min-aspect-ratio:2/1){.hero .photo img{transform:translateY(-32%)}}
   @media(max-width:767px){.hero{--focus-y:70%}}
   .hero .text{position:absolute;left:0;right:0;bottom:0;z-index:4;
     max-width:var(--col);margin:0 auto;padding:0 var(--gap) clamp(48px,6vw,80px)}
   .hero .text .g12{align-items:baseline}
   /* Kein Overlay. Der text-shadow liegt nur an, wenn .hero--shadow am Container steht. Für die Abnahme ist er ab. */
-  .hero h1,.hero .lead,.hero .hero-what,.hero .hero-what-sub{color:var(--paper)}
+  .hero h1,.hero .lead,.hero .hero-what,.hero .hero-what-sub{color:var(--ink)}
   .hero--shadow h1,.hero--shadow .lead,.hero--shadow .hero-what,.hero--shadow .hero-what-sub{text-shadow:0 1px 24px rgba(20,20,15,.35)}
   .hero h1{max-width:none}
   .hero h1 .nw{white-space:nowrap}
@@ -555,12 +558,9 @@
 <!-- 1 HERO -->
 <section class="hero">
   <div class="full">
-    <!-- Hero-Motiv Forchheim, Fokus 65 % Desktop / 70 % mobil.
-         Dauerregel: die hellste Fläche des Motivs (Lampe, Fenster, Himmelsloch, Reflexion) liegt über der h1-Oberkante
-         oder außerhalb der Textspalten; bei 1280 und 390 prüfen. Hier erfüllt: das Fensterband der Halle steht über der h1.
-         Das Seebrücken-Motiv ist an dieser Regel gescheitert — bei 50/48, 50/40, 50/35, 45/35, 45/25 und 45/0 blieb der
-         Kontrast hinter der h1 bei rund 1:1 (Kugellampe). Es bleibt Vorlage fürs Shooting, nicht Hero. -->
-    <div class="photo"><img src="uploads/hero4.webp" width="1672" height="941" alt="Holztisch am Fenster bei Sonnenuntergang, ein leeres Glas, Pflanze im Hintergrund" decoding="async" fetchpriority="high"></div>
+    <!-- Hero-Motiv: freigestelltes Glas auf Weiß, ohne Bildunterschrift (kein Ort). Ohne .cap bleibt die Ortszeit
+         oben beim Laden auf dem Wert aus dem HTML und wechselt beim Scrollen unter den Hero. -->
+    <div class="photo"><img src="uploads/hero-glas.webp" width="1672" height="941" alt="Ein leeres Glas auf weißem Grund" decoding="async" fetchpriority="high"></div>
     <div class="text">
       <div class="g12">
         <h1 class="c1-12">Ein Kakao mit echter Vanille.<br><span class="nw">Zum Anrühren.</span></h1>
@@ -571,7 +571,6 @@
       </div>
     </div>
   </div>
-  <p class="cap"><span class="t">Forchheim <span class="dot">·</span> 19:50</span></p>
 </section>
 
 <!-- 2 ZUBEREITUNG -->

@@ -616,6 +616,15 @@
   }
   /* T13.4: Mobil — keine automatische Silbentrennung in Mono-Zeilen und Bildunterschriften. */
   @media(max-width:767px){.mono,.cap,.cap *{hyphens:manual}}
+  /* T15: Statements ohne Bildschirmhöhe (Desktop), Übergänge ohne Zusatzabstand, Hairline vor der Formel. */
+  @media(min-width:768px){
+    .wahrheit,section.schluss{min-height:0;display:block;padding-block:clamp(96px,12vh,160px)}
+    .wahrheit h2{font-size:clamp(40px,5.6vw,80px)}
+    section.schluss .meinung{font-size:clamp(36px,5vw,72px)}
+    .wahrheit + .ritual,section.schluss + .geschmack{margin-top:0}   /* nur das Section-Padding trennt */
+  }
+  .formel{margin-top:var(--raum-mit)}
+  .formel::before{content:"";display:block;grid-column:1/-1;height:1px;background:var(--hair);margin-bottom:var(--raum-mit)}   /* Hairline über zwölf Spalten, darunter Standard-Abstand */
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->

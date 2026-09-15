@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow"><!-- Vorschau: vor dem Launch entfernen -->
 <meta name="theme-color" content="#fbfbf9">
-<meta name="description" content="Ein Kakao mit echter Vanille. Zum Anrühren. Magnesium, L-Theanin und Safran.">
+<!-- D5: prüfen -->
+<meta name="description" content="Ein Kakao mit echter Vanille, zum Anrühren am Abend. Magnesium, L-Theanin und Safran. Aus Forchheim.">
 <meta property="og:title" content="HESPYRA">
-<meta property="og:description" content="Ein Kakao mit echter Vanille. Zum Anrühren. Magnesium, L-Theanin und Safran.">
+<meta property="og:description" content="Ein Kakao mit echter Vanille, zum Anrühren am Abend. Magnesium, L-Theanin und Safran. Aus Forchheim.">
 <!-- BASE-URL beim Livegang ersetzen: https://hespyra.com/ -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
@@ -200,7 +201,6 @@
   .reveal{transition:opacity .6s var(--ease),transform .6s var(--ease)}
   html.js-reveal .reveal:not(.in){opacity:0;transform:translateY(14px)}
   @media(prefers-reduced-motion:reduce){
-    .ritual-kachel video{display:none}
     .reveal,html.js-reveal .reveal:not(.in){opacity:1;transform:none;transition:none}
     .photo img{transition:none;opacity:1}
     html{scroll-behavior:auto}
@@ -244,7 +244,7 @@
      Ohne eigenen Abstand: Textblock → Hairline = Hero-Padding unten, Hairline → Kicker = .ritual margin-top. Nicht addiert. */
   .hero::after{content:"";display:block;height:1px;background:var(--hair);width:calc(100% - 2*var(--gap));max-width:calc(var(--col) - 2*var(--gap));margin:0 auto}
   /* T2: 1 px für die Hairline unter dem Hero abziehen — Hero samt Hairline endet an der Viewport-Unterkante. */
-  .hero .photo{aspect-ratio:auto;height:calc(100svh - var(--bar-h) - 1px);min-height:640px}
+  .hero .photo{aspect-ratio:auto;height:calc(100svh - var(--bar-h) - 1px);min-height:min(640px, calc(100svh - var(--bar-h)))}
   .hero .photo img{object-position:var(--focus-x) var(--focus-y)}
   /* Hero auf Papier: kein Scrim, dunkle Schrift. Das Foto-Feld ist leer (Papierton), das Glas steht seit T8 im Textblock. */
   .hero .photo{position:relative;background:var(--paper)}
@@ -253,7 +253,7 @@
      am Punkt hinter „Vanille.", Unterkante auf 35 % der Versalhöhe von Zeile 1. multiply am Anker: Text bleibt lesbar.
      FOTO-BRIEF für das echte Glasfoto: Fenster links, Schatten rechts (Licht von links) — dann entfällt scaleX(-1).
      Größe wie bisher: Bildhöhe 57 % der Hero-Höhe (Glas ≈ 33 %). */
-  .hero{--hero-h:max(640px,100svh - var(--bar-h) - 1px)}
+  .hero{--hero-h:max(min(640px, 100svh - var(--bar-h)), 100svh - var(--bar-h) - 1px)}   /* T14: = tatsächliche Hero-Höhe; Glas relativ dazu */
   @media(max-width:600px){.hero{--hero-h:88svh}}
   .hero .full{overflow:hidden}
   .hero .glas{position:relative;height:0;grid-column:1/-1;align-self:start;pointer-events:none;mix-blend-mode:multiply;
@@ -334,7 +334,7 @@
   section.schluss .meinung span:nth-child(3){margin-top:.5em}
   /* Nebenachse Spalte 7: die eine rechte Kante der Seite */
 
-  /* ---------- 3 ZUBEREITUNG: Headline, dann das Bewegtbild über die volle Breite ---------- */
+  /* ---------- 3 ZUBEREITUNG ---------- */
   .ritual h2{max-width:17ch}
   .ritual .lead{margin-top:18px}
   .ritual .cap .t{color:var(--ink)}
@@ -417,6 +417,8 @@
   .formel .charge{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.01em;font-variant-numeric:tabular-nums;
     color:var(--ink-soft);margin:16px 0 0;display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}
   .formel .charge .dot{color:var(--ink-soft)}
+  /* T14: Safran-Trenner nur bei Ort · Uhrzeit. Produktdaten (Beutel · 180g, Löffel · …) in ink. */
+  .produkt figure .cap .t .dot{color:var(--ink)}
   .formel .more{margin-top:22px}
 
   /* ---------- Breite Bühne: ab 1100px Kopf links (klebend), Inhalt rechts ---------- */
@@ -616,6 +618,7 @@
   @media(max-width:767px){.mono,.cap,.cap *{hyphens:manual}}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
+<!-- D5: prüfen (JSON-LD description) -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -632,7 +635,7 @@
   {
    "@type": "Product",
    "name": "HESPYRA",
-   "description": "Ein Kakao mit echter Vanille. Zum Anrühren. Magnesium, L-Theanin, Safran. Standbeutel 180g, 30 Portionen.",
+   "description": "Ein Kakao mit echter Vanille, zum Anrühren am Abend. Magnesium, L-Theanin und Safran. Aus Forchheim.",
    "image": "https://hespyra.com/img/og-image.png",
    "brand": {
     "@id": "https://hespyra.com/#org"
@@ -649,7 +652,7 @@
   <nav>
     <div class="nav-l">
       <a class="mark" href="#" aria-label="HESPYRA"><svg class="wm" role="img" aria-label="HESPYRA" style="width:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5900 716"><title>HESPYRA</title><path fill="currentColor" d="M602 708L502 708L502 396L100 396L100 708L0 708L0 8L100 8L100 309L502 309L502 8L602 8L602 708ZM1500 708L992 708L992 8L1486 8L1486 95L1092 95L1092 310L1443 310L1443 395L1092 395L1092 621L1500 621L1500 708ZM2046 716Q1966 716 1893 691.5Q1820 667 1778 628L1815 550Q1854 585 1916.5 608Q1979 631 2046 631Q2136 631 2177.5 600Q2219 569 2219 523Q2219 487 2196 465Q2173 443 2135 429.5Q2097 416 2052 406Q2007 396 1961.5 383Q1916 370 1878.5 348.5Q1841 327 1818 291.5Q1795 256 1795 200Q1795 146 1823.5 100.5Q1852 55 1911.5 27.5Q1971 0 2063 0Q2125 0 2184.5 16Q2244 32 2288 62L2255 142Q2210 113 2159.5 99Q2109 85 2063 85Q1974 85 1933.5 117.5Q1893 150 1893 196Q1893 233 1916 255Q1939 277 1977 290Q2015 303 2060 313.5Q2105 324 2150.5 337Q2196 350 2233.5 371Q2271 392 2294 427Q2317 462 2317 517Q2317 570 2288 615.5Q2259 661 2198.5 688.5Q2138 716 2046 716ZM2743 708L2643 708L2643 8L2916 8Q3052 8 3130 73Q3208 138 3208 252Q3208 366 3130 431Q3052 496 2916 496L2743 496L2743 708ZM2743 95L2743 409L2913 409Q3009 409 3058.5 368Q3108 327 3108 252Q3108 177 3058.5 136Q3009 95 2913 95L2743 95ZM3480 8L3584.4 8L3742 276.3L3778 276.3L3935.6 8L4040 8L3805 408L3805 708L3715 708L3715 408ZM4465 708L4365 708L4365 8L4638 8Q4774 8 4852 73Q4930 138 4930 252Q4930 334 4890 390.5Q4850 447 4776 473L4942 708L4833 708L4682 493Q4661 495 4638 495L4465 495L4465 708ZM4465 95L4465 410L4635 410Q4731 410 4780.5 368.5Q4830 327 4830 252Q4830 177 4780.5 136Q4731 95 4635 95L4465 95ZM5269 708L5166 708L5483 8L5582 8L5900 708L5795 708L5718 533L5346 533L5269 708ZM5532 110L5381 453L5683 453L5532 110Z"></path></svg></a>
-      <a class="ortszeit" href="#journal" data-start="bild"><span id="tb-ort">Forchheim</span> <span class="dot">·</span> <span id="tb-zeit">19:50</span><span class="satz" style="display:none"> – <span id="tb-satz"></span></span></a>
+      <a class="ortszeit" href="#journal"><span id="tb-ort">Geiselwind</span> <span class="dot">·</span> <span id="tb-zeit">17:39</span><span class="satz"> – <span id="tb-satz">Karussell, kurz vor Schluss.</span></span></a>
     </div>
     <ul id="mainnav">
       <li><a href="#" aria-disabled="true">Produkt</a></li>
@@ -682,7 +685,9 @@
 </script>
 
 <!-- 1 HERO -->
-<section class="hero" data-ort="Forchheim" data-zeit="19:50">
+<!-- T14: Kopfzeile lädt direkt mit dem Sitzungsmoment, kein Scroll-Wechsel, bis ein echtes Hero-Foto mit Bildunterschrift da ist.
+     Dann wieder: data-ort="Forchheim" data-zeit="19:50" (Werte des Fotos) am <section class="hero">. -->
+<section class="hero">
   <div class="full">
     <div class="photo"></div>
     <div class="text">
@@ -725,8 +730,6 @@
       <h2>Ein Löffel reicht.</h2>
       <p class="lead">Mit Wasser angerührt ist HESPYRA in einer Minute fertig. Warm oder kalt. Mit Hafermilch wird es etwas cremiger.</p>
     </div>
-    <!-- Bis das Video da ist: gleiches Markup, img statt video. Vorgabe: ein Take, feste Kamera, kein Schnitt,
-         6–10 s, loopfähig (Anfangs- und Endframe nahezu identisch), H.264, max 3 MB, Poster = erster Frame. Nie Ton, keine Controls. -->
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="uploads/zubereitung.webp" alt="Ein Löffel. Wasser. Rühren." decoding="async" loading="lazy"></div>
       <!-- Bildunterschrift-Slot im Kachelformat (T7.5), vorerst leer: Das Bild ist ein Render und hat keine Uhrzeit.
@@ -944,12 +947,6 @@
       var s=window.scrollY>10;
       if(s!==on){on=s;bar.classList.toggle('scrolled',s)}
     },{passive:true});
-  })();
-
-  // Bewegtbild: bei prefers-reduced-motion nur das Poster
-  (function(){
-    if(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    document.querySelectorAll('.ritual-kachel video').forEach(function(v){v.removeAttribute('autoplay');v.pause();});
   })();
 
   // Bilder einblenden

@@ -588,6 +588,8 @@
   /* T1.2: Reicht auf 390 der Platz für Ort · Zeit nicht, wandert „Bestellen" ins Menü (steht dort in #mainnav).
      „EN ≡" bleibt. Die Ortszeit hat Vorrang. Die Klasse setzt das Script. */
   .bar.ohne-bestellen .menu > a:first-child,.bar.ohne-bestellen .menu > a:first-child + .dot{display:none}
+  /* T13.4: Mobil — keine automatische Silbentrennung in Mono-Zeilen und Bildunterschriften. */
+  @media(max-width:767px){.mono,.cap,.cap *{hyphens:manual}}
 </style>
 </head>
 <body>

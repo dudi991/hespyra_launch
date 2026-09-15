@@ -599,6 +599,21 @@
   /* T1.2: Reicht auf 390 der Platz für Ort · Zeit nicht, wandert „Bestellen" ins Menü (steht dort in #mainnav).
      „EN ≡" bleibt. Die Ortszeit hat Vorrang. Die Klasse setzt das Script. */
   .bar.ohne-bestellen .menu > a:first-child,.bar.ohne-bestellen .menu > a:first-child + .dot{display:none}
+  /* T13: Mobil-Korrekturen (nur ≤767px, Desktop unverändert). */
+  @media(max-width:767px){
+    /* 1 Wahrheit und Abendwelt-Schluss: natürlicher Umbruch, keine Bildschirmhöhe, Standard-Section-Abstand */
+    .wahrheit,section.schluss{min-height:auto;display:block;padding-block:0;margin-top:var(--raum-mit)}
+    .wahrheit h2,section.schluss .meinung{font-size:clamp(30px,8.5vw,36px);line-height:1.06;white-space:normal;text-wrap:balance}
+    section.schluss .meinung span{white-space:normal;text-wrap:balance}
+    /* 2 Felder Zubereitung und Vanille: keine Mindesthöhe, nicht vertikal zentriert */
+    .ritual .kacheln,.geschmack .kacheln{min-height:auto}
+    .ritual .text,.geschmack .text{min-height:auto;justify-content:flex-start}
+    /* 3 Bestellen: Löffel volle Breite wie der Beutel, Bildunterschrift an derselben Position */
+    .produkt .loeffel{width:100%;padding-top:0}
+    .produkt .loeffel .cap{padding-left:var(--cap-ein,0)}
+  }
+  /* T13.4: Mobil — keine automatische Silbentrennung in Mono-Zeilen und Bildunterschriften. */
+  @media(max-width:767px){.mono,.cap,.cap *{hyphens:manual}}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <script type="application/ld+json">

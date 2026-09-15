@@ -631,6 +631,13 @@
   }
   /* T16: Abendwelt-h2 in Section-h2-Größe (wie h2: 52 px bei 1280), 24ch */
   section.welt h2{font-size:clamp(30px,4.2vw,52px);max-width:24ch}
+  /* T18: Textblock im Feld horizontal zentriert (Desktop). Kein padding-inline; alle Kinder gleich breit (24ch der Fließtextgröße,
+     0.6em = Zeichenbreite Plex Sans), damit der Block linksbündig bleibt und als Ganzes mittig in der Feldhälfte steht. */
+  @media(min-width:768px){
+    section.ritual .text,section.geschmack .text{display:flex;flex-direction:column;justify-content:center;align-items:center;padding-inline:0;
+      --block:calc(24 * .6 * clamp(20px,1.6vw,24px))}
+    section.ritual .text > *,section.geschmack .text > *{width:min(100%, var(--block))}
+  }
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->

@@ -638,6 +638,14 @@
       --block:calc(24 * .6 * clamp(20px,1.6vw,24px))}
     section.ritual .text > *,section.geschmack .text > *{width:min(100%, var(--block))}
   }
+  /* T19: Mobil — Feldende und Schlusssatz ohne doppelten Abstand; Löffel kleiner. */
+  @media(max-width:767px){
+    section.ritual .text,section.geschmack .text{padding-bottom:18px}   /* Standard-Absatzabstand */
+    section.schluss{padding-bottom:0}
+    section.ritual + section,section.geschmack + section,section.schluss + section{margin-top:var(--raum-mit)}
+    .produkt .loeffel{width:100%}
+    .produkt .loeffel .photo{width:64%;margin-left:0;margin-right:auto}
+  }
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->

@@ -249,8 +249,8 @@
   /* Hero auf Papier: kein Scrim, dunkle Schrift. Das Foto-Feld ist leer (Papierton), das Glas steht seit T8 im Textblock. */
   .hero .photo{position:relative;background:var(--paper)}
   /* T8: Hero-Glas (Platzhalter-Render 1122×1402; Glas im Bild x 250–871, y 312–1124 → Unterkante bei 80,2 % der Bildhöhe).
-     Das <img> steht im Textblock als 0 px hoher Anker direkt unter der h1 (.glas). Lage seit T8.1: gespiegelt, rechte Glaskante
-     am Punkt hinter „Vanille.", Unterkante auf 35 % der Versalhöhe von Zeile 1. multiply am Anker: Text bleibt lesbar.
+     Das <img> steht im Textblock als 0 px hoher Anker direkt unter der h1 (.glas). Lage seit T17: gespiegelt, rechte Glaskante
+     am Punkt hinter „Vanille.", Unterkante 24 px über der h1 (Überlappung nur mit .hero--ebene). multiply am Anker.
      FOTO-BRIEF für das echte Glasfoto: Fenster links, Schatten rechts (Licht von links) — dann entfällt scaleX(-1).
      Größe wie bisher: Bildhöhe 57 % der Hero-Höhe (Glas ≈ 33 %). */
   .hero{--hero-h:max(min(640px, 100svh - var(--bar-h)), 100svh - var(--bar-h) - 1px)}   /* T14: = tatsächliche Hero-Höhe; Glas relativ dazu */
@@ -264,20 +264,19 @@
        Punkt hinter „vanilla.“ ab: Punkt-Ende = h1-Anfang + 11.905 em (T14: dieselbe Regel wie DE, keine EN-Sonderbehandlung). Bildbreite = .8003 × Höhe. */
     transform:scaleX(-1);
     left:calc(11.905 * 1em - .7772 * .8003 * .57 * var(--hero-h));
-    /* T8.1: Glas-Unterkante auf 35 % der Versalhöhe von Zeile 1, von der Versallinie gemessen (knapp unter der x-Höhe):
-       Zeile-1-Oberkante + .14em (Versallinie) + .35 × .70em = + .385em. Anker = h1-Unterkante, h1 hier 2 Zeilen. */
-    bottom:calc(2 * .94em - .385em - .198 * .57 * var(--hero-h));
+    /* T17: Standard ohne Überlappung — Glas-Unterkante 24 px über der h1-Oberkante. Anker = h1-Unterkante, h1 hier 2 Zeilen:
+       Glas-Unterkante = Anker − 2 Zeilen − 24px; Bild-Unterkante liegt .198 × Bildhöhe tiefer. */
+    bottom:calc(2 * .94em + 24px - .198 * .57 * var(--hero-h));
     /* Render-Hintergrund ist 254, nicht 255: ohne Anhebung steht die Bildfläche eine Stufe dunkler als --paper (sichtbarer Rahmen). */
     filter:brightness(1.01);
     -webkit-mask-image:linear-gradient(to right,transparent,#000 20%);mask-image:linear-gradient(to right,transparent,#000 20%)}
   /* ≤600px: h1 dreizeilig, „vanilla.“ steht in Zeile 2 (Punkt-Ende = h1-Anfang + 6.105 em, T14: wie DE). */
-  @media(max-width:600px){.hero .glas img{left:calc(6.105 * 1em - .7772 * .8003 * .57 * var(--hero-h));bottom:calc(3 * .94em - .385em - .198 * .57 * var(--hero-h))}}
-  /* Vergleich ohne Überlappung (Klasse hero--frei am <section>): Glas-Unterkante 24 px über der h1-Oberkante.
-     Nur im Desktop-Raster (≥860px), dort sitzt der Anker in der h1-Zeile oben. */
-  @media(min-width:860px){
-    .hero--frei .glas{grid-row:1}
-    .hero--frei .glas img{bottom:calc(24px - .198 * .57 * var(--hero-h))}
-  }
+  @media(max-width:600px){.hero .glas img{left:calc(6.105 * 1em - .7772 * .8003 * .57 * var(--hero-h));bottom:calc(3 * .94em + 24px - .198 * .57 * var(--hero-h))}}
+  /* Variante hero--ebene (Klasse am <section>): Glas-Unterkante auf 35 % der Versalhöhe von Zeile 1, Glas überlappt die h1 (T8.1).
+     Zeile-1-Oberkante + .14em (Versallinie) + .35 × .70em = + .385em. */
+  .hero--ebene .glas img{bottom:calc(2 * .94em - .385em - .198 * .57 * var(--hero-h))}
+  @media(max-width:600px){.hero--ebene .glas img{bottom:calc(3 * .94em - .385em - .198 * .57 * var(--hero-h))}}
+  /* hero--frei entfällt: seit T17 Standard. */
   @media(max-width:767px){.hero{--focus-y:70%}}
   /* T8: kein z-index — sonst isoliert der Textblock seine Ebene und das Glas multipliziert nur mit Transparenz (weißes Rechteck). */
   .hero .text{position:absolute;left:0;right:0;bottom:0;
@@ -624,12 +623,8 @@
     .wahrheit + .ritual,section.schluss + .geschmack{margin-top:0}   /* nur das Section-Padding trennt */
   }
   .formel{margin-top:var(--raum-mit)}
-  .formel::before{content:"";display:block;grid-column:1/-1;height:1px;background:var(--hair);margin-bottom:var(--raum-mit)}   /* Hairline über zwölf Spalten, darunter Standard-Abstand */
-  /* T16: Felder aufs Raster. Zubereitung: Text auf der Hauptachse (Spalte 1), rechts bis zur Bildnaht (Ende Spalte 6).
-     Vanille: Text auf der Nebenachse (Spalte 7 = Bildnaht + halbe Rinne), rechts Außenrand wie .col. Keine freien Werte. */
+  /* T16.2 (T16.1 in T17 zurückgenommen: padding-inline wieder clamp(64px,9vw,180px) aus T11) */
   @media(min-width:768px){
-    section.ritual .text{padding-left:calc((100vw - min(100vw, var(--col))) / 2 + var(--gap));padding-right:calc(var(--gap) / 2)}
-    section.geschmack .text{padding-left:calc(var(--gap) / 2);padding-right:calc((100vw - min(100vw, var(--col))) / 2 + var(--gap))}
     /* Größen im Feld festschreiben — höhere Spezifität als Section-h2- und spätere Regeln */
     section.ritual .text h2,section.geschmack .text h2{font-size:clamp(40px,4.6vw,68px)}
     section.ritual .text .lead,section.geschmack .text .t1{font-size:clamp(20px,1.6vw,24px)}

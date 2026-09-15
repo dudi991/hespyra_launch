@@ -575,7 +575,7 @@
   /* T13.4: Mobil — keine automatische Silbentrennung in Mono-Zeilen und Bildunterschriften. */
   @media(max-width:767px){.mono,.cap,.cap *{hyphens:manual}}
   /* T15: erste Section unter der Kopfzeile mit Standard-Section-Abstand oben — Kicker nie direkt an der Kopfzeilen-Hairline. */
-  .journal-wrap.oben,.akopf,.legal-page,.fs-head{padding-top:var(--raum-mit)}
+  .journal-wrap.oben,.akopf,.legal-page,.fs-head,.inhalt .fs-head{padding-top:var(--raum-mit)}   /* .inhalt .fs-head: schlägt .inhalt .narrow{padding:0} */
   .zutaten-index.seite{margin-top:var(--raum-mit)}
 </style>
 </head>

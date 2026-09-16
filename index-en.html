@@ -252,30 +252,33 @@
      Das <img> steht im Textblock als 0 px hoher Anker direkt unter der h1 (.glas). Lage seit T17: gespiegelt, rechte Glaskante
      am Punkt hinter „Vanille.", Unterkante 24 px über der h1 (Überlappung nur mit .hero--ebene). multiply am Anker.
      FOTO-BRIEF für das echte Glasfoto: Fenster links, Schatten rechts (Licht von links) — dann entfällt scaleX(-1).
-     Größe wie bisher: Bildhöhe 57 % der Hero-Höhe (Glas ≈ 33 %). */
+     Größe: Bildhöhe 70 % der Hero-Höhe (Glas ≈ 40 %; vorher 57 %, +23 %). Glas bleibt 24 px über der h1 und rechts am Punkt,
+     wächst also nach oben — weniger Leerraum unter der Kopfzeile. width/height-Attribute unverändert (Seitenverhältnis 4:5 gleich, kein CLS).
+     Testbild seit heute: uploads/hero-glas-test.webp (Glas mit Kakao, 1122×1402 = 4:5, gleiche Maße wie zuvor).
+     Rückweg: src wieder auf uploads/hero-glas.webp stellen, Alt-Text auf „leeres Glas“. */
   .hero{--hero-h:max(min(640px, 100svh - var(--bar-h)), 100svh - var(--bar-h) - 1px)}   /* T14: = tatsächliche Hero-Höhe; Glas relativ dazu */
   @media(max-width:600px){.hero{--hero-h:88svh}}
   .hero .full{overflow:hidden}
   .hero .glas{position:relative;height:0;grid-column:1/-1;align-self:start;pointer-events:none;mix-blend-mode:multiply;
     font-size:clamp(44px,7vw,100px);line-height:.94}                   /* = h1, damit em in h1-Zeilen rechnet */
   @media(max-width:600px){.hero .glas{font-size:clamp(44px,12vw,50px)}}
-  .hero .glas img{position:absolute;display:block;width:auto;height:calc(.57 * var(--hero-h));
+  .hero .glas img{position:absolute;display:block;width:auto;height:calc(.70 * var(--hero-h));
     /* T8.1: gespiegelt — Schatten fällt nach rechts. Rechte Glaskante (gespiegelt bei 77,7 % der Bildbreite) schließt mit dem
        Punkt hinter „vanilla.“ ab: Punkt-Ende = h1-Anfang + 11.905 em (T14: dieselbe Regel wie DE, keine EN-Sonderbehandlung). Bildbreite = .8003 × Höhe. */
     transform:scaleX(-1);
-    left:calc(11.905 * 1em - .7772 * .8003 * .57 * var(--hero-h));
+    left:calc(11.905 * 1em - .7772 * .8003 * .70 * var(--hero-h));
     /* T17: Standard ohne Überlappung — Glas-Unterkante 24 px über der h1-Oberkante. Anker = h1-Unterkante, h1 hier 2 Zeilen:
        Glas-Unterkante = Anker − 2 Zeilen − 24px; Bild-Unterkante liegt .198 × Bildhöhe tiefer. */
-    bottom:calc(2 * .94em + 24px - .198 * .57 * var(--hero-h));
+    bottom:calc(2 * .94em + 24px - .198 * .70 * var(--hero-h));
     /* Render-Hintergrund ist 254, nicht 255: ohne Anhebung steht die Bildfläche eine Stufe dunkler als --paper (sichtbarer Rahmen). */
     filter:brightness(1.01);
     -webkit-mask-image:linear-gradient(to right,transparent,#000 20%);mask-image:linear-gradient(to right,transparent,#000 20%)}
   /* ≤600px: h1 dreizeilig, „vanilla.“ steht in Zeile 2 (Punkt-Ende = h1-Anfang + 6.105 em, T14: wie DE). */
-  @media(max-width:600px){.hero .glas img{left:calc(6.105 * 1em - .7772 * .8003 * .57 * var(--hero-h));bottom:calc(3 * .94em + 24px - .198 * .57 * var(--hero-h))}}
+  @media(max-width:600px){.hero .glas img{left:calc(6.105 * 1em - .7772 * .8003 * .70 * var(--hero-h));bottom:calc(3 * .94em + 24px - .198 * .70 * var(--hero-h))}}
   /* Variante hero--ebene (Klasse am <section>): Glas-Unterkante auf 35 % der Versalhöhe von Zeile 1, Glas überlappt die h1 (T8.1).
      Zeile-1-Oberkante + .14em (Versallinie) + .35 × .70em = + .385em. */
-  .hero--ebene .glas img{bottom:calc(2 * .94em - .385em - .198 * .57 * var(--hero-h))}
-  @media(max-width:600px){.hero--ebene .glas img{bottom:calc(3 * .94em - .385em - .198 * .57 * var(--hero-h))}}
+  .hero--ebene .glas img{bottom:calc(2 * .94em - .385em - .198 * .70 * var(--hero-h))}
+  @media(max-width:600px){.hero--ebene .glas img{bottom:calc(3 * .94em - .385em - .198 * .70 * var(--hero-h))}}
   /* hero--frei entfällt: seit T17 Standard. */
   @media(max-width:767px){.hero{--focus-y:70%}}
   /* T8: kein z-index — sonst isoliert der Textblock seine Ebene und das Glas multipliziert nur mit Transparenz (weißes Rechteck). */
@@ -287,7 +290,7 @@
   .hero--shadow h1,.hero--shadow .lead,.hero--shadow .hero-what,.hero--shadow .hero-what-sub{text-shadow:0 1px 24px rgba(20,20,15,.35)}
   .hero h1{max-width:none}
   .hero h1 .nw{white-space:nowrap}
-  .hero .lead{max-width:34ch;hyphens:manual;font-size:clamp(21px,2.1vw,28px);line-height:1.35;letter-spacing:-.015em;margin-top:30px}
+  .hero .lead{max-width:34ch;hyphens:manual;font-size:clamp(20px,1.9vw,24px);line-height:1.3;letter-spacing:-.01em;margin-top:30px}
   .hero .resolver{margin-top:30px}
   .hero .hero-what{max-width:34ch;margin:0;font-weight:400;/* H2 (v0.49): Resolver in Lead-Stärke — Lead erbt 400 von body. Die 500 lag auf .hero-what im .resolver. */font-size:clamp(20px,1.9vw,24px);line-height:1.3;letter-spacing:-.01em;hyphens:manual}
   .hero .hero-what-sub{max-width:34ch;margin:.4em 0 0;font-weight:400;font-size:18px;line-height:1.45;hyphens:manual}
@@ -579,7 +582,7 @@
     :root{--raum-eng:clamp(56px,14vw,72px);--raum-mit:clamp(84px,20vw,104px);--raum-weit:clamp(110px,26vw,140px)}
     .hero .photo{height:88svh;min-height:0}
     .hero .resolver{margin-top:22px}
-    .hero .hero-what{font-size:20px}
+    .hero .hero-what,.hero .lead{font-size:20px}   /* Sublines gleich groß */
     .hero .hero-what-sub{font-size:16px}
     .welt .grid{margin-top:40px}
     .schluss-zeit{letter-spacing:-.02em}
@@ -631,12 +634,16 @@
   }
   /* T16: Abendwelt-h2 in Section-h2-Größe (wie h2: 52 px bei 1280), 24ch */
   section.welt h2{font-size:clamp(30px,4.2vw,52px);max-width:24ch}
-  /* T18: Textblock im Feld horizontal zentriert (Desktop). Kein padding-inline; alle Kinder gleich breit (24ch der Fließtextgröße,
-     0.6em = Zeichenbreite Plex Sans), damit der Block linksbündig bleibt und als Ganzes mittig in der Feldhälfte steht. */
+  /* T18 → Feinschliff: Textblock 24ch (Fließtextgröße, 0.6em = Zeichenbreite Plex Sans), linksbündig auf festen Achsen, vertikal mittig. */
   @media(min-width:768px){
-    section.ritual .text,section.geschmack .text{display:flex;flex-direction:column;justify-content:center;align-items:center;padding-inline:0;
-      --block:calc(24 * .6 * clamp(20px,1.6vw,24px))}
-    section.ritual .text > *,section.geschmack .text > *{width:min(100%, var(--block))}
+    section.ritual .text,section.geschmack .text{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-inline:0;
+      --block:calc(24 * .6 * clamp(20px,1.6vw,24px));
+      --achse:calc((100vw - min(100vw, var(--col))) / 2 + var(--gap))}
+    /* Zubereitung: Textkante auf der Hauptachse (wie Statement darüber). Vanille: gleicher Abstand Bild → Text wie in der Zubereitung Text → Bild. */
+    section.ritual .text{padding-left:var(--achse)}
+    section.geschmack .text{padding-left:calc(50vw - var(--achse) - var(--block))}
+    /* alle Textelemente gleich breit und ohne eigene max-width — eine gemeinsame linke Kante (auch der graue Zusatz) */
+    section.ritual .text > *,section.geschmack .text > *{width:min(100%, var(--block));max-width:none}
   }
   /* T19: Mobil — Feldende und Schlusssatz ohne doppelten Abstand; Löffel kleiner. */
   @media(max-width:767px){
@@ -653,6 +660,19 @@
     .produkt .loeffel .cap{min-height:0}                               /* keine Reservezeile vor der FAQ */
     .produkt + .faq{margin-top:var(--raum-mit)}                         /* Löffel-Bildunterschrift → FAQ = Standard-Section-Abstand */
   }
+  /* Feinschliff Übergänge */
+  section.wahrheit h2{line-height:1.08;letter-spacing:-.025em}   /* Unterlängen frei, „ß“ nicht gequetscht (Desktop + Mobil) */
+  @media(max-width:767px){section.ritual .text,section.geschmack .text{padding-left:var(--gap);padding-right:var(--gap)}}   /* mobil Textkante = Hauptachse */
+  /* Übergang Hero → Statement: keine Hairline. Das Statement ist ein vollflächiges Band — Grund = Journal-Farbe (--dark), Schrift = Papier (Kontrast 15,9:1).
+     Volle Viewportbreite, harte Kanten, Text vertikal mittig, linke Kante auf dem Seitenraster.
+     Abstand Sublines → Band = Band → Zubereitung = --raum-mit (Hero-Padding unten wird vom Band-Abstand abgezogen). */
+  .hero::after{display:none}
+  section.wahrheit{max-width:none;margin:calc(var(--raum-mit) - clamp(48px,6vw,80px)) 0 0;background:var(--dark);color:var(--paper);
+    min-height:55vh;display:flex;flex-direction:column;justify-content:center;padding-block:0;
+    padding-inline:max(var(--gap), calc((100% - var(--col)) / 2 + var(--gap)))}
+  section.wahrheit h2{color:var(--paper)}
+  section.wahrheit + section.ritual{margin-top:0}   /* Zubereitung schließt direkt an das Band an */
+  @media(max-width:767px){section.wahrheit{min-height:47vh}}   /* 60vh × 55/70 */
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->
@@ -737,10 +757,10 @@
              filter:brightness(1.01) gleicht nur den Render aus (Hintergrund 254 statt 255). Beim echten Foto wird die DATEI
              korrigiert (Hintergrund auf reines Weiß), nicht das CSS — die filter-Regel fällt dann weg.
            T8: Das Glas steht im Textblock direkt hinter der h1 und ist an deren Zeilen ausgerichtet (siehe CSS .hero .glas). -->
-        <div class="glas"><img src="uploads/hero-glas.webp" width="1122" height="1402" alt="An empty glass on a white background" decoding="async" fetchpriority="high"></div>
-        <p class="lead c1-6">For the moment before.</p>
+        <div class="glas"><img src="uploads/hero-glas-test.webp" width="1122" height="1402" alt="A glass of cocoa on a white background" decoding="async" fetchpriority="high"></div>
+        <p class="lead c1-6">Magnesium, L-theanine and saffron.</p>
         <div class="resolver c7-12" id="hero-sub">
-          <p class="hero-what">Magnesium, L-theanine and saffron.</p>
+          <p class="hero-what">For the moment before.</p>
         </div>
       </div>
     </div>

@@ -720,6 +720,14 @@
     .hero{padding-top:64px;padding-bottom:48px}   /* T36: oben 64px */
     .hero .text{padding-bottom:0}
   }
+  /* T37 (≥1024px): Textblock Zubereitung auf Spalten 1–5 des Seitenrasters, Spalte 6 bleibt frei; Vanille gespiegelt
+     (Kicker und h2 höchstens fünf Spalten breit). Absatzbreite unverändert. h2 kleiner. */
+  @media(min-width:1024px){
+    section.ritual .text,section.geschmack .text{--fuenf:calc(5 * (min(100vw, var(--col)) - 13 * var(--gap)) / 12 + 4 * var(--gap))}
+    section.ritual .text{padding-right:max(0px, calc(50vw - var(--achse) - var(--fuenf)))}
+    section.ritual .text > :not(.lead),section.geschmack .text > :not(.t1):not(.t3){max-width:var(--fuenf)}
+    section.ritual .text h2,section.geschmack .text h2{font-size:clamp(40px, 3vw, 58px)}
+  }
   /* T28 Mobil: Schlusszeile bricht nur nach dem Punkt — Zeitteil und Satz je eine Zeile, innen kein Umbruch.
      Journal-Titel und -Anriss (Newsreader): keine automatische Silbentrennung. */
   @media(max-width:767px){
@@ -855,7 +863,7 @@
       <p class="lead">Mit Wasser angerührt ist HESPYRA in einer Minute fertig. Warm oder kalt. Mit Hafermilch wird es etwas cremiger.</p>
     </div>
     <figure class="ritual-kachel reveal">
-      <div class="photo" style="--focus:50% 55%"><img src="uploads/zubereitung.webp" alt="Ein Löffel. Wasser. Rühren." decoding="async" loading="lazy"></div>
+      <div class="photo" style="--focus:50% 55%"><img src="uploads/zubereitung.webp" width="1635" height="962" alt="Ein Löffel. Wasser. Rühren." decoding="async" loading="lazy"></div>
       <!-- Bildunterschrift-Slot im Kachelformat (T7.5), vorerst leer: Das Bild ist ein Render und hat keine Uhrzeit.
            Mit dem Foto einsetzen und Werte eintragen:
       <p class="cap" data-ort="" data-zeit=""><span class="t">Ort <span class="dot">·</span> Zeit</span><span>Satz</span></p>
@@ -871,10 +879,10 @@
 <section class="welt col">
   <h2>Es gibt ziemlich viele Arten, einen guten Abend zu verbringen.</h2>
   <div class="grid g12">
-    <figure class="reveal"><div class="framed"><div class="photo" style="--focus:65% 45%"><img src="uploads/freizeitpark.webp" alt="Geiselwind am Abend, beleuchtetes Karussell, Wimpelketten über dem Platz" decoding="async"></div></div><p class="cap"><span class="t">Geiselwind <span class="dot">·</span> 17:39</span><span>Karussell, kurz vor Schluss.</span></p></figure>
-    <figure class="reveal"><div class="framed"><div class="photo" style="--focus:45% 55%"><img src="uploads/fussball_mit_freunden.webp" alt="Nürnberg, volle Kurve im Stadion, Fahnen und Rauch über dem Rasen" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Nürnberg <span class="dot">·</span> 19:48</span><span>Alle stehen, niemand sitzt.</span></p></figure>
-    <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 55%"><img src="uploads/griechenland.webp" alt="Kos, Beachvolleyballfeld am Meer, Palmen, letzte Helligkeit über dem Wasser" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Kos <span class="dot">·</span> 18:19</span><span>Der Platz ist leer, die Sonne fast weg.</span></p></figure>
-    <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 40%"><img src="uploads/mit_familie.webp" alt="Heroldsbach, Parkplatz bei tiefer Sonne, jemand schiebt einen Kinderwagen" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Heroldsbach <span class="dot">·</span> 18:01</span><span>Zurück zum Auto, die Sonne noch da.</span></p></figure>
+    <figure class="reveal"><div class="framed"><div class="photo" style="--focus:65% 45%"><img src="uploads/freizeitpark.webp" width="1536" height="2048" alt="Geiselwind am Abend, beleuchtetes Karussell, Wimpelketten über dem Platz" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Geiselwind <span class="dot">·</span> 17:39</span><span>Karussell, kurz vor Schluss.</span></p></figure>
+    <figure class="reveal"><div class="framed"><div class="photo" style="--focus:45% 55%"><img src="uploads/fussball_mit_freunden.webp" width="4000" height="3000" alt="Nürnberg, volle Kurve im Stadion, Fahnen und Rauch über dem Rasen" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Nürnberg <span class="dot">·</span> 19:48</span><span>Alle stehen, niemand sitzt.</span></p></figure>
+    <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 55%"><img src="uploads/griechenland.webp" width="4000" height="3000" alt="Kos, Beachvolleyballfeld am Meer, Palmen, letzte Helligkeit über dem Wasser" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Kos <span class="dot">·</span> 18:19</span><span>Der Platz ist leer, die Sonne fast weg.</span></p></figure>
+    <figure class="reveal"><div class="framed"><div class="photo" style="--focus:50% 40%"><img src="uploads/mit_familie.webp" width="3000" height="4000" alt="Heroldsbach, Parkplatz bei tiefer Sonne, jemand schiebt einen Kinderwagen" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Heroldsbach <span class="dot">·</span> 18:01</span><span>Zurück zum Auto, die Sonne noch da.</span></p></figure>
   </div>
 </section>
 
@@ -888,7 +896,7 @@
   <figure>
     <div class="kacheln">
       <!-- Motiv-Vorgabe fürs Shooting: Vanilleschote und Kakao, nah, kein Glas. Platzhalter bis dahin. -->
-      <div class="photo reveal" style="--focus:25% 90%"><img src="uploads/HESPYRA_TISCH_Vanille.webp" alt="Vanille, Kakao. Nah." decoding="async" loading="lazy"></div>
+      <div class="photo reveal" style="--focus:25% 90%"><img src="uploads/HESPYRA_TISCH_Vanille.webp" width="2048" height="768" alt="Vanille, Kakao. Nah." decoding="async" loading="lazy"></div>
       <div class="text">
         <h2>Kakao und echte Vanille.</h2>
         <!-- Geschmacksbeschreibung — gegen finale Charge prüfen. -->
@@ -927,7 +935,7 @@
   <p class="label">Bestellen</p>
   <div class="row g12">
     <div class="objekte c1-5">
-      <figure class="beutel reveal"><div class="photo"><img src="img/beutel-frei.webp" alt="Der Beutel. Schwarz, mit Wortmarke." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Beutel <span class="dot">·</span> 180g</span></p></figure>
+      <figure class="beutel reveal"><div class="photo"><img src="img/beutel-frei.webp" width="792" height="1059" alt="Der Beutel. Schwarz, mit Wortmarke." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Beutel <span class="dot">·</span> 180g</span></p></figure>
     </div>
     <div class="text c7-12">
       <h2>HESPYRA.<br>30&nbsp;Abende.</h2>
@@ -935,7 +943,7 @@
       <p class="preis"><span class="ph">[Preis]</span>&nbsp;€</p>
       <button type="button" class="btn solid" id="cartbtn" data-soon="Bald.">In den Warenkorb <span class="arw">→</span></button>
       <p class="small soft nb">Reicht für 30 Abende. Dienstage zählen mit.</p>
-      <figure class="loeffel reveal"><div class="photo"><img src="img/scoop-frei.webp" alt="Der Löffel. Messing, quer." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Löffel <span class="dot">·</span> <span class="ph">[Messing, Ausführung offen]</span></span></p></figure>
+      <figure class="loeffel reveal"><div class="photo"><img src="img/scoop-frei.webp" width="1196" height="516" alt="Der Löffel. Messing, quer." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Löffel <span class="dot">·</span> <span class="ph">[Messing, Ausführung offen]</span></span></p></figure>
     </div>
   </div>
 </section>
@@ -987,13 +995,13 @@
   <!-- Teaser links = neueste Beobachtung: artikel (Eine kurze Verteidigung des Dienstags), 2026-09-03. Teaser rechts = neuester Eintrag 100 Menschen: muenchen-1836, 2026-08-25. Bei neuem Artikel hier nachziehen. -->
   <div class="top g12">
     <div class="big c1-6 reveal" data-published="2026-09-03T18:00">
-      <a href="artikel-dienstag.html"><div class="photo"><img src="uploads/abendwelt.webp" alt="Kersbach, 22:05. Niemand mehr auf der Straße." decoding="async" loading="lazy"></div></a>
+      <a href="artikel-dienstag.html"><div class="photo"><img src="uploads/abendwelt.webp" width="4000" height="3000" alt="Kersbach, 22:05. Niemand mehr auf der Straße." decoding="async" loading="lazy"></div></a>
       <p class="kicker"><a href="journal-beobachtungen.html">Beobachtungen</a></p>
       <a href="artikel-dienstag.html"><h3 class="ttl">Eine kurze Verteidigung des Dienstags</h3>
       <p class="excerpt">Der Dienstag hat das schlechteste Marketing aller Wochentage.</p></a>
     </div>
     <div class="big c7-12 reveal" data-published="2026-08-25T18:00">
-      <a href="artikel-muenchen-1836.html"><div class="photo"><img src="uploads/bruecke.webp" alt="Forchheim, 21:13. Über die Brücke, kein Auto." decoding="async" loading="lazy"></div></a>
+      <a href="artikel-muenchen-1836.html"><div class="photo"><img src="uploads/bruecke.webp" width="4000" height="3000" alt="Forchheim, 21:13. Über die Brücke, kein Auto." decoding="async" loading="lazy"></div></a>
       <p class="kicker"><a href="journal-100-menschen.html">100 Menschen. 100 Abende.</a></p>
       <a href="artikel-muenchen-1836.html"><h3 class="ttl">München <span class="dot">·</span> 18:36</h3>
       <p class="excerpt">Lucca Brandl, 39, verkauft Fahrräder in einem Laden in der Au.</p></a>

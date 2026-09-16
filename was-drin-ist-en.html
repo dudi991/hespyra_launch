@@ -23,7 +23,13 @@
 <script>
   document.documentElement.className+=' js';
   (function(){
-    document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem('hespyra-lang',a.getAttribute('data-lang'))}catch(err){}}});
+    document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem('hespyra-lang',a.getAttribute('data-lang'))}catch(err){}
+      // T39: Abschnitt mitnehmen — die letzte Section mit id, deren Oberkante über scrollY + 1/3 Viewporthöhe liegt. Ohne Treffer bleibt der Link.
+      var s=null,g=window.scrollY+window.innerHeight/3;
+      document.querySelectorAll('section[id]').forEach(function(x){if(x.getBoundingClientRect().top+window.scrollY<=g)s=x;});
+      if(s&&a.href)a.href=a.href.split('#')[0]+'#'+s.id;}});
+    // T39: Laden mit Hash springt ohne Animation; danach wieder weiches Scrollen für Ankerlinks.
+    if(location.hash){document.documentElement.style.scrollBehavior='auto';addEventListener('load',function(){setTimeout(function(){document.documentElement.style.scrollBehavior='';},0);});}
   })();
 </script>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -46,7 +52,8 @@
     --ease:cubic-bezier(.22,.61,.36,1);
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:60px}
+  html{scroll-behavior:smooth}
+  [id]{scroll-margin-top:var(--bar-h)}   /* T39: Anker landen unter der Kopfzeile (statt scroll-padding-top:60px) */
   body{margin:0;background:var(--paper);color:var(--ink);
     font-family:"IBM Plex Sans",sans-serif;font-weight:400;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
@@ -900,7 +907,7 @@
 </main>
 
 <!-- 9 NEWSLETTER -->
-<section class="nl narrow">
+<section class="nl narrow" id="newsletter">
   <div class="kopf">
   <h2>From Forchheim. About once a month. Less often if nothing has happened.</h2>
   </div>

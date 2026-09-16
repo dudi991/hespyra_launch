@@ -30,7 +30,13 @@
   // und nur gemerkt. (Auto-Redirect entfernt — Virenscanner lesen ihn als Phishing-Muster.)
   document.documentElement.className+=' js';
   (function(){
-    document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem('hespyra-lang',a.getAttribute('data-lang'))}catch(err){}}});
+    document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-lang]');if(a){try{localStorage.setItem('hespyra-lang',a.getAttribute('data-lang'))}catch(err){}
+      // T39: Abschnitt mitnehmen — die letzte Section mit id, deren Oberkante über scrollY + 1/3 Viewporthöhe liegt. Ohne Treffer bleibt der Link.
+      var s=null,g=window.scrollY+window.innerHeight/3;
+      document.querySelectorAll('section[id]').forEach(function(x){if(x.getBoundingClientRect().top+window.scrollY<=g)s=x;});
+      if(s&&a.href)a.href=a.href.split('#')[0]+'#'+s.id;}});
+    // T39: Laden mit Hash springt ohne Animation; danach wieder weiches Scrollen für Ankerlinks.
+    if(location.hash){document.documentElement.style.scrollBehavior='auto';addEventListener('load',function(){setTimeout(function(){document.documentElement.style.scrollBehavior='';},0);});}
   })();
 </script>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -52,7 +58,8 @@
     --ease:cubic-bezier(.22,.61,.36,1);
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:60px}
+  html{scroll-behavior:smooth}
+  [id]{scroll-margin-top:var(--bar-h)}   /* T39: Anker landen unter der Kopfzeile (statt scroll-padding-top:60px) */
   body{margin:0;background:var(--paper);color:var(--ink);
     font-family:"IBM Plex Sans",sans-serif;font-weight:400;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
@@ -817,7 +824,7 @@
 <!-- 1 HERO -->
 <!-- T14: Kopfzeile lädt direkt mit dem Sitzungsmoment, kein Scroll-Wechsel, bis ein echtes Hero-Foto mit Bildunterschrift da ist.
      Dann wieder: data-ort="Forchheim" data-zeit="19:50" (Werte des Fotos) am <section class="hero">. -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="full">
     <div class="photo"></div>
     <div class="text">
@@ -846,7 +853,7 @@
 
 <!-- 1b WAHRHEIT: eigene Section, Satz aus der Abendwelt hierher verschoben (T5) -->
 <!-- Navy + Newsreader = die Marke spricht über den Abend (Wahrheit, Journal). Papier + Plex = Produkt und Beweis. Keine Mischung. -->
-<section class="wahrheit col">
+<section class="wahrheit col" id="wahrheit">
   <!-- rechtlich prüfen vor Livegang. Rückfall: The day is done. Not in your head yet. -->
   <h2>The day is over.<br>It just doesn’t know it yet.</h2>
 </section>
@@ -875,7 +882,7 @@
 <!-- Bildregel dieser Sektion: Menschen sind erlaubt, aber niemand schaut in die Kamera, niemand posiert,
      keine Gruppe lacht für das Bild. Dokumentiert, nicht gestellt. Kein Bild ohne echten Ort in der Bildunterschrift.
      Die vier Motive hier sind Testmaterial und gehen nicht live. -->
-<section class="welt col">
+<section class="welt col" id="abendwelt">
   <h2>There are quite a few ways to spend a good evening.</h2>
   <div class="grid g12">
     <figure class="reveal"><div class="framed"><div class="photo" style="--focus:65% 45%"><img src="uploads/freizeitpark.webp" width="1500" height="2000" alt="Geiselwind in the evening, lit carousel, bunting above the square" decoding="async" loading="lazy"></div></div><p class="cap"><span class="t">Geiselwind <span class="dot">·</span> 17:39</span><span>Carousel, just before closing.</span></p></figure>
@@ -892,7 +899,7 @@
 </section>
 
 <!-- 4 GESCHMACK -->
-<section class="geschmack">
+<section class="geschmack" id="vanille">
   <figure>
     <div class="kacheln">
       <!-- Motiv-Vorgabe fürs Shooting: Vanilleschote und Kakao, nah, kein Glas. Platzhalter bis dahin. -->
@@ -983,7 +990,7 @@
 
 <!-- 8 JOURNAL: das eine dunkle Feld -->
 <div class="journal-wrap" id="journal">
-<section class="journal col">
+<section class="journal col" id="journal">
   <div class="head">
       <h2>A magazine about the evening.</h2>
       <p class="stamp">Last: 3 September, 18:00</p>
@@ -1015,7 +1022,7 @@
 </div>
 
 <!-- 9 NEWSLETTER -->
-<section class="nl narrow">
+<section class="nl narrow" id="newsletter">
   <div class="kopf">
   <h2>From Forchheim. About once a month. Less often if nothing has happened.</h2>
   </div>

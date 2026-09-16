@@ -714,10 +714,10 @@
     .hero .text{position:relative;min-height:auto;padding-top:calc(.579 * .70 * var(--hero-h) + 24px + var(--gap));padding-bottom:var(--raum-mit)}
     section.wahrheit{margin-top:0}
   }
-  /* T29 Hero ≤640px: Luft von unten nach oben verschoben. Hero oben 72px, unten 48px (statt --raum-mit am Textblock).
+  /* T29 Hero ≤640px: Luft von unten nach oben verschoben. Hero oben 64px (T36), unten 48px (statt --raum-mit am Textblock).
      Glas-Platz im Textblock und Abstände Glas → h1 → Resolver → Lead unverändert. */
   @media(max-width:640px){
-    .hero{padding-top:72px;padding-bottom:48px}
+    .hero{padding-top:64px;padding-bottom:48px}   /* T36: oben 64px */
     .hero .text{padding-bottom:0}
   }
   /* T28 Mobil: Schlusszeile bricht nur nach dem Punkt — Zeitteil und Satz je eine Zeile, innen kein Umbruch.

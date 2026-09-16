@@ -637,7 +637,7 @@
   /* T18 → Feinschliff: Textblock 24ch (Fließtextgröße, 0.6em = Zeichenbreite Plex Sans), linksbündig auf festen Achsen, vertikal mittig. */
   @media(min-width:768px){
     section.ritual .text,section.geschmack .text{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-inline:0;
-      --block:calc(24 * .6 * clamp(20px,1.6vw,24px));
+      --block:27rem;   /* Textspalte 27rem (vorher 24ch der Fließtextgröße ≈ 345 px bei 1280) */
       --achse:calc((100vw - min(100vw, var(--col))) / 2 + var(--gap))}
     /* Zubereitung: Textkante auf der Hauptachse (wie Statement darüber). Vanille: gleicher Abstand Bild → Text wie in der Zubereitung Text → Bild. */
     section.ritual .text{padding-left:var(--achse)}
@@ -661,6 +661,8 @@
     .produkt + .faq{margin-top:var(--raum-mit)}                         /* Löffel-Bildunterschrift → FAQ = Standard-Section-Abstand */
   }
   /* Feinschliff Übergänge */
+  section.ritual .text h2,section.geschmack .text h2{text-wrap:balance}
+  section.ritual .text .lead,section.geschmack .text .t1,section.geschmack .text .t3{text-wrap:pretty}
   section.wahrheit h2{line-height:1.08;letter-spacing:-.025em}   /* Unterlängen frei, „ß“ nicht gequetscht (Desktop + Mobil) */
   @media(max-width:767px){section.ritual .text,section.geschmack .text{padding-left:var(--gap);padding-right:var(--gap)}}   /* mobil Textkante = Hauptachse */
   /* Übergang Hero → Statement: keine Hairline. Das Statement ist ein vollflächiges Band — Grund = Journal-Farbe (--dark), Schrift = Papier (Kontrast 15,9:1).
@@ -673,6 +675,14 @@
   section.wahrheit h2{color:var(--paper)}
   section.wahrheit + section.ritual{margin-top:0}   /* Zubereitung schließt direkt an das Band an */
   @media(max-width:767px){section.wahrheit{min-height:47vh}}   /* 60vh × 55/70 */
+  /* Formel-Kachel (Vanille), nur Desktop: Bild 58vw bündig links, Seitenverhältnis wie bisher (Höhe × 58/50).
+     Text rechts mit festem Abstand wie Text → Bild in der Zubereitung, Spalte 28rem, vertikal mittig. Zubereitung unverändert. */
+  @media(min-width:768px){
+    section.geschmack .kacheln{grid-template-columns:58vw 1fr;height:calc(min(80vh,760px) * 1.16);min-height:calc(520px * 1.16)}
+    section.geschmack .text{padding-left:max(var(--gap), calc(50vw - var(--achse) - var(--block)))}
+    section.geschmack .text > *{width:min(100%, 28rem)}
+    section.geschmack .text h2,section.geschmack .text .t1,section.geschmack .text .t3{max-width:none}   /* grauer Zusatz so breit wie der Fließtext */
+  }
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->

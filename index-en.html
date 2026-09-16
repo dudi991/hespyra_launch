@@ -673,8 +673,9 @@
     min-height:55vh;display:flex;flex-direction:column;justify-content:center;padding-block:0;
     padding-inline:max(var(--gap), calc((100% - var(--col)) / 2 + var(--gap)))}
   section.wahrheit h2{color:var(--paper)}
-  /* T24 Test: Statement-Band in Newsreader wie Journal-Titel (.journal .ttl, 500). Größe unverändert. Rückweg: Klasse statement--serif am <section> entfernen. */
-  section.wahrheit.statement--serif h2{font-family:"Newsreader",serif;font-weight:500;line-height:1.06;letter-spacing:0}
+  /* T25: Statement-Band in Newsreader 400 (Standard, Desktop + Mobil). Größe unverändert.
+     Navy + Newsreader = die Marke spricht über den Abend (Wahrheit, Journal). Papier + Plex = Produkt und Beweis. Keine Mischung. */
+  section.wahrheit h2{font-family:"Newsreader",serif;font-weight:400;line-height:1.06;letter-spacing:0}
   section.wahrheit + section.ritual{margin-top:0}   /* Zubereitung schließt direkt an das Band an */
   @media(max-width:767px){section.wahrheit{min-height:47vh}}   /* 60vh × 55/70 */
   /* Formel-Kachel (Vanille), nur Desktop: Bild 58vw bündig links, Höhe wie Zubereitung, Ausschnitt per object-fit:cover.
@@ -811,7 +812,8 @@
 </section>
 
 <!-- 1b WAHRHEIT: eigene Section, Satz aus der Abendwelt hierher verschoben (T5) -->
-<section class="wahrheit col statement--serif">
+<!-- Navy + Newsreader = die Marke spricht über den Abend (Wahrheit, Journal). Papier + Plex = Produkt und Beweis. Keine Mischung. -->
+<section class="wahrheit col">
   <!-- rechtlich prüfen vor Livegang. Rückfall: The day is done. Not in your head yet. -->
   <h2>The day is over.<br>It just doesn’t know it yet.</h2>
 </section>

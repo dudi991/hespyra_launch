@@ -553,6 +553,12 @@
   .bar .ortszeit{font-size:12.5px;color:var(--ink-soft)}
   .bar nav li .lang,.bar .menu .lang{font-size:12.5px;color:var(--ink-soft)}
   @media(max-width:600px){.bar .ortszeit,.bar .menu .lang{font-size:12px}}
+  /* T28 Mobil: Schlusszeile bricht nur nach dem Punkt — Zeitteil und Satz je eine Zeile, innen kein Umbruch.
+     Journal-Titel und -Anriss (Newsreader): keine automatische Silbentrennung. */
+  @media(max-width:767px){
+    .schluss-zeit .sc-zeitteil,.schluss-zeit #sc-satz{display:block;white-space:nowrap}
+    .journal .ttl,.journal .excerpt{hyphens:manual}
+  }
   /* LAUNCH: Bestellen als Rahmen-Knopf in Textfarbe, ohne Unterstreichung; Hover invertiert.
   @media(min-width:860px){
     .bar nav ul .shop{display:inline-block;border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
@@ -652,7 +658,7 @@
 <div class="journal-wrap">
 <section class="journal col">
   <div class="schluss">
-    <p class="schluss-zeit">Es ist <span id="sc-zeit">21<span class="dp">:</span>40</span>. <span id="sc-satz">Der Abend ist noch offen.</span></p>
+    <p class="schluss-zeit"><span class="sc-zeitteil">Es ist <span id="sc-zeit">21<span class="dp">:</span>40</span>.</span> <span id="sc-satz">Der Abend ist noch offen.</span></p>
   </div>
 </section>
 </div>

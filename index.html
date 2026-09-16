@@ -706,6 +706,20 @@
   .bar .ortszeit{font-size:12.5px;color:var(--ink-soft)}
   .bar nav li .lang,.bar .menu .lang{font-size:12.5px;color:var(--ink-soft)}
   @media(max-width:600px){.bar .ortszeit,.bar .menu .lang{font-size:12px}}
+  /* T28.1 Mobil: Hero ohne feste Höhe. Das leere Foto-Feld entfällt, der Textblock steht im Fluss; oben Platz für das Glas
+     (Glas-Oberkante bei 22,3 % der Bildhöhe, Unterkante bei 80,2 %: sichtbare Glashöhe .579 × Bildhöhe, plus 24 px über der h1),
+     unten Standard-Section-Abstand. Das Navy-Band folgt ohne eigenen Abstand. */
+  @media(max-width:767px){
+    .hero .photo{display:none}
+    .hero .text{position:relative;min-height:auto;padding-top:calc(.579 * .70 * var(--hero-h) + 24px + var(--gap));padding-bottom:var(--raum-mit)}
+    section.wahrheit{margin-top:0}
+  }
+  /* T28 Mobil: Schlusszeile bricht nur nach dem Punkt — Zeitteil und Satz je eine Zeile, innen kein Umbruch.
+     Journal-Titel und -Anriss (Newsreader): keine automatische Silbentrennung. */
+  @media(max-width:767px){
+    .schluss-zeit .sc-zeitteil,.schluss-zeit #sc-satz{display:block;white-space:nowrap}
+    .journal .ttl,.journal .excerpt{hyphens:manual}
+  }
   /* LAUNCH: Bestellen als Rahmen-Knopf in Textfarbe, ohne Unterstreichung; Hover invertiert.
   @media(min-width:860px){
     .bar nav ul .shop{display:inline-block;border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
@@ -981,7 +995,7 @@
   </div>
   <div class="links"><a class="link" href="journal.html">Ins Journal</a></div>
   <div class="schluss">
-    <p class="schluss-zeit">Es ist <span id="sc-zeit">21<span class="dp">:</span>40</span>. <span id="sc-satz">Der Abend ist noch offen.</span></p>
+    <p class="schluss-zeit"><span class="sc-zeitteil">Es ist <span id="sc-zeit">21<span class="dp">:</span>40</span>.</span> <span id="sc-satz">Der Abend ist noch offen.</span></p>
   </div>
 </section>
 </div>

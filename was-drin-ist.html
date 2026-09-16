@@ -593,6 +593,30 @@
   /* T15: erste Section unter der Kopfzeile mit Standard-Section-Abstand oben — Kicker nie direkt an der Kopfzeilen-Hairline. */
   .journal-wrap.oben,.akopf,.legal-page,.fs-head,.inhalt .fs-head{padding-top:var(--raum-mit)}   /* .inhalt .fs-head: schlägt .inhalt .narrow{padding:0} */
   .zutaten-index.seite{margin-top:var(--raum-mit)}
+  /* Topbar: Desktop volle Seitenbreite, 2.5rem Randabstand links/rechts, 72px hoch, Logo +15 %, Nav-Schrift +1px.
+     Farben, Hintergrund, Sticky unverändert. Mobil nur Seitenabstand = Seitenraster (--gap). */
+  @media(min-width:860px){
+    :root{--bar-h:72px}
+    .bar nav{max-width:none;padding-left:2.5rem;padding-right:2.5rem}
+    .bar .mark .wm{height:21px}
+    .bar nav ul{font-size:16px}
+    .bar nav li .lang{font-size:13px}
+  }
+  @media(max-width:600px){.bar nav{padding-left:var(--gap);padding-right:var(--gap)}}
+  /* Topbar Feinschliff: Ortszeit und EN lesbarer (Mono, --ink-soft = 6,5:1 auf --paper, leiser als die Navigation in --ink).
+     Bestellen als Rahmen-Knopf in Textfarbe, ohne Unterstreichung; Hover invertiert. */
+  .bar .ortszeit{font-size:12.5px;color:var(--ink-soft)}
+  .bar nav li .lang,.bar .menu .lang{font-size:12.5px;color:var(--ink-soft)}
+  @media(max-width:600px){.bar .ortszeit,.bar .menu .lang{font-size:12px}}
+  @media(min-width:860px){
+    .bar nav ul .shop{display:inline-block;border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
+    .bar nav ul .shop::after{display:none}
+    .bar nav ul .shop:hover{background:var(--ink);color:var(--paper)}
+  }
+  @media(max-width:859px){
+    .bar .menu > a:first-child{border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
+    .bar .menu > a:first-child:hover{background:var(--ink);color:var(--paper)}
+  }
 </style>
 </head>
 <body>
@@ -664,16 +688,16 @@
     <thead class="vh"><tr><th scope="col">Zutat</th><th scope="col">Form</th><th scope="col">Menge</th></tr></thead>
     <tr><td><a href="#magnesium">Magnesium</a><span class="form">Bisglycinat</span></td><td>Bisglycinat</td><td>78&nbsp;mg elementar</td></tr>
     <tr><td><a href="#magnesium">Magnesium</a><span class="form">Taurat</span></td><td>Taurat</td><td>72&nbsp;mg elementar</td></tr>
-    <tr><td><a href="#l-theanin">L-Theanin</a><span class="form">aus Grüntee-Extrakt</span></td><td>aus Grüntee-Extrakt</td><td>100&nbsp;mg</td></tr>
-    <tr><td><a href="#phosphatidylserin">Phosphatidyl&shy;serin</a><span class="form">SunPS®, aus Sonnenblume</span></td><td>SunPS®, aus Sonnenblume</td><td>70&nbsp;mg</td></tr>
+    <tr><td><a href="#l-theanin">L-Theanin</a><span class="form">aus 167&nbsp;mg Grüntee-Extrakt, 60&nbsp;%</span></td><td>aus 167&nbsp;mg Grüntee-Extrakt, 60&nbsp;%</td><td>100&nbsp;mg</td></tr>
+    <tr><td><a href="#phosphatidylserin">Phosphatidyl&shy;serin</a><span class="form">SunPS®, 70&nbsp;%, aus Sonnenblume</span></td><td>SunPS®, 70&nbsp;%, aus Sonnenblume</td><td>70&nbsp;mg</td></tr>
     <tr><td><a href="#ashwagandha">Ashwagandha</a><span class="form">KSM-66®, Bio, Wurzelextrakt</span></td><td>KSM-66®, Bio, Wurzelextrakt</td><td>300&nbsp;mg</td></tr>
     <tr><td><a href="#safran">Safran</a><span class="form">Affron®, Extrakt</span></td><td>Affron®, Extrakt</td><td>28&nbsp;mg</td></tr>
     <tr><td><a href="#reishi">Reishi</a><span class="form">Fruchtkörperextrakt</span></td><td>Fruchtkörperextrakt</td><td>1.000&nbsp;mg</td></tr>
     <tr><td><a href="#kakao">Kakao</a><span class="form">alkalisiert</span></td><td>alkalisiert</td><td>1.000&nbsp;mg</td></tr>
-    <tr><td><a href="#glycin">Glycin</a><span class="form">Aminosäure</span></td><td>Aminosäure</td><td>1.400&nbsp;mg</td></tr>
+    <tr><td><a href="#glycin">Glycin</a><span class="form">Aminosäure</span></td><td>Aminosäure</td><td>1.380&nbsp;mg</td></tr>
     <tr><td><a href="#kokosmilchpulver">Kokosmilchpulver</a></td><td></td><td>200&nbsp;mg</td></tr>
-    <tr><td><a href="#bourbon-vanille">Bourbon-Vanille</a><span class="form">Bio, gemahlen</span></td><td>Bio, gemahlen</td><td>300&nbsp;mg</td></tr>
-    <tr><td><a href="#salz">Salz</a></td><td></td><td>50&nbsp;mg</td></tr>
+    <tr><td><a href="#bourbon-vanille">Bourbon-Vanille</a><span class="form">Bio</span></td><td>Bio</td><td>300&nbsp;mg</td></tr>
+    <tr><td><a href="#salz">Salz</a></td><td></td><td>51&nbsp;mg (20&nbsp;mg Natrium)</td></tr>
   </table>
 </section>
 
@@ -681,13 +705,12 @@
   <h2 class="reveal">Magnesium</h2>
   <dl class="spec reveal">
     <div><dt>Was</dt><dd>Magnesium, zwei organische Verbindungen</dd></div>
-    <div><dt>Form</dt><dd>Bisglycinat 553&nbsp;mg (14,1&nbsp;% Mg) + Taurat 900&nbsp;mg (8&nbsp;% Mg)</dd></div>
+    <div><dt>Form</dt><dd>553&nbsp;mg Bisglycinat + 900&nbsp;mg Taurat</dd></div>
     <div><dt>Davon Magnesium</dt><dd>150&nbsp;mg elementar (40&nbsp;% NRV)</dd></div>
-    <div><dt>Löslichkeit</dt><dd>vollständig in Wasser</dd></div>
     <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
     <div><dt>Geprüft auf</dt><dd><span class="ph">[Schwermetalle, Mikrobiologie — Analyse]</span></dd></div>
   </dl>
-  <p class="lead reveal">Zwei organische Verbindungen — Magnesium an die Aminosäure Glycin gebunden und an Taurin. Beide lösen sich in Wasser und schmecken neutral. Die Wahl der Formen ist Christians; zusammen ergeben sie 40 Prozent des Tagesreferenzwerts.</p>
+  <p class="lead reveal">553&nbsp;mg Magnesiumbisglycinat und 900&nbsp;mg Magnesiumtaurat. Zusammen 150&nbsp;mg elementares Magnesium, 40 Prozent des Tagesreferenzwerts.</p>
   <p class="lead reveal">Magnesium trägt zu einer normalen Funktion des Nervensystems und zur normalen psychischen Funktion bei.</p>
 </section>
 
@@ -698,36 +721,35 @@
     <div><dt>Form</dt><dd>Grüntee-Extrakt, 167&nbsp;mg</dd></div>
     <div><dt>Standardisiert</dt><dd>60&nbsp;% L-Theanin</dd></div>
     <div><dt>Davon L-Theanin</dt><dd>100&nbsp;mg</dd></div>
-    <div><dt>Pflanzenteil</dt><dd>Blatt (Camellia sinensis)</dd></div>
-    <div><dt>Herkunft</dt><dd><span class="ph">[Region — Spezifikation]</span></dd></div>
+    <div><dt>Pflanzenteil</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
+    <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
     <div><dt>Geprüft auf</dt><dd><span class="ph">[Koffeinrestgehalt, Schwermetalle, Pestizide — Analyse]</span></dd></div>
   </dl>
-  <p class="lead reveal">Aus der Pflanze, in der es ohnehin vorkommt. Der Extrakt ist auf 60 Prozent L-Theanin standardisiert.</p>
+  <p class="lead reveal">167&nbsp;mg Grüntee-Extrakt, standardisiert auf 60 Prozent L-Theanin. Das ergibt 100&nbsp;mg L-Theanin pro Portion.</p>
 </section>
 
 <section class="zutat narrow" id="phosphatidylserin">
   <h2 class="reveal">Phosphatidyl&shy;serin</h2>
   <dl class="spec reveal">
     <div><dt>Was</dt><dd>Phosphatidylserin, Phospholipid</dd></div>
-    <div><dt>Form</dt><dd>Extrakt aus Sonnenblumen-Lecithin, 100&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>SunPS®, 100&nbsp;mg</dd></div>
     <div><dt>Standardisiert</dt><dd>70&nbsp;% Phosphatidylserin</dd></div>
     <div><dt>Davon PS</dt><dd>70&nbsp;mg Phosphatidylserin</dd></div>
-    <div><dt>Quelle</dt><dd>Sonnenblumen-Lecithin, ohne Soja</dd></div>
-    <div><dt>Herkunft</dt><dd>China</dd></div>
+    <div><dt>Quelle</dt><dd>Sonnenblume</dd></div>
+    <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
     <div><dt>Geprüft auf</dt><dd><span class="ph">[Allergene, Schwermetalle — Analyse]</span></dd></div>
   </dl>
-  <p class="lead reveal">Die gängige Alternative basiert auf Soja. Wir haben Sonnenblume gewählt, ohne Maltodextrin-Träger. Wir haben den Markenrohstoff daneben gelegt: Der Unterschied in der Spezifikation war klein, der im Preis nicht. Der Rohstoff enthält 70 Prozent Phosphatidylserin — deshalb nennen wir 70&nbsp;mg und nicht die 100&nbsp;mg Pulver, die dafür eingesetzt werden.</p>
-  <!-- Intern: SunPS® oder markenfreier Rohstoff gleicher Spezifikation — offen. Bei SunPS „Form: SunPS®" ergänzen. -->
+  <p class="lead reveal">Für die Musterentwicklung verwenden wir SunPS®, einen auf 70 Prozent Phosphatidylserin standardisierten Rohstoff aus Sonnenblume. 100&nbsp;mg Rohstoff liefern 70&nbsp;mg Phosphatidylserin.</p>
 </section>
 
 <section class="zutat narrow" id="ashwagandha">
   <h2 class="reveal">Ashwagandha</h2>
   <dl class="spec reveal">
     <div><dt>Was</dt><dd>Withania somnifera, Wurzel</dd></div>
-    <div><dt>Form</dt><dd>KSM-66®, Extrakt, 300&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>KSM-66®, Bio, Wurzelextrakt, 300&nbsp;mg</dd></div>
     <div><dt>Standardisiert</dt><dd>5&nbsp;% Withanolide (15&nbsp;mg)</dd></div>
     <div><dt>Pflanzenteil</dt><dd>ausschließlich Wurzel</dd></div>
-    <div><dt>Anbau</dt><dd>Bio, Indien</dd></div>
+    <div><dt>Anbau</dt><dd>Bio</dd></div>
     <div><dt>Extraktion</dt><dd><span class="ph">[Verfahren — Spezifikation]</span></dd></div>
     <div><dt>Geprüft auf</dt><dd><span class="ph">[Schwermetalle, Pestizide, Mikrobiologie — Analyse]</span></dd></div>
   </dl>
@@ -739,50 +761,49 @@
   <dl class="spec reveal">
     <div><dt>Was</dt><dd>Crocus sativus, Blütennarben</dd></div>
     <div><dt>Form</dt><dd>Affron®, Extrakt, 28&nbsp;mg</dd></div>
-    <div><dt>Standardisiert</dt><dd>&gt;&nbsp;3,5&nbsp;% Lepticrosalide®</dd></div>
-    <div><dt>Herkunft</dt><dd>Spanien</dd></div>
+    <div><dt>Standardisiert</dt><dd>&gt;&nbsp;3,5&nbsp;% Lepticrosalides® (ca. 0,98&nbsp;mg)</dd></div>
+    <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
     <div><dt>Extraktion</dt><dd><span class="ph">[Verfahren — Spezifikation]</span></dd></div>
     <div><dt>Geprüft auf</dt><dd><span class="ph">[Identität, Schwermetalle — Analyse]</span></dd></div>
   </dl>
-  <p class="lead reveal">Der teuerste Posten der Formel, mit Abstand. Wir haben es beim Einkauf gemerkt. Er ist trotzdem drin.</p>
-  <p class="lead reveal">Affron ist standardisiert. Damit bedeuten 28&nbsp;mg Extrakt nicht bei jeder Charge etwas anderes.</p>
+  <p class="lead reveal">28&nbsp;mg Affron®, standardisiert auf mehr als 3,5 Prozent Lepticrosalides®. Das entspricht rund 0,98&nbsp;mg pro Portion.</p>
 </section>
 
 <section class="zutat narrow" id="reishi">
   <h2 class="reveal">Reishi</h2>
   <dl class="spec reveal">
     <div><dt>Was</dt><dd>Ganoderma lucidum, Fruchtkörper</dd></div>
-    <div><dt>Form</dt><dd>Extrakt, 1.000&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>Fruchtkörperextrakt, 1.000&nbsp;mg</dd></div>
     <div><dt>Standardisiert</dt><dd>30&nbsp;% Polysaccharide (300&nbsp;mg)</dd></div>
     <div><dt>Pflanzenteil</dt><dd>Fruchtkörper, kein Myzel</dd></div>
     <div><dt>Extraktion</dt><dd><span class="ph">[Wasser / Wasser-Ethanol — Spezifikation]</span></dd></div>
     <div><dt>Anbau</dt><dd><span class="ph">[Region, Bio — Spezifikation]</span></dd></div>
     <div><dt>Geprüft auf</dt><dd><span class="ph">[Schwermetalle, Pestizide, Mikrobiologie — Analyse]</span></dd></div>
   </dl>
-  <p class="lead reveal">Ein Gramm Fruchtkörperextrakt. Geschmacklich spürbar — erdig, leicht bitter — und es passt zum Kakao.</p>
+  <p class="lead reveal">Ein Gramm Fruchtkörperextrakt pro Portion, standardisiert auf 30 Prozent Polysaccharide — entsprechend 300&nbsp;mg.</p>
 </section>
 
 <section class="zutat narrow" id="kakao">
   <h2 class="reveal">Kakao</h2>
   <dl class="spec reveal">
     <div><dt>Was</dt><dd>Theobroma cacao, Kakaopulver</dd></div>
-    <div><dt>Form</dt><dd>alkalisiert, 10–12&nbsp;% Fett, 1.000&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>alkalisiert, 1.000&nbsp;mg</dd></div>
     <div><dt>Herkunft</dt><dd><span class="ph">[Land — Spezifikation]</span></dd></div>
     <div><dt>Geprüft auf</dt><dd><span class="ph">[Cadmium, Mikrobiologie — Analyse]</span></dd></div>
   </dl>
-  <p class="lead reveal">Alkalisierter Kakao, weil er sich in Wasser löst und sich nicht absetzt. Ein Gramm pro Portion ist der Ausgangspunkt.</p>
+  <p class="lead reveal">Ein Gramm alkalisiertes Kakaopulver pro Portion. Das ist der Ausgangspunkt für Farbe und Geschmack in der Musterentwicklung.</p>
 </section>
 
 <section class="zutat narrow" id="glycin">
   <h2 class="reveal">Glycin</h2>
   <dl class="spec reveal">
     <div><dt>Was</dt><dd>Glycin, Aminosäure</dd></div>
-    <div><dt>Form</dt><dd>Glycin 98,5&nbsp;%, 1.401&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>1.401&nbsp;mg Rohstoff, 98,5&nbsp;%</dd></div>
     <div><dt>Davon Glycin</dt><dd>1.380&nbsp;mg</dd></div>
     <div><dt>Funktion</dt><dd>Süße</dd></div>
     <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
   </dl>
-  <p class="lead reveal">Wir wollten keinen Zucker und keine Süßstoffe, und trotzdem etwas, das man gern trinkt. Glycin schmeckt von Natur aus leicht süß.</p>
+  <p class="lead reveal">1.401&nbsp;mg des 98,5-prozentigen Rohstoffs ergeben rund 1.380&nbsp;mg Glycin pro Portion. Glycin schmeckt von Natur aus leicht süß.</p>
 </section>
 
 <section class="zutat narrow" id="kokosmilchpulver">
@@ -793,37 +814,37 @@
     <div><dt>Funktion</dt><dd>Textur</dd></div>
     <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
   </dl>
-  <p class="lead reveal">Ein Getränk aus Pulver und Wasser wird schnell dünn; ein wenig Kokosmilchpulver soll es cremig machen, ohne dass man Kokos schmeckt. <span class="ph">[Spezifikation prüfen: Trägerstoffe, weitere Bestandteile.]</span></p>
+  <p class="lead reveal">200&nbsp;mg Kokosmilchpulver pro Portion. Es ist für die Textur vorgesehen; wie es sich sensorisch in der fertigen Mischung verhält, zeigt die Musterentwicklung. <span class="ph">[Spezifikation prüfen: Trägerstoffe, weitere Bestandteile.]</span></p>
 </section>
 
 <section class="zutat narrow" id="bourbon-vanille">
   <h2 class="reveal">Bourbon-Vanille</h2>
   <dl class="spec reveal">
-    <div><dt>Was</dt><dd>Vanilla planifolia, Schote</dd></div>
-    <div><dt>Form</dt><dd>gemahlen, 300&nbsp;mg</dd></div>
+    <div><dt>Was</dt><dd>Vanilla planifolia</dd></div>
+    <div><dt>Form</dt><dd>300&nbsp;mg</dd></div>
     <div><dt>Anbau</dt><dd>Bio</dd></div>
-    <div><dt>Herkunft</dt><dd>Madagaskar <span class="ph">[bestätigen]</span></dd></div>
-    <div><dt>Geprüft auf</dt><dd><span class="ph">[Vanillingehalt natürlich, Mikrobiologie — Analyse]</span></dd></div>
+    <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
+    <div><dt>Geprüft auf</dt><dd><span class="ph">[Mikrobiologie — Analyse]</span></dd></div>
   </dl>
-  <p class="lead reveal">Echte Vanille, gemahlen, in Bio-Qualität. Kein zugesetztes Vanillin, kein Aroma — die Schote selbst. Neben dem Safran der zweitteuerste Posten pro Gramm, und der Grund, warum es nach etwas schmeckt und nicht nach Kakao mit Zutaten.</p>
+  <p class="lead reveal">300&nbsp;mg Bourbon-Vanille (Vanilla planifolia) in Bio-Qualität.</p>
 </section>
 
 <section class="zutat narrow" id="salz">
   <h2 class="reveal">Salz</h2>
   <dl class="spec reveal">
     <div><dt>Was</dt><dd>Natriumchlorid</dd></div>
-    <div><dt>Form</dt><dd>51&nbsp;mg (20&nbsp;mg Natrium)</dd></div>
+    <div><dt>Form</dt><dd>51&nbsp;mg Natriumchlorid (50,84&nbsp;mg), davon 20&nbsp;mg Natrium</dd></div>
     <div><dt>Funktion</dt><dd>Geschmack</dd></div>
   </dl>
-  <p class="lead reveal">Eine Prise. Kakao ohne Salz schmeckt flach — das weiß jede Schokoladenmanufaktur. 20 Milligramm Natrium sind weniger als in einer Scheibe Brot.</p>
+  <p class="lead reveal">51&nbsp;mg Natriumchlorid pro Portion, entsprechend 20&nbsp;mg Natrium. Eine kleine Menge für den Geschmack.</p>
 </section>
 
 <section class="fs narrow" id="nicht-drin">
   <h2 class="reveal">Was nicht drin ist</h2>
   <ul>
     <li class="reveal"><b>Melatonin.</b><span>HESPYRA ist kein Schlafprodukt.</span></li>
-    <li class="reveal"><b>Zucker, Süßstoffe.</b><span>Die Süße kommt von Glycin, einer Aminosäure.</span></li>
-    <li class="reveal"><b>Aromen.</b><span>Kakao und Vanille sind echt. Sonst nichts.</span></li>
+    <li class="reveal"><b>Zugesetzter Zucker, Süßstoffe.</b><span>In der aktuellen Musterrezeptur nicht vorgesehen. Glycin schmeckt selbst leicht süß.</span></li>
+    <li class="reveal"><b>Zugesetzte Aromen.</b><span>In der aktuellen Musterrezeptur nicht vorgesehen.</span></li>
     <li class="reveal"><b>Ein „Blend".</b><span>Jede Menge steht einzeln. Sonst wäre „6&nbsp;g Formel“ eine erstaunlich ungenaue Information.</span></li>
   </ul>
 </section>
@@ -896,7 +917,8 @@
     <div>
       <span class="soft">Abendsprechstunde 18–21 Uhr. Wer abhebt, arbeitet hier.</span><br>
       <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a> · <a href="tel:+491727599218">0172 7599218</a><br>
-      <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#" aria-disabled="true">AGB</a> · <a href="#" aria-disabled="true">Widerruf</a>
+      <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#" aria-disabled="true">AGB</a> · <a href="#" aria-disabled="true">Widerruf</a><br>
+      <!-- TODO: URL Instagram --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA auf Instagram">Instagram</a> · <!-- TODO: URL Facebook --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA auf Facebook">Facebook</a> · <!-- TODO: URL LinkedIn --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA auf LinkedIn">LinkedIn</a>
       <p class="disc">Nahrungs&shy;ergänzungs&shy;mittel sind kein Ersatz für eine ausgewogene, abwechslungsreiche Ernährung und eine gesunde Lebensweise.</p>
     </div>
   </div>

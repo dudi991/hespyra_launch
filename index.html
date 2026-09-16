@@ -675,13 +675,38 @@
   section.wahrheit h2{color:var(--paper)}
   section.wahrheit + section.ritual{margin-top:0}   /* Zubereitung schließt direkt an das Band an */
   @media(max-width:767px){section.wahrheit{min-height:47vh}}   /* 60vh × 55/70 */
-  /* Formel-Kachel (Vanille), nur Desktop: Bild 58vw bündig links, Seitenverhältnis wie bisher (Höhe × 58/50).
+  /* Formel-Kachel (Vanille), nur Desktop: Bild 58vw bündig links, Höhe wie Zubereitung, Ausschnitt per object-fit:cover.
      Text rechts mit festem Abstand wie Text → Bild in der Zubereitung, Spalte 28rem, vertikal mittig. Zubereitung unverändert. */
   @media(min-width:768px){
-    section.geschmack .kacheln{grid-template-columns:58vw 1fr;height:calc(min(80vh,760px) * 1.16);min-height:calc(520px * 1.16)}
+    section.geschmack .kacheln{grid-template-columns:58vw 1fr;height:min(80vh,760px);min-height:520px}   /* Höhe wie Zubereitung */
+    section.geschmack .photo img{object-fit:cover;object-position:48% 100%}   /* Glas und Vanilleschote im Ausschnitt (liegen bei ~33–65 % der Bildbreite), unten bündig */
     section.geschmack .text{padding-left:max(var(--gap), calc(50vw - var(--achse) - var(--block)))}
     section.geschmack .text > *{width:min(100%, 28rem)}
     section.geschmack .text h2,section.geschmack .text .t1,section.geschmack .text .t3{max-width:none}   /* grauer Zusatz so breit wie der Fließtext */
+  }
+  /* Topbar: Desktop volle Seitenbreite, 2.5rem Randabstand links/rechts, 72px hoch, Logo +15 %, Nav-Schrift +1px.
+     Farben, Hintergrund, Sticky unverändert. Mobil nur Seitenabstand = Seitenraster (--gap). */
+  @media(min-width:860px){
+    :root{--bar-h:72px}
+    .bar nav{max-width:none;padding-left:2.5rem;padding-right:2.5rem}
+    .bar .mark .wm{height:21px}
+    .bar nav ul{font-size:16px}
+    .bar nav li .lang{font-size:13px}
+  }
+  @media(max-width:600px){.bar nav{padding-left:var(--gap);padding-right:var(--gap)}}
+  /* Topbar Feinschliff: Ortszeit und EN lesbarer (Mono, --ink-soft = 6,5:1 auf --paper, leiser als die Navigation in --ink).
+     Bestellen als Rahmen-Knopf in Textfarbe, ohne Unterstreichung; Hover invertiert. */
+  .bar .ortszeit{font-size:12.5px;color:var(--ink-soft)}
+  .bar nav li .lang,.bar .menu .lang{font-size:12.5px;color:var(--ink-soft)}
+  @media(max-width:600px){.bar .ortszeit,.bar .menu .lang{font-size:12px}}
+  @media(min-width:860px){
+    .bar nav ul .shop{display:inline-block;border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
+    .bar nav ul .shop::after{display:none}
+    .bar nav ul .shop:hover{background:var(--ink);color:var(--paper)}
+  }
+  @media(max-width:859px){
+    .bar .menu > a:first-child{border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
+    .bar .menu > a:first-child:hover{background:var(--ink);color:var(--paper)}
   }
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
@@ -909,6 +934,10 @@
       <summary>Wo ist der Rabattcode? <span class="plus">+</span></summary>
       <p class="answer">Gibt keinen. Wir haben stattdessen einen Preis.</p>
     </details>
+    <details>
+      <summary>Habt ihr ein Abo? <span class="plus">+</span></summary>
+      <p class="answer">Kein klassisches. Du schreibst uns, wenn der Beutel leer ist, und wir schicken Nachschub. Kein fester Rhythmus, keine Kündigungsfrist.</p>
+    </details>
   </div>
 </section>
 
@@ -972,7 +1001,8 @@
     <div>
       <span class="soft">Abendsprechstunde 18–21 Uhr. Wer abhebt, arbeitet hier.</span><br>
       <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a> · <a href="tel:+491727599218">0172 7599218</a><br>
-      <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#" aria-disabled="true">AGB</a> · <a href="#" aria-disabled="true">Widerruf</a>
+      <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#" aria-disabled="true">AGB</a> · <a href="#" aria-disabled="true">Widerruf</a><br>
+      <!-- TODO: URL Instagram --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA auf Instagram">Instagram</a> · <!-- TODO: URL Facebook --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA auf Facebook">Facebook</a> · <!-- TODO: URL LinkedIn --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA auf LinkedIn">LinkedIn</a>
       <p class="disc">Nahrungs&shy;ergänzungs&shy;mittel sind kein Ersatz für eine ausgewogene, abwechslungsreiche Ernährung und eine gesunde Lebensweise.</p>
     </div>
   </div>

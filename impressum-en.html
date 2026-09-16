@@ -8,18 +8,18 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
-<meta name="description" content="Lucca Brandl, 39, sells bicycles in a shop in Munich’s Au district. One evening, hour by hour.">
+<meta name="description" content="HESPYRA legal notice.">
 <meta property="og:title" content="HESPYRA – For the moment before.">
-<meta property="og:description" content="Lucca Brandl, 39, sells bicycles in a shop in Munich’s Au district. One evening, hour by hour.">
-<meta property="og:type" content="article">
+<meta property="og:description" content="HESPYRA legal notice.">
+<meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="de_DE">
-<meta property="og:image" content="https://hespyra.com/uploads/bruecke.webp">
+<meta property="og:image" content="https://hespyra.com/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<title>Munich · 18:36 – HESPYRA Journal</title>
-<link rel="alternate" hreflang="de" href="artikel-muenchen-1836.html">
-<link rel="alternate" hreflang="en" href="artikel-muenchen-1836-en.html">
-<link rel="alternate" hreflang="x-default" href="artikel-muenchen-1836.html">
+<title>Legal notice – HESPYRA</title>
+<link rel="alternate" hreflang="de" href="impressum.html">
+<link rel="alternate" hreflang="en" href="impressum-en.html">
+<link rel="alternate" hreflang="x-default" href="impressum.html">
 <script>
   document.documentElement.className+=' js';
   (function(){
@@ -491,44 +491,89 @@
     .formel td:last-child{white-space:normal}
   }
 
-  /* ---------- Artikelseite. Zwei Navy-Felder (Kopf und Schlusszeile) sind hier gewollt. ---------- */
-  .akopf{margin-top:0;padding:clamp(56px,7vw,96px) 0 clamp(48px,6vw,80px)}
-  .akopf .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
-    text-transform:uppercase;color:#93a0ba;margin:0 0 20px}
-  .akopf h1{font-family:"Newsreader",serif;font-weight:500;font-size:clamp(40px,6vw,84px);
-    line-height:1.02;letter-spacing:-.025em;max-width:22ch}
-  /* H4 (v0.43): Serien- und Beobachtungs-h1 auf 390 kleiner, damit "München · 18:36" in eine Zeile passt.
-     Steht hier und nicht im Mobil-Block oben, weil .akopf h1 dort später käme und gewinnen würde. */
-  @media(max-width:600px){.akopf h1{font-size:clamp(36px,11vw,48px)}}
-  .akopf .meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.03em;
-    font-variant-numeric:tabular-nums;color:#93a0ba;margin:26px 0 0}
-  .aufmacher{margin:0}
-  .aufmacher .photo{aspect-ratio:2/1}
-  @media(max-width:600px){.aufmacher .photo{aspect-ratio:4/5}}
-  .aufmacher .cap{max-width:var(--col);margin:12px auto 0;padding:0 var(--gap)}
-  /* Fließtext: Spalte 4–9, Lesebreite ~62ch. Keine Hierarchie tiefer als h2. */
-  .artikel{margin-top:var(--raum-eng)}
-  .artikel .text{font-family:"Newsreader",serif;font-size:19.5px;line-height:1.5;letter-spacing:0;
-    max-width:62ch;text-wrap:pretty}
-  @media(min-width:860px){.artikel .text{grid-column:4/10;max-width:none}}
-  .artikel .text p{margin:0 0 1.15em}
-  .artikel .text p:last-child{margin-bottom:0}
-  .artikel .text .lede{font-size:24px;line-height:1.35;letter-spacing:-.01em}
-  .artikel .text h2{font-family:"Newsreader",serif;font-size:clamp(26px,2.8vw,34px);line-height:1.15;
-    letter-spacing:-.015em;margin:1.6em 0 .5em}
-  .artikel figure{margin:clamp(40px,5vw,64px) 0}
-  @media(min-width:860px){.artikel figure.spalte{grid-column:4/10}}
-  .artikel figure .photo{aspect-ratio:3/2}
-  .artikel .ende{margin-top:var(--raum-mit)}
-  @media(min-width:860px){.artikel .ende{grid-column:4/10}}
-  .artikel .zurueck{font-size:15px;letter-spacing:0}
-  .naechste{margin-top:clamp(40px,5vw,60px);display:block;max-width:420px}
-  .naechste .photo{aspect-ratio:3/2}
-  .naechste .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
-    text-transform:uppercase;color:var(--ink-soft);margin:16px 0 8px}
-  .artikel .text .zeit{font-family:"IBM Plex Mono",monospace;font-size:.74em;letter-spacing:.03em;
-    font-variant-numeric:tabular-nums;color:var(--ink-soft);white-space:nowrap}
-  .naechste .ttl{font-family:"Newsreader",serif;font-weight:500;font-size:24px;line-height:1.15;margin:0}
+  /* ---------- Journal-Übersicht: ein Navy-Feld ab der Kopfzeile ---------- */
+  .journal-wrap.oben{margin-top:0;padding-top:clamp(56px,7vw,96px)}
+  .journal-wrap.oben h1{max-width:16ch}
+  .journal .stamp.gross{font-size:12px;margin-top:22px}
+  /* Beiträge: zwei je Reihe wie die Abendorte der Startseite, 3:2, auf 390 gestapelt.
+     Reihenfolge nach Datum, nicht nach Rubrik. Die Rubrik steht im Kicker, sonst nirgends. */
+  .beitraege{display:grid;gap:34px var(--gap);margin-top:clamp(40px,5vw,64px)}
+  @media(max-width:859px){.beitraege{grid-template-columns:1fr}}
+  @media(min-width:860px){
+    .beitraege{align-items:start;row-gap:clamp(48px,5.5vw,72px)}
+    .beitraege > :nth-child(odd){grid-column:1/7}
+    .beitraege > :nth-child(even){grid-column:7/13}
+  }
+  .beitraege .photo{aspect-ratio:3/2}
+  /* Zwei Kachel-Konventionen. Eine Kachel hat nie beides:
+     „100 Menschen. 100 Abende." — Kicker, Titel Ort · Zeit, kein Anriss.
+     „Beobachtungen" — Kicker, Titel als Satz, ein Anriss von genau einem Satz. */
+  .beitraege .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
+    text-transform:uppercase;color:#93a0ba;margin:16px 0 8px}
+  .beitraege .ttl{font-family:"Newsreader",serif;font-weight:500;font-size:clamp(24px,2.6vw,32px);
+    line-height:1.12;letter-spacing:-.01em;margin:0}
+  .beitraege .excerpt{font-size:16px;line-height:1.5;color:#c3cbd9;margin:10px 0 0;max-width:44ch}
+  .beitraege a .ttl{text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:1px;
+    text-underline-offset:.14em;transition:text-decoration-color .3s var(--ease)}
+  .beitraege a:hover .ttl{text-decoration-color:#eef1f6}
+  /* Rubrik Ortszeit: dieselbe Kachel wie „Der Abend ist noch offen" der Startseite. */
+  .ortszeit-rubrik{margin-top:clamp(72px,8vw,116px)}
+  .ortszeit-rubrik > .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
+    text-transform:uppercase;color:#93a0ba;margin:0 0 clamp(24px,3vw,32px)}
+  .ortszeit-raster{display:grid;gap:34px var(--gap)}
+  @media(max-width:859px){.ortszeit-raster{grid-template-columns:1fr}}
+  @media(min-width:860px){
+    .ortszeit-raster{align-items:start;row-gap:clamp(48px,5.5vw,72px)}
+    .ortszeit-raster > :nth-child(odd){grid-column:1/7}
+    .ortszeit-raster > :nth-child(even){grid-column:7/13}
+  }
+  .ortszeit-raster .photo{aspect-ratio:3/2}
+  .ortszeit-eintrag .cap{font-size:13px;margin-top:12px}
+  .ortszeit-eintrag .cap .s{display:block;color:#c3cbd9;margin-top:3px}
+  /* Bis die echten Artikel stehen, zählt kein Klick. */
+  .beitraege a[aria-disabled="true"]{pointer-events:none}
+  /* A3 (v0.46): Rubrik-Kicker sind Links. Hover wie .journal .link, Unterstrich erst beim Hover.
+     Im .naechste-Teaser bleibt der Kicker Text — er liegt schon in einem Link. */
+  .kicker a{position:relative;display:inline-block}
+  .kicker a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;
+    background:transparent;transition:background .3s var(--ease)}
+  .kicker a:hover::after{background:#93a0ba}
+  /* Weil der Kicker ein eigener Link ist, kann die Kachel kein a mehr sein (verschachtelte a
+     sind ungültig, der Parser bricht sie auf). Die Kachel ist ein div mit zwei Links. */
+  .beitraege .karte > a{display:block}
+  .beitraege .karte > a:last-child{margin-top:0}
+  /* Rubrikzeile unter dem Kopf der Übersicht: Navigation, Kicker-Größe, Plex. */
+  .rubriken{font-size:11.5px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;
+    color:#93a0ba;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:0 10px}
+  .rubriken a:hover{color:#eef1f6}
+  /* Rubrikseite: Kicker, Rubrikname, rechts die Anzahl. */
+  .rubrikkopf .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;
+    color:#93a0ba;margin:0}
+  .rubrikkopf .zahl{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.02em;
+    font-variant-numeric:tabular-nums;color:#93a0ba;margin:0}
+  @media(min-width:860px){
+    .rubrikkopf{grid-template-columns:1fr auto;align-items:baseline}
+    .rubrikkopf .kicker{grid-column:1/-1}
+    .rubrikkopf .zahl{justify-self:end}
+  }
+  .ortszeit-raster.drei{margin-top:clamp(40px,5vw,64px)}
+  @media(min-width:860px){
+    .ortszeit-raster.drei{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .ortszeit-raster.drei > :nth-child(odd),.ortszeit-raster.drei > :nth-child(even){grid-column:auto}
+  }
+
+  /* ---------- Rechtsseiten ---------- */
+  .legal-page{padding-top:clamp(56px,7vw,110px)}
+  .legal-page h1{font-size:clamp(34px,4.6vw,56px);line-height:1.06;letter-spacing:-.03em;margin:0 0 14px}
+  .legal-page .stand{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink-soft);margin:0 0 clamp(40px,5vw,64px)}
+  .legal-page h2{font-size:19px;line-height:1.3;letter-spacing:-.01em;font-weight:500;margin:44px 0 12px;padding-top:28px;border-top:1px solid var(--hair)}   /* T35: Hairline als einziger Trenner zwischen den Abschnitten */
+  .legal-page p,.legal-page li{font-size:16px;line-height:1.6;margin:0 0 10px;text-wrap:pretty}
+  .legal-page ul{padding-left:1.2em;margin:0 0 10px}
+  .legal-page a{border-bottom:1px solid var(--hair);transition:border-color .3s var(--ease)}
+  .legal-page a:hover{border-color:var(--akzent)}
+  .legal-page .todo{display:block;border:1px dashed #a8a69d;color:#7a7870;padding:10px 14px;margin:10px 0;font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.5}
+  .legal-page .todo::before{content:"OFFEN · ";color:var(--akzent)}
+  .legal-page .hint{font-size:14px;color:var(--ink-soft);margin-bottom:28px}
   /* T1.2: Reicht auf 390 der Platz für Ort · Zeit nicht, wandert „Bestellen" ins Menü (steht dort in #mainnav).
      „EN ≡" bleibt. Die Ortszeit hat Vorrang. Die Klasse setzt das Script. */
   .bar.ohne-bestellen .menu > a:first-child,.bar.ohne-bestellen .menu > a:first-child + .dot{display:none}
@@ -578,7 +623,7 @@
   <nav>
     <div class="nav-l">
       <a class="mark" href="index-en.html" aria-label="HESPYRA"><svg class="wm" role="img" aria-label="HESPYRA" style="width:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5900 716"><title>HESPYRA</title><path fill="currentColor" d="M602 708L502 708L502 396L100 396L100 708L0 708L0 8L100 8L100 309L502 309L502 8L602 8L602 708ZM1500 708L992 708L992 8L1486 8L1486 95L1092 95L1092 310L1443 310L1443 395L1092 395L1092 621L1500 621L1500 708ZM2046 716Q1966 716 1893 691.5Q1820 667 1778 628L1815 550Q1854 585 1916.5 608Q1979 631 2046 631Q2136 631 2177.5 600Q2219 569 2219 523Q2219 487 2196 465Q2173 443 2135 429.5Q2097 416 2052 406Q2007 396 1961.5 383Q1916 370 1878.5 348.5Q1841 327 1818 291.5Q1795 256 1795 200Q1795 146 1823.5 100.5Q1852 55 1911.5 27.5Q1971 0 2063 0Q2125 0 2184.5 16Q2244 32 2288 62L2255 142Q2210 113 2159.5 99Q2109 85 2063 85Q1974 85 1933.5 117.5Q1893 150 1893 196Q1893 233 1916 255Q1939 277 1977 290Q2015 303 2060 313.5Q2105 324 2150.5 337Q2196 350 2233.5 371Q2271 392 2294 427Q2317 462 2317 517Q2317 570 2288 615.5Q2259 661 2198.5 688.5Q2138 716 2046 716ZM2743 708L2643 708L2643 8L2916 8Q3052 8 3130 73Q3208 138 3208 252Q3208 366 3130 431Q3052 496 2916 496L2743 496L2743 708ZM2743 95L2743 409L2913 409Q3009 409 3058.5 368Q3108 327 3108 252Q3108 177 3058.5 136Q3009 95 2913 95L2743 95ZM3480 8L3584.4 8L3742 276.3L3778 276.3L3935.6 8L4040 8L3805 408L3805 708L3715 708L3715 408ZM4465 708L4365 708L4365 8L4638 8Q4774 8 4852 73Q4930 138 4930 252Q4930 334 4890 390.5Q4850 447 4776 473L4942 708L4833 708L4682 493Q4661 495 4638 495L4465 495L4465 708ZM4465 95L4465 410L4635 410Q4731 410 4780.5 368.5Q4830 327 4830 252Q4830 177 4780.5 136Q4731 95 4635 95L4465 95ZM5269 708L5166 708L5483 8L5582 8L5900 708L5795 708L5718 533L5346 533L5269 708ZM5532 110L5381 453L5683 453L5532 110Z"></path></svg></a>
-      <a class="ortszeit" href="journal-en.html" data-start="bild"><span id="tb-ort">Forchheim</span> <span class="dot">·</span> <span id="tb-zeit">21:13</span><span class="satz"> – <span id="tb-satz">Across the bridge, not one car.</span></span></a>
+      <a class="ortszeit" href="#top"><span id="tb-ort">Geiselwind</span> <span class="dot">·</span> <span id="tb-zeit">17:39</span><span class="satz"> – <span id="tb-satz">Carousel, just before closing.</span></span></a>
     </div>
     <ul id="mainnav">
       <li><a href="#" aria-disabled="true">Product</a></li>
@@ -586,9 +631,9 @@
       <li><a href="index-en.html#proof">What’s in it</a></li>
       <li><a href="index-en.html#faq">Questions</a></li>
       <li><a class="shop" href="index-en.html#produkt">Order</a></li>
-      <li><a class="lang" href="artikel-muenchen-1836.html" hreflang="de" lang="de" data-lang="de" title="Deutsch">DE</a></li>
+      <li><a class="lang" href="impressum.html" hreflang="de" lang="de" data-lang="de" title="Deutsch">DE</a></li>
     </ul>
-    <div class="menu"><a href="index-en.html#produkt">Order</a> <span class="dot">·</span> <a class="lang" href="artikel-muenchen-1836.html" hreflang="de" lang="de" data-lang="de" title="Deutsch">DE</a> <span class="dot dot-menu">·</span> <button type="button" id="menubtn" aria-expanded="false" aria-controls="mainnav">Menu</button></div>
+    <div class="menu"><a href="index-en.html#produkt">Order</a> <span class="dot">·</span> <a class="lang" href="impressum.html" hreflang="de" lang="de" data-lang="de" title="Deutsch">DE</a> <span class="dot dot-menu">·</span> <button type="button" id="menubtn" aria-expanded="false" aria-controls="mainnav">Menu</button></div>
   </nav>
 </div>
 <script>
@@ -610,73 +655,29 @@
   })();
 </script>
 
-<!-- Bildregel (beide Journal-Seiten): Menschen erlaubt, niemand schaut in die Kamera, nichts gestellt.
-     Kein Bild ohne echten Ort in der Bildunterschrift. Die Dedon-Testbilder gehen nicht live.
-     Die Motive hier sind dasselbe Testmaterial wie auf der Startseite. -->
-<div class="journal-wrap akopf">
-  <div class="col">
-    <p class="kicker"><a href="journal-100-menschen-en.html">100 people. 100 evenings.</a> · No. 02</p>
-    <h1>Munich <span class="zeit-teil"><span class="dot">·</span> 18:36</span></h1>
-    <p class="meta">25 August 2026 <span class="ph">· Sample text, invented person</span></p>
-  </div>
-</div>
-
-<figure class="aufmacher full" data-ort="Forchheim" data-zeit="21:13" data-satz="Across the bridge, not one car.">
-  <div class="photo" style="--focus:45% 55%"><img src="uploads/bruecke.webp" alt="Forchheim in the evening, bridge at sunset, empty carriageway" decoding="async" fetchpriority="high"></div>
-  <p class="cap"><span class="t">Forchheim <span class="dot">·</span> 21:13</span><span>Across the bridge, not one car.</span></p>
-</figure>
-
-<article class="artikel col g12">
-  <div class="text">
-    <p class="lede">Lucca Brandl, 39, sells bicycles in a shop in Munich’s Au district. One room, one football club, no plan for today. A Tuesday in October, overcast, dry. He talked us through the evening, hour by hour.</p>
-    <p><span class="zeit">18:31</span> — Last customer. A man who has been wavering between two saddles for forty minutes and buys neither. “He’ll be back Thursday. They’re all back Thursday.”</p>
-    <p><span class="zeit">18:36</span> — Shutter down. The sound, he says, is the moment. “Once that’s down, I’m not the guy who wants to sell you something any more. Then I’m just a guy with a bike.”</p>
-    <p><span class="zeit">18:37</span> — His own bike. An old steel frame, not from the shop. “I sell bikes for four thousand euros all day and ride one worth two hundred. That’s not a statement. That’s just my bike.”</p>
-    <p><span class="zeit">18:40 to 18:58</span> — The way home. Not the shortest one, but along the Isar, six minutes longer. “In summer everyone’s down there. In October it’s just me and the people with dogs. I prefer it in October. You don’t have to pretend it’s beautiful. It’s just outside.”</p>
-    <p><span class="zeit">19:02</span> — Supermarket. Pasta, tinned tomatoes, parmesan, one beer for home. “I could buy something else. I just don’t know what.”</p>
-    <p><span class="zeit">19:20</span> — Home. Thirty-one square metres, one bike on the wall, a second in the hallway, a third in pieces in a box under the table. “That’s not collecting. That’s work that comes home with you.”</p>
-    <p><span class="zeit">19:25 to 19:50</span> — Cooking. Twelve minutes of it on the phone with his sister, subject: her car. “She always calls when I’m cooking. I think she hears the water.”</p>
-    <p><span class="zeit">19:55</span> — Eating. Standing up, at the kitchen counter, phone beside him. He checks what the club has posted. The club has posted nothing good. “Sechzig play Saturday. Sechzig will probably lose Saturday. But that’s Saturday.”</p>
-    <p><span class="zeit">20:30</span> — Pub, five minutes on foot. Some Champions League match is on. He does not know who is playing when he walks in, and watches anyway. “Football is football. You don’t have to be for someone.” Two people at the bar he has known for years and whose surnames he does not know. “Richard and the other Richard.”</p>
-    <p><span class="zeit">22:15</span> — Final whistle. One beer too many or exactly right, depending on your perspective. The Richards stay. He does not. “I have to be at the shop at half nine. That’s my advantage. I’ve got a reason to leave every evening.”</p>
-    <p><span class="zeit">22:40</span> — Home. Twenty minutes of videos about frame building, on the bed, headphones on. “That’s my television. Other people watch crime shows. I watch people brazing steel.”</p>
-    <p><span class="zeit">23:10</span> — Lights out.</p>
-    <p>Was it a good evening?</p>
-    <p>He thinks about it longer than you expect. “Nothing happened. But I decided all of it myself. Isar instead of the main road, pub instead of sofa, leaving instead of staying.” A pause. “I think that’ll do as a definition.”</p>
-  </div>
-  <div class="ende">
-    <p class="zurueck"><a class="link" href="journal-en.html">← To the journal</a></p>
-    <a class="naechste reveal" href="artikel-stadt-nebenan-en.html">
-      <div class="framed"><div class="photo" style="--focus:60% 50%"><img src="uploads/muenchen.webp" alt="Munich, 20:11. Everyone out, nobody in a hurry." decoding="async" loading="lazy"></div></div>
-      <p class="kicker">Observations</p>
-      <p class="ttl">The town next door</p>
-    </a>
-  </div>
-</article>
-
-<div class="journal-wrap">
-<section class="journal col">
-  <div class="schluss">
-    <p class="schluss-zeit"><span class="sc-zeitteil">It’s <span id="sc-zeit">21<span class="dp">:</span>40</span>.</span> <span id="sc-satz">The evening is still open.</span></p>
-  </div>
-</section>
-</div>
-
-<!-- 9 NEWSLETTER -->
-<section class="nl narrow">
-  <div class="kopf">
-  <h2>From Forchheim. About once a month. Less often if nothing has happened.</h2>
-  </div>
-  <div class="daten">
-  <p class="lead">The subject line is a time of day.</p>
-  <form id="nlform" novalidate>
-    <input type="email" name="email" autocomplete="email" placeholder="Email" aria-label="Email">
-    <button type="submit">Sign up <span class="arw">→</span></button>
-  </form>
-  <p class="lead" id="nl-done" style="margin-top:28px" hidden>Thanks. The first one comes when something has happened.</p>
-  <p class="fine">No discount for signing up. Unsubscribe anytime.</p>
-  </div>
-</section>
+<main id="top" class="legal-page narrow">
+<h1>Legal notice</h1>
+<p class="stand">Information pursuant to Section 5 DDG</p>
+<p class="hint">This is a translation for your convenience. The German version (<a href="impressum.html">Impressum</a>) is legally binding.</p>
+<h2>Provider</h2>
+<p>HESPYRA<br>Dominik Schwab<br>Sole proprietorship</p>
+<h2>Address</h2>
+<p>Wegäcker 11<br>91301 Forchheim<br>Germany</p>
+<h2>Contact</h2>
+<p>Email: <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a><br>Telephone: <a href="tel:+491727599218">+49 172 7599218</a> (evening line, 18–21)</p>
+<span class="todo">Check email address and number against the final details.</span>
+<h2>VAT ID</h2>
+<p>VAT identification number pursuant to Section 27a of the German VAT Act:<br>DE463241287</p>
+<h2>Commercial register</h2>
+<p>The business is not entered in the commercial register.</p>
+<h2>Responsible for content pursuant to Section 18(2) MStV</h2>
+<p>Dominik Schwab<br>Wegäcker 11<br>91301 Forchheim<br>Germany</p>
+<h2>Consumer dispute resolution</h2>
+<p>We are neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board.</p>
+<h2>To add before launch</h2>
+<span class="todo">Food business operator / person responsible under the FIC Regulation — usually identical to the above, but name explicitly.</span>
+<span class="todo">If the manufacturer is to be named: contract manufacturer, Austria — ask the lawyer whether this is required.</span>
+</main>
 
 <footer>
   <div class="col">
@@ -805,9 +806,9 @@
   })();
 </script>
 
-<!-- QA v0.50 — EN auf DE-Stand (München · 18:36)
-Section       | DE | EN vorher | EN nachher
-artikel/text  | …„Ich glaub, das reicht mir als Definition.“</p> | Absatz ohne schließendes p-Tag, Zurück-Link lief in den Absatz | schließendes p-Tag ergänzt, Absatzzahl = DE
+<!-- QA v0.50 — EN auf DE-Stand
+Section | DE | EN vorher | EN nachher
+head/description | Ein Magazin über den Abend. Beobachtungen und die Serie 100 Menschen. 100 Abende. | A magazine about the evening. | A magazine about the evening. Observations and the series 100 people. 100 evenings.
 -->
 </body>
 </html>

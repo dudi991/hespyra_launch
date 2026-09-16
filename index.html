@@ -673,6 +673,8 @@
     min-height:55vh;display:flex;flex-direction:column;justify-content:center;padding-block:0;
     padding-inline:max(var(--gap), calc((100% - var(--col)) / 2 + var(--gap)))}
   section.wahrheit h2{color:var(--paper)}
+  /* T24 Test: Statement-Band in Newsreader wie Journal-Titel (.journal .ttl, 500). Größe unverändert. Rückweg: Klasse statement--serif am <section> entfernen. */
+  section.wahrheit.statement--serif h2{font-family:"Newsreader",serif;font-weight:500;line-height:1.06;letter-spacing:0}
   section.wahrheit + section.ritual{margin-top:0}   /* Zubereitung schließt direkt an das Band an */
   @media(max-width:767px){section.wahrheit{min-height:47vh}}   /* 60vh × 55/70 */
   /* Formel-Kachel (Vanille), nur Desktop: Bild 58vw bündig links, Höhe wie Zubereitung, Ausschnitt per object-fit:cover.
@@ -810,7 +812,7 @@
 
 <!-- 1b WAHRHEIT: eigene Section, Satz aus der Abendwelt hierher verschoben (T5) -->
 <!-- Navy = die Marke spricht über den Abend (Wahrheit, Journal, Schlusszeile). Papier = Produkt und Beweis. Kein Navy sonst. -->
-<section class="wahrheit col">
+<section class="wahrheit col statement--serif">
   <!-- rechtlich prüfen vor Livegang. Rückfall: Der Tag ist zu Ende. Im Kopf noch nicht. -->
   <h2>Der Tag ist vorbei.<br>Er weiß es nur noch nicht.</h2>
 </section>

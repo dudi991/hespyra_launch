@@ -604,10 +604,11 @@
   }
   @media(max-width:600px){.bar nav{padding-left:var(--gap);padding-right:var(--gap)}}
   /* Topbar Feinschliff: Ortszeit und EN lesbarer (Mono, --ink-soft = 6,5:1 auf --paper, leiser als die Navigation in --ink).
-     Bestellen als Rahmen-Knopf in Textfarbe, ohne Unterstreichung; Hover invertiert. */
+     T22: Bestellen wieder Textlink mit Unterstreichung. Rahmen-Knopf für den Launch unten auskommentiert. */
   .bar .ortszeit{font-size:12.5px;color:var(--ink-soft)}
   .bar nav li .lang,.bar .menu .lang{font-size:12.5px;color:var(--ink-soft)}
   @media(max-width:600px){.bar .ortszeit,.bar .menu .lang{font-size:12px}}
+  /* LAUNCH: Bestellen als Rahmen-Knopf in Textfarbe, ohne Unterstreichung; Hover invertiert.
   @media(min-width:860px){
     .bar nav ul .shop{display:inline-block;border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
     .bar nav ul .shop::after{display:none}
@@ -617,6 +618,7 @@
     .bar .menu > a:first-child{border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
     .bar .menu > a:first-child:hover{background:var(--ink);color:var(--paper)}
   }
+  */
 </style>
 </head>
 <body>
@@ -739,7 +741,7 @@
     <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
     <div><dt>Geprüft auf</dt><dd><span class="ph">[Allergene, Schwermetalle — Analyse]</span></dd></div>
   </dl>
-  <p class="lead reveal">Für die Musterentwicklung verwenden wir SunPS®, einen auf 70 Prozent Phosphatidylserin standardisierten Rohstoff aus Sonnenblume. 100&nbsp;mg Rohstoff liefern 70&nbsp;mg Phosphatidylserin.</p>
+  <p class="lead reveal">SunPS®: ein auf 70 Prozent Phosphatidylserin standardisierter Rohstoff aus Sonnenblume. 100&nbsp;mg Rohstoff liefern 70&nbsp;mg Phosphatidylserin.</p>
 </section>
 
 <section class="zutat narrow" id="ashwagandha">
@@ -767,6 +769,7 @@
     <div><dt>Geprüft auf</dt><dd><span class="ph">[Identität, Schwermetalle — Analyse]</span></dd></div>
   </dl>
   <p class="lead reveal">28&nbsp;mg Affron®, standardisiert auf mehr als 3,5 Prozent Lepticrosalides®. Das entspricht rund 0,98&nbsp;mg pro Portion.</p>
+  <p class="lead reveal">Der teuerste Posten der Formel, mit Abstand. Er ist trotzdem drin.</p>
 </section>
 
 <section class="zutat narrow" id="reishi">
@@ -803,7 +806,8 @@
     <div><dt>Funktion</dt><dd>Süße</dd></div>
     <div><dt>Herkunft</dt><dd><span class="ph">[Spezifikation]</span></dd></div>
   </dl>
-  <p class="lead reveal">1.401&nbsp;mg des 98,5-prozentigen Rohstoffs ergeben rund 1.380&nbsp;mg Glycin pro Portion. Glycin schmeckt von Natur aus leicht süß.</p>
+  <p class="lead reveal">1.401&nbsp;mg des 98,5-prozentigen Rohstoffs ergeben rund 1.380&nbsp;mg Glycin pro Portion.</p>
+  <p class="lead reveal">Wir wollten keinen Zucker und keine Süßstoffe — Glycin schmeckt von Natur aus leicht süß.</p>
 </section>
 
 <section class="zutat narrow" id="kokosmilchpulver">
@@ -833,10 +837,11 @@
   <h2 class="reveal">Salz</h2>
   <dl class="spec reveal">
     <div><dt>Was</dt><dd>Natriumchlorid</dd></div>
-    <div><dt>Form</dt><dd>51&nbsp;mg Natriumchlorid (50,84&nbsp;mg), davon 20&nbsp;mg Natrium</dd></div>
+    <div><dt>Form</dt><dd>51&nbsp;mg Salz, davon 20&nbsp;mg Natrium.</dd></div>
     <div><dt>Funktion</dt><dd>Geschmack</dd></div>
   </dl>
   <p class="lead reveal">51&nbsp;mg Natriumchlorid pro Portion, entsprechend 20&nbsp;mg Natrium. Eine kleine Menge für den Geschmack.</p>
+  <p class="lead reveal">Kakao ohne Salz schmeckt flach.</p>
 </section>
 
 <section class="fs narrow" id="nicht-drin">
@@ -917,8 +922,7 @@
     <div>
       <span class="soft">Abendsprechstunde 18–21 Uhr. Wer abhebt, arbeitet hier.</span><br>
       <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a> · <a href="tel:+491727599218">0172 7599218</a><br>
-      <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#" aria-disabled="true">AGB</a> · <a href="#" aria-disabled="true">Widerruf</a><br>
-      <!-- TODO: URL Instagram --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA auf Instagram">Instagram</a> · <!-- TODO: URL Facebook --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA auf Facebook">Facebook</a> · <!-- TODO: URL LinkedIn --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA auf LinkedIn">LinkedIn</a>
+      <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#" aria-disabled="true">AGB</a> · <a href="#" aria-disabled="true">Widerruf</a>
       <p class="disc">Nahrungs&shy;ergänzungs&shy;mittel sind kein Ersatz für eine ausgewogene, abwechslungsreiche Ernährung und eine gesunde Lebensweise.</p>
     </div>
   </div>

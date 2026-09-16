@@ -604,10 +604,11 @@
   }
   @media(max-width:600px){.bar nav{padding-left:var(--gap);padding-right:var(--gap)}}
   /* Topbar Feinschliff: Ortszeit und EN lesbarer (Mono, --ink-soft = 6,5:1 auf --paper, leiser als die Navigation in --ink).
-     Bestellen als Rahmen-Knopf in Textfarbe, ohne Unterstreichung; Hover invertiert. */
+     T22: Bestellen wieder Textlink mit Unterstreichung. Rahmen-Knopf für den Launch unten auskommentiert. */
   .bar .ortszeit{font-size:12.5px;color:var(--ink-soft)}
   .bar nav li .lang,.bar .menu .lang{font-size:12.5px;color:var(--ink-soft)}
   @media(max-width:600px){.bar .ortszeit,.bar .menu .lang{font-size:12px}}
+  /* LAUNCH: Bestellen als Rahmen-Knopf in Textfarbe, ohne Unterstreichung; Hover invertiert.
   @media(min-width:860px){
     .bar nav ul .shop{display:inline-block;border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
     .bar nav ul .shop::after{display:none}
@@ -617,6 +618,7 @@
     .bar .menu > a:first-child{border:1px solid var(--ink);padding:.4rem .9rem;transition:background-color .25s var(--ease),color .25s var(--ease)}
     .bar .menu > a:first-child:hover{background:var(--ink);color:var(--paper)}
   }
+  */
 </style>
 </head>
 <body>
@@ -688,16 +690,16 @@
     <thead class="vh"><tr><th scope="col">Ingredient</th><th scope="col">Form</th><th scope="col">Amount</th></tr></thead>
     <tr><td><a href="#magnesium">Magnesium</a><span class="form">bisglycinate</span></td><td>bisglycinate</td><td>78&nbsp;mg elemental</td></tr>
     <tr><td><a href="#magnesium">Magnesium</a><span class="form">taurate</span></td><td>taurate</td><td>72&nbsp;mg elemental</td></tr>
-    <tr><td><a href="#l-theanin">L-Theanine</a><span class="form">from green tea extract</span></td><td>from green tea extract</td><td>100&nbsp;mg</td></tr>
-    <tr><td><a href="#phosphatidylserin">Phosphatidyl&shy;serine</a><span class="form">SunPS®, from sunflower</span></td><td>SunPS®, from sunflower</td><td>70&nbsp;mg</td></tr>
+    <tr><td><a href="#l-theanin">L-Theanine</a><span class="form">from 167&nbsp;mg green tea extract, 60&nbsp;%</span></td><td>from 167&nbsp;mg green tea extract, 60&nbsp;%</td><td>100&nbsp;mg</td></tr>
+    <tr><td><a href="#phosphatidylserin">Phosphatidyl&shy;serine</a><span class="form">SunPS®, 70&nbsp;%, from sunflower</span></td><td>SunPS®, 70&nbsp;%, from sunflower</td><td>70&nbsp;mg</td></tr>
     <tr><td><a href="#ashwagandha">Ashwagandha</a><span class="form">KSM-66®, organic, root extract</span></td><td>KSM-66®, organic, root extract</td><td>300&nbsp;mg</td></tr>
     <tr><td><a href="#safran">Saffron</a><span class="form">Affron®, extract</span></td><td>Affron®, extract</td><td>28&nbsp;mg</td></tr>
     <tr><td><a href="#reishi">Reishi</a><span class="form">fruiting body extract</span></td><td>fruiting body extract</td><td>1.000&nbsp;mg</td></tr>
     <tr><td><a href="#kakao">Cocoa</a><span class="form">alkalised</span></td><td>alkalised</td><td>1.000&nbsp;mg</td></tr>
-    <tr><td><a href="#glycin">Glycine</a><span class="form">amino acid</span></td><td>amino acid</td><td>1.400&nbsp;mg</td></tr>
+    <tr><td><a href="#glycin">Glycine</a><span class="form">amino acid</span></td><td>amino acid</td><td>1.380&nbsp;mg</td></tr>
     <tr><td><a href="#kokosmilchpulver">Coconut milk powder</a></td><td></td><td>200&nbsp;mg</td></tr>
-    <tr><td><a href="#bourbon-vanille">Bourbon vanilla</a><span class="form">organic, ground</span></td><td>organic, ground</td><td>300&nbsp;mg</td></tr>
-    <tr><td><a href="#salz">Salt</a></td><td></td><td>50&nbsp;mg</td></tr>
+    <tr><td><a href="#bourbon-vanille">Bourbon vanilla</a><span class="form">organic</span></td><td>organic</td><td>300&nbsp;mg</td></tr>
+    <tr><td><a href="#salz">Salt</a></td><td></td><td>51&nbsp;mg (20&nbsp;mg sodium)</td></tr>
   </table>
 </section>
 
@@ -705,13 +707,12 @@
   <h2 class="reveal">Magnesium</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>magnesium, two organic compounds</dd></div>
-    <div><dt>Form</dt><dd>bisglycinate 553&nbsp;mg (14.1&nbsp;% Mg) + taurate 900&nbsp;mg (8&nbsp;% Mg)</dd></div>
+    <div><dt>Form</dt><dd>553&nbsp;mg bisglycinate + 900&nbsp;mg taurate</dd></div>
     <div><dt>Of which magnesium</dt><dd>150&nbsp;mg elemental (40&nbsp;% NRV)</dd></div>
-    <div><dt>Solubility</dt><dd>fully water-soluble</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[heavy metals, microbiology — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">Two organic compounds — magnesium bound to the amino acid glycine and to taurine. Both dissolve in water and taste neutral. The choice of forms is Christian’s; together they come to 40 per cent of the daily reference value.</p>
+  <p class="lead reveal">553&nbsp;mg magnesium bisglycinate and 900&nbsp;mg magnesium taurate. Together 150&nbsp;mg elemental magnesium, 40 per cent of the daily reference value.</p>
   <p class="lead reveal">Magnesium contributes to normal functioning of the nervous system and to normal psychological function.</p>
 </section>
 
@@ -722,36 +723,35 @@
     <div><dt>Form</dt><dd>green tea extract, 167&nbsp;mg</dd></div>
     <div><dt>Standardised</dt><dd>60&nbsp;% L-theanine</dd></div>
     <div><dt>Of which L-theanine</dt><dd>100&nbsp;mg</dd></div>
-    <div><dt>Plant part</dt><dd>leaf (Camellia sinensis)</dd></div>
-    <div><dt>Origin</dt><dd><span class="ph">[region — specification]</span></dd></div>
+    <div><dt>Plant part</dt><dd><span class="ph">[specification]</span></dd></div>
+    <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[residual caffeine, heavy metals, pesticides — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">From the plant it occurs in anyway. The extract is standardised to 60 percent L-theanine.</p>
+  <p class="lead reveal">167&nbsp;mg green tea extract, standardised to 60 percent L-theanine. That gives 100&nbsp;mg L-theanine per serving.</p>
 </section>
 
 <section class="zutat narrow" id="phosphatidylserin">
   <h2 class="reveal">Phosphatidyl&shy;serine</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>phosphatidylserine, phospholipid</dd></div>
-    <div><dt>Form</dt><dd>extract from sunflower lecithin, 100&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>SunPS®, 100&nbsp;mg</dd></div>
     <div><dt>Standardised</dt><dd>70&nbsp;% phosphatidylserine</dd></div>
     <div><dt>Of which PS</dt><dd>70&nbsp;mg phosphatidylserine</dd></div>
-    <div><dt>Source</dt><dd>sunflower lecithin, soy-free</dd></div>
-    <div><dt>Origin</dt><dd>China</dd></div>
+    <div><dt>Source</dt><dd>sunflower</dd></div>
+    <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[allergens, heavy metals — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">The common alternative is based on soy. We chose sunflower, without a maltodextrin carrier. We put the branded raw material next to it: the difference in specification was small, the difference in price was not. The raw material contains 70 per cent phosphatidylserine — which is why we state 70&nbsp;mg and not the 100&nbsp;mg of powder used to get there.</p>
-  <!-- Intern: SunPS® oder markenfreier Rohstoff gleicher Spezifikation — offen. Bei SunPS „Form: SunPS®" ergänzen. -->
+  <p class="lead reveal">SunPS®: a raw material from sunflower, standardised to 70 per cent phosphatidylserine. 100&nbsp;mg of raw material provide 70&nbsp;mg phosphatidylserine.</p>
 </section>
 
 <section class="zutat narrow" id="ashwagandha">
   <h2 class="reveal">Ashwagandha</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Withania somnifera, root</dd></div>
-    <div><dt>Form</dt><dd>KSM-66®, extract, 300&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>KSM-66®, organic, root extract, 300&nbsp;mg</dd></div>
     <div><dt>Standardised</dt><dd>5&nbsp;% withanolides (15&nbsp;mg)</dd></div>
     <div><dt>Plant part</dt><dd>root only</dd></div>
-    <div><dt>Cultivation</dt><dd>organic, India</dd></div>
+    <div><dt>Cultivation</dt><dd>organic</dd></div>
     <div><dt>Extraction</dt><dd><span class="ph">[process — specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[heavy metals, pesticides, microbiology — analysis]</span></dd></div>
   </dl>
@@ -763,50 +763,51 @@
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Crocus sativus, stigmas</dd></div>
     <div><dt>Form</dt><dd>Affron®, extract, 28&nbsp;mg</dd></div>
-    <div><dt>Standardised</dt><dd>&gt;&nbsp;3.5&nbsp;% Lepticrosalide®</dd></div>
-    <div><dt>Origin</dt><dd>Spain</dd></div>
+    <div><dt>Standardised</dt><dd>&gt;&nbsp;3.5&nbsp;% Lepticrosalides® (approx. 0.98&nbsp;mg)</dd></div>
+    <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Extraction</dt><dd><span class="ph">[process — specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[identity, heavy metals — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">The most expensive item in the formula, by a wide margin. We noticed when we bought it. It is in there anyway.</p>
-  <p class="lead reveal">Affron is standardised. So 28&nbsp;mg of extract does not mean something different in every batch.</p>
+  <p class="lead reveal">28&nbsp;mg Affron®, standardised to more than 3.5 per cent Lepticrosalides®. That is around 0.98&nbsp;mg per serving.</p>
+  <p class="lead reveal">The most expensive item in the formula, by a wide margin. It is in there anyway.</p>
 </section>
 
 <section class="zutat narrow" id="reishi">
   <h2 class="reveal">Reishi</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Ganoderma lucidum, fruiting body</dd></div>
-    <div><dt>Form</dt><dd>extract, 1,000&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>fruiting body extract, 1,000&nbsp;mg</dd></div>
     <div><dt>Standardised</dt><dd>30&nbsp;% polysaccharides (300&nbsp;mg)</dd></div>
     <div><dt>Plant part</dt><dd>fruiting body, no mycelium</dd></div>
     <div><dt>Extraction</dt><dd><span class="ph">[water / water-ethanol — specification]</span></dd></div>
     <div><dt>Cultivation</dt><dd><span class="ph">[region, organic — specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[heavy metals, pesticides, microbiology — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">One gram of fruiting body extract. Noticeable in the taste — earthy, slightly bitter — and it works with the cocoa.</p>
+  <p class="lead reveal">One gram of fruiting body extract per serving, standardised to 30 per cent polysaccharides — equivalent to 300&nbsp;mg.</p>
 </section>
 
 <section class="zutat narrow" id="kakao">
   <h2 class="reveal">Cocoa</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Theobroma cacao, cocoa powder</dd></div>
-    <div><dt>Form</dt><dd>alkalised, 10–12&nbsp;% fat, 1,000&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>alkalised, 1,000&nbsp;mg</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[country — specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[cadmium, microbiology — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">Alkalised cocoa, because it dissolves in water and does not settle. One gram per serving is the starting point.</p>
+  <p class="lead reveal">One gram of alkalised cocoa powder per serving. That is the starting point for colour and taste in sample development.</p>
 </section>
 
 <section class="zutat narrow" id="glycin">
   <h2 class="reveal">Glycine</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>glycine, amino acid</dd></div>
-    <div><dt>Form</dt><dd>glycine 98.5&nbsp;%, 1,401&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>1,401&nbsp;mg raw material, 98.5&nbsp;%</dd></div>
     <div><dt>Of which glycine</dt><dd>1,380&nbsp;mg</dd></div>
     <div><dt>Function</dt><dd>sweetness</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
   </dl>
-  <p class="lead reveal">We did not want sugar and we did not want sweeteners, and we still wanted something you enjoy drinking. Glycine tastes naturally a little sweet.</p>
+  <p class="lead reveal">1,401&nbsp;mg of the 98.5 per cent raw material give around 1,380&nbsp;mg glycine per serving.</p>
+  <p class="lead reveal">We did not want sugar or sweeteners — glycine tastes naturally a little sweet.</p>
 </section>
 
 <section class="zutat narrow" id="kokosmilchpulver">
@@ -817,37 +818,38 @@
     <div><dt>Function</dt><dd>texture</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
   </dl>
-  <p class="lead reveal">A drink made of powder and water goes thin fast; a little coconut milk powder is meant to make it creamy without tasting of coconut. <span class="ph">[check specification: carriers, further components.]</span></p>
+  <p class="lead reveal">200&nbsp;mg coconut milk powder per serving. It is intended for texture; how it behaves sensorially in the finished mix will show in sample development. <span class="ph">[check specification: carriers, further components.]</span></p>
 </section>
 
 <section class="zutat narrow" id="bourbon-vanille">
   <h2 class="reveal">Bourbon vanilla</h2>
   <dl class="spec reveal">
-    <div><dt>What</dt><dd>Vanilla planifolia, pod</dd></div>
-    <div><dt>Form</dt><dd>ground, 300&nbsp;mg</dd></div>
+    <div><dt>What</dt><dd>Vanilla planifolia</dd></div>
+    <div><dt>Form</dt><dd>300&nbsp;mg</dd></div>
     <div><dt>Cultivation</dt><dd>organic</dd></div>
-    <div><dt>Origin</dt><dd>Madagascar <span class="ph">[confirm]</span></dd></div>
-    <div><dt>Tested for</dt><dd><span class="ph">[natural vanillin content, microbiology — analysis]</span></dd></div>
+    <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
+    <div><dt>Tested for</dt><dd><span class="ph">[microbiology — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">Real vanilla, ground, organic. No added vanillin, no flavouring — the pod itself. After the saffron, the second most expensive item per gram, and the reason it tastes of something rather than of cocoa with ingredients in it.</p>
+  <p class="lead reveal">300&nbsp;mg Bourbon vanilla (Vanilla planifolia), organic.</p>
 </section>
 
 <section class="zutat narrow" id="salz">
   <h2 class="reveal">Salt</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>sodium chloride</dd></div>
-    <div><dt>Form</dt><dd>51&nbsp;mg (20&nbsp;mg sodium)</dd></div>
+    <div><dt>Form</dt><dd>51&nbsp;mg salt, of which 20&nbsp;mg sodium.</dd></div>
     <div><dt>Function</dt><dd>taste</dd></div>
   </dl>
-  <p class="lead reveal">A pinch. Cocoa without salt tastes flat — every chocolate maker knows this. 20 milligrams of sodium is less than in a slice of bread.</p>
+  <p class="lead reveal">51&nbsp;mg sodium chloride per serving, equivalent to 20&nbsp;mg sodium. A small amount for taste.</p>
+  <p class="lead reveal">Cocoa without salt tastes flat.</p>
 </section>
 
 <section class="fs narrow" id="nicht-drin">
   <h2 class="reveal">What’s not in it</h2>
   <ul>
     <li class="reveal"><b>Melatonin.</b><span>HESPYRA is not a sleep product.</span></li>
-    <li class="reveal"><b>Sugar, sweeteners.</b><span>The sweetness comes from glycine, an amino acid.</span></li>
-    <li class="reveal"><b>Flavourings.</b><span>The cocoa and the vanilla are real. Nothing else is added.</span></li>
+    <li class="reveal"><b>Added sugar, sweeteners.</b><span>Not planned in the current sample formula. Glycine itself tastes slightly sweet.</span></li>
+    <li class="reveal"><b>Added flavourings.</b><span>Not planned in the current sample formula.</span></li>
     <li class="reveal"><b>A “blend”.</b><span>Every amount is listed on its own. Otherwise “6&nbsp;g formula” would be a remarkably imprecise piece of information.</span></li>
   </ul>
 </section>
@@ -920,8 +922,7 @@
     <div>
       <span class="soft">The evening line, 18–21. Whoever picks up works here.</span><br>
       <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a> · <a href="tel:+491727599218">+49 172 7599218</a><br>
-      <a href="impressum.html" hreflang="de" lang="de">Legal notice</a> · <a href="datenschutz-en.html">Privacy</a> · <a href="#" aria-disabled="true">Terms</a> · <a href="#" aria-disabled="true">Withdrawal</a><br>
-      <!-- TODO: URL Instagram --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA on Instagram">Instagram</a> · <!-- TODO: URL Facebook --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA on Facebook">Facebook</a> · <!-- TODO: URL LinkedIn --><a href="#" target="_blank" rel="noopener" aria-label="HESPYRA on LinkedIn">LinkedIn</a>
+      <a href="impressum.html" hreflang="de" lang="de">Legal notice</a> · <a href="datenschutz-en.html">Privacy</a> · <a href="#" aria-disabled="true">Terms</a> · <a href="#" aria-disabled="true">Withdrawal</a>
       <p class="disc">Food supplements are no substitute for a balanced, varied diet and a healthy lifestyle.</p>
     </div>
   </div>
@@ -1053,6 +1054,38 @@ fs-head lead     | Elf Zutaten, sechs Gramm pro Portion. Bei jeder steht… | �
 #kakao           | …Ein Gramm pro Portion ist der Ausgangspunkt. | …starting point. Whether that is enough for colour, taste and texture… | …One gram per serving is the starting point.
 #glycin          | …Glycin schmeckt von Natur aus leicht süß.    | …a little sweet. 1.4 grams is the attempt… If not, it will say so here. | …Glycine tastes naturally a little sweet.
 #formuliert      | (Absatz in DE nicht vorhanden)                | We also asked him a great many questions. He answered all of them. Including the ones we had already asked. | (entfernt)
+-->
+
+<!-- QA T22 — EN auf DE-Stand (was-drin-ist, Musterrezeptur 6 g)
+Section          | Stelle              | EN vorher (gekürzt)                                         | EN nachher
+Tabelle          | L-Theanine Form     | from green tea extract                                      | from 167 mg green tea extract, 60 %
+Tabelle          | PS Form             | SunPS®, from sunflower                                      | SunPS®, 70 %, from sunflower
+Tabelle          | Glycine Menge       | 1.400 mg                                                    | 1.380 mg (Tausendertrennzeichen wie die übrigen Tabellenzeilen)
+Tabelle          | Vanilla Form        | organic, ground                                             | organic
+Tabelle          | Salt Menge          | 50 mg                                                       | 51 mg (20 mg sodium)
+#magnesium       | Form                | bisglycinate 553 mg (14.1 % Mg) + taurate 900 mg (8 % Mg)   | 553 mg bisglycinate + 900 mg taurate
+#magnesium       | Solubility          | fully water-soluble                                         | (Zeile entfernt)
+#magnesium       | Text 1              | Two organic compounds … taste neutral. The choice of forms… | 553 mg magnesium bisglycinate and 900 mg magnesium taurate. Together 150 mg elemental magnesium, 40 per cent of the daily reference value.
+#magnesium       | Text 2 (Claim)      | unverändert                                                 | unverändert
+#l-theanin       | Plant part / Origin | leaf (Camellia sinensis) / [region — specification]         | [specification] / [specification]
+#l-theanin       | Text                | From the plant it occurs in anyway. …                       | 167 mg green tea extract, standardised to 60 percent L-theanine. That gives 100 mg L-theanine per serving.
+#phosphatidylserin | Form / Source / Origin | extract from sunflower lecithin / sunflower lecithin, soy-free / China | SunPS®, 100 mg / sunflower / [specification]
+#phosphatidylserin | Text + Kommentar   | soy, maltodextrin carrier, branded raw material, price; interner Kommentar | SunPS®: a raw material from sunflower, standardised to 70 per cent phosphatidylserine. 100 mg of raw material provide 70 mg phosphatidylserine. (Kommentar entfernt)
+#ashwagandha     | Form / Cultivation  | KSM-66®, extract / organic, India                           | KSM-66®, organic, root extract / organic
+#safran          | Standardised        | > 3.5 % Lepticrosalide®                                     | > 3.5 % Lepticrosalides® (approx. 0.98 mg)
+#safran          | Origin              | Spain                                                       | [specification]
+#safran          | Text                | Most expensive … We noticed when we bought it. … / Affron is standardised. … | 28 mg Affron®, standardised to more than 3.5 per cent Lepticrosalides®. That is around 0.98 mg per serving. / The most expensive item in the formula, by a wide margin. It is in there anyway.
+#reishi          | Form / Text         | extract / earthy, slightly bitter …                         | fruiting body extract / One gram of fruiting body extract per serving, standardised to 30 per cent polysaccharides — equivalent to 300 mg.
+#kakao           | Form / Text         | 10–12 % fat / dissolves in water and does not settle …      | alkalised, 1,000 mg / One gram of alkalised cocoa powder per serving. That is the starting point for colour and taste in sample development.
+#glycin          | Form / Text         | glycine 98.5 %, 1,401 mg / We did not want sugar … enjoy drinking. Glycine tastes naturally a little sweet. | 1,401 mg raw material, 98.5 % / 1,401 mg of the 98.5 per cent raw material give around 1,380 mg glycine per serving. / We did not want sugar or sweeteners — glycine tastes naturally a little sweet.
+#kokosmilchpulver | Text               | goes thin fast … creamy without tasting of coconut          | 200 mg coconut milk powder per serving. It is intended for texture; how it behaves sensorially in the finished mix will show in sample development. (Platzhalter unverändert)
+#bourbon-vanille | What / Form / Origin / Tested | pod / ground / Madagascar [confirm] / natural vanillin content | Vanilla planifolia / 300 mg / [specification] / [microbiology — analysis]
+#bourbon-vanille | Text                | Real vanilla, ground … no added vanillin … second most expensive … | 300 mg Bourbon vanilla (Vanilla planifolia), organic.
+#salz            | Form                | 51 mg (20 mg sodium)                                        | 51 mg salt, of which 20 mg sodium.
+#salz            | Text                | A pinch. Cocoa without salt tastes flat — every chocolate maker … slice of bread. | 51 mg sodium chloride per serving, equivalent to 20 mg sodium. A small amount for taste. / Cocoa without salt tastes flat.
+#nicht-drin      | Zucker              | Sugar, sweeteners. The sweetness comes from glycine …       | Added sugar, sweeteners. Not planned in the current sample formula. Glycine itself tastes slightly sweet.
+#nicht-drin      | Aromen              | Flavourings. The cocoa and the vanilla are real. …          | Added flavourings. Not planned in the current sample formula.
+#nicht-drin      | Melatonin, Blend    | unverändert                                                 | unverändert
 -->
 
 </body>

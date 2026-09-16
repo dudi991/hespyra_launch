@@ -1110,7 +1110,9 @@
   // (data-ort/data-zeit/data-satz am Foto) und wechseln genau einmal auf den Sitzungsmoment, sobald scrollY die
   // Unterkante des Fotos überschreitet. Kein Observer, kein load. Seiten ohne Foto: kein Wechsel.
   (function(){
-    var wrap=document.querySelector('.bar .ortszeit'),bild=document.querySelector('[data-ort][data-zeit]'),m=window.hespyraMoment;
+    var wrap=document.querySelector('.bar .ortszeit');
+    if(!wrap||wrap.getAttribute('data-start')!=='bild')return;   // T31: Bildwechsel nur bei Kopfzeile mit data-start="bild"
+    var bild=document.querySelector('[data-ort][data-zeit]'),m=window.hespyraMoment;
     var o=document.getElementById('tb-ort'),z=document.getElementById('tb-zeit'),s=document.getElementById('tb-satz');
     if(!wrap||!bild||!m||!o||!z||!s)return;
     // T4: Beim Wechsel die Knoten der Ortszeit neu erzeugen statt nur Text zu tauschen. Sonst wertet Chrome das

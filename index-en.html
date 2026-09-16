@@ -662,6 +662,7 @@
   }
   /* Feinschliff Übergänge */
   section.ritual .text h2,section.geschmack .text h2{text-wrap:balance}
+  @media(min-width:768px){section.ritual .text h2{white-space:nowrap;width:auto}}   /* T26: Zubereitung-h2 einzeilig, von der 27rem-Spaltenbreite ausgenommen; mobil Umbruch erlaubt */
   section.ritual .text .lead,section.geschmack .text .t1,section.geschmack .text .t3{text-wrap:pretty}
   section.wahrheit h2{line-height:1.08;letter-spacing:-.025em}   /* Unterlängen frei, „ß“ nicht gequetscht (Desktop + Mobil) */
   @media(max-width:767px){section.ritual .text,section.geschmack .text{padding-left:var(--gap);padding-right:var(--gap)}}   /* mobil Textkante = Hauptachse */

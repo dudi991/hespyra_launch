@@ -557,6 +557,20 @@
   .bar .ortszeit{font-size:12.5px;color:var(--ink-soft)}
   .bar nav li .lang,.bar .menu .lang{font-size:12.5px;color:var(--ink-soft)}
   @media(max-width:600px){.bar .ortszeit,.bar .menu .lang{font-size:12px}}
+  /* T40 Kopfzeile ≤640px: Wortmarke links, Ortszeit (Ort · Zeit, 20px Abstand), rechts nur der Menüstrich.
+     „Bestellen“ und der Sprachlink stehen nur im Menü; der Sprachlink dort als letzter Eintrag mit Hairline darüber,
+     ausgeschrieben aus seinem title („English“ / „Deutsch“). Ziel und T39-Hash unverändert (derselbe Link). */
+  @media(max-width:640px){
+    .nav-l{gap:0}
+    .bar .ortszeit{margin-left:20px}
+    .menu > a,.menu > .dot{display:none}
+    .menu #menubtn{font-size:0;width:17px;height:11px;position:relative;flex:none;align-self:center}
+    .menu #menubtn::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+      background:currentColor;box-shadow:0 5px 0 currentColor,0 10px 0 currentColor}
+    .menu #menubtn::after{content:"";position:absolute;left:-4px;right:-16px;top:-17px;bottom:-17px}
+    .bar.open nav li .lang{margin-left:0;font-family:inherit;font-size:0;letter-spacing:0;color:inherit}
+    .bar.open nav li .lang::before{content:attr(title);font-size:20px;letter-spacing:-.01em}
+  }
   /* T28 Mobil: Schlusszeile bricht nur nach dem Punkt — Zeitteil und Satz je eine Zeile, innen kein Umbruch.
      Journal-Titel und -Anriss (Newsreader): keine automatische Silbentrennung. */
   @media(max-width:767px){

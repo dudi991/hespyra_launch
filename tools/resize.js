@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // HESPYRA — Bilder verkleinern.
 //
-//   node tools/resize.js            verkleinert img/ und uploads/, setzt width/height in allen HTML-Seiten
+//   node tools/resize.js                       verkleinert img/ und uploads/, setzt width/height in allen HTML-Seiten
+//   node tools/resize.js <quelle> <ziel.webp>   verkleinert eine einzelne Datei (auch .jpg/.png, auch außerhalb des Repos)
 //
 // Regel: längste Kante > 2000 px → 2000 px, WebP Qualität 80, Dateiname unverändert.
 // Ausgenommen: img/og-image.png und das Hero-Glas (src aus index.html sowie uploads/hero-glas*.webp).
@@ -59,12 +60,22 @@ function findeChrome() {
   return null;
 }
 
+// ---------- Einzeldatei (quelle ziel.webp) ----------
+const ARGS = process.argv.slice(2);
+const EINZEL = ARGS.length === 2 ? { quelle: path.resolve(ARGS[0]), ziel: ARGS[1] } : null;
+if (EINZEL && !/\.webp$/i.test(EINZEL.ziel)) { console.error("Ziel muss auf .webp enden."); process.exit(2); }
+
 // ---------- Kandidaten ----------
 const start = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 const heroSrc = (start.match(/<div class="glas"><img src="([^"]+)"/) || [])[1];
 const ausgenommen = f => f === "img/og-image.png" || f === heroSrc || /(^|\/)hero-glas[^/]*\.webp$/.test(f);
 const liste = [];
-for (const o of ORDNER) for (const n of fs.readdirSync(path.join(ROOT, o))) {
+if (EINZEL) {
+  const m = masse(EINZEL.quelle);
+  if (!m) { console.error("Maße nicht lesbar: " + EINZEL.quelle); process.exit(2); }
+  liste.push({ rel: EINZEL.ziel, quelle: EINZEL.quelle, alt: m, bytesAlt: fs.statSync(EINZEL.quelle).size });
+}
+if (!EINZEL) for (const o of ORDNER) for (const n of fs.readdirSync(path.join(ROOT, o))) {
   const rel = `${o}/${n}`;
   if (!/\.(webp|png|jpe?g)$/i.test(n) || ausgenommen(rel)) continue;
   const m = masse(path.join(ROOT, rel));
@@ -81,9 +92,12 @@ if (!liste.length) { console.log("Nichts zu verkleinern."); process.exit(0); }
     if (q.url === "/") { res.writeHead(200, { "Content-Type": "text/html" }); return res.end("<!doctype html><title>resize</title>"); }
     const f = path.join(ROOT, decodeURIComponent(q.url.split("?")[0]));
     if (!f.startsWith(ROOT) || !fs.existsSync(f)) { res.writeHead(404); return res.end(); }
-    res.writeHead(200, { "Content-Type": "image/webp", "Cache-Control": "no-store" }); fs.createReadStream(f).pipe(res);
+    const typ = { ".webp": "image/webp", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png" }[path.extname(f).toLowerCase()] || "application/octet-stream";
+    res.writeHead(200, { "Content-Type": typ, "Cache-Control": "no-store" }); fs.createReadStream(f).pipe(res);
   }).listen(0, "127.0.0.1", () => r(s)); });
   const base = `http://127.0.0.1:${srv.address().port}/`;
+  // Einzeldatei: für den Browser kurz in den Repo-Ordner kopieren (der Server liefert nur von dort).
+  if (EINZEL) { liste[0].serviert = ".resize-tmp" + path.extname(EINZEL.quelle); fs.copyFileSync(EINZEL.quelle, path.join(ROOT, liste[0].serviert)); }
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "hespyra-resize-"));
   const port = 9700 + Math.floor(Math.random() * 90);
   const ch = spawn(chrome, ["--headless=new", "--disable-gpu", "--no-first-run", `--remote-debugging-port=${port}`, `--user-data-dir=${tmp}`, "about:blank"], { stdio: "ignore" });
@@ -104,7 +118,7 @@ if (!liste.length) { console.log("Nichts zu verkleinern."); process.exit(0); }
       const s = MAX / Math.max(...b.alt);
       const w = Math.round(b.alt[0] * s), h = Math.round(b.alt[1] * s);
       const r = await cmd("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: `(async()=>{
-        const img=new Image(); img.src=${JSON.stringify(base + b.rel + "?" + Date.now())}; await img.decode();
+        const img=new Image(); img.src=${JSON.stringify(base + (b.serviert || b.rel) + "?" + Date.now())}; await img.decode();
         const c=document.createElement('canvas'); c.width=${w}; c.height=${h};
         const x=c.getContext('2d'); x.imageSmoothingEnabled=true; x.imageSmoothingQuality='high'; x.drawImage(img,0,0,${w},${h});
         const blob=await new Promise(r=>c.toBlob(r,'image/webp',${QUALITAET}));
@@ -113,16 +127,21 @@ if (!liste.length) { console.log("Nichts zu verkleinern."); process.exit(0); }
       })()` }, sid);
       const v = r.result?.result?.value;
       if (!v || v.typ !== "image/webp") { console.error("Fehler bei " + b.rel); continue; }
-      const sicher = path.join(ZIEL, path.dirname(b.rel), path.basename(b.rel));
-      fs.mkdirSync(path.dirname(sicher), { recursive: true });
-      if (!fs.existsSync(sicher)) fs.renameSync(path.join(ROOT, b.rel), sicher);
+      if (!b.serviert) {
+        const sicher = path.join(ZIEL, path.dirname(b.rel), path.basename(b.rel));
+        fs.mkdirSync(path.dirname(sicher), { recursive: true });
+        if (!fs.existsSync(sicher)) fs.renameSync(path.join(ROOT, b.rel), sicher);
+      }
       const neu = Buffer.from(v.data, "base64");
       fs.writeFileSync(path.join(ROOT, b.rel), neu);
       neueMasse[b.rel] = [w, h];
       summeAlt += b.bytesAlt; summeNeu += neu.length;
       console.log(`${b.rel}  ${b.alt.join("×")} → ${w}×${h}  ${(b.bytesAlt / 1048576).toFixed(2)} → ${(neu.length / 1048576).toFixed(2)} MB`);
     }
-  } finally { ws.close(); ch.kill(); srv.close(); }
+  } finally {
+    ws.close(); ch.kill(); srv.close();
+    if (EINZEL && liste[0].serviert) { try { fs.unlinkSync(path.join(ROOT, liste[0].serviert)); } catch {} }
+  }
 
   // ---------- width/height in allen Seiten ----------
   let nTags = 0;

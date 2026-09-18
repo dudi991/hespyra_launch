@@ -561,7 +561,7 @@
   .nl button:hover .arw{transform:translateX(4px)}
   .nl .fine{font-size:13px;color:var(--ink-soft);margin-top:14px}
   /* T27: Fehlerzeile unter dem Feld (Plex 14px, Hairline-Grau), Erfolgsmeldung in Fließtextgröße, ink */
-  .nl .nl-err{font-size:14px;line-height:1.45;color:var(--hair);margin:8px 0 0}
+  .nl .nl-err{font-size:14px;line-height:1.45;color:var(--ink);margin:8px 0 0}   /* T51: ink statt --hair, --hair war auf Papier nicht lesbar */
   .nl .nl-ok{font-size:inherit;color:var(--ink);margin:28px 0 0}
 
   /* ---------- Sprechstunde ---------- */
@@ -1061,7 +1061,7 @@
   </form>
   <p class="nl-err" id="nl-err" role="alert" hidden>Bitte eine gültige E-Mail-Adresse.</p>
   <p class="nl-ok" id="nl-done" role="status" hidden>Eine Mail ist unterwegs. Bestätige sie, dann kommt die nächste zur Uhrzeit.</p>
-  <p class="fine">Kein Rabatt fürs Anmelden. Abmelden jederzeit.</p>
+  <p class="fine">Kein Rabatt fürs Anmelden. Abmelden jederzeit. <a class="link" href="datenschutz.html">Datenschutz</a>.</p>
   </div>
 </section>
 
@@ -1076,7 +1076,7 @@
     <div>
       <span class="soft">Abendsprechstunde 18–21 Uhr. Wer abhebt, arbeitet hier.</span><br>
       <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a> · <a href="tel:+491727599218">0172 7599218</a><br>
-      <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#" aria-disabled="true">AGB</a> · <a href="#" aria-disabled="true">Widerruf</a><br>
+      <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a><br>
       <a href="https://www.instagram.com/hespyra/" target="_blank" rel="noopener" aria-label="HESPYRA auf Instagram">Instagram</a>
       <p class="disc">Nahrungs&shy;ergänzungs&shy;mittel sind kein Ersatz für eine ausgewogene, abwechslungsreiche Ernährung und eine gesunde Lebensweise.</p>
     </div>

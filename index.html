@@ -473,6 +473,8 @@
   /* Newsreader: erlaubt in Journal-Artikeln und in Journal-Kacheln (Übersicht, Startseiten-Teaser).
      Sonst nirgends. */
   .journal .ttl{font-family:"Newsreader",serif;font-weight:500;line-height:1.1;letter-spacing:-.01em}
+  /* T53: Titel zwei Zeilen hoch reservieren, damit die Zeile darunter in allen Kacheln auf gleicher Höhe beginnt. */
+  .journal .big .ttl,.journal .karte .ttl{min-height:2.2em}
   .journal .big .ttl{font-size:clamp(26px,3.4vw,38px)}
   .journal .excerpt{font-family:"Newsreader",serif;font-size:17px;line-height:1.55;
     margin:12px 0 0;max-width:48ch}
@@ -1034,10 +1036,10 @@
       <p class="excerpt">Der Dienstag hat das schlechteste Marketing aller Wochentage.</p></a>
     </div>
     <div class="big c7-12 reveal" data-published="2026-08-25T18:00">
-      <a href="artikel-muenchen-1836.html"><div class="photo"><img src="uploads/bruecke.webp" width="2000" height="1500" alt="Forchheim, 21:13. Über die Brücke, kein Auto." decoding="async" loading="lazy"></div></a>
-      <p class="kicker"><a href="journal-100-menschen.html">100 Menschen. 100 Abende.</a></p>
-      <a href="artikel-muenchen-1836.html"><h3 class="ttl">München <span class="dot">·</span> 18:36</h3>
-      <p class="excerpt">Lucca Brandl, 39, verkauft Fahrräder in einem Laden in der Au.</p></a>
+      <a href="journal-ortszeit.html"><div class="photo"><img src="uploads/bruecke.webp" width="2000" height="1500" alt="Forchheim, 21:13. Über die Brücke, kein Auto." decoding="async" loading="lazy"></div></a>
+      <p class="kicker"><a href="journal-ortszeit.html">Ortszeit</a></p>
+      <a href="journal-ortszeit.html"><h3 class="ttl">Forchheim <span class="dot">·</span> 21:13</h3>
+      <p class="excerpt">Über die Brücke, kein Auto.</p></a>
     </div>
   </div>
   <div class="links"><a class="link" href="journal.html">Ins Journal</a></div>

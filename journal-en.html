@@ -374,8 +374,16 @@
   .journal .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
     text-transform:uppercase;margin:16px 0 8px}
   .journal .ttl{font-family:"Newsreader",serif;font-weight:500;line-height:1.1;letter-spacing:-.01em}
-  /* T53: Titel zwei Zeilen hoch reservieren, damit die Zeile darunter in allen Kacheln auf gleicher Höhe beginnt. */
-  .journal .big .ttl,.journal .karte .ttl{min-height:2.2em}
+  /* T57: Kacheln als Subgrid — Bild, Kicker, Titel und Dachzeile liegen in vier gemeinsamen Zeilen, damit die Dachzeilen
+     benachbarter Kacheln auf gleicher Höhe beginnen. Der Link um Titel und Dachzeile wird display:contents, sonst wären beide
+     ein Rasterfeld. Die Abstände innerhalb der Kachel bleiben die bisherigen Ränder (row-gap:0 im Subgrid). */
+  @supports (grid-template-rows: subgrid){
+    @media(min-width:860px){
+      .journal .big,.beitraege .karte,.beitraege .ortszeit-eintrag{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:0}
+      .journal .big > a:last-child,.beitraege .karte > a:last-child{display:contents}
+    }
+  }
+  .journal .excerpt,.beitraege .excerpt{hyphens:manual}
   .journal .big .ttl{font-size:clamp(26px,3.4vw,38px)}
   .journal .excerpt{font-family:"Newsreader",serif;font-size:17px;line-height:1.55;
     margin:12px 0 0;max-width:48ch}

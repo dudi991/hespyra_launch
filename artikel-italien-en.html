@@ -459,6 +459,9 @@
   .nl button .arw{transition:transform .35s var(--ease)}
   .nl button:hover .arw{transform:translateX(4px)}
   .nl .fine{font-size:13px;color:var(--ink-soft);margin-top:14px}
+  /* T27: Fehlerzeile unter dem Feld (Plex 14px, Hairline-Grau), Erfolgsmeldung in Fließtextgröße, ink */
+  .nl .nl-err{font-size:14px;line-height:1.45;color:var(--ink);margin:8px 0 0}   /* T51: ink statt --hair, --hair war auf Papier nicht lesbar */
+  .nl .nl-ok{font-size:inherit;color:var(--ink);margin:28px 0 0}
 
   /* ---------- Sprechstunde ---------- */
   footer{margin-top:var(--raum-eng);padding:0 0 70px;font-size:14.5px;line-height:1.65}
@@ -693,11 +696,13 @@
   </div>
   <div class="daten">
   <p class="lead">The subject line is a time of day.</p>
-  <form id="nlform" novalidate>
-    <input type="email" name="email" autocomplete="email" placeholder="Email" aria-label="Email">
+  <!-- Rapidmail postet ins unsichtbare iframe; die Seite sieht keine Serverantwort. ‚Erfolg' = Regex im Browser. DOI-Bestätigung kommt per Mail — deshalb sagt die Meldung den zweiten Schritt. -->
+  <form id="nlform" action="https://tf125fca5.emailsys1a.net/238/9119/938578f21b/subscribe/form.html" method="post" target="rm_iframe" novalidate>
+    <input type="email" name="email" autocomplete="email" required placeholder="Email" aria-label="Email" aria-describedby="nl-err">
     <button type="submit">Sign up <span class="arw">→</span></button>
   </form>
-  <p class="lead" id="nl-done" style="margin-top:28px" hidden>Thanks. The first one comes when something has happened.</p>
+  <p class="nl-err" id="nl-err" role="alert" hidden>Please enter a valid email address.</p>
+  <p class="nl-ok" id="nl-done" role="status" hidden>An email is on its way. Confirm it, and the next one arrives at a time of day.</p>
   <p class="fine">No discount for signing up. Unsubscribe anytime. <a class="link" href="datenschutz-en.html">Privacy</a>.</p>
   </div>
 </section>
@@ -761,8 +766,20 @@
   // Bilder einblenden
   (function(){document.querySelectorAll('.photo img').forEach(function(i){function on(){i.classList.add('ld')} if(i.complete&&i.naturalWidth)on();else{i.addEventListener('load',on);i.addEventListener('error',on);}})})();
 
-  // Newsletter: nach Absenden eine Zeile
-  (function(){var f=document.getElementById('nlform');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var i=f.querySelector('input');if(!i.value||!i.checkValidity()){i.focus();return;}f.hidden=true;var fine=document.getElementById('nl-done').nextElementSibling;if(fine)fine.hidden=true;document.getElementById('nl-done').hidden=false;});})();
+  // T27 Newsletter (Rapidmail): Regex prüfen. Ungültig → Absenden verhindern, Fehlerzeile. Gültig → POST ins iframe laufen lassen,
+  // Formularzeile ausblenden, Hinweis auf die Bestätigungsmail zeigen. Die Zeile „Kein Rabatt …“ bleibt stehen.
+  (function(){
+    var f=document.getElementById('nlform');if(!f)return;
+    var i=f.querySelector('input[name="email"]'),err=document.getElementById('nl-err'),ok=document.getElementById('nl-done');
+    var RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    f.addEventListener('submit',function(e){
+      var v=(i.value||'').trim();
+      if(!RE.test(v)){e.preventDefault();err.hidden=false;i.setAttribute('aria-invalid','true');i.focus();return;}
+      i.value=v;err.hidden=true;i.removeAttribute('aria-invalid');
+      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'startseite'});}catch(x){}
+      setTimeout(function(){f.hidden=true;ok.hidden=false;},0);   // nach dem Absenden ausblenden, damit der POST sicher startet
+    });
+  })();
 
   // Warenkorb bis Shop-Start
   (function(){var b=document.getElementById('cartbtn');if(!b)return;b.addEventListener('click',function(){b.textContent=b.getAttribute('data-soon');b.setAttribute('aria-disabled','true');});})();
@@ -856,5 +873,6 @@ artikel/text 2 | In Italien sieht man ihn häufiger auf der Straße. | The Itali
 artikel/text 2 | Man muss dafür nicht nach Italien…              | You do not need to go to Italy for it. You need a street…| You do not have to go to Italy for it…
 artikel/text 2 | Der schwierigste Teil ist wahrscheinlich…       | The hardest part is the turning round.                   | The hardest part is probably not needing a reason for it.
 -->
+<iframe name="rm_iframe" id="rm_iframe" title="rapidmail" style="position:absolute;width:0;height:0;border:0;left:-9999px" aria-hidden="true"></iframe>
 </body>
 </html>

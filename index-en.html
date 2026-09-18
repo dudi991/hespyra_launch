@@ -729,18 +729,6 @@
     .bar.open nav li .lang{margin-left:0;font-family:inherit;font-size:0;letter-spacing:0;color:inherit}
     .bar.open nav li .lang::before{content:attr(title);font-size:20px;letter-spacing:-.01em}
   }
-  /* T44: Bild in der Formel-Section. Bis 1023px steht es unter der Tabelle über die volle Breite,
-     ab 1024px rechts auf den Spalten 7–12, oben bündig mit dem Kicker; Kopf und Tabelle stehen dann links auf 1–5.
-     Fläche in --paper, Motiv freigestellt: contain statt cover, multiply lässt das Weiß im Papierton aufgehen. */
-  .formel .formel-foto{margin:clamp(32px,4vw,48px) 0 0}
-  .formel .formel-foto .photo{background:var(--paper);aspect-ratio:3/2}
-  .formel .formel-foto img{object-fit:contain;object-position:center;mix-blend-mode:multiply}
-  @media(min-width:860px){.formel .formel-foto{grid-column:1/13}}
-  @media(min-width:1024px){
-    .formel .kopf{grid-column:1/6}
-    .formel .daten{grid-column:1/6}
-    .formel .formel-foto{grid-column:7/13;grid-row:1/span 2;align-self:start;margin:0}
-  }
   /* T28.1 Mobil: Hero ohne feste Höhe. Das leere Foto-Feld entfällt, der Textblock steht im Fluss; oben Platz für das Glas
      (Glas-Oberkante bei 22,3 % der Bildhöhe, Unterkante bei 80,2 %: sichtbare Glashöhe .579 × Bildhöhe, plus 24 px über der h1),
      unten Standard-Section-Abstand. Das Navy-Band folgt ohne eigenen Abstand. */
@@ -962,9 +950,6 @@
   <p class="charge"><span class="ph">Batch [no.]</span> <span class="dot">·</span> <span class="ph">Analysis dated [date]</span></p>
   <p class="more"><a class="link" href="was-drin-ist-en.html">The full list →</a></p>
   </div>
-  <figure class="formel-foto reveal">
-    <div class="photo"><img src="img/formel.webp" width="1536" height="1024" alt="Cocoa powder, vanilla pod and spoon on paper." decoding="async" loading="lazy"></div>
-  </figure>
 </section>
 
 <!-- 6 PRODUKT -->

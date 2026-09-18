@@ -736,14 +736,6 @@
   /* T46: Zubereitungs-Kachel ebenso — freigestelltes Glas auf Papier. Kachelgröße und Seite unverändert. */
   section.ritual .photo{background:var(--paper)}
   section.ritual .photo img{object-fit:contain;object-position:center;mix-blend-mode:multiply}
-  /* T48 (≥1024px): Abendwelt-Raster aus dem Seitenraster gelöst — zwei Spalten über die volle Viewportbreite,
-     Fuge --gap waagerecht wie senkrecht, Fotos 4:3 mit cover. Bildunterschriften stehen auf Papier, linksbündig zur Fotokante.
-     h2 und Schlusssatz bleiben auf der Hauptachse. Unter 1024px unverändert. */
-  @media(min-width:1024px){
-    section.welt .grid{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
-      grid-template-columns:repeat(2, calc((100vw - var(--gap)) / 2));column-gap:var(--gap);row-gap:var(--gap)}
-    section.welt .grid > figure:nth-child(n){grid-column:auto}
-  }
   /* T28.1 Mobil: Hero ohne feste Höhe. Das leere Foto-Feld entfällt, der Textblock steht im Fluss; oben Platz für das Glas
      (Glas-Oberkante bei 22,3 % der Bildhöhe, Unterkante bei 80,2 %: sichtbare Glashöhe .579 × Bildhöhe, plus 24 px über der h1),
      unten Standard-Section-Abstand. Das Navy-Band folgt ohne eigenen Abstand. */

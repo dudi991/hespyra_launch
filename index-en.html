@@ -733,6 +733,9 @@
      multiply lässt das Weiß der Datei im Papierton aufgehen. Kachelgröße und Spiegelung unverändert. */
   section.geschmack .photo{background:var(--paper)}
   section.geschmack .photo img{object-fit:contain;object-position:center;mix-blend-mode:multiply}
+  /* T46: Zubereitungs-Kachel ebenso — freigestelltes Glas auf Papier. Kachelgröße und Seite unverändert. */
+  section.ritual .photo{background:var(--paper)}
+  section.ritual .photo img{object-fit:contain;object-position:center;mix-blend-mode:multiply}
   /* T28.1 Mobil: Hero ohne feste Höhe. Das leere Foto-Feld entfällt, der Textblock steht im Fluss; oben Platz für das Glas
      (Glas-Oberkante bei 22,3 % der Bildhöhe, Unterkante bei 80,2 %: sichtbare Glashöhe .579 × Bildhöhe, plus 24 px über der h1),
      unten Standard-Section-Abstand. Das Navy-Band folgt ohne eigenen Abstand. */
@@ -888,7 +891,7 @@
       <p class="lead">Mixed with water, HESPYRA is ready in a minute. Warm or cold. With oat milk it gets a little creamier.</p>
     </div>
     <figure class="ritual-kachel reveal">
-      <div class="photo" style="--focus:50% 55%"><img src="uploads/zubereitung.webp" width="1635" height="962" alt="One spoon. Water. Stir." decoding="async" loading="lazy"></div>
+      <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Full glass of cocoa with spoon on paper." decoding="async" loading="lazy"></div>
       <!-- Bildunterschrift-Slot im Kachelformat (T7.5), vorerst leer: Das Bild ist ein Render und hat keine Uhrzeit.
            Mit dem Foto einsetzen und Werte eintragen:
       <p class="cap" data-ort="" data-zeit=""><span class="t">Ort <span class="dot">·</span> Zeit</span><span>Satz</span></p>

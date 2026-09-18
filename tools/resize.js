@@ -115,7 +115,7 @@ if (!liste.length) { console.log("Nichts zu verkleinern."); process.exit(0); }
     const sid = (await cmd("Target.attachToTarget", { targetId: tgt, flatten: true })).result.sessionId;
     await sleep(500);
     for (const b of liste) {
-      const s = MAX / Math.max(...b.alt);
+      const s = Math.min(1, MAX / Math.max(...b.alt));   // nie hochrechnen
       const w = Math.round(b.alt[0] * s), h = Math.round(b.alt[1] * s);
       const r = await cmd("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: `(async()=>{
         const img=new Image(); img.src=${JSON.stringify(base + (b.serviert || b.rel) + "?" + Date.now())}; await img.decode();

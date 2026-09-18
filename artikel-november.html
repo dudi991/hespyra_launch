@@ -384,6 +384,12 @@
     }
   }
   .journal .excerpt,.beitraege .excerpt{hyphens:manual}
+  /* T58 (≤640px): Sprungliste über den Zutaten aus; FAQ-Hairline → Journal-Band 64px statt --raum-weit. */
+  @media(max-width:640px){
+    .zutaten-index:not(.seite){display:none}
+    .faq{padding-bottom:0}
+    .journal-wrap{margin-top:64px}
+  }
   .journal .big .ttl{font-size:clamp(26px,3.4vw,38px)}
   .journal .excerpt{font-family:"Newsreader",serif;font-size:17px;line-height:1.55;
     margin:12px 0 0;max-width:48ch}

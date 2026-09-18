@@ -426,7 +426,7 @@
   .formel .charge{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.01em;font-variant-numeric:tabular-nums;
     color:var(--ink-soft);margin:16px 0 0;display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}
   .formel .charge .dot{color:var(--ink-soft)}
-  /* T14: Safran-Trenner nur bei Ort · Uhrzeit. Produktdaten (Beutel · 180g, Löffel · …) in ink. */
+  /* T14: Safran-Trenner nur bei Ort · Uhrzeit. Produktdaten (Beutel · 180 g, Löffel · …) in ink. */
   .produkt figure .cap .t .dot{color:var(--ink)}
   .formel .more{margin-top:22px}
 
@@ -483,6 +483,12 @@
     }
   }
   .journal .excerpt,.beitraege .excerpt{hyphens:manual}
+  /* T58 (≤640px): Sprungliste über den Zutaten aus; FAQ-Hairline → Journal-Band 64px statt --raum-weit. */
+  @media(max-width:640px){
+    .zutaten-index:not(.seite){display:none}
+    .faq{padding-bottom:0}
+    .journal-wrap{margin-top:64px}
+  }
   .journal .big .ttl{font-size:clamp(26px,3.4vw,38px)}
   .journal .excerpt{font-family:"Newsreader",serif;font-size:17px;line-height:1.55;
     margin:12px 0 0;max-width:48ch}
@@ -977,11 +983,11 @@
   <p class="label">Order</p>
   <div class="row g12">
     <div class="objekte c1-5">
-      <figure class="beutel reveal"><div class="photo"><img src="img/beutel-frei.webp" width="792" height="1059" alt="The pouch. Black, with the wordmark." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Pouch <span class="dot">·</span> 180g</span></p></figure>
+      <figure class="beutel reveal"><div class="photo"><img src="img/beutel-frei.webp" width="792" height="1059" alt="The pouch. Black, with the wordmark." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Pouch <span class="dot">·</span> 180&nbsp;g</span></p></figure>
     </div>
     <div class="text c7-12">
       <h2>HESPYRA.<br>30&nbsp;evenings.</h2>
-      <p class="lead">Stand-up pouch 180g, one spoon is one serving.</p>
+      <p class="lead">Stand-up pouch 180&nbsp;g, one spoon is one serving.</p>
       <p class="preis">€<span class="ph">[price]</span></p>
       <p class="grundpreis vorlaunch"><span class="ph">[Grundpreis]</span>&nbsp;€&nbsp;/&nbsp;100&nbsp;g</p>
       <button type="button" class="btn solid" id="cartbtn" data-soon="Soon.">Add to cart <span class="arw">→</span></button>

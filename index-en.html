@@ -523,7 +523,9 @@
   .produkt .nb + .nb{margin-top:8px}
   .produkt .preis{font-family:"IBM Plex Mono",monospace;font-size:clamp(28px,3vw,40px);line-height:1;
     font-variant-numeric:tabular-nums;letter-spacing:-.01em;color:var(--ink);margin:clamp(28px,3vw,36px) 0 0}
-  .produkt .preis + .btn{margin-top:24px}
+  /* T43: Grundpreis unter dem Preis — Mono, klein, Farbe wie der Kicker. Platzhalter wie [Preis]; fällt mit der .vorlaunch-Zeile. */
+  .produkt .grundpreis{font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.4;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:var(--ink-soft);margin:8px 0 0}
+  .produkt .preis + .btn,.produkt .grundpreis + .btn{margin-top:24px}
 
   /* ---------- FAQ ---------- */
   .faq h2{max-width:20ch}
@@ -961,6 +963,7 @@
       <h2>HESPYRA.<br>30&nbsp;evenings.</h2>
       <p class="lead">Stand-up pouch 180g, one spoon is one serving.</p>
       <p class="preis">€<span class="ph">[price]</span></p>
+      <p class="grundpreis vorlaunch"><span class="ph">[Grundpreis]</span>&nbsp;€&nbsp;/&nbsp;100&nbsp;g</p>
       <button type="button" class="btn solid" id="cartbtn" data-soon="Soon.">Add to cart <span class="arw">→</span></button>
       <p class="small soft nb">Enough for 30 evenings. Tuesdays count.</p>
       <figure class="loeffel reveal"><div class="photo"><img src="img/scoop-frei.webp" width="1196" height="516" alt="The spoon. Brass, side on." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Spoon <span class="dot">·</span> <span class="ph">[brass, finish tbd]</span></span></p></figure>

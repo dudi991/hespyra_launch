@@ -523,7 +523,9 @@
   .produkt .nb + .nb{margin-top:8px}
   .produkt .preis{font-family:"IBM Plex Mono",monospace;font-size:clamp(28px,3vw,40px);line-height:1;
     font-variant-numeric:tabular-nums;letter-spacing:-.01em;color:var(--ink);margin:clamp(28px,3vw,36px) 0 0}
-  .produkt .preis + .btn{margin-top:24px}
+  /* T43: Grundpreis unter dem Preis — Mono, klein, Farbe wie der Kicker. Platzhalter wie [Preis]; fällt mit der .vorlaunch-Zeile. */
+  .produkt .grundpreis{font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.4;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:var(--ink-soft);margin:8px 0 0}
+  .produkt .preis + .btn,.produkt .grundpreis + .btn{margin-top:24px}
 
   /* ---------- FAQ ---------- */
   .faq h2{max-width:20ch}
@@ -961,6 +963,7 @@
       <h2>HESPYRA.<br>30&nbsp;Abende.</h2>
       <p class="lead">Standbeutel 180g, ein Löffel ist eine Portion.</p>
       <p class="preis"><span class="ph">[Preis]</span>&nbsp;€</p>
+      <p class="grundpreis vorlaunch"><span class="ph">[Grundpreis]</span>&nbsp;€&nbsp;/&nbsp;100&nbsp;g</p>
       <button type="button" class="btn solid" id="cartbtn" data-soon="Bald.">In den Warenkorb <span class="arw">→</span></button>
       <p class="small soft nb">Reicht für 30 Abende. Dienstage zählen mit.</p>
       <figure class="loeffel reveal"><div class="photo"><img src="img/scoop-frei.webp" width="1196" height="516" alt="Der Löffel. Messing, quer." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Löffel <span class="dot">·</span> <span class="ph">[Messing, Ausführung offen]</span></span></p></figure>

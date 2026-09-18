@@ -498,6 +498,12 @@
     .produkt .objekte{row-gap:40px}
     section.wahrheit{padding-block:96px}
   }
+  /* T62 (≤640px): Die freigestellten Kacheln (Zubereitung, Vanille, Beutel, Löffel) nehmen die Höhe ihres Bildes an —
+     kein Seitenverhältnis, kein contain, das <img> steht im Fluss. Abendwelt und Journal bleiben 4:3 mit cover. */
+  @media(max-width:640px){
+    section.ritual .photo,section.geschmack .photo,.produkt figure .photo{aspect-ratio:auto;height:auto}
+    section.ritual .photo img,section.geschmack .photo img,.produkt figure .photo img{position:static;width:100%;height:auto;object-fit:fill}
+  }
   .journal .big .ttl{font-size:clamp(26px,3.4vw,38px)}
   .journal .excerpt{font-family:"Newsreader",serif;font-size:17px;line-height:1.55;
     margin:12px 0 0;max-width:48ch}

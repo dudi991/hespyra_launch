@@ -736,6 +736,9 @@
   /* T46: Zubereitungs-Kachel ebenso — freigestelltes Glas auf Papier. Kachelgröße und Seite unverändert. */
   section.ritual .photo{background:var(--paper)}
   section.ritual .photo img{object-fit:contain;object-position:center;mix-blend-mode:multiply}
+  /* T49: Abendwelt-Fotos 4:3, mittiger Ausschnitt — Desktop wie mobil gleich (die --focus-Werte an den Kacheln greifen nicht mehr). */
+  section.welt .photo{aspect-ratio:4/3}
+  section.welt .photo img{object-fit:cover;object-position:center}
   /* T28.1 Mobil: Hero ohne feste Höhe. Das leere Foto-Feld entfällt, der Textblock steht im Fluss; oben Platz für das Glas
      (Glas-Oberkante bei 22,3 % der Bildhöhe, Unterkante bei 80,2 %: sichtbare Glashöhe .579 × Bildhöhe, plus 24 px über der h1),
      unten Standard-Section-Abstand. Das Navy-Band folgt ohne eigenen Abstand. */

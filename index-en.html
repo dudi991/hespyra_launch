@@ -489,6 +489,15 @@
     .faq{padding-bottom:0}
     .journal-wrap{margin-top:64px}
   }
+  /* T61 (≤640px): Section-Abstände auf 60 % der Desktop-Werte, Bild → Text in Zubereitung, Vanille und Bestellen 40px,
+     Wahrheit-Band mit 96px Innenabstand. */
+  @media(max-width:640px){
+    :root{--raum-eng:calc(.6 * clamp(64px,7vw,96px));--raum-mit:calc(.6 * clamp(96px,11vw,150px));--raum-weit:calc(.6 * clamp(150px,17vw,240px))}
+    section.ritual .text,section.geschmack .text{padding-top:40px}
+    .produkt .row{row-gap:40px}
+    .produkt .objekte{row-gap:40px}
+    section.wahrheit{padding-block:96px}
+  }
   .journal .big .ttl{font-size:clamp(26px,3.4vw,38px)}
   .journal .excerpt{font-family:"Newsreader",serif;font-size:17px;line-height:1.55;
     margin:12px 0 0;max-width:48ch}
@@ -896,7 +905,7 @@
 <!-- Navy + Newsreader = die Marke spricht über den Abend (Wahrheit, Journal). Papier + Plex = Produkt und Beweis. Keine Mischung. -->
 <section class="wahrheit col" id="wahrheit">
   <!-- rechtlich prüfen vor Livegang. Rückfall: The day is done. Not in your head yet. -->
-  <h2>The day is over.<br>It just doesn’t know it yet.</h2>
+  <h2>The day is over.<br>It just doesn’t know&nbsp;it&nbsp;yet.</h2>
 </section>
 
 <!-- 2 ZUBEREITUNG -->

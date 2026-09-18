@@ -827,6 +827,42 @@
     },{passive:true});
   })();
 
+  // T59 Umami: genau sechs Ereignisse. Jeder Aufruf hinter if(window.umami), nichts läuft ohne das Script.
+  (function(){
+    function t(name,daten){try{if(window.umami)umami.track(name,daten);}catch(e){}}
+    var cart=document.getElementById('cartbtn');
+    if(cart)cart.addEventListener('click',function(){t('bestellen_click');});
+    document.querySelectorAll('.faq details').forEach(function(d){
+      d.addEventListener('toggle',function(){
+        if(!d.open)return;
+        var s=d.querySelector('summary'),f=(s?s.textContent:'').replace(/\s+/g,' ').replace(/\s*\+\s*$/,'').trim().slice(0,40);
+        t('faq_open',{frage:f});
+      });
+    });
+    var liste=document.querySelector('.formel .more a');
+    if(liste)liste.addEventListener('click',function(){t('formel_liste');});
+    document.addEventListener('click',function(e){
+      var a=e.target.closest&&e.target.closest('[data-lang]');
+      if(a)t('sprachwechsel',{ziel:a.getAttribute('data-lang')});
+    });
+    // Der Bestellen-Block heißt im Markup #produkt. Einmal pro Sitzung, sobald 30 % sichtbar sind.
+    var b=document.getElementById('produkt');
+    if(b&&window.IntersectionObserver){
+      var flag='hespyra-erreicht-bestellen',gesehen=false;
+      try{gesehen=sessionStorage.getItem(flag)==='1';}catch(e){}
+      if(!gesehen){
+        var io=new IntersectionObserver(function(es){
+          es.forEach(function(x){
+            if(x.intersectionRatio<0.3)return;
+            io.disconnect();try{sessionStorage.setItem(flag,'1');}catch(e){}
+            t('erreicht_bestellen');
+          });
+        },{threshold:0.3});
+        io.observe(b);
+      }
+    }
+  })();
+
   // Bilder einblenden
   (function(){document.querySelectorAll('.photo img').forEach(function(i){function on(){i.classList.add('ld')} if(i.complete&&i.naturalWidth)on();else{i.addEventListener('load',on);i.addEventListener('error',on);}})})();
 
@@ -840,7 +876,7 @@
       var v=(i.value||'').trim();
       if(!RE.test(v)){e.preventDefault();err.hidden=false;i.setAttribute('aria-invalid','true');i.focus();return;}
       i.value=v;err.hidden=true;i.removeAttribute('aria-invalid');
-      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'journal-ortszeit'});}catch(x){}
+      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter_submit',{source:'journal-ortszeit'});}catch(x){}
       setTimeout(function(){f.hidden=true;ok.hidden=false;},0);   // nach dem Absenden ausblenden, damit der POST sicher startet
     });
   })();

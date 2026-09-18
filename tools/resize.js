@@ -3,6 +3,7 @@
 //
 //   node tools/resize.js                       verkleinert img/ und uploads/, setzt width/height in allen HTML-Seiten
 //   node tools/resize.js <quelle> <ziel.webp>   verkleinert eine einzelne Datei (auch .jpg/.png, auch außerhalb des Repos)
+//   node tools/resize.js --max-kb 400            zusätzlich: Dateien über 400 KB erst mit Qualität 72, wenn nötig auf 1600 px mit Qualität 76
 //
 // Regel: längste Kante > 2000 px → 2000 px, WebP Qualität 80, Dateiname unverändert.
 // Ausgenommen: img/og-image.png und das Hero-Glas (src aus index.html sowie uploads/hero-glas*.webp).
@@ -21,6 +22,8 @@ const ROOT = path.resolve(__dirname, "..");
 const ORDNER = ["img", "uploads"];
 const ZIEL = path.resolve(ROOT, "..", "hespyra-img-src");
 const MAX = 2000, QUALITAET = 0.80;
+// --max-kb: erst dieselbe Größe mit Qualität 72; bleibt die Datei zu schwer, längste Kante 1600 px mit Qualität 76.
+const Q_STUFE1 = 0.72, KANTE2 = 1600, Q_STUFE2 = 0.76;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 function masse(p) {
@@ -60,8 +63,12 @@ function findeChrome() {
   return null;
 }
 
-// ---------- Einzeldatei (quelle ziel.webp) ----------
+// ---------- Argumente ----------
 const ARGS = process.argv.slice(2);
+let MAXKB = 0;
+{ const i = ARGS.indexOf("--max-kb"); if (i >= 0) { MAXKB = Number(ARGS[i + 1]); ARGS.splice(i, 2); if (!MAXKB) { console.error("--max-kb braucht eine Zahl."); process.exit(2); } } }
+
+// ---------- Einzeldatei (quelle ziel.webp) ----------
 const EINZEL = ARGS.length === 2 ? { quelle: path.resolve(ARGS[0]), ziel: ARGS[1] } : null;
 if (EINZEL && !/\.webp$/i.test(EINZEL.ziel)) { console.error("Ziel muss auf .webp enden."); process.exit(2); }
 
@@ -79,9 +86,13 @@ if (!EINZEL) for (const o of ORDNER) for (const n of fs.readdirSync(path.join(RO
   const rel = `${o}/${n}`;
   if (!/\.(webp|png|jpe?g)$/i.test(n) || ausgenommen(rel)) continue;
   const m = masse(path.join(ROOT, rel));
-  if (!m || Math.max(...m) <= MAX) continue;
+  if (!m) continue;
+  const bytes = fs.statSync(path.join(ROOT, rel)).size;
+  const zuGross = Math.max(...m) > MAX;
+  const zuSchwer = MAXKB && bytes > MAXKB * 1024;
+  if (!zuGross && !zuSchwer) continue;
   if (!/\.webp$/i.test(n)) { console.log(`übersprungen (kein .webp): ${rel} ${m.join("×")}`); continue; }
-  liste.push({ rel, alt: m, bytesAlt: fs.statSync(path.join(ROOT, rel)).size });
+  liste.push({ rel, alt: m, bytesAlt: bytes, nurGewicht: !zuGross });
 }
 if (!liste.length) { console.log("Nichts zu verkleinern."); process.exit(0); }
 
@@ -114,29 +125,43 @@ if (!liste.length) { console.log("Nichts zu verkleinern."); process.exit(0); }
     const tgt = (await cmd("Target.createTarget", { url: base })).result.targetId;
     const sid = (await cmd("Target.attachToTarget", { targetId: tgt, flatten: true })).result.sessionId;
     await sleep(500);
-    for (const b of liste) {
-      const s = Math.min(1, MAX / Math.max(...b.alt));   // nie hochrechnen
-      const w = Math.round(b.alt[0] * s), h = Math.round(b.alt[1] * s);
+    // Ein Durchgang: Bild aus <quelle> in w×h zeichnen und als WebP mit q kodieren.
+    const kodiere = async (quelle, w, h, q) => {
       const r = await cmd("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: `(async()=>{
-        const img=new Image(); img.src=${JSON.stringify(base + (b.serviert || b.rel) + "?" + Date.now())}; await img.decode();
+        const img=new Image(); img.src=${JSON.stringify(base + quelle + "?" + Date.now())}; await img.decode();
         const c=document.createElement('canvas'); c.width=${w}; c.height=${h};
         const x=c.getContext('2d'); x.imageSmoothingEnabled=true; x.imageSmoothingQuality='high'; x.drawImage(img,0,0,${w},${h});
-        const blob=await new Promise(r=>c.toBlob(r,'image/webp',${QUALITAET}));
+        const blob=await new Promise(r=>c.toBlob(r,'image/webp',${q}));
         const u=new Uint8Array(await blob.arrayBuffer()); let t=''; for(let i=0;i<u.length;i+=32768) t+=String.fromCharCode.apply(null,u.subarray(i,i+32768));
         return {typ:blob.type,data:btoa(t)};
       })()` }, sid);
       const v = r.result?.result?.value;
-      if (!v || v.typ !== "image/webp") { console.error("Fehler bei " + b.rel); continue; }
+      return v && v.typ === "image/webp" ? Buffer.from(v.data, "base64") : null;
+    };
+
+    for (const b of liste) {
+      const s = Math.min(1, MAX / Math.max(...b.alt));   // nie hochrechnen
+      let w = Math.round(b.alt[0] * s), h = Math.round(b.alt[1] * s);
+      const quelle = b.serviert || b.rel;
+      let neu = await kodiere(quelle, w, h, b.nurGewicht ? Q_STUFE1 : QUALITAET);
+      if (!neu) { console.error("Fehler bei " + b.rel); continue; }
+      let stufe = b.nurGewicht ? `q${Q_STUFE1}` : `q${QUALITAET}`;
+      // --max-kb: reicht die niedrigere Qualität nicht, zusätzlich auf KANTE2 verkleinern.
+      if (MAXKB && neu.length > MAXKB * 1024) {
+        const s2 = Math.min(1, KANTE2 / Math.max(...b.alt));
+        const w2 = Math.round(b.alt[0] * s2), h2 = Math.round(b.alt[1] * s2);
+        const zweite = await kodiere(quelle, w2, h2, Q_STUFE2);
+        if (zweite) { neu = zweite; w = w2; h = h2; stufe = `${KANTE2}px q${Q_STUFE2}`; }
+      }
       if (!b.serviert) {
         const sicher = path.join(ZIEL, path.dirname(b.rel), path.basename(b.rel));
         fs.mkdirSync(path.dirname(sicher), { recursive: true });
-        if (!fs.existsSync(sicher)) fs.renameSync(path.join(ROOT, b.rel), sicher);
+        if (!fs.existsSync(sicher)) fs.copyFileSync(path.join(ROOT, b.rel), sicher);
       }
-      const neu = Buffer.from(v.data, "base64");
       fs.writeFileSync(path.join(ROOT, b.rel), neu);
       neueMasse[b.rel] = [w, h];
       summeAlt += b.bytesAlt; summeNeu += neu.length;
-      console.log(`${b.rel}  ${b.alt.join("×")} → ${w}×${h}  ${(b.bytesAlt / 1048576).toFixed(2)} → ${(neu.length / 1048576).toFixed(2)} MB`);
+      console.log(`${b.rel}  ${b.alt.join("×")} → ${w}×${h} (${stufe})  ${Math.round(b.bytesAlt / 1024)} → ${Math.round(neu.length / 1024)} KB`);
     }
   } finally {
     ws.close(); ch.kill(); srv.close();

@@ -94,7 +94,9 @@ const MESSUNG_OBEN = `(async()=>{
   };
 })()`;
 const FUER_SCREENSHOT = `(async()=>{
-  const bar=document.getElementById('bar'); if(bar) bar.style.position='static';   // sticky Kopfzeile nur einmal oben im Bild
+  // T47: Kopfzeile für den Gesamtseiten-Screenshot statisch, damit sie nicht mitten im Bild klebt. Als Style-Tag mit !important,
+  // damit auch Media-Queries nicht dagegenhalten; die Kopfzeile ist ein <div class="bar">, deshalb beide Selektoren.
+  const st=document.createElement('style'); st.textContent='header,.bar{position:static !important}'; document.head.appendChild(st);
   document.querySelectorAll('.reveal').forEach(e=>e.classList.add('in'));
   document.querySelectorAll('img[loading=lazy]').forEach(i=>i.loading='eager');
   await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));

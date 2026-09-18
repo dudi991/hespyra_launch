@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
-<meta name="description" content="A magazine about the evening. Observations and the series 100 people. 100 evenings.">
+<meta name="description" content="A magazine about the evening. Observations, evening culture, underrated evenings and local time.">
 <meta property="og:title" content="HESPYRA – For the moment before.">
 <meta property="og:description" content="A magazine about the evening.">
 <meta property="og:type" content="website">
@@ -684,7 +684,7 @@
     <h1>A magazine about the evening.</h1>
     <p class="stamp gross">Last · 3 September, 18:00</p>
   </div>
-  <p class="rubriken"><a href="journal-beobachtungen-en.html">Observations</a> <span class="dot">·</span> <a href="journal-100-menschen-en.html">100 people. 100 evenings.</a> <span class="dot">·</span> <a href="journal-abendkultur-en.html">Evening culture</a> <span class="dot">·</span> <a href="journal-unterschaetzte-abende-en.html">Underrated evenings</a> <span class="dot">·</span> <a href="journal-ortszeit-en.html">Local time</a></p>
+  <p class="rubriken"><a href="journal-beobachtungen-en.html">Observations</a> <span class="dot">·</span> <a href="journal-abendkultur-en.html">Evening culture</a> <span class="dot">·</span> <a href="journal-unterschaetzte-abende-en.html">Underrated evenings</a> <span class="dot">·</span> <a href="journal-ortszeit-en.html">Local time</a></p>
   <div class="beitraege g12">
     <div class="karte reveal" data-published="2026-09-03T18:00">
       <a href="artikel-dienstag-en.html"><div class="framed"><div class="photo" style="--focus:40% 40%"><img src="uploads/abendwelt.webp" width="2000" height="1500" alt="Kersbach, 22:05. Nobody left on the street." decoding="async" loading="lazy"></div></div></a>
@@ -840,7 +840,7 @@
       var v=(i.value||'').trim();
       if(!RE.test(v)){e.preventDefault();err.hidden=false;i.setAttribute('aria-invalid','true');i.focus();return;}
       i.value=v;err.hidden=true;i.removeAttribute('aria-invalid');
-      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'startseite'});}catch(x){}
+      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'journal-en'});}catch(x){}
       setTimeout(function(){f.hidden=true;ok.hidden=false;},0);   // nach dem Absenden ausblenden, damit der POST sicher startet
     });
   })();

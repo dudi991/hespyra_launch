@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
-<meta name="description" content="Ein Magazin über den Abend. Beobachtungen und die Serie 100 Menschen. 100 Abende.">
+<meta name="description" content="Ein Magazin über den Abend. Beobachtungen, Abendkultur, Unterschätzte Abende und Ortszeit.">
 <meta property="og:title" content="HESPYRA – Für den Moment davor.">
 <meta property="og:description" content="Ein Magazin über den Abend.">
 <meta property="og:type" content="website">
@@ -684,7 +684,7 @@
     <h1>Ein Magazin über den Abend.</h1>
     <p class="stamp gross">Zuletzt · 3. September, 18:00</p>
   </div>
-  <p class="rubriken"><a href="journal-beobachtungen.html">Beobachtungen</a> <span class="dot">·</span> <a href="journal-100-menschen.html">100 Menschen. 100 Abende.</a> <span class="dot">·</span> <a href="journal-abendkultur.html">Abendkultur</a> <span class="dot">·</span> <a href="journal-unterschaetzte-abende.html">Unterschätzte Abende</a> <span class="dot">·</span> <a href="journal-ortszeit.html">Ortszeit</a></p>
+  <p class="rubriken"><a href="journal-beobachtungen.html">Beobachtungen</a> <span class="dot">·</span> <a href="journal-abendkultur.html">Abendkultur</a> <span class="dot">·</span> <a href="journal-unterschaetzte-abende.html">Unterschätzte Abende</a> <span class="dot">·</span> <a href="journal-ortszeit.html">Ortszeit</a></p>
   <div class="beitraege g12">
     <div class="karte reveal" data-published="2026-09-03T18:00">
       <a href="artikel-dienstag.html"><div class="framed"><div class="photo" style="--focus:40% 40%"><img src="uploads/abendwelt.webp" width="2000" height="1500" alt="Kersbach, 22:05. Niemand mehr auf der Straße." decoding="async" loading="lazy"></div></div></a>
@@ -840,7 +840,7 @@
       var v=(i.value||'').trim();
       if(!RE.test(v)){e.preventDefault();err.hidden=false;i.setAttribute('aria-invalid','true');i.focus();return;}
       i.value=v;err.hidden=true;i.removeAttribute('aria-invalid');
-      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'startseite'});}catch(x){}
+      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'journal'});}catch(x){}
       setTimeout(function(){f.hidden=true;ok.hidden=false;},0);   // nach dem Absenden ausblenden, damit der POST sicher startet
     });
   })();

@@ -769,7 +769,7 @@
       var v=(i.value||'').trim();
       if(!RE.test(v)){e.preventDefault();err.hidden=false;i.setAttribute('aria-invalid','true');i.focus();return;}
       i.value=v;err.hidden=true;i.removeAttribute('aria-invalid');
-      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'startseite'});}catch(x){}
+      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'artikel-tisch-en'});}catch(x){}
       setTimeout(function(){f.hidden=true;ok.hidden=false;},0);   // nach dem Absenden ausblenden, damit der POST sicher startet
     });
   })();

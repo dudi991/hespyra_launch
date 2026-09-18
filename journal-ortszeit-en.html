@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
-<meta name="description" content="A magazine about the evening. Observations and the series 100 people. 100 evenings.">
+<meta name="description" content="A magazine about the evening. Observations, evening culture, underrated evenings and local time.">
 <meta property="og:title" content="HESPYRA – For the moment before.">
 <meta property="og:description" content="A magazine about the evening.">
 <meta property="og:type" content="website">
@@ -824,7 +824,7 @@
       var v=(i.value||'').trim();
       if(!RE.test(v)){e.preventDefault();err.hidden=false;i.setAttribute('aria-invalid','true');i.focus();return;}
       i.value=v;err.hidden=true;i.removeAttribute('aria-invalid');
-      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'startseite'});}catch(x){}
+      try{if(window.umami&&typeof umami.track==='function')umami.track('newsletter-signup',{source:'journal-ortszeit-en'});}catch(x){}
       setTimeout(function(){f.hidden=true;ok.hidden=false;},0);   // nach dem Absenden ausblenden, damit der POST sicher startet
     });
   })();

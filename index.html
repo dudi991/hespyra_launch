@@ -1005,7 +1005,10 @@
       <p class="lead">Standbeutel 180&nbsp;g, ein Löffel ist eine Portion.</p>
       <p class="preis"><span class="ph">[Preis]</span>&nbsp;€</p>
       <p class="grundpreis vorlaunch"><span class="ph">[Grundpreis]</span>&nbsp;€&nbsp;/&nbsp;100&nbsp;g</p>
-      <button type="button" class="btn solid" id="cartbtn" data-soon="Bald.">In den Warenkorb <span class="arw">→</span></button>
+      <!-- T63: Solange der Preis ein Platzhalter ist, führt der Knopf zum Newsletter statt in einen Warenkorb (Klasse .vorlaunch).
+           Zum Launch zurück auf:  <button type="button" class="btn solid" id="cartbtn" data-soon="Bald.">In den Warenkorb <span class="arw">→</span></button>
+           und das Skript „Warenkorb bis Shop-Start“ wieder einsetzen. -->
+      <a class="btn solid vorlaunch" id="cartbtn" href="#newsletter">Wir sagen Bescheid, wenn es losgeht. <span class="arw">→</span></a>
       <p class="small soft nb">Reicht für 30 Abende. Dienstage zählen mit.</p>
       <figure class="loeffel reveal"><div class="photo"><img src="img/scoop-frei.webp" width="1196" height="516" alt="Der Löffel. Messing, quer." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Löffel <span class="dot">·</span> <span class="ph">[Messing, Ausführung offen]</span></span></p></figure>
     </div>
@@ -1206,8 +1209,6 @@
     });
   })();
 
-  // Warenkorb bis Shop-Start
-  (function(){var b=document.getElementById('cartbtn');if(!b)return;b.addEventListener('click',function(){b.textContent=b.getAttribute('data-soon');b.setAttribute('aria-disabled','true');});})();
 
 
 

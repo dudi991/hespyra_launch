@@ -7,3 +7,5 @@ Beim Einbau von Preis, Warenkorb und Checkout bleibt unverändert:
 – Bestellen-Knopf: „In den Warenkorb", sonst nichts
 
 Änderungen daran nur mit ausdrücklicher Anweisung „Launch-Regel ändern".
+
+Humor: höchstens ein trockener Satz pro Abschnitt. Der interessante Satz darf klein sein; danach nicht erklären.

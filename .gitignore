@@ -9,3 +9,7 @@ desktop.ini
 
 # Abnahme-Ausgaben von tools/abnahme.js (Screenshots, Berichte)
 _abnahme/
+
+# Staging-Paket von tools/staging.js (wird per SFTP hochgeladen, nicht versioniert)
+dist-staging/
+.htpasswd

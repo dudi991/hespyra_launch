@@ -104,7 +104,16 @@ fs.writeFileSync(path.join(ZIEL, ".htaccess"), [
   'AuthName "HESPYRA"',
   `AuthUserFile ${PLATZHALTER}/.htpasswd`,
   "Require valid-user",
+  "",
   'Header set X-Robots-Tag "noindex, nofollow, noarchive"',
+  "",
+  "# Staging: kein Cache, damit jede hochgeladene Version sofort sichtbar ist",
+  "<IfModule mod_expires.c>",
+  "  ExpiresActive Off",
+  "</IfModule>",
+  "<IfModule mod_headers.c>",
+  '  Header set Cache-Control "no-store"',
+  "</IfModule>",
   "",
 ].join("\n"));
 

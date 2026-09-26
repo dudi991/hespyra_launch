@@ -813,10 +813,14 @@
      Beides rechnet aus --raum-mit, mobil gilt damit automatisch der dort gesetzte Wert. */
   section.schluss{margin-top:0;padding-top:calc(.4 * var(--raum-mit));padding-bottom:calc(.7 * var(--raum-mit))}
   section.schluss + section.geschmack{margin-top:0}
-  /* T75: In der hohen Vanille-Kachel steht das Motiv per contain mittig, oben blieb dadurch Leerfläche. Ab 768px sitzt es
-     an der Kachel-Oberkante; der Abstand Schlusssatz → sichtbare Bildoberkante ist damit die 70 % aus T74. Mobil (T62) liegt
-     das Bild ohnehin im Fluss. */
-  @media(min-width:768px){section.geschmack .photo img{object-position:center top}}
+  /* T76: Ab 768px folgt die Vanille-Kachel dem Bildverhältnis (3:2, Höhe automatisch) statt min(80vh,760px). Damit entfällt
+     die Leerfläche aus T75: cover ohne Beschnitt, weil die Datei selbst 3:2 ist. Der Text bleibt vertikal mittig zur Kachel.
+     Mobil (T62) unverändert, dort steht das Bild im Fluss. */
+  @media(min-width:768px){
+    section.geschmack .kacheln{height:auto;min-height:0}
+    section.geschmack .photo{aspect-ratio:3/2;height:auto}
+    section.geschmack .photo img{object-fit:cover;object-position:center}
+  }
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->

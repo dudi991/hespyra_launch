@@ -576,9 +576,16 @@
   .beitraege .karte > a{display:block}
   .beitraege .karte > a:last-child{margin-top:0}
   /* Rubrikzeile unter dem Kopf der Übersicht: Navigation, Kicker-Größe, Plex. */
-  .rubriken{font-size:11.5px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;
-    color:#93a0ba;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:0 10px}
+  /* T79: Rubrikverzeichnis — fünf Zeilen, Name im Kicker-Stil, dahinter der Satz. Haarlinie zwischen den Zeilen,
+     keine Mittelpunkte. Ab 768px stehen Name und Satz nebeneinander, darunter nur die Namen (Zeilenhöhe 44px). */
+  .rubriken{list-style:none;margin:22px 0 0;padding:0}
+  .rubriken li{display:grid;gap:2px 24px;align-items:baseline;padding:12px 0;border-top:1px solid var(--hair);min-height:44px}
+  .rubriken li:last-child{border-bottom:1px solid var(--hair)}
+  .rubriken a{font-size:11.5px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;color:#93a0ba;white-space:nowrap}
   .rubriken a:hover{color:#eef1f6}
+  .rubriken .satz{font-size:15px;line-height:1.5;color:#c3cbd9}
+  @media(min-width:768px){.rubriken li{grid-template-columns:minmax(14rem,auto) 1fr;align-items:baseline}}
+  @media(max-width:767px){.rubriken .satz{display:none}.rubriken li{align-content:center}}
   /* Rubrikseite: Kicker, Rubrikname, rechts die Anzahl. */
   .rubrikkopf .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;
     color:#93a0ba;margin:0}
@@ -648,6 +655,9 @@
     .bar .menu > a:first-child:hover{background:var(--ink);color:var(--paper)}
   }
   */
+  /* T79: Umbruch nach „Magazin“ nur auf schmalen Breiten. */
+  .nur-mobil{display:none}
+  @media(max-width:767px){.nur-mobil{display:inline}}
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="1ecf682b-8921-492c-9b42-71f46a9cae65"></script>
 </head>
@@ -695,10 +705,16 @@
 <div class="journal-wrap oben" id="journal">
 <section class="journal col">
   <div class="head">
-    <h1>A magazine about the evening.</h1>
+    <h1>A magazine<br class="nur-mobil"> about the evening.</h1>
     <p class="stamp gross">Last · 3 September, 18:00</p>
   </div>
-  <p class="rubriken"><a href="journal-beobachtungen-en.html">Observations</a> <span class="dot">·</span> <a href="journal-100-menschen-en.html">100 People. 100 Evenings.</a> <span class="dot">·</span> <a href="journal-abendkultur-en.html">Evening culture</a> <span class="dot">·</span> <a href="journal-unterschaetzte-abende-en.html">Underrated evenings</a> <span class="dot">·</span> <a href="journal-ortszeit-en.html">Ortszeit</a></p>
+  <ul class="rubriken">
+    <li><a href="journal-beobachtungen-en.html">Observations</a><span class="satz">Essays about the evening. With a claim you can argue with.</span></li>
+    <li><a href="journal-abendkultur-en.html">Evening Culture</a><span class="satz">How other countries and other times keep the evening. Research, and it shows.</span></li>
+    <li><a href="journal-100-menschen-en.html">100 People. 100 Evenings.</a><span class="satz">Real people, real evenings. Name, place, photo.</span></li>
+    <li><a href="journal-ortszeit-en.html">ORTSZEIT</a><span class="satz">Place · time · photo · one sentence.</span></li>
+    <li><a href="journal-unternehmungen-en.html">Ventures</a><span class="satz">Concrete adventures for the evening. Done, or still ahead.</span></li>
+  </ul>
   <div class="beitraege g12">
     <div class="karte reveal" data-published="2026-09-03T18:00">
       <a href="artikel-dienstag-en.html"><div class="framed"><div class="photo" style="--focus:40% 40%"><img src="uploads/abendwelt.webp" width="2000" height="1500" alt="Kersbach, 22:05. Nobody left on the street." decoding="async" loading="lazy"></div></div></a>
@@ -746,7 +762,7 @@
        F3: Das Raster zeigt immer eine gerade Zahl von Kacheln (4, 6, 8 …), sonst bleibt die letzte allein.
        Kommt ein fünfter Eintrag, bleibt der älteste weg, bis ein sechster da ist. -->
   <div class="ortszeit-rubrik">
-    <p class="kicker">Ortszeit</p>
+    <p class="kicker">ORTSZEIT</p>
     <div class="ortszeit-raster g12">
     <figure class="ortszeit-eintrag reveal">
       <div class="framed"><div class="photo" style="--focus:65% 45%"><img src="img/konzert.webp" width="2000" height="1500" alt="Erlangen, 17:33 — crowd in front of the stage, everyone knows the words" decoding="async" loading="lazy"></div></div>

@@ -9,3 +9,5 @@ Beim Einbau von Preis, Warenkorb und Checkout bleibt unverändert:
 Änderungen daran nur mit ausdrücklicher Anweisung „Launch-Regel ändern".
 
 Humor: höchstens ein trockener Satz pro Abschnitt. Der interessante Satz darf klein sein; danach nicht erklären.
+
+Journal: fünf Rubriken (Beobachtungen, Abendkultur, 100 Menschen. 100 Abende., ORTSZEIT, Unternehmungen). Unternehmungen-Bilder und -Texte nur in Abendwelt und Journal, nie in Produktabschnitten.

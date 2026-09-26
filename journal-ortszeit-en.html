@@ -582,6 +582,8 @@
   /* Rubrikseite: Kicker, Rubrikname, rechts die Anzahl. */
   .rubrikkopf .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;
     color:#93a0ba;margin:0}
+  /* T79: ein Satz sagt, was die Rubrik ist. */
+  .rubrikkopf .rubriksatz{grid-column:1/-1;font-size:15px;line-height:1.5;color:#c3cbd9;margin:10px 0 0;max-width:44ch}
   .rubrikkopf .zahl{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.02em;
     font-variant-numeric:tabular-nums;color:#93a0ba;margin:0}
   @media(min-width:860px){
@@ -696,7 +698,8 @@
 <section class="journal col">
   <div class="head rubrikkopf">
     <p class="kicker"><a href="journal-en.html">Journal</a></p>
-    <h1>Ortszeit</h1>
+    <h1>ORTSZEIT</h1>
+    <p class="rubriksatz">Place · time · photo · one sentence.</p>
     <p class="zahl">9 moments</p>
   </div>
   <div class="ortszeit-raster drei g12">

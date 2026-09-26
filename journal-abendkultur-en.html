@@ -575,6 +575,8 @@
   /* Rubrikseite: Kicker, Rubrikname, rechts die Anzahl. */
   .rubrikkopf .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;
     color:#93a0ba;margin:0}
+  /* T79: ein Satz sagt, was die Rubrik ist. */
+  .rubrikkopf .rubriksatz{grid-column:1/-1;font-size:15px;line-height:1.5;color:#c3cbd9;margin:10px 0 0;max-width:44ch}
   .rubrikkopf .zahl{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.02em;
     font-variant-numeric:tabular-nums;color:#93a0ba;margin:0}
   @media(min-width:860px){
@@ -689,22 +691,8 @@
 <section class="journal col">
   <div class="head rubrikkopf">
     <p class="kicker"><a href="journal-en.html">Journal</a></p>
-    <h1>Evening culture</h1>
-    <p class="zahl">2 articles</p>
-  </div>
-  <div class="beitraege g12">
-    <div class="karte reveal" data-published="2026-07-14T18:00">
-      <a href="artikel-italien-en.html"><div class="framed"><div class="photo" style="--focus:40% 40%"><img src="uploads/abendwelt.webp" width="2000" height="1500" alt="Kersbach, 22:05. Nobody left on the street." decoding="async" loading="lazy"></div></div></a>
-      <p class="kicker"><a href="journal-abendkultur-en.html">Evening culture</a></p>
-      <a href="artikel-italien-en.html"><h2 class="ttl">Half Past Six in Italy</h2>
-      <p class="excerpt">There is a time in Italy when an entire country seems to stop doing something in particular and start doing nothing in particular.</p></a>
-    </div>
-    <div class="karte reveal" data-published="2026-07-07T18:00">
-      <a href="artikel-abendkultur-01-en.html"><div class="framed"><div class="photo" style="--focus:60% 50%"><img src="uploads/muenchen.webp" width="2000" height="1126" alt="Munich, 20:11. Everyone out, nobody in a hurry." decoding="async" loading="lazy"></div></div></a>
-      <p class="kicker"><a href="journal-abendkultur-en.html">Evening culture</a></p>
-      <a href="artikel-abendkultur-01-en.html"><h2 class="ttl">Why Do We Clink Glasses, Anyway?</h2>
-      <p class="excerpt">There is no sensible reason to knock two glasses together.</p></a>
-    </div>
+    <h1>Evening Culture</h1>
+    <p class="rubriksatz">How other countries and other times keep the evening. Research, and it shows.</p>
   </div>
   <!-- Reihenfolge chronologisch, neueste zuerst. Keine Filter, keine Tags, keine Suche.
        Ein „Ältere Beiträge"-Link in Mono steht hier erst, wenn es mehr als acht Beiträge gibt. -->

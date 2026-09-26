@@ -809,6 +809,10 @@
     .bar .menu > a:first-child:hover{background:var(--ink);color:var(--paper)}
   }
   */
+  /* T74: Der Schlusssatz gehört zu den Kacheln darüber — oben 40 % des Section-Abstands, unten 70 %.
+     Beides rechnet aus --raum-mit, mobil gilt damit automatisch der dort gesetzte Wert. */
+  section.schluss{margin-top:0;padding-top:calc(.4 * var(--raum-mit));padding-bottom:calc(.7 * var(--raum-mit))}
+  section.schluss + section.geschmack{margin-top:0}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->

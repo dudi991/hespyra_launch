@@ -809,9 +809,9 @@
     .bar .menu > a:first-child:hover{background:var(--ink);color:var(--paper)}
   }
   */
-  /* T74: Der Schlusssatz gehört zu den Kacheln darüber — oben 40 % des Section-Abstands, unten 70 %.
+  /* T74: Der Schlusssatz gehört zu den Kacheln darüber — oben 60 % des Section-Abstands, unten der volle Wert (T78).
      Beides rechnet aus --raum-mit, mobil gilt damit automatisch der dort gesetzte Wert. */
-  section.schluss{margin-top:0;padding-top:calc(.4 * var(--raum-mit));padding-bottom:calc(.7 * var(--raum-mit))}
+  section.schluss{margin-top:0;padding-top:calc(.6 * var(--raum-mit));padding-bottom:var(--raum-mit)}
   section.schluss + section.geschmack{margin-top:0}
   /* T76: Ab 768px folgt die Vanille-Kachel dem Bildverhältnis (3:2, Höhe automatisch) statt min(80vh,760px). Damit entfällt
      die Leerfläche aus T75: cover ohne Beschnitt, weil die Datei selbst 3:2 ist. Der Text bleibt vertikal mittig zur Kachel.

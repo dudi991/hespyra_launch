@@ -550,6 +550,8 @@
   .produkt .loeffel{--cap-ein:0}
   .produkt .text{max-width:var(--narrow)}
   @media(min-width:1100px){.produkt .text{position:sticky;top:80px}}
+  /* T80: Zahlen in der Produktzeile in Mono, wie Zeit, Menge, Preis und Charge. */
+  .produkt .lead .mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:.95em;letter-spacing:.01em}
   .produkt .nb{margin:28px 0 0}
   .produkt .nb + .nb{margin-top:8px}
   .produkt .preis{font-family:"IBM Plex Mono",monospace;font-size:clamp(28px,3vw,40px);line-height:1;
@@ -561,19 +563,12 @@
   /* ---------- FAQ ---------- */
   .faq h2{max-width:20ch}
   .faq .list{margin-top:clamp(32px,4vw,48px)}
-  .faq details{border-top:1px solid var(--hair)}
-  .faq details:last-of-type{border-bottom:1px solid var(--hair)}
-  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;
-    align-items:baseline;gap:20px;padding:26px 0;font-size:clamp(18px,2.1vw,23px);
-    letter-spacing:-.015em;transition:color .3s var(--ease)}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary:hover{color:var(--ink-soft)}
-  .faq summary .plus{font-family:"IBM Plex Mono",monospace;font-size:20px;color:var(--ink-soft);
-    flex:none;transition:transform .35s var(--ease)}
-  .faq details[open] summary .plus{transform:rotate(45deg)}
-  .faq details{interpolate-size:allow-keywords}
-  .faq details::details-content{height:0;overflow:clip;transition:height .35s var(--ease),content-visibility .35s allow-discrete}
-  .faq details[open]::details-content{height:auto}
+  /* T80: FAQ ohne Klappmechanik — alle Antworten stehen offen, die Fragen sind Überschriften.
+     Linien und Maße wie zuvor bei <summary>. */
+  .faq .frage{border-top:1px solid var(--hair)}
+  .faq .frage:last-child{border-bottom:1px solid var(--hair)}
+  .faq .frage h3{margin:0;padding:26px 0 0;font-size:clamp(18px,2.1vw,23px);line-height:1.25;letter-spacing:-.015em;font-weight:500}
+  .faq .frage .answer{padding:10px 0 28px}
   .faq .answer{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:56ch;
     margin:0;padding:0 0 28px}
 
@@ -858,7 +853,7 @@
   <nav>
     <div class="nav-l">
       <a class="mark" href="#" aria-label="HESPYRA"><svg class="wm" role="img" aria-label="HESPYRA" style="width:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5900 716"><title>HESPYRA</title><path fill="currentColor" d="M602 708L502 708L502 396L100 396L100 708L0 708L0 8L100 8L100 309L502 309L502 8L602 8L602 708ZM1500 708L992 708L992 8L1486 8L1486 95L1092 95L1092 310L1443 310L1443 395L1092 395L1092 621L1500 621L1500 708ZM2046 716Q1966 716 1893 691.5Q1820 667 1778 628L1815 550Q1854 585 1916.5 608Q1979 631 2046 631Q2136 631 2177.5 600Q2219 569 2219 523Q2219 487 2196 465Q2173 443 2135 429.5Q2097 416 2052 406Q2007 396 1961.5 383Q1916 370 1878.5 348.5Q1841 327 1818 291.5Q1795 256 1795 200Q1795 146 1823.5 100.5Q1852 55 1911.5 27.5Q1971 0 2063 0Q2125 0 2184.5 16Q2244 32 2288 62L2255 142Q2210 113 2159.5 99Q2109 85 2063 85Q1974 85 1933.5 117.5Q1893 150 1893 196Q1893 233 1916 255Q1939 277 1977 290Q2015 303 2060 313.5Q2105 324 2150.5 337Q2196 350 2233.5 371Q2271 392 2294 427Q2317 462 2317 517Q2317 570 2288 615.5Q2259 661 2198.5 688.5Q2138 716 2046 716ZM2743 708L2643 708L2643 8L2916 8Q3052 8 3130 73Q3208 138 3208 252Q3208 366 3130 431Q3052 496 2916 496L2743 496L2743 708ZM2743 95L2743 409L2913 409Q3009 409 3058.5 368Q3108 327 3108 252Q3108 177 3058.5 136Q3009 95 2913 95L2743 95ZM3480 8L3584.4 8L3742 276.3L3778 276.3L3935.6 8L4040 8L3805 408L3805 708L3715 708L3715 408ZM4465 708L4365 708L4365 8L4638 8Q4774 8 4852 73Q4930 138 4930 252Q4930 334 4890 390.5Q4850 447 4776 473L4942 708L4833 708L4682 493Q4661 495 4638 495L4465 495L4465 708ZM4465 95L4465 410L4635 410Q4731 410 4780.5 368.5Q4830 327 4830 252Q4830 177 4780.5 136Q4731 95 4635 95L4465 95ZM5269 708L5166 708L5483 8L5582 8L5900 708L5795 708L5718 533L5346 533L5269 708ZM5532 110L5381 453L5683 453L5532 110Z"></path></svg></a>
-      <a class="ortszeit" href="#journal"><span id="tb-ort">Erlangen</span> <span class="dot">·</span> <span id="tb-zeit">17:33</span><span class="satz"> – <span id="tb-satz">Alle kennen den Text.</span></span></a>
+      <a class="ortszeit" href="journal-ortszeit.html"><span id="tb-ort">Erlangen</span> <span class="dot">·</span> <span id="tb-zeit">17:33</span><span class="satz"> – <span id="tb-satz">Alle kennen den Text.</span></span></a>
     </div>
     <ul id="mainnav">
       <li><a href="#journal">Journal</a></li>
@@ -996,7 +991,7 @@
   <p class="small soft">Mengen pro Portion (6&nbsp;g).</p>
   <table>
     <thead class="vh"><tr><th scope="col">Zutat</th><th scope="col">Menge pro Portion</th></tr></thead>
-    <tr><td><a href="was-drin-ist.html#magnesium">Magnesium (Bisglycinat und Taurat)</a></td><td>150&nbsp;mg elementar</td></tr>
+    <tr><td><a href="was-drin-ist.html#magnesium">Magnesium (Bisglycinat und Taurat)</a></td><td>150&nbsp;mg</td></tr>
     <tr><td><a href="was-drin-ist.html#l-theanin">L-Theanin (aus Grüntee-Extrakt)</a></td><td>100&nbsp;mg</td></tr>
     <tr><td><a href="was-drin-ist.html#safran">Safran (Affron®, Extrakt)</a></td><td>28&nbsp;mg</td></tr>
     <tr><td colspan="2">und acht weitere Zutaten</td></tr>
@@ -1015,7 +1010,7 @@
     </div>
     <div class="text c7-12">
       <h2>HESPYRA.<br>30&nbsp;Abende.</h2>
-      <p class="lead">Standbeutel 180&nbsp;g, ein Löffel ist eine Portion.</p>
+      <p class="lead">Standbeutel <span class="dot">·</span> <span class="mono">180&nbsp;g</span> <span class="dot">·</span> <span class="mono">30</span> Portionen à <span class="mono">6&nbsp;g</span>.</p>
       <p class="preis"><span class="ph">[Preis]</span>&nbsp;€</p>
       <p class="grundpreis vorlaunch"><span class="ph">[Grundpreis]</span>&nbsp;€&nbsp;/&nbsp;100&nbsp;g</p>
       <!-- T63: Solange der Preis ein Platzhalter ist, führt der Knopf zum Newsletter statt in einen Warenkorb (Klasse .vorlaunch).
@@ -1034,34 +1029,34 @@
   <h2>Was Leute vorher wissen wollen.</h2>
   </div>
   <div class="list">
-    <details>
-      <summary>Ist das nicht einfach ein guter Kakao? <span class="plus">+</span></summary>
+    <div class="frage">
+      <h3>Ist das nicht einfach ein guter Kakao?</h3>
       <p class="answer">Hoffentlich. Kakao beschreibt den Geschmack, nicht das ganze Getränk. <a class="link" href="#proof">Was drin ist →</a></p>
-    </details>
-    <details>
-      <summary>Macht das müde? <span class="plus">+</span></summary>
+    </div>
+    <div class="frage">
+      <h3>Macht das müde?</h3>
       <p class="answer">HESPYRA ist kein Schlafmittel und enthält kein Melatonin. Es ist für den Anfang des eigenen Abends gedacht, nicht für dessen Ende.</p>
-    </details>
-    <details>
-      <summary>Für wen ist das? <span class="plus">+</span></summary>
+    </div>
+    <div class="frage">
+      <h3>Für wen ist das?</h3>
       <p class="answer">Für Leute, die abends noch etwas vorhaben.</p>
-    </details>
-    <details>
-      <summary>Kann ich das auch morgens trinken? <span class="plus">+</span></summary>
+    </div>
+    <div class="frage">
+      <h3>Kann ich das auch morgens trinken?</h3>
       <p class="answer">Kannst du. Wir werden es nie erfahren.</p>
-    </details>
-    <details>
-      <summary>Warum nicht einfach Tee? <span class="plus">+</span></summary>
-      <p class="answer">Nichts gegen Tee. Wir mögen Tee. Wir wollten etwas anderes machen. Danke für die Frage, Luisa.</p>
-    </details>
-    <details>
-      <summary>Wo ist der Rabattcode? <span class="plus">+</span></summary>
+    </div>
+    <div class="frage">
+      <h3>Warum nicht einfach Tee?</h3>
+      <p class="answer">Nichts gegen Tee. Wir mögen Tee. Wir wollten etwas anderes machen.</p>
+    </div>
+    <div class="frage">
+      <h3>Wo ist der Rabattcode?</h3>
       <p class="answer">Gibt keinen. Wir haben stattdessen einen Preis.</p>
-    </details>
-    <details>
-      <summary>Habt ihr ein Abo? <span class="plus">+</span></summary>
+    </div>
+    <div class="frage">
+      <h3>Habt ihr ein Abo?</h3>
       <p class="answer">Nein. Wenn der Beutel leer ist, bestellst du nach. Kein fester Rhythmus, nichts zu kündigen.</p>
-    </details>
+    </div>
   </div>
 </section>
 

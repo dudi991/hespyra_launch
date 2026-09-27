@@ -379,7 +379,8 @@
      ein Rasterfeld. Die Abstände innerhalb der Kachel bleiben die bisherigen Ränder (row-gap:0 im Subgrid). */
   @supports (grid-template-rows: subgrid){
     @media(min-width:860px){
-      .journal .big,.beitraege .karte,.beitraege .ortszeit-eintrag{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0}
+      .journal .big{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0}
+      .beitraege .karte,.beitraege .ortszeit-eintrag{display:grid;grid-template-rows:subgrid;grid-row:span 2;row-gap:0}   /* T85: Bild und Titel */
       .journal .big > a:last-child,.beitraege .karte > a:last-child{display:contents}
     }
   }
@@ -537,7 +538,7 @@
   .beitraege .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
     text-transform:uppercase;color:#93a0ba;margin:16px 0 8px}
   .beitraege .ttl{font-family:"Newsreader",serif;font-weight:500;font-size:clamp(24px,2.6vw,32px);
-    line-height:1.12;letter-spacing:-.01em;margin:0}
+    line-height:1.12;letter-spacing:-.01em;margin:16px 0 0}   /* T85: ohne Kicker rückt der Titel an dessen Stelle */
   .beitraege .excerpt{font-size:16px;line-height:1.5;color:#c3cbd9;margin:10px 0 0;max-width:44ch}
   /* T84: Kartentitel ohne Unterstreichung, in keinem Zustand. Hover nur über die Opazität. */
   .beitraege a .ttl{text-decoration:none}
@@ -697,12 +698,10 @@
   <div class="beitraege g12">
     <div class="karte reveal" data-published="2026-09-27T18:00">
       <a href="artikel-letzte-runde.html"><div class="framed"><div class="photo" style="--focus:60% 50%"><img src="uploads/muenchen.webp" width="2000" height="1126" alt="München, 20:11. Alles unterwegs, niemand eilig." decoding="async" loading="lazy"></div></div></a>
-      <p class="kicker"><a href="journal-abendkultur.html">Abendkultur</a></p>
       <a href="artikel-letzte-runde.html"><h2 class="ttl">Die letzte Runde</h2></a>
     </div>
     <div class="karte reveal" data-published="2026-07-14T18:00">
       <a href="artikel-italien.html"><div class="framed"><div class="photo" style="--focus:40% 40%"><img src="uploads/abendwelt.webp" width="2000" height="1500" alt="Kersbach, 22:05. Niemand mehr auf der Straße." decoding="async" loading="lazy"></div></div></a>
-      <p class="kicker"><a href="journal-abendkultur.html">Abendkultur</a></p>
       <a href="artikel-italien.html"><h2 class="ttl">Halb sieben in Italien</h2></a>
     </div>
   </div>

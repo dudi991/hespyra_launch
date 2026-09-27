@@ -526,6 +526,9 @@
   /* H4 (v0.43): Serien- und Beobachtungs-h1 auf 390 kleiner, damit "München · 18:36" in eine Zeile passt.
      Steht hier und nicht im Mobil-Block oben, weil .akopf h1 dort später käme und gewinnen würde. */
   @media(max-width:600px){.akopf h1{font-size:clamp(36px,11vw,48px)}}
+  /* T87: Ort · Uhrzeit unter dem Namen, Stil wie die Ortszeit in der Kopfzeile. */
+  .akopf .ortzeile{font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.04em;font-variant-numeric:tabular-nums;color:#93a0ba;margin:10px 0 0}
+  .akopf .ortzeile .dot{color:var(--akzent)}
   .akopf .meta{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.03em;
     font-variant-numeric:tabular-nums;color:#93a0ba;margin:26px 0 0}
   .aufmacher{margin:0}
@@ -653,7 +656,8 @@
 <div class="journal-wrap akopf">
   <div class="col">
     <p class="kicker"><a href="journal-100-menschen.html">100 Menschen. 100 Abende.</a> · No. 01</p>
-    <h1>Oldenburg <span class="zeit-teil"><span class="dot">·</span> 20:52</span></h1>
+    <h1>Hendrik Sasse</h1>
+    <p class="ortzeile">Oldenburg <span class="dot">·</span> 20:52</p>
     <p class="meta">28. Juli 2026 <span class="ph">· Beispieltext mit erfundener Person</span></p>
   </div>
 </div>

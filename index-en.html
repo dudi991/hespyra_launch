@@ -480,6 +480,12 @@
     @media(min-width:860px){
       .journal .big,.beitraege .karte,.beitraege .ortszeit-eintrag{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0}
       .journal .big:has(.excerpt){grid-row:span 4}   /* T86: Karte mit Satz */
+    }
+  }
+  /* T87: Abstand Titel → Satz wie in der ORTSZEIT-Reihe des Journals. */
+  .journal .top .excerpt{margin:6px 0 0}
+  @supports (grid-template-rows: subgrid){
+    @media(min-width:860px){
       .journal .big > a:last-child,.beitraege .karte > a:last-child{display:contents}
     }
   }
@@ -1073,7 +1079,7 @@
 <section class="journal col">
   <div class="head">
       <h2>A magazine about the evening.</h2>
-      <p class="stamp">Last: 3 September, 18:00</p>
+      <p class="stamp">Last · 3 September, 18:00</p>
   </div>
   <!-- Konvention der beiden Serien:
        „100 Menschen. 100 Abende." — der Titel ist immer Ort · Zeit, nie nur die Zeit.
@@ -1284,7 +1290,7 @@
       if(st){ st.textContent = (h>=5 && h<17) ? 'The evening is still coming.' : 'The evening is still open.'; }
     }
     // Journal-Stempel aus den Artikeldaten
-    (function(){var s=document.querySelector('.journal .stamp');if(!s)return;var ds=Array.prototype.map.call(document.querySelectorAll('.journal [data-published]'),function(a){return a.getAttribute('data-published')}).sort().pop();if(!ds)return;var d=new Date(ds),M=['January','February','March','April','May','June','July','August','September','October','November','December'];s.textContent='Last: '+d.getDate()+' '+M[d.getMonth()]+', '+pad(d.getHours())+':'+pad(d.getMinutes());})();
+    (function(){var s=document.querySelector('.journal .stamp');if(!s)return;var ds=Array.prototype.map.call(document.querySelectorAll('.journal [data-published]'),function(a){return a.getAttribute('data-published')}).sort().pop();if(!ds)return;var d=new Date(ds),M=['January','February','March','April','May','June','July','August','September','October','November','December'];s.textContent='Last · '+d.getDate()+' '+M[d.getMonth()]+', '+pad(d.getHours())+':'+pad(d.getMinutes());})();
     window.hespyraTick=tick;
     tick();
     setTimeout(function(){tick();setInterval(tick,60000)}, 1000*(61-new Date().getSeconds()));

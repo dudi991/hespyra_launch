@@ -361,9 +361,9 @@
   .journal .link:hover::after{background:#93a0ba}
   .journal-wrap :focus-visible{outline-color:#eef1f6}
   .journal-wrap ::selection{background:#eef1f6;color:var(--dark)}
-  .journal .top a .ttl{text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:1px;
-    text-underline-offset:.14em;transition:text-decoration-color .3s var(--ease)}
-  .journal .top a:hover .ttl{text-decoration-color:#eef1f6}
+  /* T84: Kartentitel ohne Unterstreichung, in keinem Zustand. Hover nur über die Opazität. */
+  .journal .top a .ttl{text-decoration:none}
+  .journal .top a:hover .ttl,.journal .top a:hover .photo{opacity:.72;transition:opacity .3s var(--ease)}
   .journal .stamp{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.02em;
     font-variant-numeric:tabular-nums;color:#93a0ba;margin:18px 0 0}
   .journal .head{display:grid;row-gap:12px;align-items:baseline;padding-bottom:20px;border-bottom:1px solid #33405c}
@@ -374,12 +374,12 @@
   .journal .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
     text-transform:uppercase;margin:16px 0 8px}
   .journal .ttl{font-family:"Newsreader",serif;font-weight:500;line-height:1.1;letter-spacing:-.01em}
-  /* T57: Kacheln als Subgrid — Bild, Kicker, Titel und Dachzeile liegen in vier gemeinsamen Zeilen, damit die Dachzeilen
+  /* T57: Kacheln als Subgrid — Bild, Kicker und Titel liegen in drei gemeinsamen Zeilen, damit die Titel
      benachbarter Kacheln auf gleicher Höhe beginnen. Der Link um Titel und Dachzeile wird display:contents, sonst wären beide
      ein Rasterfeld. Die Abstände innerhalb der Kachel bleiben die bisherigen Ränder (row-gap:0 im Subgrid). */
   @supports (grid-template-rows: subgrid){
     @media(min-width:860px){
-      .journal .big,.beitraege .karte,.beitraege .ortszeit-eintrag{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:0}
+      .journal .big,.beitraege .karte,.beitraege .ortszeit-eintrag{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0}
       .journal .big > a:last-child,.beitraege .karte > a:last-child{display:contents}
     }
   }
@@ -539,9 +539,9 @@
   .beitraege .ttl{font-family:"Newsreader",serif;font-weight:500;font-size:clamp(24px,2.6vw,32px);
     line-height:1.12;letter-spacing:-.01em;margin:0}
   .beitraege .excerpt{font-size:16px;line-height:1.5;color:#c3cbd9;margin:10px 0 0;max-width:44ch}
-  .beitraege a .ttl{text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:1px;
-    text-underline-offset:.14em;transition:text-decoration-color .3s var(--ease)}
-  .beitraege a:hover .ttl{text-decoration-color:#eef1f6}
+  /* T84: Kartentitel ohne Unterstreichung, in keinem Zustand. Hover nur über die Opazität. */
+  .beitraege a .ttl{text-decoration:none}
+  .beitraege a:hover .ttl,.beitraege a:hover .photo{opacity:.72;transition:opacity .3s var(--ease)}
   /* Rubrik Ortszeit: dieselbe Kachel wie „Der Abend ist noch offen" der Startseite. */
   .ortszeit-rubrik{margin-top:clamp(72px,8vw,116px)}
   .ortszeit-rubrik > .kicker{font-size:11.5px;font-weight:500;letter-spacing:.10em;
@@ -693,20 +693,17 @@
     <p class="kicker"><a href="journal.html">Journal</a></p>
     <h1>100 Menschen. 100 Abende.</h1>
     <p class="rubriksatz">Echte Leute, echte Abende. Name, Ort, Foto.</p>
-    <p class="zahl">2 Artikel</p>
   </div>
   <div class="beitraege g12">
     <div class="karte reveal" data-published="2026-08-25T18:00">
       <a href="artikel-muenchen-1836.html"><div class="framed"><div class="photo" style="--focus:45% 55%"><img src="uploads/bruecke.webp" width="2000" height="1500" alt="Forchheim, 21:13. Über die Brücke, kein Auto." decoding="async" loading="lazy"></div></div></a>
       <p class="kicker"><a href="journal-100-menschen.html">100 Menschen. 100 Abende.</a> · No. 02</p>
-      <a href="artikel-muenchen-1836.html"><h2 class="ttl">München <span class="zeit-teil"><span class="dot">·</span> 18:36</span></h2>
-      <p class="excerpt">Ein Fahrradverkäufer in München.</p></a>
+      <a href="artikel-muenchen-1836.html"><h2 class="ttl">München <span class="zeit-teil"><span class="dot">·</span> 18:36</span></h2></a>
     </div>
     <div class="karte reveal" data-published="2026-07-28T18:00">
       <a href="artikel-oldenburg-2052.html"><div class="framed"><div class="photo" style="--focus:50% 45%"><img src="uploads/winterwelt.webp" width="2000" height="1500" alt="Forchheim, 17:20. Schnee geräumt, Laternen an." decoding="async" loading="lazy"></div></div></a>
       <p class="kicker"><a href="journal-100-menschen.html">100 Menschen. 100 Abende.</a> · No. 01</p>
-      <a href="artikel-oldenburg-2052.html"><h2 class="ttl">Oldenburg <span class="zeit-teil"><span class="dot">·</span> 20:52</span></h2>
-      <p class="excerpt">Um 20:52 ist Hendrik Sasse zum zweiten Mal an diesem Abend in der Garage.</p></a>
+      <a href="artikel-oldenburg-2052.html"><h2 class="ttl">Oldenburg <span class="zeit-teil"><span class="dot">·</span> 20:52</span></h2></a>
     </div>
   </div>
   <!-- Reihenfolge chronologisch, neueste zuerst. Keine Filter, keine Tags, keine Suche.

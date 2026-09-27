@@ -458,9 +458,9 @@
   .journal .link:hover::after{background:#93a0ba}
   .journal-wrap :focus-visible{outline-color:#eef1f6}
   .journal-wrap ::selection{background:#eef1f6;color:var(--dark)}
-  .journal .top a .ttl{text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:1px;
-    text-underline-offset:.14em;transition:text-decoration-color .3s var(--ease)}
-  .journal .top a:hover .ttl{text-decoration-color:#eef1f6}
+  /* T84: Kartentitel ohne Unterstreichung, in keinem Zustand. Hover nur über die Opazität. */
+  .journal .top a .ttl{text-decoration:none}
+  .journal .top a:hover .ttl,.journal .top a:hover .photo{opacity:.72;transition:opacity .3s var(--ease)}
   .journal .stamp{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.02em;
     font-variant-numeric:tabular-nums;color:#93a0ba;margin:18px 0 0}
   .journal .head{display:grid;row-gap:12px;align-items:baseline;padding-bottom:20px;border-bottom:1px solid #33405c}
@@ -473,12 +473,12 @@
   /* Newsreader: erlaubt in Journal-Artikeln und in Journal-Kacheln (Übersicht, Startseiten-Teaser).
      Sonst nirgends. */
   .journal .ttl{font-family:"Newsreader",serif;font-weight:500;line-height:1.1;letter-spacing:-.01em}
-  /* T57: Kacheln als Subgrid — Bild, Kicker, Titel und Dachzeile liegen in vier gemeinsamen Zeilen, damit die Dachzeilen
+  /* T57: Kacheln als Subgrid — Bild, Kicker und Titel liegen in drei gemeinsamen Zeilen, damit die Titel
      benachbarter Kacheln auf gleicher Höhe beginnen. Der Link um Titel und Dachzeile wird display:contents, sonst wären beide
      ein Rasterfeld. Die Abstände innerhalb der Kachel bleiben die bisherigen Ränder (row-gap:0 im Subgrid). */
   @supports (grid-template-rows: subgrid){
     @media(min-width:860px){
-      .journal .big,.beitraege .karte,.beitraege .ortszeit-eintrag{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:0}
+      .journal .big,.beitraege .karte,.beitraege .ortszeit-eintrag{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0}
       .journal .big > a:last-child,.beitraege .karte > a:last-child{display:contents}
     }
   }
@@ -1083,14 +1083,12 @@
     <div class="big c1-6 reveal" data-published="2026-09-03T18:00">
       <a href="artikel-dienstag-en.html"><div class="photo"><img src="uploads/abendwelt.webp" width="2000" height="1500" alt="Kersbach, 22:05. Nobody left on the street." decoding="async" loading="lazy"></div></a>
       <p class="kicker"><a href="journal-beobachtungen-en.html">Observations</a></p>
-      <a href="artikel-dienstag-en.html"><h3 class="ttl">A short defence of Tuesday</h3>
-      <p class="excerpt">Tuesday has the worst marketing of any day of the week.</p></a>
+      <a href="artikel-dienstag-en.html"><h3 class="ttl">A short defence of Tuesday</h3></a>
     </div>
     <div class="big c7-12 reveal" data-published="2026-08-25T18:00">
       <a href="journal-ortszeit-en.html"><div class="photo"><img src="uploads/bruecke.webp" width="2000" height="1500" alt="Forchheim, 21:13. Across the bridge, not one car." decoding="async" loading="lazy"></div></a>
       <p class="kicker"><a href="journal-ortszeit-en.html">ORTSZEIT</a></p>
-      <a href="journal-ortszeit-en.html"><h3 class="ttl">Forchheim <span class="dot">·</span> 21:13</h3>
-      <p class="excerpt">Across the bridge, not one car.</p></a>
+      <a href="journal-ortszeit-en.html"><h3 class="ttl">Forchheim <span class="dot">·</span> 21:13</h3></a>
     </div>
   </div>
   <div class="links"><a class="link" href="journal-en.html">To the journal</a></div>

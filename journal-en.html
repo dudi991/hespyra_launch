@@ -367,6 +367,9 @@
   .journal .stamp{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.02em;
     font-variant-numeric:tabular-nums;color:#93a0ba;margin:18px 0 0}
   .journal .head{display:grid;row-gap:12px;align-items:baseline;padding-bottom:20px;border-bottom:1px solid #33405c}
+  /* T81: Auf der Übersicht trägt schon das Rubrikverzeichnis eine Linie — die unter dem Datum entfällt.
+     Rubrikseiten (.head.rubrikkopf) und Startseite behalten ihre. */
+  .journal .head:not(.rubrikkopf){padding-bottom:0;border-bottom:0}
   .journal .top{display:grid;row-gap:34px;margin-top:clamp(30px,3.5vw,44px)}
   @media(min-width:860px){.journal .top{row-gap:0}}
   /* Ein Kachelformat auf allen Seiten. */

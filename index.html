@@ -563,12 +563,19 @@
   /* ---------- FAQ ---------- */
   .faq h2{max-width:20ch}
   .faq .list{margin-top:clamp(32px,4vw,48px)}
-  /* T80: FAQ ohne Klappmechanik — alle Antworten stehen offen, die Fragen sind Überschriften.
-     Linien und Maße wie zuvor bei <summary>. */
-  .faq .frage{border-top:1px solid var(--hair)}
-  .faq .frage:last-child{border-bottom:1px solid var(--hair)}
-  .faq .frage h3{margin:0;padding:26px 0 0;font-size:clamp(18px,2.1vw,23px);line-height:1.25;letter-spacing:-.015em;font-weight:500}
-  .faq .frage .answer{padding:10px 0 28px}
+  .faq details{border-top:1px solid var(--hair)}
+  .faq details:last-of-type{border-bottom:1px solid var(--hair)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;
+    align-items:baseline;gap:20px;padding:26px 0;font-size:clamp(18px,2.1vw,23px);
+    letter-spacing:-.015em;transition:color .3s var(--ease)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary:hover{color:var(--ink-soft)}
+  .faq summary .plus{font-family:"IBM Plex Mono",monospace;font-size:20px;color:var(--ink-soft);
+    flex:none;transition:transform .35s var(--ease)}
+  .faq details[open] summary .plus{transform:rotate(45deg)}
+  .faq details{interpolate-size:allow-keywords}
+  .faq details::details-content{height:0;overflow:clip;transition:height .35s var(--ease),content-visibility .35s allow-discrete}
+  .faq details[open]::details-content{height:auto}
   .faq .answer{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:56ch;
     margin:0;padding:0 0 28px}
 
@@ -1029,34 +1036,34 @@
   <h2>Was Leute vorher wissen wollen.</h2>
   </div>
   <div class="list">
-    <div class="frage">
-      <h3>Ist das nicht einfach ein guter Kakao?</h3>
+    <details>
+      <summary>Ist das nicht einfach ein guter Kakao? <span class="plus">+</span></summary>
       <p class="answer">Hoffentlich. Kakao beschreibt den Geschmack, nicht das ganze Getränk. <a class="link" href="#proof">Was drin ist →</a></p>
-    </div>
-    <div class="frage">
-      <h3>Macht das müde?</h3>
+    </details>
+    <details>
+      <summary>Macht das müde? <span class="plus">+</span></summary>
       <p class="answer">HESPYRA ist kein Schlafmittel und enthält kein Melatonin. Es ist für den Anfang des eigenen Abends gedacht, nicht für dessen Ende.</p>
-    </div>
-    <div class="frage">
-      <h3>Für wen ist das?</h3>
+    </details>
+    <details>
+      <summary>Für wen ist das? <span class="plus">+</span></summary>
       <p class="answer">Für Leute, die abends noch etwas vorhaben.</p>
-    </div>
-    <div class="frage">
-      <h3>Kann ich das auch morgens trinken?</h3>
+    </details>
+    <details>
+      <summary>Kann ich das auch morgens trinken? <span class="plus">+</span></summary>
       <p class="answer">Kannst du. Wir werden es nie erfahren.</p>
-    </div>
-    <div class="frage">
-      <h3>Warum nicht einfach Tee?</h3>
-      <p class="answer">Nichts gegen Tee. Wir mögen Tee. Wir wollten etwas anderes machen.</p>
-    </div>
-    <div class="frage">
-      <h3>Wo ist der Rabattcode?</h3>
+    </details>
+    <details>
+      <summary>Warum nicht einfach Tee? <span class="plus">+</span></summary>
+      <p class="answer">Nichts gegen Tee. Wir mögen Tee. Wir wollten etwas anderes machen. Danke für die Frage, Luisa.</p>
+    </details>
+    <details>
+      <summary>Wo ist der Rabattcode? <span class="plus">+</span></summary>
       <p class="answer">Gibt keinen. Wir haben stattdessen einen Preis.</p>
-    </div>
-    <div class="frage">
-      <h3>Habt ihr ein Abo?</h3>
+    </details>
+    <details>
+      <summary>Habt ihr ein Abo? <span class="plus">+</span></summary>
       <p class="answer">Nein. Wenn der Beutel leer ist, bestellst du nach. Kein fester Rhythmus, nichts zu kündigen.</p>
-    </div>
+    </details>
   </div>
 </section>
 

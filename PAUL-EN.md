@@ -6,6 +6,6 @@ Rubriknamen EN (Arbeitsfassung, bitte prüfen): Observations · Evening Culture 
 Rubriksätze EN (Arbeitsfassung): „Essays about the evening. With a claim you can argue with.“ · „How other countries and other times keep the evening. Research, and it shows.“ · „Real people, real evenings. Name, place, photo.“ · „Place · time · photo · one sentence.“ · „Concrete adventures for the evening. Done, or still ahead.“
 Kicker in Unternehmungen EN: „Been“ / „Not yet“ (DE: gewesen / steht noch aus).
 
-Zu übersetzen:
-- „Die letzte Runde“ (Abendkultur, 27.09.2026) — Entwurf liegt in journal-src/letzte-runde-de.md, eine englische Rohfassung in letzte-runde-en.md.
-- „November“ (Beobachtungen) — Entwurf in journal-src/november-de.md, englische Rohfassung in november-en.md.
+Rohfassung online, native pass ausstehend:
+- „Die letzte Runde“ / „Last Orders“ (Abendkultur, 27.09.2026) — Quelle journal-src/letzte-runde-en.md.
+- „November“ (Beobachtungen) — Quelle journal-src/november-en.md.

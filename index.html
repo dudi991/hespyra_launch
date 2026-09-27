@@ -479,13 +479,7 @@
   @supports (grid-template-rows: subgrid){
     @media(min-width:860px){
       .journal .big,.beitraege .karte,.beitraege .ortszeit-eintrag{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0}
-      .journal .big:has(.excerpt){grid-row:span 4}   /* T86: Karte mit Satz */
-    }
-  }
-  /* T87: Abstand Titel → Satz wie in der ORTSZEIT-Reihe des Journals. */
-  .journal .top .excerpt{margin:6px 0 0}
-  @supports (grid-template-rows: subgrid){
-    @media(min-width:860px){
+
       .journal .big > a:last-child,.beitraege .karte > a:last-child{display:contents}
     }
   }
@@ -1095,8 +1089,7 @@
     <div class="big c7-12 reveal" data-published="2026-08-25T18:00">
       <a href="journal-ortszeit.html"><div class="photo"><img src="uploads/bruecke.webp" width="2000" height="1500" alt="Forchheim, 21:13. Über die Brücke, kein Auto." decoding="async" loading="lazy"></div></a>
       <p class="kicker"><a href="journal-ortszeit.html">ORTSZEIT</a></p>
-      <a href="journal-ortszeit.html"><h3 class="ttl">Forchheim <span class="dot">·</span> 21:13</h3>
-      <p class="excerpt">Über die Brücke, kein Auto.</p></a>
+      <a href="journal-ortszeit.html"><h3 class="ttl">Forchheim <span class="dot">·</span> 21:13</h3></a>
     </div>
   </div>
   <div class="links"><a class="link" href="journal.html">Ins Journal</a></div>

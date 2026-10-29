@@ -816,6 +816,10 @@
      Beides rechnet aus --raum-mit, mobil gilt damit automatisch der dort gesetzte Wert. */
   section.schluss{margin-top:0;padding-top:calc(.6 * var(--raum-mit));padding-bottom:var(--raum-mit)}
   section.schluss + section.geschmack{margin-top:0}
+  /* T92: Vanille-Textspalte ab 768px mit rechtem Innenabstand. Ohne ihn lief der Text an die Viewportkante
+     (padding-inline:0 aus T18, kein padding-right in T37). Die Textkante liegt jetzt auf der rechten Seitenachse —
+     dasselbe Maß wie der linke Seitenrand, Spiegelbild von section.ritual .text{padding-left:var(--achse)}. */
+  @media(min-width:768px){section.geschmack .text{padding-right:var(--achse)}}
   /* T76: Ab 768px folgt die Vanille-Kachel dem Bildverhältnis (3:2, Höhe automatisch) statt min(80vh,760px). Damit entfällt
      die Leerfläche aus T75: cover ohne Beschnitt, weil die Datei selbst 3:2 ist. Der Text bleibt vertikal mittig zur Kachel.
      Mobil (T62) unverändert, dort steht das Bild im Fluss. */
@@ -1005,7 +1009,7 @@
     <tr><td colspan="2">und acht weitere Zutaten</td></tr>
   </table>
   <p class="charge"><span class="ph">Charge [Nr.]</span> <span class="dot">·</span> <span class="ph">Analyse vom [Datum]</span></p>
-  <p class="more"><a class="link" href="was-drin-ist.html">Die ganze Liste →</a></p>
+  <p class="more"><a class="link" href="was-drin-ist.html">Die ganze Liste</a></p>
   </div>
 </section>
 
@@ -1014,13 +1018,13 @@
   <p class="label">Bestellen</p>
   <div class="row g12">
     <div class="objekte c1-5">
-      <figure class="beutel reveal"><div class="photo"><img src="img/beutel-frei.webp" width="792" height="1059" alt="Der Beutel. Schwarz, mit Wortmarke." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Beutel <span class="dot">·</span> 180&nbsp;g</span></p></figure>
+      <figure class="beutel reveal"><div class="photo"><img src="img/beutel-frei.webp" width="792" height="1059" alt="Der Beutel. Schwarz, mit Wortmarke." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Beutel <span class="dot">·</span> 180&#8239;g</span></p></figure>
     </div>
     <div class="text c7-12">
       <h2>HESPYRA.<br>30&nbsp;Abende.</h2>
-      <p class="lead">Standbeutel <span class="dot">·</span> <span class="mono">180&nbsp;g</span> <span class="dot">·</span> <span class="mono">30</span> Portionen à <span class="mono">6&nbsp;g</span>.</p>
-      <p class="preis"><span class="ph">[Preis]</span>&nbsp;€</p>
-      <p class="grundpreis vorlaunch"><span class="ph">[Grundpreis]</span>&nbsp;€&nbsp;/&nbsp;100&nbsp;g</p>
+      <p class="lead">Standbeutel <span class="dot">·</span> <span class="mono">180&#8239;g</span> <span class="dot">·</span> <span class="mono">30</span> Portionen à <span class="mono">6&#8239;g</span>.</p>
+      <p class="preis"><span class="ph">[Preis]</span>&#8239;€</p>
+      <p class="grundpreis vorlaunch"><span class="ph">[Grundpreis]</span>&#8239;€&nbsp;/&nbsp;100&#8239;g</p>
       <!-- T63: Solange der Preis ein Platzhalter ist, führt der Knopf zum Newsletter statt in einen Warenkorb (Klasse .vorlaunch).
            Zum Launch zurück auf:  <button type="button" class="btn solid" id="cartbtn" data-soon="Bald.">In den Warenkorb <span class="arw">→</span></button>
            und das Skript „Warenkorb bis Shop-Start“ wieder einsetzen. -->
@@ -1039,7 +1043,7 @@
   <div class="list">
     <details>
       <summary>Ist das nicht einfach ein guter Kakao? <span class="plus">+</span></summary>
-      <p class="answer">Hoffentlich. Kakao beschreibt den Geschmack, nicht das ganze Getränk. <a class="link" href="#proof">Was drin ist →</a></p>
+      <p class="answer">Hoffentlich. Kakao beschreibt den Geschmack, nicht das ganze Getränk. <a class="link" href="#proof">Was drin ist</a></p>
     </details>
     <details>
       <summary>Macht das müde? <span class="plus">+</span></summary>
@@ -1109,7 +1113,7 @@
   <!-- Rapidmail postet ins unsichtbare iframe; die Seite sieht keine Serverantwort. ‚Erfolg' = Regex im Browser. DOI-Bestätigung kommt per Mail — deshalb sagt die Meldung den zweiten Schritt. -->
   <form id="nlform" action="https://tf125fca5.emailsys1a.net/238/9119/938578f21b/subscribe/form.html" method="post" target="rm_iframe" novalidate>
     <input type="email" name="email" autocomplete="email" required placeholder="E-Mail" aria-label="E-Mail" aria-describedby="nl-err">
-    <button type="submit">Eintragen <span class="arw">→</span></button>
+    <button type="submit">Eintragen</button>
   </form>
   <p class="nl-err" id="nl-err" role="alert" hidden>Bitte eine gültige E-Mail-Adresse.</p>
   <p class="nl-ok" id="nl-done" role="status" hidden>Eine Mail ist unterwegs. Bestätige sie, dann kommt die nächste.</p>

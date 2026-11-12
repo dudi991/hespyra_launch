@@ -708,7 +708,7 @@
   </form>
   <p class="nl-err" id="nl-err" role="alert" hidden>Please enter a valid email address.</p>
   <p class="nl-ok" id="nl-done" role="status" hidden>An email is on its way. Confirm it, and the next one follows.</p>
-  <p class="fine">No discount for signing up. Unsubscribe anytime, details in the <a class="link" href="datenschutz-en.html">privacy policy</a>.</p>
+  <p class="fine">Unsubscribe anytime, details in the <a class="link" href="datenschutz-en.html">privacy policy</a>.</p>
   </div>
 </section>
 
@@ -721,11 +721,11 @@
 <a href="index-en.html#produkt">Order</a>
     </div>
     <div>
-      <span class="soft">Call between 18:00 and 21:00. Whoever answers works here.</span><br>
+      <span class="soft">Evening office hours, 18:00–21:00. Whoever answers works here.</span><br>
       <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a> · <a href="tel:+491727599218">+49 172 7599218</a><br>
       <a href="impressum-en.html">Legal notice</a> · <a href="datenschutz-en.html">Privacy</a><br>
       <a href="https://www.instagram.com/hespyra/" target="_blank" rel="noopener" aria-label="HESPYRA on Instagram">Instagram</a>
-      <p class="disc">Food supplements are no substitute for a balanced, varied diet and a healthy lifestyle.</p>
+      <p class="disc">Food supplements should not be used as a substitute for a varied, balanced diet and a healthy lifestyle. Do not exceed the recommended daily dose. Keep out of reach of young children.</p>
     </div>
   </div>
 </footer>
@@ -808,7 +808,7 @@
   (function(){document.querySelectorAll('.photo img').forEach(function(i){function on(){i.classList.add('ld')} if(i.complete&&i.naturalWidth)on();else{i.addEventListener('load',on);i.addEventListener('error',on);}})})();
 
   // T27 Newsletter (Rapidmail): Regex prüfen. Ungültig → Absenden verhindern, Fehlerzeile. Gültig → POST ins iframe laufen lassen,
-  // Formularzeile ausblenden, Hinweis auf die Bestätigungsmail zeigen. Die Zeile „Kein Rabatt …“ bleibt stehen.
+  // Formularzeile ausblenden, Hinweis auf die Bestätigungsmail zeigen. Die Feinzeile darunter bleibt stehen.
   (function(){
     var f=document.getElementById('nlform');if(!f)return;
     var i=f.querySelector('input[name="email"]'),err=document.getElementById('nl-err'),ok=document.getElementById('nl-done');

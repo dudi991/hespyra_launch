@@ -1025,10 +1025,11 @@
       <p class="lead">Standbeutel <span class="dot">·</span> <span class="mono">180&#8239;g</span> <span class="dot">·</span> <span class="mono">30</span> Portionen à <span class="mono">6&#8239;g</span>.</p>
       <p class="preis"><span class="ph">[Preis]</span>&#8239;€</p>
       <p class="grundpreis vorlaunch"><span class="ph">[Grundpreis]</span>&#8239;€&nbsp;/&nbsp;100&#8239;g</p>
-      <!-- T63: Solange der Preis ein Platzhalter ist, führt der Knopf zum Newsletter statt in einen Warenkorb (Klasse .vorlaunch).
+      <!-- Launch: zurück zu „In den Warenkorb“.
+           T94: Bis dahin steht hier der Hinweis-Knopf; er führt zum Newsletter statt in einen Warenkorb (Klasse .vorlaunch).
            Zum Launch zurück auf:  <button type="button" class="btn solid" id="cartbtn" data-soon="Bald.">In den Warenkorb <span class="arw">→</span></button>
            und das Skript „Warenkorb bis Shop-Start“ wieder einsetzen. -->
-      <a class="btn solid vorlaunch" id="cartbtn" href="#newsletter">Wir sagen Bescheid, wenn es losgeht. <span class="arw">→</span></a>
+      <a class="btn solid vorlaunch" id="cartbtn" href="#newsletter">Noch nicht zu haben. Eine Mail, wenn doch. <span class="arw">→</span></a>
       <p class="small soft nb">Reicht für 30 Abende. Dienstage zählen mit.</p>
       <figure class="loeffel reveal"><div class="photo"><img src="img/scoop-frei.webp" width="1196" height="516" alt="Der Löffel. Messing, quer." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Löffel <span class="dot">·</span> <span class="ph">[Messing, Ausführung offen]</span></span></p></figure>
     </div>
@@ -1217,7 +1218,7 @@
   (function(){document.querySelectorAll('.photo img').forEach(function(i){function on(){i.classList.add('ld')} if(i.complete&&i.naturalWidth)on();else{i.addEventListener('load',on);i.addEventListener('error',on);}})})();
 
   // T27 Newsletter (Rapidmail): Regex prüfen. Ungültig → Absenden verhindern, Fehlerzeile. Gültig → POST ins iframe laufen lassen,
-  // Formularzeile ausblenden, Hinweis auf die Bestätigungsmail zeigen. Die Zeile „Kein Rabatt …“ bleibt stehen.
+  // Formularzeile ausblenden, Hinweis auf die Bestätigungsmail zeigen. Die Feinzeile darunter bleibt stehen.
   (function(){
     var f=document.getElementById('nlform');if(!f)return;
     var i=f.querySelector('input[name="email"]'),err=document.getElementById('nl-err'),ok=document.getElementById('nl-done');

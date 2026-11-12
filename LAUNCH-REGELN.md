@@ -6,6 +6,10 @@ Beim Einbau von Preis, Warenkorb und Checkout bleibt unverändert:
 – Mono nur für Zeit, Menge, Preis, Charge
 – Bestellen-Knopf: „In den Warenkorb", sonst nichts
 
+Bis Launch ersetzt (T94): Im Bestellen-Abschnitt steht statt „In den Warenkorb" ein Knopf im gleichen Stil mit
+„Noch nicht zu haben. Eine Mail, wenn doch." (EN „Not available yet. One email when it is.") und Link auf den
+Newsletter-Abschnitt. Zum Launch zurück auf „In den Warenkorb"; der Rückweg steht als Kommentar im HTML.
+
 Änderungen daran nur mit ausdrücklicher Anweisung „Launch-Regel ändern".
 
 Humor: höchstens ein trockener Satz pro Abschnitt. Der interessante Satz darf klein sein; danach nicht erklären.

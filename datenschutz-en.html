@@ -741,11 +741,11 @@
 <a href="index-en.html#produkt">Order</a>
     </div>
     <div>
-      <span class="soft">Call between 18:00 and 21:00. Whoever answers works here.</span><br>
+      <span class="soft">Evening office hours, 18:00–21:00. Whoever answers works here.</span><br>
       <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a> · <a href="tel:+491727599218">+49 172 7599218</a><br>
       <a href="impressum-en.html">Legal notice</a> · <a href="datenschutz-en.html">Privacy</a><br>
       <a href="https://www.instagram.com/hespyra/" target="_blank" rel="noopener" aria-label="HESPYRA on Instagram">Instagram</a>
-      <p class="disc">Food supplements are no substitute for a balanced, varied diet and a healthy lifestyle.</p>
+      <p class="disc">Food supplements should not be used as a substitute for a varied, balanced diet and a healthy lifestyle. Do not exceed the recommended daily dose. Keep out of reach of young children.</p>
     </div>
   </div>
 </footer>
@@ -888,7 +888,7 @@
       if(st){ st.textContent = (h>=5 && h<17) ? 'The evening is still coming.' : 'The evening is still open.'; }
     }
     // Journal-Stempel aus den Artikeldaten
-    (function(){var s=document.querySelector('.journal .stamp');if(!s)return;var ds=Array.prototype.map.call(document.querySelectorAll('.journal [data-published]'),function(a){return a.getAttribute('data-published')}).sort().pop();if(!ds)return;var d=new Date(ds),M=['January','February','March','April','May','June','July','August','September','October','November','December'];s.textContent='Last · '+d.getDate()+' '+M[d.getMonth()]+', '+pad(d.getHours())+':'+pad(d.getMinutes());})();
+    (function(){var s=document.querySelector('.journal .stamp');if(!s)return;var ds=Array.prototype.map.call(document.querySelectorAll('.journal [data-published]'),function(a){return a.getAttribute('data-published')}).sort().pop();if(!ds)return;var d=new Date(ds),M=['January','February','March','April','May','June','July','August','September','October','November','December'];s.textContent='Latest · '+d.getDate()+' '+M[d.getMonth()]+', '+pad(d.getHours())+':'+pad(d.getMinutes());})();
     window.hespyraTick=tick;
     tick();
     setTimeout(function(){tick();setInterval(tick,60000)}, 1000*(61-new Date().getSeconds()));

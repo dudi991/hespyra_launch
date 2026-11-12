@@ -904,7 +904,7 @@
     <div class="photo"></div>
     <div class="text">
       <div class="g12">
-        <h1 class="c1-12">Cocoa with real vanilla.<br><span class="nw">Mix with water.</span></h1>
+        <h1 class="c1-12">A cocoa with real vanilla.<br><span class="nw">Just stir.</span></h1>
         <!-- Hero-Glas: RENDER, PLATZHALTER. Wird durch das echte Glasfoto ersetzt.
              Bis dahin keine Bildunterschrift: Ein Render hat keinen Ort und keine Uhrzeit. data-zeit="19:50" am Hero ist
              ohne Foto-Beleg — okay für den Testbau, nicht für den Launch. Mit dem Foto kommen seine Uhrzeit in data-ort/data-zeit
@@ -983,7 +983,7 @@
       <div class="text">
         <h2>Cocoa and real vanilla.</h2>
         <!-- Geschmacksbeschreibung — gegen finale Charge prüfen. -->
-        <p class="lead t1">First the dark cocoa, then the vanilla. It doesn’t get particularly sweet.</p>
+        <p class="lead t1">First the dark cocoa, then the vanilla. It never gets very sweet.</p>
         <p class="lead t3">The formula mattered. It still had to taste good.</p>
       </div>
     </div>
@@ -1025,10 +1025,11 @@
       <p class="lead">Stand-up pouch <span class="dot">·</span> <span class="mono">180&#8239;g</span> <span class="dot">·</span> <span class="mono">30</span> servings of <span class="mono">6&#8239;g</span>.</p>
       <p class="preis">€<span class="ph">[price]</span></p>
       <p class="grundpreis vorlaunch"><span class="ph">[Grundpreis]</span>&#8239;€&nbsp;/&nbsp;100&#8239;g</p>
-      <!-- T63: Solange der Preis ein Platzhalter ist, führt der Knopf zum Newsletter statt in einen Warenkorb (Klasse .vorlaunch).
+      <!-- Launch: zurück zu „In den Warenkorb“ (EN „Add to cart“).
+           T94: Bis dahin steht hier der Hinweis-Knopf; er führt zum Newsletter statt in einen Warenkorb (Klasse .vorlaunch).
            Zum Launch zurück auf:  <button type="button" class="btn solid" id="cartbtn" data-soon="Soon.">Add to cart <span class="arw">→</span></button>
            und das Skript „Warenkorb bis Shop-Start“ wieder einsetzen. -->
-      <a class="btn solid vorlaunch" id="cartbtn" href="#newsletter">We’ll let you know when it starts. <span class="arw">→</span></a>
+      <a class="btn solid vorlaunch" id="cartbtn" href="#newsletter">Not available yet. One email when it is. <span class="arw">→</span></a>
       <p class="small soft nb">Enough for 30 evenings. Tuesdays count.</p>
       <figure class="loeffel reveal"><div class="photo"><img src="img/scoop-frei.webp" width="1196" height="516" alt="The spoon. Brass, side on." decoding="async" loading="lazy"></div><p class="cap"><span class="t">Spoon <span class="dot">·</span> <span class="ph">[brass, finish tbd]</span></span></p></figure>
     </div>
@@ -1077,7 +1078,7 @@
 <section class="journal col">
   <div class="head">
       <h2>A magazine about the evening.</h2>
-      <p class="stamp">Last · 3 September, 18:00</p>
+      <p class="stamp">Latest · 3 September, 18:00</p>
   </div>
   <!-- Konvention der beiden Serien:
        „100 Menschen. 100 Abende." — der Titel ist immer Ort · Zeit, nie nur die Zeit.
@@ -1130,11 +1131,11 @@
 <a href="#produkt">Order</a>
     </div>
     <div>
-      <span class="soft">Call between 18:00 and 21:00. Whoever answers works here.</span><br>
+      <span class="soft">Evening office hours, 18:00–21:00. Whoever answers works here.</span><br>
       <a href="mailto:hallo@hespyra.com">hallo@hespyra.com</a> · <a href="tel:+491727599218">+49 172 7599218</a><br>
       <a href="impressum-en.html">Legal notice</a> · <a href="datenschutz-en.html">Privacy</a><br>
       <a href="https://www.instagram.com/hespyra/" target="_blank" rel="noopener" aria-label="HESPYRA on Instagram">Instagram</a>
-      <p class="disc">Food supplements are no substitute for a balanced, varied diet and a healthy lifestyle.</p>
+      <p class="disc">Food supplements should not be used as a substitute for a varied, balanced diet and a healthy lifestyle. Do not exceed the recommended daily dose. Keep out of reach of young children.</p>
     </div>
   </div>
 </footer>
@@ -1217,7 +1218,7 @@
   (function(){document.querySelectorAll('.photo img').forEach(function(i){function on(){i.classList.add('ld')} if(i.complete&&i.naturalWidth)on();else{i.addEventListener('load',on);i.addEventListener('error',on);}})})();
 
   // T27 Newsletter (Rapidmail): Regex prüfen. Ungültig → Absenden verhindern, Fehlerzeile. Gültig → POST ins iframe laufen lassen,
-  // Formularzeile ausblenden, Hinweis auf die Bestätigungsmail zeigen. Die Zeile „Kein Rabatt …“ bleibt stehen.
+  // Formularzeile ausblenden, Hinweis auf die Bestätigungsmail zeigen. Die Feinzeile darunter bleibt stehen.
   (function(){
     var f=document.getElementById('nlform');if(!f)return;
     var i=f.querySelector('input[name="email"]'),err=document.getElementById('nl-err'),ok=document.getElementById('nl-done');
@@ -1287,7 +1288,7 @@
       if(st){ st.textContent = (h>=5 && h<17) ? 'The evening is still coming.' : 'The evening is still open.'; }
     }
     // Journal-Stempel aus den Artikeldaten
-    (function(){var s=document.querySelector('.journal .stamp');if(!s)return;var ds=Array.prototype.map.call(document.querySelectorAll('.journal [data-published]'),function(a){return a.getAttribute('data-published')}).sort().pop();if(!ds)return;var d=new Date(ds),M=['January','February','March','April','May','June','July','August','September','October','November','December'];s.textContent='Last · '+d.getDate()+' '+M[d.getMonth()]+', '+pad(d.getHours())+':'+pad(d.getMinutes());})();
+    (function(){var s=document.querySelector('.journal .stamp');if(!s)return;var ds=Array.prototype.map.call(document.querySelectorAll('.journal [data-published]'),function(a){return a.getAttribute('data-published')}).sort().pop();if(!ds)return;var d=new Date(ds),M=['January','February','March','April','May','June','July','August','September','October','November','December'];s.textContent='Latest · '+d.getDate()+' '+M[d.getMonth()]+', '+pad(d.getHours())+':'+pad(d.getMinutes());})();
     window.hespyraTick=tick;
     tick();
     setTimeout(function(){tick();setInterval(tick,60000)}, 1000*(61-new Date().getSeconds()));

@@ -708,7 +708,7 @@
   </form>
   <p class="nl-err" id="nl-err" role="alert" hidden>Bitte eine gültige E-Mail-Adresse.</p>
   <p class="nl-ok" id="nl-done" role="status" hidden>Eine Mail ist unterwegs. Bestätige sie, dann kommt die nächste.</p>
-  <p class="fine">Kein Rabatt fürs Anmelden. Abmelden jederzeit, Näheres im <a class="link" href="datenschutz.html">Datenschutz</a>.</p>
+  <p class="fine">Abmelden jederzeit, Näheres im <a class="link" href="datenschutz.html">Datenschutz</a>.</p>
   </div>
 </section>
 
@@ -808,7 +808,7 @@
   (function(){document.querySelectorAll('.photo img').forEach(function(i){function on(){i.classList.add('ld')} if(i.complete&&i.naturalWidth)on();else{i.addEventListener('load',on);i.addEventListener('error',on);}})})();
 
   // T27 Newsletter (Rapidmail): Regex prüfen. Ungültig → Absenden verhindern, Fehlerzeile. Gültig → POST ins iframe laufen lassen,
-  // Formularzeile ausblenden, Hinweis auf die Bestätigungsmail zeigen. Die Zeile „Kein Rabatt …“ bleibt stehen.
+  // Formularzeile ausblenden, Hinweis auf die Bestätigungsmail zeigen. Die Feinzeile darunter bleibt stehen.
   (function(){
     var f=document.getElementById('nlform');if(!f)return;
     var i=f.querySelector('input[name="email"]'),err=document.getElementById('nl-err'),ok=document.getElementById('nl-done');

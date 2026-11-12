@@ -6,9 +6,9 @@
 <meta name="robots" content="noindex, nofollow"><!-- Vorschau: vor dem Launch entfernen -->
 <meta name="theme-color" content="#fbfbf9">
 <!-- D5: prüfen -->
-<meta name="description" content="Cocoa with real vanilla. Mix with water in the evening. Magnesium, L-theanine and saffron. From Forchheim.">
+<meta name="description" content="A cocoa with real vanilla. Just stir. For the moment before.">
 <meta property="og:title" content="HESPYRA – For the moment before.">
-<meta property="og:description" content="Cocoa with real vanilla. Mix with water in the evening. Magnesium, L-theanine and saffron. From Forchheim.">
+<meta property="og:description" content="A cocoa with real vanilla. Just stir. For the moment before.">
 <!-- BASE-URL beim Livegang ersetzen: https://hespyra.com/ -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
@@ -267,21 +267,25 @@
   @media(max-width:600px){.hero{--hero-h:88svh}}
   .hero .full{overflow:hidden}
   .hero .glas{position:relative;height:0;grid-column:1/-1;align-self:start;pointer-events:none;mix-blend-mode:multiply;
-    font-size:clamp(44px,7vw,100px);line-height:.94}                   /* = h1, damit em in h1-Zeilen rechnet */
-  @media(max-width:600px){.hero .glas{font-size:clamp(44px,12vw,50px)}}
+    font-size:clamp(44px,7vw,100px);line-height:.94;                   /* = h1, damit em in h1-Zeilen rechnet */
+    --punkt-em:10.327}   /* T95: EN-Messung — Satzende „vanilla.“ ab h1-Anfang, h1 zweizeilig (DE: 11.905) */
+  @media(max-width:600px){.hero .glas{font-size:clamp(44px,12vw,50px);--punkt-em:4.921}}   /* T95: h1 dreizeilig, „vanilla.“ in Zeile 2 (DE: 6.105) */
   .hero .glas img{position:absolute;display:block;width:auto;height:calc(.70 * var(--hero-h));
     /* T8.1: gespiegelt — Schatten fällt nach rechts. Rechte Glaskante (gespiegelt bei 77,7 % der Bildbreite) schließt mit dem
-       Punkt hinter „vanilla.“ ab: Punkt-Ende = h1-Anfang + 11.905 em (T14: dieselbe Regel wie DE, keine EN-Sonderbehandlung). Bildbreite = .8003 × Höhe. */
+       Punkt hinter „vanilla.“ ab: Punkt-Ende = h1-Anfang + var(--punkt-em) em. T95: eigene EN-Messung statt des DE-Werts
+       (vorher 11.905 em von DE übernommen, dadurch stand das Glas 141 px rechts vom Satzende). Bildbreite = .8003 × Höhe. */
     transform:scaleX(-1);
-    left:calc(11.905 * 1em - .7772 * .8003 * .70 * var(--hero-h));
+    left:calc(var(--punkt-em) * 1em - .7772 * .8003 * .70 * var(--hero-h));
     /* T17: Standard ohne Überlappung — Glas-Unterkante 24 px über der h1-Oberkante. Anker = h1-Unterkante, h1 hier 2 Zeilen:
        Glas-Unterkante = Anker − 2 Zeilen − 24px; Bild-Unterkante liegt .198 × Bildhöhe tiefer. */
     bottom:calc(2 * .94em + 24px - .198 * .70 * var(--hero-h));
     /* Render-Hintergrund ist 254, nicht 255: ohne Anhebung steht die Bildfläche eine Stufe dunkler als --paper (sichtbarer Rahmen). */
     filter:brightness(1.01);
     -webkit-mask-image:linear-gradient(to right,transparent,#000 20%);mask-image:linear-gradient(to right,transparent,#000 20%)}
-  /* ≤600px: h1 dreizeilig, „vanilla.“ steht in Zeile 2 (Punkt-Ende = h1-Anfang + 6.105 em, T14: wie DE). */
-  @media(max-width:600px){.hero .glas img{left:calc(6.105 * 1em - .7772 * .8003 * .70 * var(--hero-h));bottom:calc(3 * .94em + 24px - .198 * .70 * var(--hero-h))}}
+  /* ≤600px: h1 dreizeilig, „vanilla.“ steht in Zeile 2 — der Wert steht als --punkt-em oben in .hero .glas (T95).
+     Offen: zwischen etwa 577 und 600 px trägt Zeile 1 den ganzen Satz (Satzende dann 10.587 em, h1 zweizeilig);
+     dort sitzt das Glas zu weit links. DE hat die Stelle nicht, weil der deutsche Satz länger ist. */
+  @media(max-width:600px){.hero .glas img{bottom:calc(3 * .94em + 24px - .198 * .70 * var(--hero-h))}}
   /* Variante hero--ebene (Klasse am <section>): Glas-Unterkante auf 35 % der Versalhöhe von Zeile 1, Glas überlappt die h1 (T8.1).
      Zeile-1-Oberkante + .14em (Versallinie) + .35 × .70em = + .385em. */
   .hero--ebene .glas img{bottom:calc(2 * .94em - .385em - .198 * .70 * var(--hero-h))}
@@ -847,7 +851,7 @@
   {
    "@type": "Product",
    "name": "HESPYRA",
-   "description": "Cocoa with real vanilla. Mix with water in the evening. Magnesium, L-theanine and saffron. From Forchheim.",
+   "description": "A cocoa with real vanilla. Just stir. For the moment before.",
    "image": "https://hespyra.com/img/og-image.png",
    "brand": {
     "@id": "https://hespyra.com/#org"

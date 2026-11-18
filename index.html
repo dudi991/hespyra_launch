@@ -828,15 +828,22 @@
     section.geschmack .photo{aspect-ratio:1536/658;height:auto}   /* T77: Verhältnis der beschnittenen Datei */
     section.geschmack .photo img{object-fit:cover;object-position:center}
   }
-  /* T102: Minuten-Zeile und Absatz darunter teilen eine Textbreite: --zeile = 21 × Fließtextgröße.
-     Maß ist die Minuten-Zeile — sie misst 19.8 em (EN 15.7 em) und steht damit gerade einzeilig, der Rest ist
-     Reserve für Ersatzschriften. Der Absatz bricht innerhalb dieser Breite frei um (der Satzweise-Umbruch aus T98
-     ist raus). Der Abstand zur Bildnaht bleibt mindestens --gap; ab 768px ersetzt diese Regel das padding-right
-     aus T37 (dort erst ab 1024px gesetzt, darunter lag der Text an der Naht). Unter 768px volle Spaltenbreite. */
+  /* T103: Zubereitung wie nach T97 — Minuten-Zeile, drei Variantenzeilen als Gruppe (28px darüber, 10px dazwischen),
+     Schlusssatz (28px darüber). Minuten-Zeile und Schlusssatz stehen ab 1024px einzeilig und haben dafür eine eigene,
+     breitere Spalte: --zeile-breit = 22.5 × Fließtextgröße (die längere der beiden misst 21.2 em, EN 19.6 em, der Rest
+     ist Reserve für Ersatzschriften). Die drei Varianten behalten die schmale Spalte (--block) und brechen fest nach
+     dem ersten Satz; innerhalb eines Satzes wird nie umbrochen. Der Abstand zur Bildnaht bleibt mindestens --gap;
+     ab 768px ersetzt diese Regel das padding-right aus T37. Unter 768px volle Spaltenbreite. */
+  .ritual .text .varianten{margin-top:28px}
+  .ritual .varianten > span{display:block}
+  .ritual .varianten > span + span{margin-top:10px}
+  .ritual .varianten .s{display:block;white-space:nowrap}
+  .ritual .text .zusatz{margin-top:28px}
   @media(min-width:768px){
-    section.ritual .text{--zeile:calc(21 * clamp(20px, 1.6vw, 24px));
-      padding-right:max(var(--gap), calc(50vw - var(--achse) - var(--zeile)))}
-    section.ritual .text .lead{width:min(100%, var(--zeile));max-width:none}
+    section.ritual .text{--zeile-breit:calc(22.5 * clamp(20px, 1.6vw, 24px));
+      padding-right:max(var(--gap), calc(50vw - var(--achse) - var(--zeile-breit)))}
+    section.ritual .text .minute,section.ritual .text .zusatz{width:min(100%, var(--zeile-breit));max-width:none}
+    section.ritual .text .varianten{width:min(100%, var(--block));max-width:none}
   }
   @media(max-width:767px){
     section.ritual .text .lead{max-width:none}
@@ -956,9 +963,10 @@
       <p class="label">Zubereitung</p>
       <h2>Ein Löffel reicht.</h2>
       <!-- Zeit mit Muster nachmessen -->
-      <p class="lead minute"><span class="s">Eine Minute.</span> <span class="s">Kürzer haben wir nicht versucht.</span></p>
+      <p class="lead minute">Eine Minute. Kürzer haben wir nicht versucht.</p>
+      <p class="lead varianten"><span><span class="s">Mit Wasser.</span><span class="s">Leicht erdig, kaum süß.</span></span><span><span class="s">Mit Milch oder Haferdrink.</span><span class="s">Runder, weicher.</span></span><span><span class="s">Mit Honig oder Zucker.</span><span class="s">Wenn du es süßer magst.</span></span></p>
       <!-- Wortlaut rechtlich offen (Glycin) -->
-      <p class="lead">Mit Wasser leicht erdig und kaum süß, mit Milch oder Haferdrink runder. Wer es süßer mag, nimmt Honig oder Zucker dazu. Zucker und Süßstoffe sind nicht drin. Absichtlich.</p>
+      <p class="lead zusatz">Ohne Zuckerzusatz, ohne Süßstoffe. Absichtlich.</p>
     </div>
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Volles Glas Kakao mit Löffel auf Papier." decoding="async" loading="lazy"></div>

@@ -842,7 +842,7 @@
   .ritual .varianten > span{display:block}
   .ritual .varianten > span + span{margin-top:10px}
   .ritual .varianten .s{display:block;white-space:nowrap}
-  .ritual .varianten .s:first-child{color:var(--ink-soft)}   /* T105: die Zutat gedämpft, die Beschreibung in Tinte */
+  .ritual .varianten .s + .s{color:var(--ink-soft)}   /* T106 (= T104): die Beschreibung gedämpft, die Zutat in Tinte */
   .ritual .text .zusatz{margin-top:28px}
   @media(min-width:768px){
     section.ritual .text{--zeile-breit:calc(22.5 * clamp(20px, 1.6vw, 24px));

@@ -612,6 +612,9 @@
     .bar .menu > a:first-child:hover{background:var(--ink);color:var(--paper)}
   }
   */
+  /* T112: Newsletter-Überschrift ab 768px ein Satz je Zeile, fester Umbruch nach jedem Satz.
+     Unter 768px fließt sie weiter frei. */
+  @media(min-width:768px){.nl .kopf h2 .s{display:block}}
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="1ecf682b-8921-492c-9b42-71f46a9cae65"></script>
 </head>
@@ -708,14 +711,14 @@
 <!-- 9 NEWSLETTER -->
 <section class="nl narrow" id="newsletter">
   <div class="kopf">
-  <h2>Aus Forchheim. Ungefähr einmal im Monat. Seltener, wenn nichts passiert ist.</h2>
+  <h2><span class="s">Aus Forchheim.</span> <span class="s">Ungefähr einmal im Monat.</span> <span class="s">Seltener, wenn nichts passiert ist.</span></h2>
   </div>
   <div class="daten">
   <p class="lead">Der Betreff ist eine Uhrzeit.</p>
   <!-- Rapidmail postet ins unsichtbare iframe; die Seite sieht keine Serverantwort. ‚Erfolg' = Regex im Browser. DOI-Bestätigung kommt per Mail — deshalb sagt die Meldung den zweiten Schritt. -->
   <form id="nlform" action="https://tf125fca5.emailsys1a.net/238/9119/938578f21b/subscribe/form.html" method="post" target="rm_iframe" novalidate>
     <input type="email" name="email" autocomplete="email" required placeholder="E-Mail" aria-label="E-Mail" aria-describedby="nl-err">
-    <button type="submit">Eintragen <span class="arw">→</span></button>
+    <button type="submit">Eintragen</button>
   </form>
   <p class="nl-err" id="nl-err" role="alert" hidden>Bitte eine gültige E-Mail-Adresse.</p>
   <p class="nl-ok" id="nl-done" role="status" hidden>Eine Mail ist unterwegs. Bestätige sie, dann kommt die nächste.</p>

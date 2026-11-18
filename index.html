@@ -869,6 +869,9 @@
     section.geschmack .text .t1{width:max-content;max-width:none}
     section.geschmack .text .t1 .s{white-space:nowrap}
   }
+  /* T112: Newsletter-Überschrift ab 768px ein Satz je Zeile, fester Umbruch nach jedem Satz.
+     Unter 768px fließt sie weiter frei. */
+  @media(min-width:768px){.nl .kopf h2 .s{display:block}}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->
@@ -1150,7 +1153,7 @@
 <!-- 9 NEWSLETTER -->
 <section class="nl narrow" id="newsletter">
   <div class="kopf">
-  <h2>Aus Forchheim. Ungefähr einmal im Monat. Seltener, wenn nichts passiert ist.</h2>
+  <h2><span class="s">Aus Forchheim.</span> <span class="s">Ungefähr einmal im Monat.</span> <span class="s">Seltener, wenn nichts passiert ist.</span></h2>
   </div>
   <div class="daten">
   <p class="lead">Der Betreff ist eine Uhrzeit.</p>

@@ -525,7 +525,6 @@
   .fs-head + .zutat{margin-top:var(--raum-weit)}
   .zutat,.fs{margin-top:var(--raum-mit)}
   .zutat,.fs{scroll-margin-top:80px}
-  .rueck{margin-top:var(--raum-eng)}
 
   /* ---------- C5 Sprungliste: reine Anker, Plex Sans, kein Mono ---------- */
   .zutaten-index{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:24px 0 0}
@@ -679,6 +678,9 @@
     .bar .menu > a:first-child:hover{background:var(--ink);color:var(--paper)}
   }
   */
+  /* T112: Newsletter-Überschrift ab 768px ein Satz je Zeile, fester Umbruch nach jedem Satz.
+     Unter 768px fließt sie weiter frei. */
+  @media(min-width:768px){.nl .kopf h2 .s{display:block}}
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="1ecf682b-8921-492c-9b42-71f46a9cae65"></script>
 </head>
@@ -926,13 +928,10 @@
   <h2 class="reveal">Manufacturing</h2>
   <p class="lead reveal">Made in <span class="ph">[place]</span>, Austria, at <span class="ph">[NovaLabs — naming to be confirmed]</span>. Certified to <span class="ph">[standard]</span>. Every batch is tested and released by the manufacturer. The first batch is additionally tested by an independent laboratory. Both will be posted here.</p>
   <div class="rows reveal">
-    <a class="row" href="#" aria-disabled="true"><span class="m"><span class="ph">Batch [no.]</span> <span class="dot">·</span> <span class="ph">Released [date]</span> <span class="dot">·</span> <span class="ph">[laboratory, if external]</span> <span class="dot">·</span> PDF</span><span class="arrow">→</span></a>
+    <a class="row" href="#" aria-disabled="true"><span class="m"><span class="ph">Batch [no.]</span> <span class="dot">·</span> <span class="ph">Released [date]</span> <span class="dot">·</span> <span class="ph">[laboratory, if external]</span> <span class="dot">·</span> PDF</span></a>
   </div>
 </section>
 
-<section class="rueck narrow">
-  <p><a class="link" href="index-en.html#proof">← Back to the homepage</a></p>
-</section>
 </div>
 <nav class="zutaten-index seite c10-12" aria-label="Ingredients">
     <a href="#magnesium">Magnesium</a> <span class="dot">·</span>
@@ -956,14 +955,14 @@
 <!-- 9 NEWSLETTER -->
 <section class="nl narrow" id="newsletter">
   <div class="kopf">
-  <h2>From Forchheim. About once a month. Less often if nothing has happened.</h2>
+  <h2><span class="s">From Forchheim.</span> <span class="s">About once a month.</span> <span class="s">Less often if nothing has happened.</span></h2>
   </div>
   <div class="daten">
   <p class="lead">The subject line is a time of day.</p>
   <!-- Rapidmail postet ins unsichtbare iframe; die Seite sieht keine Serverantwort. ‚Erfolg' = Regex im Browser. DOI-Bestätigung kommt per Mail — deshalb sagt die Meldung den zweiten Schritt. -->
   <form id="nlform" action="https://tf125fca5.emailsys1a.net/238/9119/938578f21b/subscribe/form.html" method="post" target="rm_iframe" novalidate>
     <input type="email" name="email" autocomplete="email" required placeholder="Email" aria-label="Email" aria-describedby="nl-err">
-    <button type="submit">Sign up <span class="arw">→</span></button>
+    <button type="submit">Sign up</button>
   </form>
   <p class="nl-err" id="nl-err" role="alert" hidden>Please enter a valid email address.</p>
   <p class="nl-ok" id="nl-done" role="status" hidden>An email is on its way. Confirm it, and the next one follows.</p>

@@ -349,11 +349,31 @@
 
   /* ---------- 3 ZUBEREITUNG ---------- */
   .ritual h2{max-width:17ch}
-  /* T96: Zubereitung — drei Varianten und ein Hinweis, je eigene Zeile. Kein Listenpunkt, kein Icon;
-     die letzte Zeile (.zusatz) steht abgesetzt, weil sie keine Variante ist. */
-  .ritual .varianten > span{display:block}
-  .ritual .varianten > span + span{margin-top:10px}
-  .ritual .varianten .zusatz{margin-top:28px}
+  /* T99: Zubereitung — die drei Varianten als zweispaltige Tabelle auf Papier, Aufbau wie die Rubriktabelle
+     im Journal: Haarlinie über jeder Zeile und unter der letzten, 44 px Zeilenhöhe, links die Zutat in Tinte,
+     rechts die Beschreibung in --ink-soft. Keine Versalien, keine Icons. Unter 561 px stehen beide Spalten
+     untereinander, weil die Textspalte für zwei nicht mehr reicht; die Haarlinien bleiben.
+     Der Schlusssatz (.zusatz) steht als eigener Absatz darunter, eine Stufe kleiner und gedämpft. */
+  .ritual .text{container-type:inline-size}   /* die Umschaltung hängt an der Textspalte, nicht am Viewport */
+  .ritual .varianten{list-style:none;padding:0;display:grid;grid-template-columns:minmax(0,1fr);
+    column-gap:24px;align-items:baseline}
+  .ritual .varianten li{display:contents}   /* ein Raster für alle Zeilen — sonst hätte jede Zeile eine eigene Spaltenbreite */
+  .ritual .varianten .was,.ritual .varianten .wie{padding:12px 0;box-sizing:border-box;border-top:1px solid var(--hair)}
+  .ritual .varianten li:last-child .was,.ritual .varianten li:last-child .wie{border-bottom:1px solid var(--hair)}
+  .ritual .varianten .wie{color:var(--ink-soft)}
+  /* Grundzustand (und Rückfall ohne Container-Queries): Beschreibung unter der Zutat, Haarlinie nur über der Zutat.
+     Ab 420 px Spaltenbreite reicht es für zwei Spalten: Zutat 11.35 em + 24 px Rinne + Rest für die Beschreibung. */
+  .ritual .varianten .was{padding-bottom:0}
+  .ritual .varianten .wie{border-top:0;padding-top:2px}
+  .ritual .varianten li:last-child .was{border-bottom:0}
+  @container (min-width:420px){
+    /* Die Rinne steckt als padding-right in der Zutatenspalte, nicht als column-gap — sonst risse die Haarlinie dazwischen auf. */
+    .ritual .varianten{grid-template-columns:auto minmax(0,1fr);column-gap:0}
+    .ritual .varianten .was{padding-bottom:12px;padding-right:24px;min-height:44px}
+    .ritual .varianten .wie{border-top:1px solid var(--hair);padding-top:12px;min-height:44px}
+    .ritual .varianten li:last-child .was{border-bottom:1px solid var(--hair)}
+  }
+  .ritual .text .zusatz{margin-top:28px;font-size:clamp(18px,1.4vw,21px);line-height:1.4;color:var(--ink-soft)}
   .ritual .lead{margin-top:18px}
   .ritual .cap .t{color:var(--ink)}
   /* T8: Zubereitung = gespiegelte Vanille-Section (.geschmack ist die Vorlage). Zwei Kacheln über die volle Viewportbreite,
@@ -841,20 +861,20 @@
      Steht hier am Ende, damit die Regel nach .ritual .text .lead greift (gleiche Spezifität). */
   .ritual .text .varianten{margin-top:28px}
   /* T98: Die fünf Zeilen unter der h2 (Minute, drei Varianten, Schlusssatz) stehen ab 1024px einzeilig.
-     --zeile = 22 × Fließtextgröße; die längste Zeile misst 21.2 em („Mit Honig oder Zucker. Wenn du es süßer magst.“,
-     EN 19.6 em), der Rest ist Reserve für Ersatzschriften. Der Abstand zur Bildnaht bleibt mindestens --gap;
+     --zeile = 24 × Fließtextgröße. Maß seit T99 die Tabelle: Zutatenspalte 11.35 em + 24 px Rinne + Beschreibung 11.34 em
+     (EN 9.6 + 12.9) = 23.9 em, damit keine Beschreibung umbricht; die längste Textzeile misst 21.2 em (EN 19.6). Der Abstand zur Bildnaht bleibt mindestens --gap;
      ab 768px ersetzt diese Regel das padding-right aus T37 (dort erst ab 1024px gesetzt, darunter lag der Text an der Naht).
      Unter 1024px darf die Zeile brechen, aber nur zwischen den Sätzen: jeder Satz ist ein inline-block (.s) und bricht
      nur dann selbst um, wenn er allein nicht in die Spalte passt. */
   @media(min-width:768px){
-    section.ritual .text{--zeile:calc(22 * clamp(20px, 1.6vw, 24px));
+    section.ritual .text{--zeile:calc(24 * clamp(20px, 1.6vw, 24px));
       padding-right:max(var(--gap), calc(50vw - var(--achse) - var(--zeile)))}
   }
   @media(min-width:1024px){
-    section.ritual .text .minute,section.ritual .text .varianten{width:min(100%, var(--zeile));max-width:none}
+    section.ritual .text .minute,section.ritual .text .varianten,section.ritual .text .zusatz{width:min(100%, var(--zeile));max-width:none}
   }
   @media(max-width:1023px){
-    section.ritual .text .minute,section.ritual .text .varianten{max-width:none}
+    section.ritual .text .minute,section.ritual .text .varianten,section.ritual .text .zusatz{max-width:none}
   }
   .ritual .minute .s,.ritual .varianten .s{display:inline-block}
 </style>
@@ -972,7 +992,13 @@
       <h2>One spoon<br>is enough.</h2>
       <!-- Zeit mit Muster nachmessen -->
       <p class="lead minute"><span class="s">One minute.</span> <span class="s">We haven’t tried faster.</span></p>
-      <p class="lead varianten"><span><span class="s">With water.</span> <span class="s">Slightly earthy, barely sweet.</span></span><span><span class="s">With milk or oat drink.</span> <span class="s">Rounder, softer.</span></span><span><span class="s">With honey or sugar.</span> <span class="s">If you like it sweeter.</span></span><!-- Wortlaut rechtlich offen (Glycin) --><span class="zusatz"><span class="s">No added sugar, no sweeteners.</span> <span class="s">On purpose.</span></span></p>
+      <ul class="lead varianten">
+        <li><span class="was">With water</span><span class="wie">Slightly earthy, barely sweet.</span></li>
+        <li><span class="was">With milk or oat drink</span><span class="wie">Rounder, softer.</span></li>
+        <li><span class="was">With honey or sugar</span><span class="wie">If you like it sweeter.</span></li>
+      </ul>
+      <!-- Wortlaut rechtlich offen (Glycin) -->
+      <p class="zusatz"><span class="s">No added sugar, no sweeteners.</span> <span class="s">On purpose.</span></p>
     </div>
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Full glass of cocoa with spoon on paper." decoding="async" loading="lazy"></div>

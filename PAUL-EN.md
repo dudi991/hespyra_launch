@@ -10,9 +10,9 @@ Zubereitung EN (Arbeitsfassung T96, bitte prüfen): „With water. Slightly eart
 „With milk or oat drink. Rounder, softer.“ · „With honey or sugar. If you like it sweeter.“ ·
 „No added sugar, no sweeteners. On purpose.“ — letzte Zeile rechtlich offen (Glycin).
 Minuten-Zeile EN (Arbeitsfassung T97, bitte prüfen): „One minute. We haven’t tried faster.“ — Zeit mit Muster nachmessen.
-FAQ-Antwort „What does it taste like?“ EN (Arbeitsfassung T100, bitte prüfen): „With water, slightly earthy and barely sweet.
-With milk or oat drink, rounder. If you like it sweeter, add honey or sugar. There’s no added sugar and no sweetener in it.
-On purpose.“ — Wortlaut rechtlich offen (Glycin). Die Zubereitungs-Tabelle aus T99 ist mit T100 wieder raus.
+Geschmacks-Absatz Zubereitung EN (Arbeitsfassung T101, bitte prüfen): „With water, slightly earthy and barely sweet;
+with milk or oat drink, rounder. If you like it sweeter, add honey or sugar. There’s no sugar and no sweetener in it.
+On purpose.“ — Wortlaut rechtlich offen (Glycin). Tabelle (T99) und FAQ-Frage (T100) sind wieder raus.
 
 Rohfassung online, native pass ausstehend:
 - „Die letzte Runde“ / „Last Orders“ (Abendkultur, 27.09.2026) — Quelle journal-src/letzte-runde-en.md.

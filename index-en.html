@@ -857,6 +857,10 @@
     section.ritual .text .lead{max-width:none}
     .ritual .minute .s,.ritual .zusatz .s{display:block}
   }
+  /* T110: Im Vanille-Feld steht nur noch ein Absatz. Er trägt .t1 und damit Größe und Tinte des entfernten
+     Geschmacksabsatzes; der Abstand zur h2 bleibt dadurch derselbe. Fester Umbruch nach dem ersten Satz,
+     auf allen Breiten. Die .t3-Regeln bleiben vorerst stehen, greifen aber auf keine Stelle mehr. */
+  .geschmack .text .t1 .s{display:block}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->
@@ -1015,9 +1019,7 @@
       <div class="photo reveal" style="--focus:25% 90%"><img src="img/vanille-2.webp" width="1536" height="658" alt="Cocoa powder, vanilla pod and spoon on paper." decoding="async" loading="lazy"></div>
       <div class="text">
         <h2>Cocoa and real vanilla.</h2>
-        <!-- Geschmacksbeschreibung — gegen finale Charge prüfen. -->
-        <p class="lead t1">First the dark cocoa, then the vanilla. It never gets very sweet.</p>
-        <p class="lead t3">The formula mattered. It still had to taste good.</p>
+        <p class="lead t1"><span class="s">The formula mattered.</span> <span class="s">It still had to taste good.</span></p>
       </div>
     </div>
     <p class="cap"><span class="t"><span class="ph">[place]</span> <span class="dot">·</span> <span class="ph">[time]</span></span></p>

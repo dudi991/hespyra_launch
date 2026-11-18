@@ -853,6 +853,10 @@
     section.ritual .text .lead{max-width:none}
     .ritual .minute .s,.ritual .zusatz .s{display:block}
   }
+  /* T110: Im Vanille-Feld steht nur noch ein Absatz. Er trägt .t1 und damit Größe und Tinte des entfernten
+     Geschmacksabsatzes; der Abstand zur h2 bleibt dadurch derselbe. Fester Umbruch nach dem ersten Satz,
+     auf allen Breiten. Die .t3-Regeln bleiben vorerst stehen, greifen aber auf keine Stelle mehr. */
+  .geschmack .text .t1 .s{display:block}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->
@@ -1011,9 +1015,7 @@
       <div class="photo reveal" style="--focus:25% 90%"><img src="img/vanille-2.webp" width="1536" height="658" alt="Kakaopulver, Vanilleschote und Löffel auf Papier." decoding="async" loading="lazy"></div>
       <div class="text">
         <h2>Kakao und echte Vanille.</h2>
-        <!-- Geschmacksbeschreibung — gegen finale Charge prüfen. -->
-        <p class="lead t1">Zuerst kommt der herbe Kakao, danach die Vanille. Besonders süß wird es nicht.</p>
-        <p class="lead t3">Die Formel war uns wichtig. Schmecken musste es trotzdem.</p>
+        <p class="lead t1"><span class="s">Die Formel war uns wichtig.</span> <span class="s">Schmecken musste es trotzdem.</span></p>
       </div>
     </div>
     <p class="cap"><span class="t"><span class="ph">[Ort]</span> <span class="dot">·</span> <span class="ph">[Zeit]</span></span></p>

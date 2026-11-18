@@ -832,22 +832,19 @@
     section.geschmack .photo{aspect-ratio:1536/658;height:auto}   /* T77: Verhältnis der beschnittenen Datei */
     section.geschmack .photo img{object-fit:cover;object-position:center}
   }
-  /* T98: Die Minuten-Zeile unter der h2 steht ab 1024px einzeilig; --zeile = 22 × Fließtextgröße
-     (die Zeile misst 19.8 em, EN 15.7 em, der Rest ist Reserve für Ersatzschriften). Der Abstand zur Bildnaht
-     bleibt mindestens --gap; ab 768px ersetzt diese Regel das padding-right aus T37 (dort erst ab 1024px gesetzt,
-     darunter lag der Text an der Naht). Unter 1024px darf die Zeile brechen, aber nur zwischen den beiden Sätzen:
-     jeder Satz ist ein inline-block (.s) und bricht nur dann selbst um, wenn er allein nicht in die Spalte passt. */
+  /* T102: Minuten-Zeile und Absatz darunter teilen eine Textbreite: --zeile = 21 × Fließtextgröße.
+     Maß ist die Minuten-Zeile — sie misst 19.8 em (EN 15.7 em) und steht damit gerade einzeilig, der Rest ist
+     Reserve für Ersatzschriften. Der Absatz bricht innerhalb dieser Breite frei um (der Satzweise-Umbruch aus T98
+     ist raus). Der Abstand zur Bildnaht bleibt mindestens --gap; ab 768px ersetzt diese Regel das padding-right
+     aus T37 (dort erst ab 1024px gesetzt, darunter lag der Text an der Naht). Unter 768px volle Spaltenbreite. */
   @media(min-width:768px){
-    section.ritual .text{--zeile:calc(22 * clamp(20px, 1.6vw, 24px));
+    section.ritual .text{--zeile:calc(21 * clamp(20px, 1.6vw, 24px));
       padding-right:max(var(--gap), calc(50vw - var(--achse) - var(--zeile)))}
+    section.ritual .text .lead{width:min(100%, var(--zeile));max-width:none}
   }
-  @media(min-width:1024px){
-    section.ritual .text .minute{width:min(100%, var(--zeile));max-width:none}
+  @media(max-width:767px){
+    section.ritual .text .lead{max-width:none}
   }
-  @media(max-width:1023px){
-    section.ritual .text .minute{max-width:none}
-  }
-  .ritual .minute .s{display:inline-block}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->

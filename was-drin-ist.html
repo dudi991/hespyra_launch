@@ -384,9 +384,9 @@
     }
   }
   .journal .excerpt,.beitraege .excerpt{hyphens:manual}
-  /* T58 (≤640px): Sprungliste über den Zutaten aus; FAQ-Hairline → Journal-Band 64px statt --raum-weit. */
+  /* T58 (≤640px): FAQ-Hairline → Journal-Band 64px statt --raum-weit. (Die Zeile, die hier die Sprungliste
+     ausblendete, war seit v0.43 ohne Wirkung und ist mit T108 entfallen.) */
   @media(max-width:640px){
-    .zutaten-index:not(.seite){display:none}
     .faq{padding-bottom:0}
     .journal-wrap{margin-top:64px}
   }
@@ -528,9 +528,19 @@
   .zutaten-index{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:24px 0 0}
   .zutaten-index a{padding-bottom:1px;border-bottom:1px solid transparent}
   .zutaten-index a:hover{border-color:var(--ink);color:var(--ink)}
-  /* H2 (v0.43): auf 390 bricht die Inline-Liste wie ein Absatz um. Kein flex, kein nowrap, kein overflow. */
-  @media(max-width:600px){
-    .zutaten-index:not(.seite){display:block;white-space:normal;line-height:1.8}
+  /* T108 (<768px, löst H2 v0.43 ab): die Sprungleiste zeigt nur noch die drei Abschnitte, untereinander,
+     eine Zeile je Link, linksbündig mit dem Fließtext — das padding kommt aus der globalen nav-Regel der
+     Kopfzeile und muss hier weg, display:block schlägt deren display:flex. Die elf Zutaten-Anker bleiben im
+     Markup (Sprungziele und Vorlesereihenfolge), sie werden nur ausgeblendet; die Trennpunkte ebenso.
+     Keine Unterstreichung: a:hover setzt sonst eine Linie, die auf Touch nach dem Tippen stehen bleibt und
+     wie ein Aktiv-Zustand aussieht. Ab 768px bleibt die Leiste unverändert. */
+  @media(max-width:767px){
+    .zutaten-index:not(.seite){display:block;white-space:normal;line-height:1.8;padding:0;gap:0}
+    .zutaten-index:not(.seite) a,.zutaten-index:not(.seite) .dot{display:none}
+    .zutaten-index:not(.seite) a[href="#nicht-drin"],
+    .zutaten-index:not(.seite) a[href="#formuliert"],
+    .zutaten-index:not(.seite) a[href="#herstellung"]{display:block;border-bottom:0;padding-bottom:0}
+    .zutaten-index:not(.seite) a:hover{color:var(--ink-soft)}
   }
   /* Der Inhalt läuft in Spalte 1–8, die Liste steht ab 860 px als Seitenleiste in 10–12. */
   .inhalt .narrow{max-width:none;padding:0}
@@ -710,7 +720,7 @@
 <section class="fs-head narrow">
   <p class="label">Formel</p>
   <h1 class="reveal">Was drin ist.</h1>
-  <p class="lead reveal">Elf Zutaten, sechs Gramm pro Portion. Zutaten, Formen und Mengen im Überblick.</p>
+  <p class="lead reveal">Elf Zutaten, sechs Gramm pro Portion.</p>
   <nav class="zutaten-index" aria-label="Zutaten">
     <a href="#magnesium">Magnesium</a> <span class="dot">·</span>
     <a href="#l-theanin">L-Theanin</a> <span class="dot">·</span>
@@ -730,21 +740,21 @@
   <!-- Arbeitsstand 06.09.2026 auf Basis der NovaLabs-Rezeptur 25188-2 (ETD 6 g). Nichts getestet, alles kann sich ändern. -->
   <!-- .vorlaunch: fliegt, sobald die Mengen nach dem NovaLabs-Angebot final gesetzt sind. Dann
      Gesamttabelle und alle elf Datenblätter einmal gegen die finale Rezeptur prüfen. -->
-  <p class="small soft vorlaunch reveal" style="margin-top:40px;margin-bottom:-26px">Mengen pro Portion (6&nbsp;g).</p>
+  <p class="small soft vorlaunch reveal" style="margin-top:40px;margin-bottom:-26px">Mengen pro Portion (6&#8239;g).</p>
   <table class="reveal">
     <thead class="vh"><tr><th scope="col">Zutat</th><th scope="col">Form</th><th scope="col">Menge</th></tr></thead>
-    <tr><td><a href="#magnesium">Magnesium</a><span class="form">Bisglycinat</span></td><td>Bisglycinat</td><td>78&nbsp;mg elementar</td></tr>
-    <tr><td><a href="#magnesium">Magnesium</a><span class="form">Taurat</span></td><td>Taurat</td><td>72&nbsp;mg elementar</td></tr>
-    <tr><td><a href="#l-theanin">L-Theanin</a><span class="form">aus 167&nbsp;mg Grüntee-Extrakt, 60&nbsp;%</span></td><td>aus 167&nbsp;mg Grüntee-Extrakt, 60&nbsp;%</td><td>100&nbsp;mg</td></tr>
-    <tr><td><a href="#phosphatidylserin">Phosphatidyl&shy;serin</a><span class="form">SunPS®, 70&nbsp;%, aus Sonnenblume</span></td><td>SunPS®, 70&nbsp;%, aus Sonnenblume</td><td>70&nbsp;mg</td></tr>
-    <tr><td><a href="#ashwagandha">Ashwagandha</a><span class="form">KSM-66®, Bio, Wurzelextrakt, 5&nbsp;% Withanolide, 300&nbsp;mg</span></td><td>KSM-66®, Bio, Wurzelextrakt, 5&nbsp;% Withanolide, 300&nbsp;mg</td><td>300&nbsp;mg</td></tr>
-    <tr><td><a href="#safran">Safran</a><span class="form">Affron®, Extrakt</span></td><td>Affron®, Extrakt</td><td>28&nbsp;mg</td></tr>
-    <tr><td><a href="#reishi">Reishi</a><span class="form">Fruchtkörperextrakt</span></td><td>Fruchtkörperextrakt</td><td>1.000&nbsp;mg</td></tr>
-    <tr><td><a href="#kakao">Kakao</a><span class="form">alkalisiert, 10–12&nbsp;% Fett, 1.000&nbsp;mg</span></td><td>alkalisiert, 10–12&nbsp;% Fett, 1.000&nbsp;mg</td><td>1.000&nbsp;mg</td></tr>
-    <tr><td><a href="#glycin">Glycin</a><span class="form">Aminosäure</span></td><td>Aminosäure</td><td>1.380&nbsp;mg</td></tr>
-    <tr><td><a href="#kokosmilchpulver">Kokosmilchpulver</a></td><td></td><td>200&nbsp;mg</td></tr>
-    <tr><td><a href="#bourbon-vanille">Bourbon-Vanille</a><span class="form">Bio</span></td><td>Bio</td><td>300&nbsp;mg</td></tr>
-    <tr><td><a href="#salz">Salz</a></td><td></td><td>51&nbsp;mg (20&nbsp;mg Natrium)</td></tr>
+    <tr><td><a href="#magnesium">Magnesium</a><span class="form">Bisglycinat</span></td><td>Bisglycinat</td><td>78&#8239;mg elementar</td></tr>
+    <tr><td><a href="#magnesium">Magnesium</a><span class="form">Taurat</span></td><td>Taurat</td><td>72&#8239;mg elementar</td></tr>
+    <tr><td><a href="#l-theanin">L-Theanin</a><span class="form">aus 167&#8239;mg Grüntee-Extrakt, 60&#8239;%</span></td><td>aus 167&#8239;mg Grüntee-Extrakt, 60&#8239;%</td><td>100&#8239;mg</td></tr>
+    <tr><td><a href="#phosphatidylserin">Phosphatidyl&shy;serin</a><span class="form">SunPS®, 70&#8239;%, aus Sonnenblume</span></td><td>SunPS®, 70&#8239;%, aus Sonnenblume</td><td>70&#8239;mg</td></tr>
+    <tr><td><a href="#ashwagandha">Ashwagandha</a><span class="form">KSM-66®, Bio, Wurzelextrakt, 5&#8239;% Withanolide, 300&#8239;mg</span></td><td>KSM-66®, Bio, Wurzelextrakt, 5&#8239;% Withanolide, 300&#8239;mg</td><td>300&#8239;mg</td></tr>
+    <tr><td><a href="#safran">Safran</a><span class="form">Affron®, Extrakt</span></td><td>Affron®, Extrakt</td><td>28&#8239;mg</td></tr>
+    <tr><td><a href="#reishi">Reishi</a><span class="form">Fruchtkörperextrakt</span></td><td>Fruchtkörperextrakt</td><td>1.000&#8239;mg</td></tr>
+    <tr><td><a href="#kakao">Kakao</a><span class="form">alkalisiert, 10–12&#8239;% Fett, 1.000&#8239;mg</span></td><td>alkalisiert, 10–12&#8239;% Fett, 1.000&#8239;mg</td><td>1.000&#8239;mg</td></tr>
+    <tr><td><a href="#glycin">Glycin</a><span class="form">Aminosäure</span></td><td>Aminosäure</td><td>1.380&#8239;mg</td></tr>
+    <tr><td><a href="#kokosmilchpulver">Kokosmilchpulver</a></td><td></td><td>200&#8239;mg</td></tr>
+    <tr><td><a href="#bourbon-vanille">Bourbon-Vanille</a><span class="form">Bio</span></td><td>Bio</td><td>300&#8239;mg</td></tr>
+    <tr><td><a href="#salz">Salz</a></td><td></td><td>51&#8239;mg (20&#8239;mg Natrium)</td></tr>
   </table>
 </section>
 

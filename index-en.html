@@ -861,6 +861,18 @@
      Geschmacksabsatzes; der Abstand zur h2 bleibt dadurch derselbe. Fester Umbruch nach dem ersten Satz,
      auf allen Breiten. Die .t3-Regeln bleiben vorerst stehen, greifen aber auf keine Stelle mehr. */
   .geschmack .text .t1 .s{display:block}
+  /* T111: Ab 768px steht der Absatz in genau zwei Zeilen — ein Satz je Zeile, nie ein Umbruch im Satz.
+     Dafür zählt nicht mehr die Spaltenbreite (width:min(100%,28rem) aus T18), sondern der längere der beiden
+     Sätze: width:max-content, keine max-width. Die linke Kante bleibt die der h2, der Absatz wächst nur nach
+     rechts und darf dabei in den rechten Seitenabstand (--achse) hineinreichen. Dort ist Platz: ab 1440px
+     misst der Abstand 104px und mehr. Eng ist allein 768px — dort bleiben der deutschen zweiten Zeile noch
+     12.4px bis zur Kachelkante (bei 800px sind es 25.8px, ab 860px über 50px). Unter 768px bleibt es beim
+     freien Umbruch aus T110; beide Sätze stehen dort bis hinunter zu 320px von selbst einzeilig. */
+  @media(min-width:768px){
+    section.geschmack .text{min-width:0}   /* sonst drückt der max-content-Absatz die 1fr-Spalte breiter und die Seite läuft seitlich über */
+    section.geschmack .text .t1{width:max-content;max-width:none}
+    section.geschmack .text .t1 .s{white-space:nowrap}
+  }
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->

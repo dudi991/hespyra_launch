@@ -102,7 +102,10 @@
   .bar.scrolled{box-shadow:none}
   /* T4: auf ≤600 px gemessene Höhe mit „Bestellen" in der Kopfzeile: 55 px (ohne wären es 52 px). */
   @media(max-width:600px){:root{--bar-h:55px}}
-  nav{display:flex;align-items:center;justify-content:space-between;gap:24px;
+  /* T109: .bar nav statt nav — die Regeln gelten der Kopfzeile. Als bloßes nav{} trafen sie auch die
+     Sprungleiste .zutaten-index (ebenfalls ein <nav>) und machten sie zur flex-Reihe, die zwischen
+     768 und 859 px seitlich aus dem Bild lief. */
+  .bar nav{display:flex;align-items:center;justify-content:space-between;gap:24px;
     width:100%;max-width:var(--col);margin:0 auto;padding:18px var(--gap)}
   .nav-l{display:flex;align-items:center;gap:20px;min-width:0}
   @media(min-width:860px){.nav-l{gap:40px}}
@@ -129,16 +132,16 @@
   /* Ein Platz in der Kopfzeile: die Ortszeit. Wechsel nur über Opacity, ohne Layoutsprung. */
   .ortszeit{transition:color .3s var(--ease),opacity .3s ease-out}
   .ortszeit.aus{opacity:0;visibility:hidden}
-  nav ul{list-style:none;margin:0;padding:0;display:none;gap:28px;font-size:15px;flex:none}
-  nav li a{position:relative;padding-bottom:2px}
-  nav li a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  .bar nav ul{list-style:none;margin:0;padding:0;display:none;gap:28px;font-size:15px;flex:none}
+  .bar nav li a{position:relative;padding-bottom:2px}
+  .bar nav li a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
     background:var(--ink);transform:scaleX(0);transform-origin:left;
     transition:transform .35s var(--ease),opacity .35s var(--ease)}
-  nav li a:hover::after{transform:scaleX(1)}
-  nav .shop{font-weight:500}
-  nav .shop::after{transform:scaleX(1)}
+  .bar nav li a:hover::after{transform:scaleX(1)}
+  .bar nav .shop{font-weight:500}
+  .bar nav .shop::after{transform:scaleX(1)}
   .lang{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--ink-soft)}
-  nav li .lang{margin-left:6px}
+  .bar nav li .lang{margin-left:6px}
   .menu{font-size:15px;display:flex;align-items:baseline;gap:8px;flex:none;
     /* T4: rechts verankert (Startpunkt der Box ist ihre rechte Kante). Wandert „Bestellen" ins Menü, bleiben „EN ≡"
        stehen und die Gruppe gilt nicht als verschoben. row-reverse hält die Reihenfolge links → rechts wie im Markup. */
@@ -155,12 +158,12 @@
     .bar.open nav li:first-child a{border-top:0}
     .bar.open nav li .lang{margin-left:0;font-size:14px}
   }
-  @media(min-width:860px){nav ul{display:flex}.menu{display:none}}
+  @media(min-width:860px){.bar nav ul{display:flex}.menu{display:none}}
   /* H1 (v0.43, 2. Runde): Auf 390 ist die Zeile zu eng für Wortmarke + Ortszeit + "Menü · Bestellen · EN".
      Darum wird aus dem Wort "Menü" ein Burger-Zeichen, die Gruppe heißt nur noch "≡ Bestellen · EN",
      und die Abstände werden knapper. Damit steht "Ort · Zeit" wieder vollständig in der Kopfzeile. */
   @media(max-width:600px){
-    nav{gap:8px;padding-left:16px;padding-right:16px}
+    .bar nav{gap:8px;padding-left:16px;padding-right:16px}
     .nav-l{gap:8px}
     .mark .wm{height:13px}
     .menu{gap:5px;font-size:13.5px}
@@ -529,13 +532,12 @@
   .zutaten-index a{padding-bottom:1px;border-bottom:1px solid transparent}
   .zutaten-index a:hover{border-color:var(--ink);color:var(--ink)}
   /* T108 (<768px, löst H2 v0.43 ab): die Sprungleiste zeigt nur noch die drei Abschnitte, untereinander,
-     eine Zeile je Link, linksbündig mit dem Fließtext — das padding kommt aus der globalen nav-Regel der
-     Kopfzeile und muss hier weg, display:block schlägt deren display:flex. Die elf Zutaten-Anker bleiben im
-     Markup (Sprungziele und Vorlesereihenfolge), sie werden nur ausgeblendet; die Trennpunkte ebenso.
-     Keine Unterstreichung: a:hover setzt sonst eine Linie, die auf Touch nach dem Tippen stehen bleibt und
-     wie ein Aktiv-Zustand aussieht. Ab 768px bleibt die Leiste unverändert. */
+     eine Zeile je Link, linksbündig mit dem Fließtext. Die elf Zutaten-Anker bleiben im Markup (Sprungziele
+     und Vorlesereihenfolge), sie werden nur ausgeblendet; die Trennpunkte ebenso. Keine Unterstreichung:
+     a:hover setzt sonst eine Linie, die auf Touch nach dem Tippen stehen bleibt und wie ein Aktiv-Zustand
+     aussieht. Ab 768px steht die volle Leiste, seit T109 als umbrechende Zeile statt als flex-Reihe. */
   @media(max-width:767px){
-    .zutaten-index:not(.seite){display:block;white-space:normal;line-height:1.8;padding:0;gap:0}
+    .zutaten-index:not(.seite){display:block;white-space:normal;line-height:1.8}
     .zutaten-index:not(.seite) a,.zutaten-index:not(.seite) .dot{display:none}
     .zutaten-index:not(.seite) a[href="#nicht-drin"],
     .zutaten-index:not(.seite) a[href="#formuliert"],
@@ -551,7 +553,10 @@
     /* Ab 860 px übernimmt die Seitenleiste, die Inline-Liste tritt ab — eine Liste je Breite. */
     .zutaten-index:not(.seite){display:none}
     /* align-self:start — sonst streckt das Grid die Leiste auf die Zeilenhöhe und sticky hat keinen Weg. */
-    .zutaten-index.seite{display:block;align-self:start;position:sticky;top:84px;margin-top:clamp(56px,7vw,110px)}
+    /* T109: padding stand vorher in der globalen nav-Regel; hier festgehalten, damit die Seitenleiste
+       nach der Eingrenzung pixelgleich bleibt. */
+    .zutaten-index.seite{display:block;align-self:start;position:sticky;top:84px;margin-top:clamp(56px,7vw,110px);
+      padding:18px var(--gap)}
     .zutaten-index.seite a{display:block;padding:3px 0}
     .zutaten-index.seite .dot{display:none}
   }
@@ -762,12 +767,12 @@
   <h2 class="reveal">Magnesium</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>magnesium, two organic compounds</dd></div>
-    <div><dt>Form</dt><dd>553&nbsp;mg bisglycinate + 900&nbsp;mg taurate</dd></div>
-    <div><dt>Of which magnesium</dt><dd>150&nbsp;mg elemental (40&nbsp;% NRV)</dd></div>
+    <div><dt>Form</dt><dd>553&#8239;mg bisglycinate + 900&#8239;mg taurate</dd></div>
+    <div><dt>Of which magnesium</dt><dd>150&#8239;mg elemental (40&#8239;% NRV)</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[heavy metals, microbiology — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">553&nbsp;mg magnesium bisglycinate and 900&nbsp;mg magnesium taurate. Together 150&nbsp;mg elemental magnesium, 40 per cent of the daily reference value.</p>
+  <p class="lead reveal">553&#8239;mg magnesium bisglycinate and 900&#8239;mg magnesium taurate. Together 150&#8239;mg elemental magnesium, 40 per cent of the daily reference value.</p>
   <p class="lead reveal">Magnesium contributes to normal functioning of the nervous system and to normal psychological function.</p>
 </section>
 
@@ -775,36 +780,36 @@
   <h2 class="reveal">L-Theanine</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>L-theanine, amino acid from green tea</dd></div>
-    <div><dt>Form</dt><dd>green tea extract, 167&nbsp;mg</dd></div>
-    <div><dt>Standardised</dt><dd>60&nbsp;% L-theanine</dd></div>
-    <div><dt>Of which L-theanine</dt><dd>100&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>green tea extract, 167&#8239;mg</dd></div>
+    <div><dt>Standardised</dt><dd>60&#8239;% L-theanine</dd></div>
+    <div><dt>Of which L-theanine</dt><dd>100&#8239;mg</dd></div>
     <div><dt>Plant part</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[residual caffeine, heavy metals, pesticides — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">167&nbsp;mg green tea extract, standardised to 60 per cent L-theanine. That gives 100&nbsp;mg L-theanine per serving.</p>
+  <p class="lead reveal">167&#8239;mg green tea extract, standardised to 60 per cent L-theanine. That gives 100&#8239;mg L-theanine per serving.</p>
 </section>
 
 <section class="zutat narrow" id="phosphatidylserin">
   <h2 class="reveal">Phosphatidyl&shy;serine</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>phosphatidylserine, phospholipid</dd></div>
-    <div><dt>Form</dt><dd>SunPS®, 100&nbsp;mg</dd></div>
-    <div><dt>Standardised</dt><dd>70&nbsp;% phosphatidylserine</dd></div>
-    <div><dt>Of which PS</dt><dd>70&nbsp;mg phosphatidylserine</dd></div>
+    <div><dt>Form</dt><dd>SunPS®, 100&#8239;mg</dd></div>
+    <div><dt>Standardised</dt><dd>70&#8239;% phosphatidylserine</dd></div>
+    <div><dt>Of which PS</dt><dd>70&#8239;mg phosphatidylserine</dd></div>
     <div><dt>Source</dt><dd>sunflower</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[allergens, heavy metals — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">SunPS®: a raw material from sunflower, standardised to 70 per cent phosphatidylserine. 100&nbsp;mg of raw material provide 70&nbsp;mg phosphatidylserine.</p>
+  <p class="lead reveal">SunPS®: a raw material from sunflower, standardised to 70 per cent phosphatidylserine. 100&#8239;mg of raw material provide 70&#8239;mg phosphatidylserine.</p>
 </section>
 
 <section class="zutat narrow" id="ashwagandha">
   <h2 class="reveal">Ashwagandha</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Withania somnifera, root</dd></div>
-    <div><dt>Form</dt><dd>KSM-66®, organic, root extract, 300&nbsp;mg</dd></div>
-    <div><dt>Standardised</dt><dd>5&nbsp;% withanolides (15&nbsp;mg per serving)</dd></div>
+    <div><dt>Form</dt><dd>KSM-66®, organic, root extract, 300&#8239;mg</dd></div>
+    <div><dt>Standardised</dt><dd>5&#8239;% withanolides (15&#8239;mg per serving)</dd></div>
     <div><dt>Plant part</dt><dd>root only</dd></div>
     <div><dt>Cultivation</dt><dd>organic</dd></div>
     <div><dt>Extraction</dt><dd><span class="ph">[process — specification]</span></dd></div>
@@ -817,13 +822,13 @@
   <h2 class="reveal">Saffron</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Crocus sativus, stigmas</dd></div>
-    <div><dt>Form</dt><dd>Affron®, extract, 28&nbsp;mg</dd></div>
-    <div><dt>Standardised</dt><dd>&gt;&nbsp;3.5&nbsp;% Lepticrosalides® (approx. 0.98&nbsp;mg)</dd></div>
+    <div><dt>Form</dt><dd>Affron®, extract, 28&#8239;mg</dd></div>
+    <div><dt>Standardised</dt><dd>&gt;&nbsp;3.5&#8239;% Lepticrosalides® (approx. 0.98&#8239;mg)</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Extraction</dt><dd><span class="ph">[process — specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[identity, heavy metals — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">28&nbsp;mg Affron®, standardised to more than 3.5 per cent Lepticrosalides®. That is around 0.98&nbsp;mg per serving.</p>
+  <p class="lead reveal">28&#8239;mg Affron®, standardised to more than 3.5 per cent Lepticrosalides®. That is around 0.98&#8239;mg per serving.</p>
   <p class="lead reveal">The most expensive item in the formula, by a wide margin. It is in there anyway.</p>
 </section>
 
@@ -831,21 +836,21 @@
   <h2 class="reveal">Reishi</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Ganoderma lucidum, fruiting body</dd></div>
-    <div><dt>Form</dt><dd>fruiting body extract, 1,000&nbsp;mg</dd></div>
-    <div><dt>Standardised</dt><dd>30&nbsp;% polysaccharides (300&nbsp;mg)</dd></div>
+    <div><dt>Form</dt><dd>fruiting body extract, 1,000&#8239;mg</dd></div>
+    <div><dt>Standardised</dt><dd>30&#8239;% polysaccharides (300&#8239;mg)</dd></div>
     <div><dt>Plant part</dt><dd>fruiting body, no mycelium</dd></div>
     <div><dt>Extraction</dt><dd><span class="ph">[water / water-ethanol — specification]</span></dd></div>
     <div><dt>Cultivation</dt><dd><span class="ph">[region, organic — specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[heavy metals, pesticides, microbiology — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">One gram of fruiting body extract per serving, standardised to 30 per cent polysaccharides — equivalent to 300&nbsp;mg.</p>
+  <p class="lead reveal">One gram of fruiting body extract per serving, standardised to 30 per cent polysaccharides — equivalent to 300&#8239;mg.</p>
 </section>
 
 <section class="zutat narrow" id="kakao">
   <h2 class="reveal">Cocoa</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Theobroma cacao, cocoa powder</dd></div>
-    <div><dt>Form</dt><dd>alkalised, 10–12&nbsp;% fat, 1,000&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>alkalised, 10–12&#8239;% fat, 1,000&#8239;mg</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[country — specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[cadmium, microbiology — analysis]</span></dd></div>
   </dl>
@@ -856,12 +861,12 @@
   <h2 class="reveal">Glycine</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>glycine, amino acid</dd></div>
-    <div><dt>Form</dt><dd>1,401&nbsp;mg raw material, 98.5&nbsp;%</dd></div>
-    <div><dt>Of which glycine</dt><dd>1,380&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>1,401&#8239;mg raw material, 98.5&#8239;%</dd></div>
+    <div><dt>Of which glycine</dt><dd>1,380&#8239;mg</dd></div>
     <div><dt>Function</dt><dd>sweetness</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
   </dl>
-  <p class="lead reveal">1,401&nbsp;mg of the 98.5 per cent raw material give around 1,380&nbsp;mg glycine per serving.</p>
+  <p class="lead reveal">1,401&#8239;mg of the 98.5 per cent raw material give around 1,380&#8239;mg glycine per serving.</p>
   <p class="lead reveal">We did not want sugar or sweeteners — glycine tastes naturally a little sweet.</p>
 </section>
 
@@ -869,33 +874,33 @@
   <h2 class="reveal">Coconut milk powder</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Cocos nucifera, milk powder</dd></div>
-    <div><dt>Form</dt><dd>200&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>200&#8239;mg</dd></div>
     <div><dt>Function</dt><dd>texture</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
   </dl>
-  <p class="lead reveal">200&nbsp;mg coconut milk powder per serving. It is intended for texture; how it behaves sensorially in the finished mix will show in sample development. <span class="ph">[check specification: carriers, further components.]</span></p>
+  <p class="lead reveal">200&#8239;mg coconut milk powder per serving. It is intended for texture; how it behaves sensorially in the finished mix will show in sample development. <span class="ph">[check specification: carriers, further components.]</span></p>
 </section>
 
 <section class="zutat narrow" id="bourbon-vanille">
   <h2 class="reveal">Bourbon vanilla</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>Vanilla planifolia</dd></div>
-    <div><dt>Form</dt><dd>300&nbsp;mg</dd></div>
+    <div><dt>Form</dt><dd>300&#8239;mg</dd></div>
     <div><dt>Cultivation</dt><dd>organic</dd></div>
     <div><dt>Origin</dt><dd><span class="ph">[specification]</span></dd></div>
     <div><dt>Tested for</dt><dd><span class="ph">[microbiology — analysis]</span></dd></div>
   </dl>
-  <p class="lead reveal">300&nbsp;mg Bourbon vanilla (Vanilla planifolia), organic.</p>
+  <p class="lead reveal">300&#8239;mg Bourbon vanilla (Vanilla planifolia), organic.</p>
 </section>
 
 <section class="zutat narrow" id="salz">
   <h2 class="reveal">Salt</h2>
   <dl class="spec reveal">
     <div><dt>What</dt><dd>sodium chloride</dd></div>
-    <div><dt>Form</dt><dd>51&nbsp;mg salt, of which 20&nbsp;mg sodium.</dd></div>
+    <div><dt>Form</dt><dd>51&#8239;mg salt, of which 20&#8239;mg sodium.</dd></div>
     <div><dt>Function</dt><dd>taste</dd></div>
   </dl>
-  <p class="lead reveal">51&nbsp;mg sodium chloride per serving, equivalent to 20&nbsp;mg sodium. A small amount for taste.</p>
+  <p class="lead reveal">51&#8239;mg sodium chloride per serving, equivalent to 20&#8239;mg sodium. A small amount for taste.</p>
   <p class="lead reveal">Cocoa without salt tastes flat.</p>
 </section>
 
@@ -905,7 +910,7 @@
     <li class="reveal"><b>Melatonin.</b><span>HESPYRA is not a sleep product.</span></li>
     <li class="reveal"><b>Added sugar, sweeteners.</b><span>Not planned in the current sample formula. Glycine itself tastes slightly sweet.</span></li>
     <li class="reveal"><b>Added flavourings.</b><span>Not planned in the current sample formula.</span></li>
-    <li class="reveal"><b>A “blend”.</b><span>Every amount is listed on its own. Otherwise “6&nbsp;g formula” would be a remarkably imprecise piece of information.</span></li>
+    <li class="reveal"><b>A “blend”.</b><span>Every amount is listed on its own. Otherwise “6&#8239;g formula” would be a remarkably imprecise piece of information.</span></li>
   </ul>
 </section>
 

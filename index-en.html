@@ -351,8 +351,8 @@
   .ritual h2{max-width:17ch}
   /* T96: Zubereitung — drei Varianten und ein Hinweis, je eigene Zeile. Kein Listenpunkt, kein Icon;
      die letzte Zeile (.zusatz) steht abgesetzt, weil sie keine Variante ist. */
-  .ritual .varianten span{display:block}
-  .ritual .varianten span + span{margin-top:10px}
+  .ritual .varianten > span{display:block}
+  .ritual .varianten > span + span{margin-top:10px}
   .ritual .varianten .zusatz{margin-top:28px}
   .ritual .lead{margin-top:18px}
   .ritual .cap .t{color:var(--ink)}
@@ -840,6 +840,23 @@
   /* T97: Minuten-Zeile steht zwischen h2 und den Varianten; Abstand zu den Varianten wie vor der letzten Zeile.
      Steht hier am Ende, damit die Regel nach .ritual .text .lead greift (gleiche Spezifität). */
   .ritual .text .varianten{margin-top:28px}
+  /* T98: Die fünf Zeilen unter der h2 (Minute, drei Varianten, Schlusssatz) stehen ab 1024px einzeilig.
+     --zeile = 22 × Fließtextgröße; die längste Zeile misst 21.2 em („Mit Honig oder Zucker. Wenn du es süßer magst.“,
+     EN 19.6 em), der Rest ist Reserve für Ersatzschriften. Der Abstand zur Bildnaht bleibt mindestens --gap;
+     ab 768px ersetzt diese Regel das padding-right aus T37 (dort erst ab 1024px gesetzt, darunter lag der Text an der Naht).
+     Unter 1024px darf die Zeile brechen, aber nur zwischen den Sätzen: jeder Satz ist ein inline-block (.s) und bricht
+     nur dann selbst um, wenn er allein nicht in die Spalte passt. */
+  @media(min-width:768px){
+    section.ritual .text{--zeile:calc(22 * clamp(20px, 1.6vw, 24px));
+      padding-right:max(var(--gap), calc(50vw - var(--achse) - var(--zeile)))}
+  }
+  @media(min-width:1024px){
+    section.ritual .text .minute,section.ritual .text .varianten{width:min(100%, var(--zeile));max-width:none}
+  }
+  @media(max-width:1023px){
+    section.ritual .text .minute,section.ritual .text .varianten{max-width:none}
+  }
+  .ritual .minute .s,.ritual .varianten .s{display:inline-block}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->
@@ -954,8 +971,8 @@
       <p class="label">Preparation</p>
       <h2>One spoon<br>is enough.</h2>
       <!-- Zeit mit Muster nachmessen -->
-      <p class="lead minute">One minute. We haven’t tried faster.</p>
-      <p class="lead varianten"><span>With water. Slightly earthy, barely sweet.</span><span>With milk or oat drink. Rounder, softer.</span><span>With honey or sugar. If you like it sweeter.</span><!-- Wortlaut rechtlich offen (Glycin) --><span class="zusatz">No added sugar, no sweeteners. On purpose.</span></p>
+      <p class="lead minute"><span class="s">One minute.</span> <span class="s">We haven’t tried faster.</span></p>
+      <p class="lead varianten"><span><span class="s">With water.</span> <span class="s">Slightly earthy, barely sweet.</span></span><span><span class="s">With milk or oat drink.</span> <span class="s">Rounder, softer.</span></span><span><span class="s">With honey or sugar.</span> <span class="s">If you like it sweeter.</span></span><!-- Wortlaut rechtlich offen (Glycin) --><span class="zusatz"><span class="s">No added sugar, no sweeteners.</span> <span class="s">On purpose.</span></span></p>
     </div>
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Full glass of cocoa with spoon on paper." decoding="async" loading="lazy"></div>

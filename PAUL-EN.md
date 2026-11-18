@@ -6,6 +6,10 @@ Rubriknamen EN (Arbeitsfassung, bitte prüfen): Observations · Evening Culture 
 Rubriksätze EN (Arbeitsfassung): „Essays about the evening. With a claim you can argue with.“ · „How other countries and other times keep the evening. Research, and it shows.“ · „Real people, real evenings. Name, place, photo.“ · „Place · time · photo · one sentence.“ · „Concrete adventures for the evening. Done, or still ahead.“
 Kicker in Unternehmungen EN: „Been“ / „Not yet“ (DE: gewesen / steht noch aus).
 
+Zubereitung EN (Arbeitsfassung T96, bitte prüfen): „With water. Slightly earthy, barely sweet. That’s how we meant it.“ ·
+„With milk or oat drink. Rounder, softer.“ · „With honey or sugar. If you like it sweeter.“ ·
+„No added sugar, no sweeteners. On purpose.“ — letzte Zeile rechtlich offen (Glycin).
+
 Rohfassung online, native pass ausstehend:
 - „Die letzte Runde“ / „Last Orders“ (Abendkultur, 27.09.2026) — Quelle journal-src/letzte-runde-en.md.
 - „November“ (Beobachtungen) — Quelle journal-src/november-en.md.

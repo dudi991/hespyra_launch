@@ -345,6 +345,11 @@
 
   /* ---------- 3 ZUBEREITUNG ---------- */
   .ritual h2{max-width:17ch}
+  /* T96: Zubereitung — drei Varianten und ein Hinweis, je eigene Zeile. Kein Listenpunkt, kein Icon;
+     die letzte Zeile (.zusatz) steht abgesetzt, weil sie keine Variante ist. */
+  .ritual .varianten span{display:block}
+  .ritual .varianten span + span{margin-top:10px}
+  .ritual .varianten .zusatz{margin-top:28px}
   .ritual .lead{margin-top:18px}
   .ritual .cap .t{color:var(--ink)}
   /* T8: Zubereitung = gespiegelte Vanille-Section (.geschmack ist die Vorlage). Zwei Kacheln über die volle Viewportbreite,
@@ -942,7 +947,7 @@
     <div class="text">
       <p class="label">Zubereitung</p>
       <h2>Ein Löffel reicht.</h2>
-      <p class="lead">Mit Wasser angerührt ist HESPYRA in einer Minute fertig. Warm oder kalt. Mit Hafermilch wird es etwas cremiger.</p>
+      <p class="lead varianten"><span>Mit Wasser. Leicht erdig, kaum süß. So haben wir es uns gedacht.</span><span>Mit Milch oder Haferdrink. Runder, weicher.</span><span>Mit Honig oder Zucker. Wenn du es süßer magst.</span><!-- Wortlaut rechtlich offen (Glycin) --><span class="zusatz">Ohne Zuckerzusatz, ohne Süßstoffe. Absichtlich.</span></p>
     </div>
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Volles Glas Kakao mit Löffel auf Papier." decoding="async" loading="lazy"></div>

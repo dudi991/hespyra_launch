@@ -349,6 +349,11 @@
 
   /* ---------- 3 ZUBEREITUNG ---------- */
   .ritual h2{max-width:17ch}
+  /* T96: Zubereitung — drei Varianten und ein Hinweis, je eigene Zeile. Kein Listenpunkt, kein Icon;
+     die letzte Zeile (.zusatz) steht abgesetzt, weil sie keine Variante ist. */
+  .ritual .varianten span{display:block}
+  .ritual .varianten span + span{margin-top:10px}
+  .ritual .varianten .zusatz{margin-top:28px}
   .ritual .lead{margin-top:18px}
   .ritual .cap .t{color:var(--ink)}
   /* T8: Zubereitung = gespiegelte Vanille-Section (.geschmack ist die Vorlage). Zwei Kacheln über die volle Viewportbreite,
@@ -945,7 +950,7 @@
     <div class="text">
       <p class="label">Preparation</p>
       <h2>One spoon<br>is enough.</h2>
-      <p class="lead">Mixed with water, HESPYRA is ready in a minute. Warm or cold. Oat milk makes it a little creamier.</p>
+      <p class="lead varianten"><span>With water. Slightly earthy, barely sweet. That’s how we meant it.</span><span>With milk or oat drink. Rounder, softer.</span><span>With honey or sugar. If you like it sweeter.</span><!-- Wortlaut rechtlich offen (Glycin) --><span class="zusatz">No added sugar, no sweeteners. On purpose.</span></p>
     </div>
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Full glass of cocoa with spoon on paper." decoding="async" loading="lazy"></div>

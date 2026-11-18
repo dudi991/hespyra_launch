@@ -833,6 +833,9 @@
     section.geschmack .photo{aspect-ratio:1536/658;height:auto}   /* T77: Verhältnis der beschnittenen Datei */
     section.geschmack .photo img{object-fit:cover;object-position:center}
   }
+  /* T97: Minuten-Zeile steht zwischen h2 und den Varianten; Abstand zu den Varianten wie vor der letzten Zeile.
+     Steht hier am Ende, damit die Regel nach .ritual .text .lead greift (gleiche Spezifität). */
+  .ritual .text .varianten{margin-top:28px}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->
@@ -947,7 +950,9 @@
     <div class="text">
       <p class="label">Zubereitung</p>
       <h2>Ein Löffel reicht.</h2>
-      <p class="lead varianten"><span>Mit Wasser. Leicht erdig, kaum süß. So haben wir es uns gedacht.</span><span>Mit Milch oder Haferdrink. Runder, weicher.</span><span>Mit Honig oder Zucker. Wenn du es süßer magst.</span><!-- Wortlaut rechtlich offen (Glycin) --><span class="zusatz">Ohne Zuckerzusatz, ohne Süßstoffe. Absichtlich.</span></p>
+      <!-- Zeit mit Muster nachmessen -->
+      <p class="lead minute">Eine Minute. Kürzer haben wir nicht versucht.</p>
+      <p class="lead varianten"><span>Mit Wasser. Leicht erdig, kaum süß.</span><span>Mit Milch oder Haferdrink. Runder, weicher.</span><span>Mit Honig oder Zucker. Wenn du es süßer magst.</span><!-- Wortlaut rechtlich offen (Glycin) --><span class="zusatz">Ohne Zuckerzusatz, ohne Süßstoffe. Absichtlich.</span></p>
     </div>
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Volles Glas Kakao mit Löffel auf Papier." decoding="async" loading="lazy"></div>

@@ -837,6 +837,9 @@
     section.geschmack .photo{aspect-ratio:1536/658;height:auto}   /* T77: Verhältnis der beschnittenen Datei */
     section.geschmack .photo img{object-fit:cover;object-position:center}
   }
+  /* T97: Minuten-Zeile steht zwischen h2 und den Varianten; Abstand zu den Varianten wie vor der letzten Zeile.
+     Steht hier am Ende, damit die Regel nach .ritual .text .lead greift (gleiche Spezifität). */
+  .ritual .text .varianten{margin-top:28px}
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
 <!-- D5: prüfen (JSON-LD description) -->
@@ -950,7 +953,9 @@
     <div class="text">
       <p class="label">Preparation</p>
       <h2>One spoon<br>is enough.</h2>
-      <p class="lead varianten"><span>With water. Slightly earthy, barely sweet. That’s how we meant it.</span><span>With milk or oat drink. Rounder, softer.</span><span>With honey or sugar. If you like it sweeter.</span><!-- Wortlaut rechtlich offen (Glycin) --><span class="zusatz">No added sugar, no sweeteners. On purpose.</span></p>
+      <!-- Zeit mit Muster nachmessen -->
+      <p class="lead minute">One minute. We haven’t tried faster.</p>
+      <p class="lead varianten"><span>With water. Slightly earthy, barely sweet.</span><span>With milk or oat drink. Rounder, softer.</span><span>With honey or sugar. If you like it sweeter.</span><!-- Wortlaut rechtlich offen (Glycin) --><span class="zusatz">No added sugar, no sweeteners. On purpose.</span></p>
     </div>
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Full glass of cocoa with spoon on paper." decoding="async" loading="lazy"></div>

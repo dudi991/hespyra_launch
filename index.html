@@ -846,8 +846,12 @@
     section.ritual .text .minute,section.ritual .text .zusatz{width:min(100%, var(--zeile-breit));max-width:none}
     section.ritual .text .varianten{width:min(100%, var(--block));max-width:none}
   }
+  /* T107: Unter 768px nutzen die Zeilen die volle Spaltenbreite, und Minuten-Zeile wie Schlusssatz brechen fest
+     nach dem ersten Satz. Kein nowrap: passt ein Satz auf sehr schmalen Geräten nicht, bricht er lieber selbst um,
+     statt über den Rand zu laufen. Ab 768px bleiben beide einzeilig (--zeile-breit aus T103). */
   @media(max-width:767px){
     section.ritual .text .lead{max-width:none}
+    .ritual .minute .s,.ritual .zusatz .s{display:block}
   }
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
@@ -964,10 +968,10 @@
       <p class="label">Zubereitung</p>
       <h2>Ein Löffel reicht.</h2>
       <!-- Zeit mit Muster nachmessen -->
-      <p class="lead minute">Eine Minute. Kürzer haben wir nicht versucht.</p>
+      <p class="lead minute"><span class="s">Eine Minute.</span> <span class="s">Kürzer haben wir nicht versucht.</span></p>
       <p class="lead varianten"><span><span class="s">Mit Wasser.</span><span class="s">Leicht erdig, kaum süß.</span></span><span><span class="s">Mit Milch oder Haferdrink.</span><span class="s">Runder, weicher.</span></span><span><span class="s">Mit Honig oder Zucker.</span><span class="s">Wenn du es süßer magst.</span></span></p>
       <!-- Wortlaut rechtlich offen (Glycin) -->
-      <p class="lead zusatz">Ohne Zuckerzusatz, ohne Süßstoffe. Absichtlich.</p>
+      <p class="lead zusatz"><span class="s">Ohne Zuckerzusatz, ohne Süßstoffe.</span> <span class="s">Absichtlich.</span></p>
     </div>
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Volles Glas Kakao mit Löffel auf Papier." decoding="async" loading="lazy"></div>

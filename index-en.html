@@ -850,8 +850,12 @@
     section.ritual .text .minute,section.ritual .text .zusatz{width:min(100%, var(--zeile-breit));max-width:none}
     section.ritual .text .varianten{width:min(100%, var(--block));max-width:none}
   }
+  /* T107: Unter 768px nutzen die Zeilen die volle Spaltenbreite, und Minuten-Zeile wie Schlusssatz brechen fest
+     nach dem ersten Satz. Kein nowrap: passt ein Satz auf sehr schmalen Geräten nicht, bricht er lieber selbst um,
+     statt über den Rand zu laufen. Ab 768px bleiben beide einzeilig (--zeile-breit aus T103). */
   @media(max-width:767px){
     section.ritual .text .lead{max-width:none}
+    .ritual .minute .s,.ritual .zusatz .s{display:block}
   }
 </style>
 <!-- JSON-LD: Preis/Verfügbarkeit (offers) ergänzen, wenn der Shop steht -->
@@ -967,10 +971,10 @@
       <p class="label">Preparation</p>
       <h2>One spoon<br>is enough.</h2>
       <!-- Zeit mit Muster nachmessen -->
-      <p class="lead minute">One minute. We haven’t tried faster.</p>
+      <p class="lead minute"><span class="s">One minute.</span> <span class="s">We haven’t tried faster.</span></p>
       <p class="lead varianten"><span><span class="s">With water.</span><span class="s">Slightly earthy, barely sweet.</span></span><span><span class="s">With milk or oat drink.</span><span class="s">Rounder, softer.</span></span><span><span class="s">With honey or sugar.</span><span class="s">If you like it sweeter.</span></span></p>
       <!-- Wortlaut rechtlich offen (Glycin) -->
-      <p class="lead zusatz">No added sugar, no sweeteners. On purpose.</p>
+      <p class="lead zusatz"><span class="s">No added sugar, no sweeteners.</span> <span class="s">On purpose.</span></p>
     </div>
     <figure class="ritual-kachel reveal">
       <div class="photo" style="--focus:50% 55%"><img src="img/zubereitung.webp" width="1448" height="1086" alt="Full glass of cocoa with spoon on paper." decoding="async" loading="lazy"></div>
